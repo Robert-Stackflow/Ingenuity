@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cloudchewie.ui.shadow.ShadowRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_card_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_round_dp5"
+        android:backgroundTint="@color/card_background"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_noSolid="true"
+        app:layout_roundRadius="10dp"
+        app:layout_shadowColor="#11000000"
+        app:layout_shadowRadius="@dimen/dp10"
+        app:layout_solidColor="#ffffff">
+
+        <ImageView
+            android:id="@+id/activity_card_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:maxHeight="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_state_background"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/activity_card_top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/activity_card_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/activity_card_time"
+                android:maxLines="2"
+                android:textColor="@color/color_accent"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符" />
+
+            <TextView
+                android:id="@+id/activity_card_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/activity_card_name"
+                android:layout_alignBottom="@id/activity_card_name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/dp20"
+                android:gravity="center"
+                android:textColor="@color/color_prominent"
+                android:textSize="@dimen/sp15"
+                android:textStyle="bold"
+                tools:text="两天后" />
+
+            <com.cloudchewie.ui.ninegrid.NineGridImageView
+                android:id="@+id/activity_card_nine_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_card_name"
+                android:layout_marginEnd="10dp"
+                android:paddingTop="5dp"
+                app:imgGap="@dimen/nine_grid_gap"
+                app:showStyle="fill"
+                app:singleImgSize="80dp" />
+
+            <LinearLayout
+                android:id="@+id/activity_card_tags_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_card_nine_grid"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5">
+
+                <com.cloudchewie.ui.custom.HorizontalIconTextItem
+                    android:id="@+id/activity_card_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_round_dp3"
+                    android:backgroundTint="@color/tag_background"
+                    android:padding="@dimen/dp3"
+                    app:horizontal_icon_text_item_icon="@drawable/ic_light_integral"
+                    app:horizontal_icon_text_item_icon_color="@color/color_gray"
+                    app:horizontal_icon_text_item_text_color="@color/color_gray"
+                    tools:horizontal_icon_text_item_text="聚餐" />
+
+                <com.cloudchewie.ui.custom.HorizontalIconTextItem
+                    android:id="@+id/activity_card_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:background="@drawable/shape_round_dp3"
+                    android:backgroundTint="@color/tag_background"
+                    android:padding="@dimen/dp3"
+                    app:horizontal_icon_text_item_icon="@drawable/ic_light_clock"
+                    app:horizontal_icon_text_item_icon_color="@color/color_gray"
+                    app:horizontal_icon_text_item_text_color="@color/color_gray"
+                    tools:horizontal_icon_text_item_text="1天" />
+
+                <com.cloudchewie.ui.custom.HorizontalIconTextItem
+                    android:id="@+id/activity_card_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:background="@drawable/shape_round_dp3"
+                    android:backgroundTint="@color/tag_background"
+                    android:padding="@dimen/dp3"
+                    app:horizontal_icon_text_item_icon="@drawable/ic_light_account"
+                    app:horizontal_icon_text_item_icon_color="@color/color_gray"
+                    app:horizontal_icon_text_item_text_color="@color/color_gray"
+                    tools:horizontal_icon_text_item_text="9人" />
+            </LinearLayout>
+
+            <com.cloudchewie.ui.custom.HorizontalIconTextItem
+                android:id="@+id/activity_card_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_card_tags_layout"
+                android:background="@drawable/shape_round_dp3"
+                android:backgroundTint="@color/tag_background"
+                android:padding="@dimen/dp3"
+                app:horizontal_icon_text_item_icon="@drawable/ic_light_map"
+                app:horizontal_icon_text_item_icon_color="@color/color_gray"
+                app:horizontal_icon_text_item_text_color="@color/color_gray"
+                app:horizontal_icon_text_item_text_max_length="20"
+                tools:horizontal_icon_text_item_text="九龙湖餐厅九龙湖餐厅九龙湖餐厅九龙湖餐厅九龙湖餐厅九龙湖餐厅九龙湖餐厅九龙湖餐厅九龙湖餐厅九龙湖餐厅" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/activity_card_hr"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px1"
+            android:background="@drawable/shape_divider"
+            app:layout_constraintTop_toBottomOf="@id/activity_card_top_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp5"
+            app:layout_constraintTop_toBottomOf="@id/activity_card_hr">
+
+            <TextView
+                android:id="@+id/activity_card_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp5"
+                android:text="详情"
+                android:textColor="@color/color_gray" />
+
+            <TextView
+                android:id="@+id/activity_card_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp5"
+                android:text="相册"
+                android:textColor="@color/color_gray" />
+
+            <TextView
+                android:id="@+id/activity_card_chatroom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp5"
+                android:text="聊天室"
+                android:textColor="@color/color_gray" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.cloudchewie.ui.shadow.ShadowRelativeLayout>

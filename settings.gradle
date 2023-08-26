@@ -1,0 +1,8 @@
+include ':ui'
+include ':app'
+include ':ucrop'
+include ':imagepicker'
+include ':imagepreview'
+include ':messagelist'
+include ':filepicker'
+include ':util'

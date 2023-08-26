@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/content_background">
+
+    <ImageView
+        android:id="@+id/ic_audio"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_light_earphone" />
+
+    <CheckBox
+        android:id="@+id/cbx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:button="@drawable/shape_checkbox" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_toStartOf="@id/cbx"
+        android:layout_toEndOf="@id/ic_audio"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_favorites_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_accent"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/color_gray"
+            android:textSize="13sp"
+            tools:text="04:10" />
+    </LinearLayout>
+</RelativeLayout>

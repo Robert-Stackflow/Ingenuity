@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:clickable="false"
+    android:focusable="false">
+
+    <View
+        android:id="@+id/follow_choices_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px1"
+        android:background="@color/color_divider"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp10"
+        android:paddingEnd="@dimen/dp10"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/follow_choices_divider">
+
+        <com.cloudchewie.ui.general.FlowTagLayout
+            android:id="@+id/follow_choices_flowtaglayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:horizontal_diver="@dimen/dp10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vertical_diver="@dimen/dp10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

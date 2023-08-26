@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favorites_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_rect"
+    android:backgroundTint="@color/color_selector_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="10dp">
+
+    <com.cloudchewie.ui.general.RoundImageView
+        android:id="@+id/favorites_item_cover"
+        android:layout_width="140dp"
+        android:layout_height="@dimen/dp80"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_default_background" />
+
+    <com.cloudchewie.ui.custom.HorizontalIconTextItem
+        android:id="@+id/favorites_item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/favorites_item_cover"
+        android:layout_alignBottom="@id/favorites_item_cover"
+        android:layout_marginEnd="@dimen/dp5"
+        android:layout_marginBottom="@dimen/dp5"
+        android:background="@drawable/shape_round_dp3"
+        android:backgroundTint="@color/dark_translucent"
+        android:paddingStart="4dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="2dp"
+        app:horizontal_icon_text_item_icon="@drawable/ic_light_integral"
+        app:horizontal_icon_text_item_icon_color="@color/text_color_white"
+        app:horizontal_icon_text_item_icon_size="10dp"
+        app:horizontal_icon_text_item_text="3"
+        app:horizontal_icon_text_item_text_color="@color/text_color_white"
+        app:horizontal_icon_text_item_text_size="@dimen/sp10" />
+
+    <TextView
+        android:id="@+id/favorites_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/favorites_item_cover"
+        android:singleLine="true"
+        android:textColor="@color/color_accent"
+        android:textSize="@dimen/sp15"
+        tools:text="默认收藏夹" />
+
+    <ImageView
+        android:id="@+id/favorites_item_more"
+        android:layout_width="@dimen/dp20"
+        android:layout_height="@dimen/dp20"
+        android:layout_alignBottom="@id/favorites_item_cover"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_light_ellipsis_vertical"
+        app:tint="@color/color_gray" />
+
+    <TextView
+        android:id="@+id/favorites_item_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/favorites_item_dot"
+        android:layout_alignStart="@id/favorites_item_name"
+        android:layout_marginTop="25dp"
+        android:maxLines="2"
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/sp12"
+        tools:text="创建者：余湍" />
+
+    <TextView
+        android:id="@+id/favorites_item_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/favorites_item_name"
+        android:layout_alignBottom="@id/favorites_item_cover"
+        android:layout_gravity="center_vertical"
+        android:text="收藏夹 · "
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:id="@+id/favorites_item_ispublic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/favorites_item_dot"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@id/favorites_item_dot"
+        android:singleLine="true"
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/sp12"
+        tools:text="公开" />
+
+</RelativeLayout>

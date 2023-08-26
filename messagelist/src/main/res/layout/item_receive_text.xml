@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/aurora_msgitem_receive_style">
+
+
+    <cn.jiguang.imui.view.RoundTextView
+        android:id="@+id/aurora_tv_msgitem_date"
+        style="@style/aurora_msgitem_date_style" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.cloudchewie.ui.general.RoundImageView
+            android:id="@+id/aurora_iv_msgitem_avatar"
+            style="@style/aurora_msgitem_receiver_avatar_style"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/aurora_avatar_desc" />
+
+        <TextView
+            android:id="@+id/aurora_tv_msgitem_receiver_display_name"
+            style="@style/aurora_msgitem_receiver_display_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/aurora_iv_msgitem_avatar" />
+
+        <TextView
+            android:id="@+id/aurora_tv_msgitem_message"
+            style="@style/aurora_msgitem_msg_txt_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aurora_tv_msgitem_receiver_display_name"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="1dp"
+            android:layout_toEndOf="@id/aurora_iv_msgitem_avatar"
+            android:background="@drawable/shape_round_dp10"
+            android:backgroundTint="@color/color_selector_card"
+            android:enabled="true"
+            android:focusable="true"
+            android:lineSpacingExtra="5dp"
+            android:longClickable="true"
+            android:textIsSelectable="true" />
+    </RelativeLayout>
+</LinearLayout>

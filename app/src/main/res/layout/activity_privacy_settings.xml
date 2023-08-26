@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cloudchewie.ui.custom.TitleBar
+        android:id="@+id/privacy_settings_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:transitionName="shareElement"
+        app:right_button_visibility="false"
+        app:title="@string/entry_privacy" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/privacy_settings_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/privacy_settings_titlebar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintTop_toBottomOf="@id/privacy_settings_titlebar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/general_privacy_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.cloudchewie.ui.general.CheckBoxItem
+                    android:id="@+id/switch_showmylocation"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    app:checkbox_item_title="@string/switch_showmylocation"
+                    app:checkbox_item_top_radius_enable="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.cloudchewie.ui.general.CheckBoxItem
+                    android:id="@+id/switch_allowstrangermessages"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    app:checkbox_item_bottom_radius_enable="true"
+                    app:checkbox_item_title="@string/switch_allowstrangermessages"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/switch_showmylocation" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/personalized_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/general_privacy_layout">
+
+                <com.cloudchewie.ui.general.CheckBoxItem
+                    android:id="@+id/switch_personalized_recommendation"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    app:checkbox_item_bottom_radius_enable="true"
+                    app:checkbox_item_title="@string/switch_personalized_recommendation"
+                    app:checkbox_item_top_radius_enable="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/manage_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/personalized_layout">
+
+                <com.cloudchewie.ui.custom.EntryItem
+                    android:id="@+id/entry_blacklist"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:textSize="18sp"
+                    app:entry_item_left_icon_visibility="false"
+                    app:entry_item_title="@string/entry_blacklist"
+                    app:entry_item_top_radius_enable="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.cloudchewie.ui.custom.EntryItem
+                    android:id="@+id/entry_uninterested"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:textSize="18sp"
+                    app:entry_item_bottom_radius_enable="true"
+                    app:entry_item_left_icon_visibility="false"
+                    app:entry_item_title="@string/entry_uninterested"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/entry_blacklist" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</RelativeLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cloudchewie.ui.custom.TitleBar
+        android:id="@+id/login_by_mobile_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:transitionName="shareElement"
+        app:left_button_icon="@drawable/ic_light_close"
+        app:right_button_visibility="false" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/login_by_mobile_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/login_by_mobile_titlebar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp20">
+
+            <TextView
+                android:id="@+id/login_by_mobile_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="手机号登录"
+                android:textColor="@color/color_accent"
+                android:textSize="@dimen/sp20"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.cloudchewie.ui.custom.InputItem
+                android:id="@+id/login_by_mobile_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp40"
+                app:input_item_hint="输入手机号码"
+                app:input_item_mode="phonenumber"
+                app:layout_constraintTop_toBottomOf="@id/login_by_mobile_title" />
+
+            <com.cloudchewie.ui.custom.InputItem
+                android:id="@+id/login_by_mobile_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                app:input_item_hint="输入密码"
+                app:input_item_mode="password"
+                app:layout_constraintTop_toBottomOf="@id/login_by_mobile_phonenumber" />
+
+            <TextView
+                android:id="@+id/login_by_mobile_term"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:autoLink="web"
+                android:padding="@dimen/dp5"
+                android:text="点击登录即表示您已阅读并同意《用户协议》和《隐私政策》"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/sp12"
+                app:layout_constraintTop_toBottomOf="@id/login_by_mobile_password" />
+
+            <Button
+                android:id="@+id/login_by_mobile_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/shape_button_round"
+                android:backgroundTint="@color/color_selector_prominent"
+                android:stateListAnimator="@null"
+                android:text="登录"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/login_by_mobile_term" />
+
+            <TextView
+                android:id="@+id/login_by_mobile_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp20"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="验证码登录"
+                android:textAlignment="center"
+                android:textColor="@color/color_prominent"
+                android:textSize="@dimen/sp12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/login_by_mobile_confirm" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_by_mobile_bottom_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp30">
+
+        <TextView
+            android:id="@+id/login_by_mobile_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="注册帐号"
+            android:textAlignment="center"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/sp12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/login_by_mobile_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp10"
+            android:text=" | "
+            android:textAlignment="center"
+            android:textColor="@color/color_light_gray"
+            android:textSize="@dimen/sp12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/login_by_mobile_signup"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/login_by_mobile_problem"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp10"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="登录问题"
+            android:textAlignment="center"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/sp12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/login_by_mobile_divider"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

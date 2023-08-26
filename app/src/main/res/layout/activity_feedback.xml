@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_feedback_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/titlebar_background"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/activity_feedback_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/color_red"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/activity_feedback_page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="意见反馈"
+            android:textColor="@color/color_accent"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/activity_feedback_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/color_prominent"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/activity_feedback_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_feedback_titlebar">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_feedback_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@id/activity_feedback_titlebar">
+
+                <!--                <EditText-->
+                <!--                    android:id="@+id/activity_feedback_type"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@drawable/shape_round_dp10"-->
+                <!--                    android:backgroundTint="@color/card_background"-->
+                <!--                    android:hint="反馈类型"-->
+                <!--                    android:importantForAutofill="no"-->
+                <!--                    android:inputType="textMultiLine"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:textCursorDrawable="@drawable/shape_cursor"-->
+                <!--                    android:textSize="@dimen/sp18"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    tools:ignore="LabelFor" />-->
+
+                <com.cloudchewie.ui.custom.EntryItem
+                    android:id="@+id/activity_feedback_type"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:entry_item_bottom_radius_enable="true"
+                    app:entry_item_left_icon_visibility="false"
+                    app:entry_item_tip="请选择反馈类型"
+                    app:entry_item_tip_color="@color/color_gray"
+                    app:entry_item_title="反馈类型"
+                    app:entry_item_top_radius_enable="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.cloudchewie.ui.general.CheckBoxItem
+                    android:id="@+id/activity_feedback_switch_upload_log"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:textSize="18sp"
+                    app:checkbox_item_bottom_radius_enable="true"
+                    app:checkbox_item_title="上传日志"
+                    app:checkbox_item_top_radius_enable="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_type" />
+
+                <EditText
+                    android:id="@+id/activity_feedback_describe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@drawable/shape_round_dp10"
+                    android:backgroundTint="@color/card_background"
+                    android:gravity="top"
+                    android:hint="写下您的反馈或建议"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:minLines="10"
+                    android:padding="@dimen/dp10"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_switch_upload_log"
+                    tools:ignore="LabelFor" />
+
+                <TextView
+                    android:id="@+id/activity_feedback_describe_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp5"
+                    app:layout_constraintBottom_toBottomOf="@id/activity_feedback_describe"
+                    app:layout_constraintEnd_toEndOf="@id/activity_feedback_describe"
+                    tools:text="0/200" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/activity_feedback_image_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@drawable/shape_round_dp10"
+                    android:backgroundTint="@color/card_background"
+                    android:padding="@dimen/dp10"
+                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_contact">
+
+                    <TextView
+                        android:id="@+id/activity_feedback_image_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/dp5"
+                        android:text="上传图片更好地说明您的反馈或建议"
+                        android:textColor="@color/color_hint"
+                        android:textSize="@dimen/sp15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.cloudchewie.ui.ninegrid.NineGridImageView
+                        android:id="@+id/activity_feedback_nine_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp10"
+                        android:paddingBottom="5dp"
+                        app:imgGap="@dimen/nine_grid_gap"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_feedback_image_label"
+                        app:showStyle="grid"
+                        app:singleImgSize="120dp" />
+
+                    <ImageView
+                        android:id="@+id/activity_feedback_add_picture"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/shape_round_dp5"
+                        android:backgroundTint="@color/tag_background"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_light_camera"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_feedback_nine_grid"
+                        app:tint="@color/color_light_gray" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <EditText
+                    android:id="@+id/activity_feedback_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@drawable/shape_round_dp10"
+                    android:backgroundTint="@color/card_background"
+                    android:gravity="top"
+                    android:hint="填写您的手机号等联系方式"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/dp10"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_describe"
+                    tools:ignore="LabelFor" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</RelativeLayout>

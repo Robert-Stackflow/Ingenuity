@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cloudchewie.ui.custom.TitleBar
+        android:id="@+id/activity_signup_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:transitionName="shareElement"
+        app:left_button_icon="@drawable/ic_light_close"
+        app:right_button_visibility="false" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/activity_signup_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_signup_titlebar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp20">
+
+            <TextView
+                android:id="@+id/activity_signup_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="注册"
+                android:textColor="@color/color_accent"
+                android:textSize="@dimen/sp20"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.cloudchewie.ui.custom.InputItem
+                android:id="@+id/activity_signup_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp40"
+                app:input_item_hint="输入昵称"
+                app:input_item_mode="text"
+                app:layout_constraintTop_toBottomOf="@id/activity_signup_title" />
+
+            <com.cloudchewie.ui.custom.InputItem
+                android:id="@+id/activity_signup_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                app:input_item_hint="输入手机号码"
+                app:input_item_mode="phonenumber"
+                app:layout_constraintTop_toBottomOf="@id/activity_signup_username" />
+
+            <com.cloudchewie.ui.custom.InputItem
+                android:id="@+id/activity_signup_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                app:input_item_hint="输入密码"
+                app:input_item_mode="password"
+                app:layout_constraintTop_toBottomOf="@id/activity_signup_phonenumber" />
+
+            <TextView
+                android:id="@+id/activity_signup_term"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:autoLink="web"
+                android:padding="@dimen/dp5"
+                android:text="点击注册即表示您已阅读并同意《用户协议》和《隐私政策》"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/sp12"
+                app:layout_constraintTop_toBottomOf="@id/activity_signup_password" />
+
+            <Button
+                android:id="@+id/activity_signup_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/shape_button_round"
+                android:backgroundTint="@color/color_selector_prominent"
+                android:stateListAnimator="@null"
+                android:text="完成注册"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/activity_signup_term" />
+
+            <TextView
+                android:id="@+id/activity_signup_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="验证码登录"
+                android:textAlignment="center"
+                android:textColor="@color/color_prominent"
+                android:textSize="@dimen/sp12"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_signup_confirm" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+    <TextView
+        android:id="@+id/signup_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp30"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="已有帐号？立即登录"
+        android:textAlignment="center"
+        android:textColor="@color/color_prominent"
+        android:textSize="@dimen/sp12" />
+</RelativeLayout>

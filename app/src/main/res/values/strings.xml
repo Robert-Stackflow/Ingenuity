@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">机巧</string>
+    <string name="follow_attraction">关注地点</string>
+    <string name="nav_map">地图</string>
+    <string name="nav_discover">发现</string>
+    <string name="nav_message">消息</string>
+    <string name="nav_mine">我的</string>
+    <string name="follow_topic">关注话题</string>
+    <string name="cd_daynight">深色模式</string>
+    <string name="cd_settings">设置</string>
+    <string name="entry_home_page">个人主页</string>
+    <string name="cd_poi_icon">POI图标</string>
+    <string name="cancel">取消</string>
+    <string name="fragement_message_title">消息</string>
+    <string name="cd_clear_unread">清除未读</string>
+    <string name="post_detail_title">帖子详情</string>
+    <string name="back">返回</string>
+    <string name="more">更多</string>
+    <string name="sort_comprehensive">综合</string>
+    <string name="sort_newest">最新</string>
+    <string name="sort_earliest">最早</string>
+    <string name="cd_home_page_background">个人主页背景</string>
+    <string name="zero">0</string>
+    <string name="filter">筛选</string>
+    <string name="comment_detail_title">回复详情</string>
+    <string name="fab">发布</string>
+    <string name="nav_home">首页</string>
+    <string name="nav_memos">Memos</string>
+</resources>

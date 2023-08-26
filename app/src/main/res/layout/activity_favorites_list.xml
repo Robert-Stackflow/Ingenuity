@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.cloudchewie.ui.custom.TitleBar
+        android:id="@+id/activity_favorites_list_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:transitionName="shareElement"
+        app:right_button_icon="@drawable/ic_light_plus"
+        app:right_button_visibility="true"
+        app:title="我的收藏" />
+
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/activity_favorites_list_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_favorites_list_titlebar">
+
+        <com.scwang.smart.refresh.header.ClassicsHeader
+            android:id="@+id/activity_favorites_list_swipe_refresh_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/activity_favorites_list_titlebar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.cloudchewie.ui.custom.ExpandableList
+                    android:id="@+id/activity_favorites_list_my_favorites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/content_background"
+                    app:expandable_list_title="我创建的收藏夹"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.cloudchewie.ui.custom.ExpandableList
+                    android:id="@+id/activity_favorites_list_subscribe_favorites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/activity_favorites_list_my_favorites"
+                    android:background="@color/content_background"
+                    app:expandable_list_title="我订阅的收藏夹"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </RelativeLayout>
+        </ScrollView>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Platform.Theme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/card_background</item>
+        <item name="android:statusBarColor">@color/status_bar_scrim</item>
+        <item name="android:navigationBarColor">@color/nav_bar_scrim</item>
+    </style>
+
+    <style name="AppTheme" parent="Platform.Theme">
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Login">
+        <item name="android:windowAnimationStyle">@style/AnimLogin</item>
+    </style>
+
+    <style name="AppTheme.Full" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="AppTheme.Splash" parent="AppTheme.Full">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

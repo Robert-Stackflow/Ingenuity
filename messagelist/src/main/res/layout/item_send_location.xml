@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/aurora_msgitem_send_style">
+
+    <cn.jiguang.imui.view.RoundTextView
+        android:id="@+id/aurora_tv_msgitem_date"
+        style="@style/aurora_msgitem_date_style" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/aurora_ib_msgitem_resend"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@id/aurora_tv_location_container"
+            android:background="@drawable/aurora_send_msg_error"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/aurora_pb_msgitem_sending"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignTop="@id/aurora_tv_location_container"
+            android:layout_alignBottom="@id/aurora_tv_location_container"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="3dp"
+            android:layout_toStartOf="@id/aurora_tv_location_container"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/aurora_tv_msgitem_sender_display_name"
+            style="@style/aurora_msgitem_sender_display_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/aurora_iv_msgitem_avatar"
+            android:gravity="end"
+            android:textAlignment="textEnd" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aurora_tv_location_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aurora_tv_msgitem_sender_display_name"
+            android:layout_marginEnd="1dp"
+            android:layout_toStartOf="@+id/aurora_iv_msgitem_avatar"
+            android:background="@drawable/shape_round_dp10"
+            android:minWidth="@dimen/dp200">
+
+            <LinearLayout
+                android:id="@+id/aurora_tv_location_info_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/aurora_tv_location_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/aurora_tv_location_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:maxEms="8"
+                    android:maxLines="2"
+                    android:minEms="8"
+                    android:textColor="@color/color_accent"
+                    android:textSize="16sp"
+                    tools:text="白家园203栋" />
+
+                <TextView
+                    android:id="@+id/aurora_tv_location_describe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:maxEms="8"
+                    android:minEms="8"
+                    android:textColor="@color/color_gray"
+                    android:textSize="12sp"
+                    tools:text="广东省深圳市白家园203栋" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/aurora_tv_location_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp100"
+                android:layout_margin="@dimen/dp5"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/aurora_picture_not_found"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aurora_tv_location_info_layout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.cloudchewie.ui.general.RoundImageView
+            android:id="@+id/aurora_iv_msgitem_avatar"
+            style="@style/aurora_msgitem_sender_avatar_style"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/aurora_avatar_desc" />
+
+    </RelativeLayout>
+
+</LinearLayout>

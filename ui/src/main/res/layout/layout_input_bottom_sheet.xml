@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/card_background"
+    android:padding="@dimen/dp20">
+
+    <com.cloudchewie.ui.custom.InputItem
+        android:id="@+id/layout_input_bottom_sheet_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:input_item_mode="text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/layout_input_bottom_sheet_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_gray"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintEnd_toEndOf="@id/layout_input_bottom_sheet_input"
+        app:layout_constraintTop_toBottomOf="@id/layout_input_bottom_sheet_input"
+        tools:text="0/100" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/layout_input_bottom_sheet_count">
+
+        <Button
+            android:id="@+id/layout_input_bottom_sheet_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button_round_frame"
+            android:backgroundTint="@color/color_accent"
+            android:stateListAnimator="@null"
+            android:text="取消"
+            android:textAlignment="center"
+            android:textColor="@color/color_accent"
+            android:textSize="@dimen/sp16" />
+
+        <Button
+            android:id="@+id/layout_input_bottom_sheet_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button_round"
+            android:backgroundTint="@color/color_selector_prominent"
+            android:stateListAnimator="@null"
+            android:text="完成"
+            android:textAlignment="center"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/layout_input_bottom_sheet_input" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/color_accent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/layout_create_activity"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="开始创作吧 ^_^" />
+
+    <TextView
+        android:id="@+id/layout_create_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_round_dp10"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="10dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="20dp"
+        android:text="发起活动"
+        android:textAlignment="center"
+        android:textColor="@color/color_accent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/layout_create_icon_text_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.cloudchewie.ui.shadow.ShadowLinearLayout
+        android:id="@+id/layout_create_icon_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/layout_create_text_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/layout_create_post_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_round_dp10"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_noSolid="true"
+            app:layout_roundRadius="1dp"
+            app:layout_shadowColor="#11000000"
+            app:layout_shadowRadius="@dimen/dp10"
+            app:layout_solidColor="#ffffff">
+
+            <com.cloudchewie.ui.custom.VerticalIconTextItem
+                android:id="@+id/layout_create_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingStart="10dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="20dp"
+                app:spacing="5dp"
+                app:vertical_icon_text_item_icon="@drawable/ic_light_image_text"
+                app:vertical_icon_text_item_text="帖子"
+                app:vertical_icon_text_item_text_color="@color/color_accent"
+                app:vertical_icon_text_item_text_size="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_create_article_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_round_dp10"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_noSolid="true"
+            app:layout_roundRadius="1dp"
+            app:layout_shadowColor="#11000000"
+            app:layout_shadowRadius="@dimen/dp10"
+            app:layout_solidColor="#ffffff">
+
+            <com.cloudchewie.ui.custom.VerticalIconTextItem
+                android:id="@+id/layout_create_article"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingStart="10dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="20dp"
+                app:spacing="5dp"
+                app:vertical_icon_text_item_icon="@drawable/ic_light_article"
+                app:vertical_icon_text_item_text="文章"
+                app:vertical_icon_text_item_text_color="@color/color_accent"
+                app:vertical_icon_text_item_text_size="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_create_draft_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape_round_dp10"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_noSolid="true"
+            app:layout_roundRadius="1dp"
+            app:layout_shadowColor="#11000000"
+            app:layout_shadowRadius="@dimen/dp10"
+            app:layout_solidColor="#ffffff">
+
+            <com.cloudchewie.ui.custom.VerticalIconTextItem
+                android:id="@+id/layout_create_draft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingStart="10dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="20dp"
+                app:spacing="5dp"
+                app:vertical_icon_text_item_icon="@drawable/ic_light_integral"
+                app:vertical_icon_text_item_text="草稿箱"
+                app:vertical_icon_text_item_text_color="@color/color_accent"
+                app:vertical_icon_text_item_text_size="14sp" />
+        </RelativeLayout>
+    </com.cloudchewie.ui.shadow.ShadowLinearLayout>
+
+    <com.cloudchewie.ui.shadow.ShadowLinearLayout
+        android:id="@+id/layout_create_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@id/layout_create_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/layout_create_attraction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_round_dp10"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="10dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp"
+            android:text="创建地点"
+            android:textAlignment="center"
+            android:textColor="@color/color_accent"
+            android:textSize="14sp"
+            app:layout_noSolid="true"
+            app:layout_roundRadius="1dp"
+            app:layout_shadowColor="#11000000"
+            app:layout_shadowRadius="@dimen/dp10"
+            app:layout_solidColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/layout_create_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_round_dp10"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="10dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp"
+            android:text="创建话题"
+            android:textAlignment="center"
+            android:textColor="@color/color_accent"
+            android:textSize="14sp"
+            app:layout_noSolid="true"
+            app:layout_roundRadius="1dp"
+            app:layout_shadowColor="#11000000"
+            app:layout_shadowRadius="@dimen/dp10"
+            app:layout_solidColor="#ffffff" />
+    </com.cloudchewie.ui.shadow.ShadowLinearLayout>
+
+    <ImageView
+        android:id="@+id/layout_create_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="60dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_light_close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/layout_create_text_layout"
+        app:layout_constraintStart_toStartOf="@id/layout_create_text_layout"
+        app:tint="@color/color_gray" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/checkbox_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/checkbox_item_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/checkbox_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/color_accent"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkbox_item_switch"
+            android:layout_width="40dp"
+            android:layout_height="24dp"
+            android:background="@android:color/transparent"
+            android:button="@drawable/ic_light_checkbox"
+            android:checked="true"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            app:itemBackground="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/checkbox_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px1"
+        android:background="@color/color_divider"
+        app:layout_constraintTop_toBottomOf="@id/checkbox_item_main_layout" />
+</androidx.constraintlayout.widget.ConstraintLayout>

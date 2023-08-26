@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--主要颜色-->
+    <color name="background">#FAFAFA</color>
+    <color name="color_accent">#000000</color>
+    <color name="color_icon">#191919</color>
+    <color name="color_hint">#9E9E9E</color>
+    <color name="color_icon_pressed">#88191919</color>
+    <color name="color_icon_light">#FFFFFF</color>
+    <color name="color_icon_pressed_light">#88FFFFFF</color>
+    <color name="color_icon_dark">#060606</color>
+    <color name="color_icon_pressed_dark">#88060606</color>
+    <color name="color_toolbar_icon">#060606</color>
+    <color name="color_toolbar_icon_pressed">#88060606</color>
+    <color name="color_prominent">#0099FF</color>
+    <color name="color_prominent_press">#AA0099FF</color>
+    <color name="color_prominent_disable">#550099FF</color>
+    <color name="color_prominent_background">#EBF7FF</color>
+    <color name="light_translucent">#55000000</color>
+    <color name="dark_translucent">#AC000000</color>
+    <color name="light_translucent_white">#32FFFFFF</color>
+    <color name="dark_translucent_white">#55FFFFFF</color>
+    <color name="nav_bar_scrim">@color/background</color>
+    <color name="status_bar_scrim">@color/background</color>
+    <color name="ic_launcher_background">@color/background</color>
+    <!--控件颜色-->
+    <color name="toast_background">#AA000000</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_pressed_background">#E5E5E5</color>
+    <color name="card_pressed_background_dark">#404040</color>
+    <color name="content_background">#FFFFFF</color>
+    <color name="content_background_below">@color/background</color>
+    <color name="content_pressed_background">#E5E5E5</color>
+    <color name="bottomsheet_background">@color/background</color>
+    <color name="entry_background">@color/card_background</color>
+    <color name="entry_pressed_background">@color/card_pressed_background</color>
+    <color name="tag_background">#EFF1F4</color>
+    <color name="button_background_gray">#F1F1F1</color>
+    <color name="titlebar_background">@color/background</color>
+    <color name="color_divider">#E6E6E6</color>
+    <color name="reply_background">#F6F6F6</color>
+    <color name="reply_pressed_background">#AAF6F6F6</color>
+    <color name="picker_bar_background">#FAFAFA</color>
+    <color name="picker_bar_background_light">#FAFAFA</color>
+    <color name="picker_bar_background_dark">#1B1B1B</color>
+    <!--字体颜色-->
+    <color name="text_color_dark">#000000</color>
+    <color name="text_color_light">#FFFFFF</color>
+    <color name="text_color_red">@color/color_red</color>
+    <color name="text_color_white">#FFFFFF</color>
+    <color name="text_color_black">#000000</color>
+    <color name="text_color_entry">#444444</color>
+    <!--显式颜色-->
+    <color name="color_red">#FF6875</color>
+    <color name="color_gray">#999999</color>
+    <color name="color_gray_press">#AA999999</color>
+    <color name="color_gray_disable">#55999999</color>
+    <color name="color_light_gray">#CCCCCC</color>
+    <color name="color_light_gray_press">#AACCCCCC</color>
+    <color name="color_light_gray_disable">#55CCCCCC</color>
+    <color name="color_blue">#2E77E5</color>
+    <color name="color_shadow_00">#00CCCCCC</color>
+    <color name="color_shadow_10">#10CCCCCC</color>
+    <color name="color_shadow_20">#20CCCCCC</color>
+    <color name="color_shadow_30">#30CCCCCC</color>
+    <color name="color_shadow_40">#40CCCCCC</color>
+    <color name="color_shadow_50">#50CCCCCC</color>
+</resources>

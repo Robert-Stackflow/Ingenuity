@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cloudchewie.ui.general.FlowTagLayout
+        android:id="@+id/fragment_activity_flowtag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/dp5"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="@dimen/dp5"
+        app:flow_horizontalStyle="packed"
+        app:horizontal_diver="@dimen/dp5"
+        app:vertical_diver="@dimen/dp5" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/fragment_activity_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_activity_flowtag"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/background">
+
+        <com.scwang.smart.refresh.header.ClassicsHeader
+            android:id="@+id/fragment_activity_swipe_refresh_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_activity_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10" />
+        </RelativeLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</RelativeLayout>

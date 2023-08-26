@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/aurora_msgitem_receive_style">
+
+    <cn.jiguang.imui.view.RoundTextView
+        android:id="@+id/aurora_tv_msgitem_date"
+        style="@style/aurora_msgitem_date_style" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.cloudchewie.ui.general.RoundImageView
+            android:id="@+id/aurora_iv_msgitem_avatar"
+            style="@style/aurora_msgitem_receiver_avatar_style"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/aurora_avatar_desc" />
+
+        <TextView
+            android:id="@+id/aurora_tv_msgitem_receiver_display_name"
+            style="@style/aurora_msgitem_receiver_display_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/aurora_iv_msgitem_avatar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aurora_tv_namecard_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aurora_tv_msgitem_receiver_display_name"
+            android:layout_marginStart="1dp"
+            android:layout_toEndOf="@+id/aurora_iv_msgitem_avatar"
+            android:background="@drawable/shape_round_dp10"
+            android:padding="@dimen/dp10">
+
+            <com.cloudchewie.ui.general.CircleImageView
+                android:id="@+id/aurora_tv_namecard_avatar"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp50"
+                android:src="@drawable/aurora_picture_not_found"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/aurora_tv_namecard_info_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/aurora_tv_namecard_avatar"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/aurora_tv_namecard_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:maxEms="8"
+                    android:maxLines="2"
+                    android:minEms="8"
+                    android:textColor="@color/color_accent"
+                    android:textSize="16sp"
+                    tools:text="余湍" />
+
+                <TextView
+                    android:id="@+id/aurora_tv_namecard_describe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:ellipsize="none"
+                    android:maxEms="8"
+                    android:maxLines="2"
+                    android:minEms="8"
+                    android:textColor="@color/color_gray"
+                    android:textSize="13sp"
+                    tools:text="签名:这是我的签名" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/aurora_ib_msgitem_rereceive"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/aurora_tv_namecard_container"
+            android:background="@drawable/aurora_send_msg_error"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</LinearLayout>

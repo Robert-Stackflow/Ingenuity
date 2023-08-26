@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/recommend_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingEnd="@dimen/dp10"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/recommend_tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/dp25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabBackground="@android:color/transparent"
+            app:tabIndicator="@null"
+            app:tabIndicatorFullWidth="false"
+            app:tabMaxWidth="@dimen/dp60"
+            app:tabMinWidth="@dimen/dp60"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/color_prominent"
+            app:tabTextAppearance="@style/SmallTabLayoutTextStyle"
+            app:tabTextColor="@color/color_gray"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageButton
+            android:id="@+id/recommend_sort"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_light_change"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.cloudchewie.ui.general.ViewPager2Container
+        android:id="@+id/recommend_viewpager_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/recommend_titlebar">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/recommend_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.cloudchewie.ui.general.ViewPager2Container>
+</RelativeLayout>

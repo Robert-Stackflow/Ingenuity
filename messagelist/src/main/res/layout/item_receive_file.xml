@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/aurora_msgitem_receive_style">
+
+    <cn.jiguang.imui.view.RoundTextView
+        android:id="@+id/aurora_tv_msgitem_date"
+        style="@style/aurora_msgitem_date_style" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.cloudchewie.ui.general.RoundImageView
+            android:id="@+id/aurora_iv_msgitem_avatar"
+            style="@style/aurora_msgitem_receiver_avatar_style"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/aurora_avatar_desc" />
+
+        <TextView
+            android:id="@+id/aurora_tv_msgitem_receiver_display_name"
+            style="@style/aurora_msgitem_receiver_display_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/aurora_iv_msgitem_avatar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aurora_tv_file_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aurora_tv_msgitem_receiver_display_name"
+            android:layout_marginStart="1dp"
+            android:layout_toEndOf="@+id/aurora_iv_msgitem_avatar"
+            android:background="@drawable/shape_round_dp10">
+
+            <LinearLayout
+                android:id="@+id/aurora_tv_file_info_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/aurora_tv_file_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/aurora_tv_file_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:maxEms="8"
+                    android:maxLines="2"
+                    android:minEms="8"
+                    android:textColor="@color/color_accent"
+                    android:textSize="16sp"
+                    tools:text="文件文件文件文文件文件文件.pdf" />
+
+                <TextView
+                    android:id="@+id/aurora_tv_file_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:ellipsize="none"
+                    android:gravity="start"
+                    android:maxEms="8"
+                    android:minEms="8"
+                    android:singleLine="true"
+                    android:textColor="@color/color_gray"
+                    android:textSize="13sp"
+                    tools:text="915.2KB" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/aurora_tv_file_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/dp10"
+                android:scaleType="fitCenter"
+                android:src="@drawable/aurora_picture_not_found"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/aurora_ib_msgitem_resend"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/aurora_tv_file_container"
+            android:background="@drawable/aurora_send_msg_error"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</LinearLayout>

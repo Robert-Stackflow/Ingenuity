@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_rect"
+    android:backgroundTint="@color/color_selector_content"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/post_item_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.cloudchewie.ui.general.CircleImageView
+            android:id="@+id/post_item_avatar"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/img_default_avatar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/post_item_username"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:singleLine="true"
+            android:textColor="@color/color_accent"
+            android:textSize="@dimen/post_item_username"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/post_item_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="用户昵称" />
+
+        <TextView
+            android:id="@+id/post_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/post_item_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/post_item_username"
+            app:layout_constraintTop_toBottomOf="@id/post_item_username"
+            tools:text="2022年10月20日" />
+
+        <TextView
+            android:id="@+id/post_item_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp3"
+            android:text="·"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/post_item_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/post_item_time"
+            app:layout_constraintTop_toBottomOf="@id/post_item_username" />
+
+        <TextView
+            android:id="@+id/post_item_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp3"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/post_item_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/post_item_dot"
+            app:layout_constraintTop_toBottomOf="@id/post_item_username"
+            tools:text="发表了文章" />
+
+        <ImageView
+            android:id="@+id/post_item_more"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_light_ellipsis_vertical"
+            android:tint="@color/color_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseAppTint" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/post_item_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_item_top_layout">
+
+        <TextView
+            android:id="@+id/post_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:textColor="@color/color_accent"
+            android:textSize="@dimen/sp17"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="占位符占位符" />
+
+        <TextView
+            android:id="@+id/post_item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:textColor="@color/color_accent"
+            android:textSize="@dimen/sp15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/post_item_title"
+            tools:text="占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符" />
+
+        <com.cloudchewie.ui.ninegrid.NineGridImageView
+            android:id="@+id/post_item_nine_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:paddingTop="5dp"
+            app:imgGap="@dimen/nine_grid_gap"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/post_item_content"
+            app:showStyle="fill"
+            app:singleImgSize="120dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/post_item_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_item_content_layout">
+
+        <com.cloudchewie.ui.custom.HorizontalIconTextItem
+            android:id="@+id/post_item_attraction"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:horizontal_icon_text_item_icon_size="@dimen/horizontal_icon_text_item_default_icon_size"
+            tools:horizontal_icon_text_item_text="占位符占位符占位符占位符占位符" />
+
+        <com.cloudchewie.ui.custom.HorizontalIconTextItem
+            android:id="@+id/post_item_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/post_item_thumbup"
+            android:clickable="true"
+            android:focusable="true"
+            app:horizontal_icon_text_item_icon="@drawable/ic_light_comment"
+            app:horizontal_icon_text_item_icon_color="@color/color_gray"
+            app:horizontal_icon_text_item_icon_size="@dimen/horizontal_icon_text_item_default_icon_size"
+            app:horizontal_icon_text_item_text="0"
+            app:horizontal_icon_text_item_text_color="@color/color_gray" />
+
+        <com.cloudchewie.ui.custom.HorizontalIconTextItem
+            android:id="@+id/post_item_thumbup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:horizontal_icon_text_item_checked_icon="@drawable/ic_light_thumbup_fill"
+            app:horizontal_icon_text_item_icon="@drawable/ic_light_thumbup"
+            app:horizontal_icon_text_item_icon_color="@color/color_gray"
+            app:horizontal_icon_text_item_icon_size="@dimen/horizontal_icon_text_item_default_icon_size"
+            app:horizontal_icon_text_item_text="0"
+            app:horizontal_icon_text_item_text_color="@color/color_gray" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
