@@ -9,17 +9,14 @@ package com.cloudchewie.ingenuity.fragment.nav;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -27,9 +24,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.discover.SearchActivity;
 import com.cloudchewie.ingenuity.fragment.global.BaseFragment;
-import com.cloudchewie.ui.search.SearchLayout;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -47,9 +42,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private TabLayout tabLayout;
     private List<Fragment> fragments;
     private ViewPager2 viewPager;
-    private int followingOption = 1;
-    private ImageButton searchButton;
-    private SearchLayout searchLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,9 +56,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         context = getContext();
         tabLayout = mainView.findViewById(R.id.home_tab_layout);
         viewPager = mainView.findViewById(R.id.home_viewpager);
-        searchButton = mainView.findViewById(R.id.home_search);
-        searchLayout = mainView.findViewById(R.id.home_search_layout);
-        searchButton.setVisibility(View.GONE);
         initViewPager();
         initTabLayout();
         return mainView;
@@ -75,8 +64,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     void initViewPager() {
         fragments = new ArrayList<>();
         titles = Arrays.asList(getResources().getStringArray(R.array.fragment_home_titles));
-        fragments.add(new RecommendFragment());
-        fragments.add(new RecommendFragment());
+        fragments.add(new BaseFragment());
+        fragments.add(new BaseFragment());
+        fragments.add(new BaseFragment());
         adapter = new HomeFragmentAdapter(getChildFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.setText(titles.get(position))).attach();
@@ -98,10 +88,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     void initTabLayout() {
-        searchLayout.setOnClickListener(this);
-        searchButton.setOnClickListener(this);
-        searchLayout.getSearchEdit().setOnClickListener(this);
-        searchLayout.getSearchEdit().setKeyListener(null);
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
@@ -117,21 +103,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View view) {
-        if (view == searchLayout || view == searchButton || view == searchLayout.getSearchEdit()) {
-            Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), searchLayout, "shareElement").toBundle();
-            Intent intent = new Intent(getActivity(), SearchActivity.class);
-            if (searchLayout.getVisibility() == View.VISIBLE) startActivity(intent, bundle);
-            else startActivity(intent);
-        }
-    }
-
-    @Override
     public void performRefresh() {
         if (fragments != null && fragments.size() > 0) {
             if (fragments.get(viewPager.getCurrentItem()) instanceof BaseFragment)
                 ((BaseFragment) fragments.get(viewPager.getCurrentItem())).performRefresh();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     public class HomeFragmentAdapter extends FragmentStateAdapter {

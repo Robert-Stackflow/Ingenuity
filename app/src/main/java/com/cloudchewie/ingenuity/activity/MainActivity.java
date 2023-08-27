@@ -11,7 +11,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -21,18 +20,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.auth.LoginActivity;
 import com.cloudchewie.ingenuity.activity.global.BaseActivity;
 import com.cloudchewie.ingenuity.fragment.global.BaseFragment;
 import com.cloudchewie.ingenuity.fragment.nav.HomeFragment;
 import com.cloudchewie.ingenuity.fragment.nav.UserFragment;
 import com.cloudchewie.ingenuity.util.database.AppDatabase;
 import com.cloudchewie.ingenuity.util.system.LocalStorage;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
 import com.cloudchewie.ui.custom.NoScrollViewPager;
-import com.cloudchewie.util.ui.SizeUtil;
-import com.yh.bottomnavigation_base.IMenuListener;
-import com.yh.bottomnavigationex.BottomNavigationViewEx;
+import com.iammert.library.readablebottombar.ReadableBottomBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +40,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private List<Fragment> fragments;
     private ImageButton userButton;
     private NoScrollViewPager viewPager;
-    private BottomNavigationViewEx bottomNavigation;
+    private ReadableBottomBar readableBottomBar;
+//    private BottomNavigationViewEx bottomNavigation;
 
     @Override
     @SuppressLint("SourceLockedOrientationActivity")
@@ -55,108 +51,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initView();
-        initEvent();
+//        initEvent();
     }
 
     void initView() {
         viewPager = findViewById(R.id.viewpager);
-        View view = findViewById(R.id.activity_main_bottom_navigation);
-        if (view instanceof BottomNavigationViewEx) {
-            bottomNavigation = (BottomNavigationViewEx) view;
-            bottomNavigation.enableLabelVisibility(false);
-            bottomNavigation.enableItemHorizontalTranslation(false);
-            bottomNavigation.setSmallTextSize(11);
-            bottomNavigation.setLargeTextSize(11);
-            bottomNavigation.enableAnimation(false);
-            bottomNavigation.setIconSize(24);
-            bottomNavigation.setBNMenuViewHeight(SizeUtil.dp2px(this, 60));
-            {
-                fragments = new ArrayList<>();
-                fragments.add(new HomeFragment());
-                fragments.add(new BaseFragment());
-                fragments.add(new UserFragment());
-                adapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
-                viewPager.setAdapter(adapter);
-                viewPager.setNoScroll(false);
-                bottomNavigation.setupWithViewPager(viewPager);
-            }
-            for (int i = 0; i < bottomNavigation.getBNItemViewCount(); i++) {
-                bottomNavigation.getBNMenuView().getChildAt(i).setOnLongClickListener(v -> true);
-            }
-        }
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    private void initEvent() {
-        if (bottomNavigation == null)
-            return;
-        bottomNavigation.setMenuListener(new IMenuListener() {
-            private int previousPosition = 0;
-            private boolean unselected = false;
-
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onNavigationItemSelected(int i, @NonNull MenuItem item, boolean b) {
-                for (MenuItem menuItem : bottomNavigation.getMenuItems()) {
-                    switch (menuItem.getItemId()) {
-                        case R.id.menu_home:
-                            menuItem.setIcon(R.drawable.ic_nav_home);
-                            break;
-                        case R.id.menu_memos:
-                            menuItem.setIcon(R.drawable.ic_nav_discover);
-                            break;
-                        case R.id.menu_user:
-                            menuItem.setIcon(R.drawable.ic_nav_user);
-                            break;
-                    }
-                }
-                switch (item.getItemId()) {
-                    case R.id.menu_home:
-                        item.setIcon(R.drawable.ic_nav_home_fill);
-                        break;
-                    case R.id.menu_memos:
-                        item.setIcon(R.drawable.ic_nav_discover_fill);
-                        break;
-                    case R.id.menu_user:
-                        item.setIcon(R.drawable.ic_nav_user_fill);
-                        break;
-                }
-                if (unselected) {
-                    unselected = false;
-                    MenuItem previousItem = bottomNavigation.getMenuItems().get(previousPosition);
-                    switch (previousItem.getItemId()) {
-                        case R.id.menu_home:
-                            previousItem.setIcon(R.drawable.ic_nav_home_fill);
-                            break;
-                        case R.id.menu_user:
-                            previousItem.setIcon(R.drawable.ic_nav_user_fill);
-                            break;
-                    }
-                    return false;
-                } else {
-                    previousPosition = i;
-                    return true;
-                }
-            }
-        });
-        bottomNavigation.setMenuDoubleClickListener((i, item) -> {
-            switch (item.getItemId()) {
-                case R.id.menu_home:
-                case R.id.menu_user:
-                    if (fragments != null && fragments.size() > 0)
-                        ((BaseFragment) fragments.get(i)).performRefresh();
-                    break;
-                case R.id.menu_memos:
-                    if (!SPUtil.isLogin(MainActivity.this)) {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    } else {
-                        if (fragments != null && fragments.size() > 0)
-                            ((BaseFragment) fragments.get(i)).performRefresh();
-                    }
-                    break;
-            }
-        });
+        readableBottomBar = findViewById(R.id.activity_main_readable_bottom_bar);
+        fragments = new ArrayList<>();
+        fragments.add(new HomeFragment());
+        fragments.add(new BaseFragment());
+        fragments.add(new UserFragment());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(adapter);
+        viewPager.setNoScroll(false);
+        readableBottomBar.setOnItemSelectListener(i -> viewPager.setCurrentItem(i));
     }
 
     @Override

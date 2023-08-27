@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cloudchewie.ingenuity"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cloudchewie.ingenuity">
     <!--权限列表-->
     <uses-feature
         android:name="android.hardware.camera"
@@ -67,19 +67,12 @@
             android:name=".activity.auth.SignupActivity"
             android:launchMode="singleTask" />
         <!--发现-->
-        <activity
-            android:name=".activity.discover.SearchActivity"
-            android:launchMode="singleTop" />
+        <activity android:name=".activity.settings.ThemeActivity" />
         <activity android:name=".activity.create.CreateFavoritesActivity" />
         <!--我的-->
-        <activity android:name=".activity.user.HomePageActivity" />
-        <activity android:name=".activity.user.PersonalSpaceActivity" />
-        <activity android:name=".activity.user.HomePageSettingActivity" />
-        <activity android:name=".activity.user.PersonalSpaceSettingActivity" />
         <activity android:name=".activity.user.EditInfoActivity" />
         <activity android:name=".activity.profile.FavoritesListActivity" />
         <activity android:name=".activity.profile.FavoritesDetailActivity" />
-        <activity android:name=".activity.user.FootprintActivity" />
         <!--入口-->
         <activity android:name=".activity.entry.HelpActivity" />
         <activity android:name=".activity.entry.FeedbackActivity" />
@@ -87,10 +80,7 @@
         <activity android:name=".activity.settings.AboutActivity" />
         <activity android:name=".activity.settings.SettingsActivity" />
         <activity android:name=".activity.settings.ChangePasswordActivity" />
-        <activity android:name=".activity.settings.GeneralSettingsActivity" />
-        <activity android:name=".activity.settings.PrivacySettingsActivity" />
         <activity android:name=".activity.settings.AccountSettingsActivity" />
-        <activity android:name=".activity.settings.NotificationSettingsActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:launchMode="singleTop"

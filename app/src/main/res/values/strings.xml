@@ -25,5 +25,6 @@
     <string name="comment_detail_title">回复详情</string>
     <string name="fab">发布</string>
     <string name="nav_home">首页</string>
-    <string name="nav_memos">Memos</string>
+    <string name="nav_tool">工具</string>
+    <string name="default_copyright">Copyright © 2023-XXXX Cloudchewie</string>
 </resources>

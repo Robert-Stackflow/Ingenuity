@@ -28,20 +28,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkbox_item_switch"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:button="@drawable/ic_light_checkbox"-->
+<!--            android:checked="true"-->
+<!--            android:text=""-->
+<!--            android:textOff=""-->
+<!--            android:textOn=""-->
+<!--            app:itemBackground="@null"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/checkbox_item_switch"
-            android:layout_width="40dp"
-            android:layout_height="24dp"
-            android:background="@android:color/transparent"
-            android:button="@drawable/ic_light_checkbox"
-            android:checked="true"
-            android:text=""
-            android:textOff=""
-            android:textOn=""
-            app:itemBackground="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16.0dip"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

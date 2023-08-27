@@ -33,39 +33,11 @@
             app:tabTextAppearance="@style/TabLayoutTextStyle"
             app:tabTextColor="@color/color_gray" />
 
-        <ImageButton
-            android:id="@+id/home_search"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:contentDescription="搜索"
-            android:focusable="true"
-            android:src="@drawable/ic_light_search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.cloudchewie.ui.search.SearchLayout
-        android:id="@+id/home_search_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/home_titlebar"
-        android:layout_marginStart="@dimen/dp20"
-        android:layout_marginEnd="@dimen/dp20"
-        android:layout_marginBottom="@dimen/dp5"
-        android:backgroundTint="@color/tag_background"
-        android:transitionName="shareElement"
-        app:search_bg="@drawable/shape_round_dp20"
-        app:search_color="@color/color_accent"
-        app:search_size="@dimen/sp13"
-        app:search_text_cursor="@drawable/shape_cursor" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/home_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/home_search_layout" />
+        android:layout_below="@id/home_titlebar" />
 </RelativeLayout>

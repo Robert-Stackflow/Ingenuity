@@ -14,18 +14,18 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.cloudchewie.ui.R;
 
 public class CheckBoxItem extends ConstraintLayout {
-    private CheckBox right_switch;
+    private SwitchCompat right_switch;
     private TextView title_view;
     private ConstraintLayout mainLayout;
     private View divider;

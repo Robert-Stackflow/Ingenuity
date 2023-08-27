@@ -3,7 +3,6 @@
     <string name="app_name">小聚</string>
     <string name="app_logo1">在遥远的日子里</string>
     <string name="app_logo2">与彼此的心灵碰撞</string>
-    <string name="version">Version 1.0.0</string>
     <string name="unlogin">点击登录</string>
     <!--设置相关-->
     <string name="activity_setting_title">设置</string>
@@ -14,7 +13,7 @@
     <string name="entry_help">使用指南</string>
     <string name="entry_feedback">意见反馈</string>
     <string name="entry_check_update">检查更新</string>
-    <string name="entry_about">关于APP</string>
+    <string name="entry_about">关于</string>
     <string name="entry_close_app">关闭应用</string>
     <string name="entry_logout">退出登录</string>
     <!--账号安全-->
@@ -46,6 +45,7 @@
     <string name="language_traditional_chinese">繁體中文</string>
     <string name="language_english">English</string>
     <!--关于APP-->
+    <string name="entry_version">当前版本</string>
     <string name="entry_update_history">更新日志</string>
     <string name="entry_privacy_policy">隐私政策</string>
     <string name="entry_service_terms">用户协议</string>

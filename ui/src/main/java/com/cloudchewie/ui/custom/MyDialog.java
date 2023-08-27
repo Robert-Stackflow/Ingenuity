@@ -11,10 +11,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -29,7 +31,6 @@ public class MyDialog extends Dialog {
     private TextView titleTv;
     private TextView messageTv;
     private Button negtiveBn, positiveBn;
-    private ImageView closeBn;
     private String message;
     private String title = "消息提示";
     private String positive, negtive;
@@ -72,12 +73,6 @@ public class MyDialog extends Dialog {
         negtiveBn.setOnClickListener(v -> {
             if (onClickBottomListener != null) {
                 onClickBottomListener.onNegtiveClick();
-            }
-            dismiss();
-        });
-        closeBn.setOnClickListener(v -> {
-            if (onClickBottomListener != null) {
-                onClickBottomListener.onCloseClick();
             }
             dismiss();
         });
@@ -126,8 +121,16 @@ public class MyDialog extends Dialog {
         titleTv = findViewById(R.id.widget_dialog_title);
         messageTv = findViewById(R.id.widget_dialog_message);
         mainLayout = findViewById(R.id.widget_dialog_main_layout);
-        closeBn = findViewById(R.id.widget_dialog_close);
         mainLayout.setMinWidth(SizeUtil.dp2px(getContext(), MatricsUtil.getScreenWidth(getContext()) - 10));
+        Window window = getWindow();
+        if (window != null) {
+            WindowManager.LayoutParams lp = window.getAttributes();
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.gravity = Gravity.BOTTOM;
+            window.setAttributes(lp);
+            window.setDimAmount(0.4f);
+        }
     }
 
     public MyDialog setOnClickBottomListener(OnClickBottomListener onClickBottomListener) {
@@ -186,9 +189,7 @@ public class MyDialog extends Dialog {
     }
 
     public enum MyDialogMode {
-        QUESTION,
-        PROMPT,
-        DIY
+        QUESTION, PROMPT, DIY
     }
 
     public interface OnClickBottomListener {

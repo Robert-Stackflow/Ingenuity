@@ -149,6 +149,9 @@
             <enum name="fitCenter" value="2" />
         </attr>
         <attr name="vertical_icon_text_item_spacing" format="dimension" />
+        <attr name="vertical_icon_text_item_padding_h" format="dimension" />
+        <attr name="vertical_icon_text_item_padding_v" format="dimension" />
+        <attr name="vertical_icon_text_item_background" format="reference" />
         <attr name="vertical_icon_text_item_icon_background" format="reference" />
         <attr name="vertical_icon_text_item_icon_background_tint" format="reference" />
         <attr name="vertical_icon_text_item_icon_background_enable" format="boolean" />

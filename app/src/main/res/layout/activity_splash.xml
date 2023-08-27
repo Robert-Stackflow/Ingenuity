@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/logo"
+        android:layout_above="@id/logo_card"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/dp100">
 
@@ -39,14 +39,23 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logo_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@id/appname"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/dp10"
-        android:src="@mipmap/ic_launcher" />
+        app:cardCornerRadius="@dimen/dp8"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp80"
+            android:contentDescription="Logo"
+            android:src="@mipmap/ic_launcher" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/appname"

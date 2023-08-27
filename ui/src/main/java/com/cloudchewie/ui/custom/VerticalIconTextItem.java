@@ -14,7 +14,6 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,7 +28,7 @@ import com.cloudchewie.ui.R;
 public class VerticalIconTextItem extends ConstraintLayout {
     private ConstraintLayout mainLayout;
     private LinearLayout topLayout;
-    private ImageButton iconView;
+    private ImageView iconView;
     private TextView textView;
     private TextView bigTextView;
     private boolean isChecked;
@@ -103,10 +102,15 @@ public class VerticalIconTextItem extends ConstraintLayout {
             int bigTextColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_big_text_color, getResources().getColor(R.color.color_accent, getResources().newTheme()));
             int bigTextSize = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_big_text_size, getResources().getDimension(R.dimen.vertical_icon_text_item_default_big_text_size));
             int spacing = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_spacing, 3);
-            int backgroundId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_background, R.drawable.shape_round_dp10);
+            int iconBackgroundId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_background, R.drawable.shape_round_dp10);
             int backgroundTintId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_background_tint, R.color.color_selector_content);
             boolean backgroundEnable = attr.getBoolean(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_background_enable, false);
             int iconScaleType = attr.getInt(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_scale_type, 0);
+            int backgroundId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_background, R.drawable.shape_round_dp5);
+            int padding_v = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_padding_v, getResources().getDimension(R.dimen.dp20));
+            int padding_h = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_padding_h, getResources().getDimension(R.dimen.dp30));
+            setPadding(padding_v, padding_h);
+            setBackground(backgroundId);
             setScaleType(iconScaleType);
             setMode(mode);
             setIcon(iconId);
@@ -120,7 +124,7 @@ public class VerticalIconTextItem extends ConstraintLayout {
             setBigTextSize(bigTextSize);
             setSpacing(spacing);
             if (backgroundEnable) {
-                setIconBackground(backgroundId);
+                setIconBackground(iconBackgroundId);
                 setIconBackgroundTint(backgroundTintId);
             }
             attr.recycle();
@@ -214,6 +218,14 @@ public class VerticalIconTextItem extends ConstraintLayout {
 
     public void setSpacing(int spacing) {
         textView.setPadding(0, spacing, 0, 0);
+    }
+
+    public void setBackground(int backgroundId) {
+        mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), backgroundId));
+    }
+
+    public void setPadding(int padding_v, int padding_h) {
+        mainLayout.setPadding(padding_h, padding_v, padding_h, padding_v);
     }
 
     public void setIconBackground(int backgroundId) {

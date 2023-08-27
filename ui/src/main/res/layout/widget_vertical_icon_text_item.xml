@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/vertical_icon_text_item_icon"
             android:layout_width="@dimen/vertical_icon_text_item_default_icon_size"
             android:layout_height="@dimen/vertical_icon_text_item_default_icon_size"
@@ -24,6 +24,8 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/cd_vertical_icon_text_item_icon"
             android:scaleType="centerInside"
+            android:focusable="false"
+            android:clickable="false"
             android:src="@drawable/ic_light_visible" />
 
         <TextView

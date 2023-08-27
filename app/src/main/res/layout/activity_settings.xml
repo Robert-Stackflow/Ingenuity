@@ -31,190 +31,73 @@
                 app:layout_constraintTop_toBottomOf="@id/settings_titlebar">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/activity_settings_general_layout"
+                    android:id="@+id/activity_settings_operation_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_account"
+                    <com.cloudchewie.ui.general.CheckBoxItem
+                        android:id="@+id/switch_auto_daynight"
+                        style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
                         android:textSize="18sp"
-                        app:entry_item_left_icon="@drawable/ic_light_account"
-                        app:entry_item_title="@string/entry_account"
-                        app:entry_item_top_radius_enable="true"
+                        app:checkbox_item_bottom_radius_enable="true"
+                        app:checkbox_item_title="@string/switch_auto_daynight"
+                        app:checkbox_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_notification"
+                        android:id="@+id/entry_language"
+                        style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="18sp"
-                        app:entry_item_left_icon="@drawable/ic_light_remind"
-                        app:entry_item_title="@string/entry_notification"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_account" />
-
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_privacy"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="18sp"
-                        app:entry_item_left_icon="@drawable/ic_light_password"
-                        app:entry_item_title="@string/entry_privacy"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_notification" />
-
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_general"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
                         android:clickable="true"
                         android:focusable="true"
                         android:textSize="18sp"
                         app:entry_item_bottom_radius_enable="true"
-                        app:entry_item_left_icon="@drawable/ic_light_general"
-                        app:entry_item_title="@string/entry_general"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_privacy" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/activity_settings_operation_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/activity_settings_general_layout">
-
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_check_update"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="18sp"
-                        app:entry_item_left_icon="@drawable/ic_light_operation"
-                        app:entry_item_tip_color="@color/color_gray"
-                        app:entry_item_title="@string/entry_check_update"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_tip="@string/language_default"
+                        app:entry_item_title="@string/entry_language"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@id/switch_auto_daynight" />
 
                     <com.cloudchewie.ui.custom.EntryItem
                         android:id="@+id/entry_clear_cache"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
                         android:clickable="true"
                         android:focusable="true"
                         android:textSize="18sp"
                         app:entry_item_bottom_radius_enable="true"
-                        app:entry_item_left_icon="@drawable/ic_light_delete"
+                        app:entry_item_left_icon_visibility="false"
                         app:entry_item_tip_color="@color/color_gray"
                         app:entry_item_title="清除缓存"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_check_update" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/activity_settings_profile_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/activity_settings_operation_layout">
-
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_privacy_policy"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="18sp"
-                        app:entry_item_left_icon="@drawable/ic_light_security"
-                        app:entry_item_title="@string/entry_privacy_policy"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_service_terms"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="18sp"
-                        app:entry_item_left_icon="@drawable/ic_light_customer"
-                        app:entry_item_title="@string/entry_service_terms"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_privacy_policy" />
-
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_third_party"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="18sp"
-                        app:entry_item_bottom_radius_enable="true"
-                        app:entry_item_left_icon="@drawable/ic_light_third_party"
-                        app:entry_item_title="@string/entry_third_party"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_service_terms" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/activity_settings_about_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/activity_settings_profile_layout">
-
-                    <com.cloudchewie.ui.custom.EntryItem
-                        android:id="@+id/entry_about"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="16sp"
-                        app:entry_item_bottom_radius_enable="true"
-                        app:entry_item_left_icon="@drawable/ic_light_prompt"
-                        app:entry_item_title="@string/entry_about"
-                        app:entry_item_top_radius_enable="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/activity_settings_close_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/activity_settings_about_layout">
+                        app:layout_constraintTop_toBottomOf="@id/entry_language" />
 
                     <com.cloudchewie.ui.custom.EntryItem
                         android:id="@+id/entry_logout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
                         android:clickable="true"
                         android:focusable="true"
                         android:textSize="16sp"
                         app:entry_item_bottom_radius_enable="true"
                         app:entry_item_left_icon="@drawable/ic_light_cancel"
+                        app:entry_item_left_icon_visibility="false"
                         app:entry_item_right_icon_visibility="false"
                         app:entry_item_title="@string/entry_logout"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@id/entry_clear_cache" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
