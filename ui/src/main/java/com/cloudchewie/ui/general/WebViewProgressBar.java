@@ -8,7 +8,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.cloudchewie.ui.R;
+import com.cloudchewie.ui.ThemeUtil;
 
 public class WebViewProgressBar extends View {
     private final static int HEIGHT = 5;
@@ -31,15 +31,15 @@ public class WebViewProgressBar extends View {
 
     private void initPaint(@NonNull Context context) {
         colors = new int[3];
-        colors[0] = getResources().getColor(R.color.color_prominent, null);
-        colors[1] = getResources().getColor(R.color.color_prominent, null);
-        colors[2] = getResources().getColor(R.color.color_prominent, null);
+        colors[0] = ThemeUtil.getPrimaryColor(context);
+        colors[1] = ThemeUtil.getPrimaryColor(context);
+        colors[2] = ThemeUtil.getPrimaryColor(context);
         paint = new Paint(Paint.DITHER_FLAG);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(HEIGHT);
         paint.setAntiAlias(true);
         paint.setDither(true);
-        paint.setColor(context.getResources().getColor(R.color.color_prominent));
+        paint.setColor(ThemeUtil.getPrimaryColor(context));
     }
 
     public void setProgress(int progress) {

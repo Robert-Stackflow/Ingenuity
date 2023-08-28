@@ -34,7 +34,8 @@ import com.cloudchewie.ingenuity.activity.settings.SettingsActivity;
 import com.cloudchewie.ingenuity.activity.settings.ThemeActivity;
 import com.cloudchewie.ingenuity.entity.User;
 import com.cloudchewie.ingenuity.request.UserAuthRequest;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.VerticalIconTextItem;
 import com.cloudchewie.ui.general.CircleImageView;
 import com.cloudchewie.util.ui.StatusBarUtil;
@@ -108,7 +109,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     }
 
     void checkLogin() {
-        if (SPUtil.isLogin(requireContext())) {
+        if (AppSharedPreferenceUtil.isLogin(requireContext())) {
             user = UserAuthRequest.info();
             if (user != null) {
                 usernameView.setText(user.getNickname());
@@ -127,7 +128,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
     void initSwipeRefresh() {
         swipeRefreshLayout = mainView.findViewById(R.id.fragment_user_swipe_refresh);
-        swipeRefreshLayout.setRefreshHeader(new MaterialHeader(requireContext()).setColorSchemeColors(getResources().getColor(R.color.color_prominent)).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)));
+        swipeRefreshLayout.setRefreshHeader(new MaterialHeader(requireContext()).setColorSchemeColors(ThemeUtil.getPrimaryColor(requireContext())).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)));
         swipeRefreshLayout.setEnableOverScrollDrag(true);
         swipeRefreshLayout.setEnableOverScrollBounce(true);
         swipeRefreshLayout.setEnableLoadMore(false);
@@ -167,7 +168,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             startActivity(intent);
             return;
         }
-        if (!SPUtil.isLogin(requireContext()) || user == null) {
+        if (!AppSharedPreferenceUtil.isLogin(requireContext()) || user == null) {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }

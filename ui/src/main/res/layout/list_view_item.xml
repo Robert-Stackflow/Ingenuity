@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:src="@drawable/ic_light_right"
         android:visibility="invisible"
-        app:tint="@color/color_prominent" />
+        app:tint="?attr/colorPrimary" />
 
     <TextView
         android:id="@+id/list_view_item_text"
@@ -34,5 +34,5 @@
         android:layout_marginEnd="@dimen/dp10"
         android:src="@drawable/ic_light_right"
         android:visibility="invisible"
-        app:tint="@color/color_prominent" />
+        app:tint="?attr/colorPrimary" />
 </RelativeLayout>

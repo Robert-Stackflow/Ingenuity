@@ -12,10 +12,12 @@ import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -94,6 +96,15 @@ public class BottomSheet extends BottomSheetDialog {
         dragBar = view.findViewById(R.id.bottom_sheet_dragbar);
         leftButton.setOnClickListener(v -> dismiss());
         setTitleBarVisible(false);
+        Window window = getWindow();
+        if (window != null) {
+            WindowManager.LayoutParams lp = window.getAttributes();
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.gravity = Gravity.BOTTOM;
+            window.setAttributes(lp);
+            window.setDimAmount(0.4f);
+        }
     }
 
     public void setMainLayout(int mainLayoutId) {

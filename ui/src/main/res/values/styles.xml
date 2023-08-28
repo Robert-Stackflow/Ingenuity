@@ -37,12 +37,10 @@
 
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/tab_title</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="SmallTabLayoutTextStyle">
         <item name="android:textSize">@dimen/tab_title_small</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Bubble.TextAppearance.Dark" parent="android:TextAppearance.Medium">

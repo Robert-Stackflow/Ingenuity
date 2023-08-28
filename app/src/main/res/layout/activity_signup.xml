@@ -97,7 +97,7 @@
                 android:layout_marginTop="@dimen/dp20"
                 android:text="验证码登录"
                 android:textAlignment="center"
-                android:textColor="@color/color_prominent"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="@dimen/sp12"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -118,6 +118,6 @@
         android:focusable="true"
         android:text="已有帐号？立即登录"
         android:textAlignment="center"
-        android:textColor="@color/color_prominent"
+        android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/sp12" />
 </RelativeLayout>

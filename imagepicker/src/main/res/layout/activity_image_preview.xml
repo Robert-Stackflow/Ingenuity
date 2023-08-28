@@ -3,13 +3,13 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1B1B">
+    android:background="@color/background">
 
     <com.lzy.imagepicker.view.ViewPagerFixed
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000" />
+        android:background="@color/background" />
 
     <include
         android:id="@+id/top_bar"
@@ -20,9 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#1B1B1B"
+        android:background="@color/background"
         android:orientation="vertical"
         android:visibility="gone"
+        android:elevation="@dimen/dp5"
         tools:visibility="visible">
 
         <RelativeLayout
@@ -36,14 +37,15 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:paddingStart="8dp"
-                android:text="原图(3.07M)"
-                android:textColor="#FFF"
+                android:text="原图"
+                android:textColor="@color/color_accent"
                 android:visibility="invisible"
                 tools:ignore="RtlSymmetry" />
 
             <com.lzy.imagepicker.view.SuperCheckBox
                 android:id="@+id/cb_check"
-                style="@style/SuperCheckboxTheme"
+                style="@style/BottomSuperCheckboxTheme"
+                android:backgroundTint="@color/color_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -53,7 +55,7 @@
                 android:includeFontPadding="true"
                 android:paddingStart="8dp"
                 android:text="选择"
-                android:textColor="@color/text_color_white"
+                android:textColor="@color/color_accent"
                 tools:ignore="RtlSymmetry" />
         </RelativeLayout>
 
@@ -61,6 +63,6 @@
             android:id="@+id/margin_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#000" />
+            android:background="@color/color_divider" />
     </LinearLayout>
 </RelativeLayout>

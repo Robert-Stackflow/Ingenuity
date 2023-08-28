@@ -82,7 +82,7 @@ public abstract class ImagePreviewBaseActivity extends ImageBaseActivity {
     public abstract void onImageSingleTap();
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         ImagePicker.getInstance().restoreInstanceState(savedInstanceState);
     }

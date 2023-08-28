@@ -71,7 +71,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     private View topBar;
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         directPhoto = savedInstanceState.getBoolean(EXTRAS_TAKE_PICKERS, false);
     }
@@ -275,7 +275,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
             mBtnOk.setEnabled(true);
             mBtnPre.setEnabled(true);
             mBtnPre.setText(getResources().getString(R.string.ip_preview_count, imagePicker.getSelectImageCount()));
-            mBtnPre.setTextColor(ContextCompat.getColor(this, R.color.text_color_white));
+            mBtnPre.setTextColor(ContextCompat.getColor(this, R.color.color_accent));
             mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.text_color_white));
         } else {
             mBtnOk.setText(getString(R.string.ip_complete));
@@ -283,7 +283,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
             mBtnPre.setEnabled(false);
             mBtnPre.setText(getResources().getString(R.string.ip_preview));
             mBtnPre.setTextColor(ContextCompat.getColor(this, R.color.color_gray));
-            mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.color_gray));
+            mBtnOk.setTextColor(ContextCompat.getColor(this, R.color.text_color_white));
         }
         for (int i = imagePicker.isShowCamera() ? 1 : 0; i < mRecyclerAdapter.getItemCount(); i++) {
             if (mRecyclerAdapter.getItem(i).path != null && mRecyclerAdapter.getItem(i).path.equals(item.path)) {

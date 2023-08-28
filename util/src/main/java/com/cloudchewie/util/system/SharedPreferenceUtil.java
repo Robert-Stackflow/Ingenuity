@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
 
 import com.alibaba.fastjson.JSON;
 
@@ -16,6 +17,22 @@ import java.util.List;
  */
 public class SharedPreferenceUtil {
     private static final String NAME = "config";
+
+    public static int getThemeId(@NonNull Context context,int defaultId) {
+        return SharedPreferenceUtil.getInt(context, SharedPreferenceCode.THEME_ID.getKey(), defaultId);
+    }
+
+    public static void setThemeId(@NonNull Context context, @StyleRes int themeId) {
+        SharedPreferenceUtil.putInt(context, SharedPreferenceCode.THEME_ID.getKey(), themeId);
+    }
+
+    public static int getCurrentNavIndex(@NonNull Context context) {
+        return SharedPreferenceUtil.getInt(context, SharedPreferenceCode.NAV_INDEX.getKey(), 0);
+    }
+
+    public static void setCurrentNavIndex(@NonNull Context context, @StyleRes int index) {
+        SharedPreferenceUtil.putInt(context, SharedPreferenceCode.NAV_INDEX.getKey(), index);
+    }
 
     public static void putBoolean(@NonNull Context context, String key, boolean value) {
         SharedPreferences sp = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);

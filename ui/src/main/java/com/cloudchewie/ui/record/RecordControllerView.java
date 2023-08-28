@@ -14,6 +14,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.cloudchewie.ui.R;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.util.ui.DarkModeUtil;
 
 import org.jetbrains.annotations.Contract;
@@ -136,7 +137,7 @@ public class RecordControllerView extends View {
                 canvas.drawBitmap(mPreviewBmp, null, mRightRect, mPaint);
                 break;
             case MOVE_ON_RIGHT:
-                mPaint.setColor(getResources().getColor(R.color.color_prominent));
+                mPaint.setColor(ThemeUtil.getPrimaryColor(getContext()));
                 canvas.drawCircle(mWidth - 155, getCy(), MAX_RADIUS, mPaint);
                 mPaint.setColor(color);
                 canvas.drawCircle(150, getCy(), 60, mPaint);

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.cloudchewie.ui.R;
+import com.cloudchewie.ui.ThemeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class QuickLocationBar extends View {
     private void init() {
         circlePaint = new Paint();
         circlePaint.setAntiAlias(true);
-        circlePaint.setColor(getResources().getColor(R.color.color_prominent));
+        circlePaint.setColor(ThemeUtil.getPrimaryColor(getContext()));
         circlePaint.setStyle(Paint.Style.FILL);
         paint.setColor(getResources().getColor(R.color.color_gray));
         paint.setAntiAlias(true);

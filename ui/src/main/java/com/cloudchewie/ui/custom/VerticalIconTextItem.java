@@ -24,6 +24,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.cloudchewie.ui.R;
+import com.cloudchewie.ui.ThemeUtil;
 
 public class VerticalIconTextItem extends ConstraintLayout {
     private ConstraintLayout mainLayout;
@@ -93,7 +94,7 @@ public class VerticalIconTextItem extends ConstraintLayout {
             iconId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon, R.drawable.ic_light_map);
             iconColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_color, getResources().getColor(R.color.color_icon, getResources().newTheme()));
             checkedIconId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_checked_icon, R.drawable.ic_light_map_fill);
-            checkedIconColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_checked_icon_color, getResources().getColor(R.color.color_prominent, getResources().newTheme()));
+            checkedIconColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_checked_icon_color, ThemeUtil.getPrimaryColor(context));
             int iconSize = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_size, getResources().getDimension(R.dimen.vertical_icon_text_item_default_icon_size));
             String text = attr.getString(R.styleable.VerticalIconTextItem_vertical_icon_text_item_text);
             int textColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_text_color, getResources().getColor(R.color.color_gray, getResources().newTheme()));

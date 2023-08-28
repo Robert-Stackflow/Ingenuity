@@ -26,13 +26,15 @@ import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.util.image.ImageUrlUtil;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ingenuity.util.image.NineGridUtil;
-import com.cloudchewie.util.ui.StatusBarUtil;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
-import com.cloudchewie.ui.ninegrid.NineGridImageView;
-import com.cloudchewie.ui.general.CheckBoxItem;
 import com.cloudchewie.ui.custom.EntryItem;
+import com.cloudchewie.ui.general.CheckBoxItem;
 import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.ninegrid.NineGridImageView;
 import com.cloudchewie.util.system.FileUtil;
+import com.cloudchewie.util.ui.KeyBoardUtil;
+import com.cloudchewie.util.ui.StatusBarUtil;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -88,6 +90,7 @@ public class FeedbackActivity extends BaseActivity {
         describeEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxSize)});
         types = Arrays.asList(getResources().getStringArray(R.array.feedback_type));
         typeEntry.setOnClickListener(v -> {
+            KeyBoardUtil.hideKeyBoard(this);
             ListBottomSheet bottomSheet = new ListBottomSheet(FeedbackActivity.this, ListBottomSheetBean.strToBean(types));
             bottomSheet.setOnItemClickedListener(position -> {
                 if (types != null) typeEntry.setTipText(types.get(position));
@@ -147,7 +150,7 @@ public class FeedbackActivity extends BaseActivity {
         if ((types != null && types.contains(typeEntry.getTip())) && describeEdit.getText().toString().length() > 0 && contactEdit.getText().toString().length() > 0) {
             submitButton.setSelected(true);
             submitButton.setEnabled(true);
-            submitButton.setTextColor(getColor(R.color.color_prominent));
+            submitButton.setTextColor(ThemeUtil.getPrimaryColor(this));
         } else {
             submitButton.setSelected(false);
             submitButton.setEnabled(false);

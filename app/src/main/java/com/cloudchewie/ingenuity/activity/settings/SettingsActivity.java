@@ -20,7 +20,7 @@ import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.MainActivity;
 import com.cloudchewie.ingenuity.activity.global.BaseActivity;
 import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.ui.custom.EntryItem;
 import com.cloudchewie.ui.custom.MyDialog;
@@ -61,7 +61,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     }
 
     void initView() {
-        if (!SPUtil.isLogin(this)) {
+        if (!AppSharedPreferenceUtil.isLogin(this)) {
             findViewById(R.id.entry_logout).setVisibility(View.GONE);
         }
     }
@@ -131,7 +131,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             dialog.setOnClickBottomListener(new MyDialog.OnClickBottomListener() {
                 @Override
                 public void onPositiveClick() {
-                    SPUtil.logout(SettingsActivity.this);
+                    AppSharedPreferenceUtil.logout(SettingsActivity.this);
                     ActivityUtils.finishAllActivities();
                     ActivityUtils.startActivity(new Intent(SettingsActivity.this, MainActivity.class));
                     dialog.dismiss();

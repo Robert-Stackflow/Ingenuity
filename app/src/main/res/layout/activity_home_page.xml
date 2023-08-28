@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text=" | "
-                        android:textColor="@color/color_prominent"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="11sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/home_page_gender"
@@ -320,11 +320,11 @@
                     app:tabBackground="@android:color/transparent"
                     app:tabGravity="center"
                     app:tabIndicator="@drawable/shape_tab_indicator"
-                    app:tabIndicatorColor="@color/color_prominent"
+                    app:tabIndicatorColor="?attr/colorPrimary"
                     app:tabIndicatorFullWidth="false"
                     app:tabMode="fixed"
                     app:tabRippleColor="@android:color/transparent"
-                    app:tabSelectedTextColor="@color/color_prominent"
+                    app:tabSelectedTextColor="?attr/colorPrimary"
                     app:tabTextAppearance="@style/TabLayoutTextStyle"
                     app:tabTextColor="@color/color_gray" />
 

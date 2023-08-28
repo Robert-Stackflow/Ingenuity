@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/color_prominent" />
+        app:tint="?attr/colorPrimary" />
 
     <TextView
         android:id="@+id/horizontal_icon_text_item_text"
@@ -25,7 +25,7 @@
         android:layout_height="match_parent"
         android:paddingStart="3dp"
         android:singleLine="true"
-        android:textColor="@color/color_prominent"
+        android:textColor="?attr/colorPrimary"
         android:textSize="@dimen/horizontal_icon_text_item_default_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/horizontal_icon_text_item_icon"
@@ -45,5 +45,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/horizontal_icon_text_item_text"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/color_prominent" />
+        app:tint="?attr/colorPrimary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

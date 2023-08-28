@@ -10,7 +10,7 @@ package com.cloudchewie.ingenuity.util.http;
 import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.util.Utils;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ public class TokenInterceptor implements Interceptor {
         Request originRequest = chain.request();
         if (!HttpRequestUtil.isAuthRequest(originRequest.url().toString())) {
             Request newRequest = originRequest.newBuilder()
-                    .addHeader("token", SPUtil.getToken(Utils.getApp()))
+                    .addHeader("token", AppSharedPreferenceUtil.getToken(Utils.getApp()))
                     .build();
             return chain.proceed(newRequest);
         } else {

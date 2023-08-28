@@ -6,34 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.iammert.library.readablebottombar.ReadableBottomBar
+    <com.cloudchewie.ui.bottombar.ReadableBottomBar
         android:id="@+id/activity_main_readable_bottom_bar"
         android:layout_width="fill_parent"
         android:layout_height="56.0dip"
         android:layout_alignParentBottom="true"
         app:rbb_activeItemType="icon"
         app:rbb_backgroundColor="@color/content_background"
-        app:rbb_indicatorColor="@color/color_prominent"
+        app:rbb_iconColor="?attr/colorPrimary"
+        app:rbb_indicatorColor="?attr/colorPrimary"
         app:rbb_indicatorHeight="2.0dip"
         app:rbb_tabs="@xml/tabs"
         app:rbb_textColor="@color/color_accent" />
-
-    <!--    <com.yh.bottomnavigationex.BottomNavigationViewEx-->
-    <!--        android:id="@+id/activity_main_bottom_navigation"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:background="@color/content_background"-->
-    <!--        app:elevation="0dp"-->
-    <!--        app:itemBackground="@null"-->
-    <!--        app:itemHorizontalTranslationEnabled="true"-->
-    <!--        app:itemIconTint="@color/color_selector_checkable"-->
-    <!--        app:itemTextColor="@color/color_selector_checkable"-->
-    <!--        app:layout_noSolid="true"-->
-    <!--        app:layout_shadowColor="#11000000"-->
-    <!--        app:layout_shadowRadius="@dimen/dp10"-->
-    <!--        app:layout_solidColor="#ffffff"-->
-    <!--        app:menu="@menu/menu_navigation" />-->
 
     <com.cloudchewie.ui.custom.NoScrollViewPager
         android:id="@+id/viewpager"

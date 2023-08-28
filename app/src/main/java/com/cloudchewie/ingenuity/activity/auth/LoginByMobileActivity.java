@@ -27,7 +27,8 @@ import com.cloudchewie.ingenuity.entity.User;
 import com.cloudchewie.ingenuity.request.UserAuthRequest;
 import com.cloudchewie.ingenuity.request.UserProfileRequest;
 import com.cloudchewie.ingenuity.util.development.JwtUtil;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.ui.custom.InputItem;
 import com.cloudchewie.ui.custom.TitleBar;
@@ -86,7 +87,7 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
                 ds.setUnderlineText(false);
             }
         }, 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        userTermString.setSpan(new ForegroundColorSpan(getColor(R.color.color_prominent)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.append(userTermString);
         SpannableString privacyTermString = new SpannableString("《隐私政策》");
         privacyTermString.setSpan(new ClickableSpan() {
@@ -100,7 +101,7 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
                 ds.setUnderlineText(false);
             }
         }, 0, privacyTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        privacyTermString.setSpan(new ForegroundColorSpan(getColor(R.color.color_prominent)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         spannableStringBuilder.append(privacyTermString);
         termView.setMovementMethod(LinkMovementMethod.getInstance());
         termView.setText(spannableStringBuilder);
@@ -127,10 +128,10 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
                 user.setPassword(passwordInput.getText());
                 user.setMobile(mobileInput.getText());
                 UserAuthRequest.login(user);
-                if (SPUtil.getToken(this) != null) {
-                    User ret = UserProfileRequest.info(JwtUtil.getAud(SPUtil.getToken(this)));
+                if (AppSharedPreferenceUtil.getToken(this) != null) {
+                    User ret = UserProfileRequest.info(JwtUtil.getAud(AppSharedPreferenceUtil.getToken(this)));
                     if (ret != null) {
-                        SPUtil.setUserInfo(this, ret);
+                        AppSharedPreferenceUtil.setUserInfo(this, ret);
                         ActivityUtils.finishAllActivities();
                         ActivityUtils.startActivity(new Intent(this, MainActivity.class));
                     } else {

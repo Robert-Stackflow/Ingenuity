@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lzy.imagepicker.ImagePicker;
@@ -76,7 +77,6 @@ public class ImageFolderAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         ImageFolder folder = getItem(position);
         holder.folderName.setText(folder.name);
         holder.imageCount.setText(mActivity.getString(R.string.ip_folder_image_count, folder.images.size()));
@@ -107,8 +107,10 @@ public class ImageFolderAdapter extends BaseAdapter {
         TextView folderName;
         TextView imageCount;
         ImageView folderCheck;
+        LinearLayout layout;
 
         public ViewHolder(View view) {
+            layout = view.findViewById(R.id.ll_folder_item);
             cover = (ImageView) view.findViewById(R.id.iv_cover);
             folderName = (TextView) view.findViewById(R.id.tv_folder_name);
             imageCount = (TextView) view.findViewById(R.id.tv_image_count);

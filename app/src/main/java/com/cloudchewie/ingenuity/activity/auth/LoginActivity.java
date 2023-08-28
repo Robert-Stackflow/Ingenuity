@@ -28,6 +28,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.global.BaseActivity;
 import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.general.IToast;
@@ -74,11 +75,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
 
             @Override
-            public void updateDrawState(TextPaint ds) {
+            public void updateDrawState(@NonNull TextPaint ds) {
                 ds.setUnderlineText(false);
             }
         }, 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        userTermString.setSpan(new ForegroundColorSpan(getColor(R.color.color_prominent)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.append(userTermString);
         SpannableString privacyTermString = new SpannableString("《隐私政策》");
         privacyTermString.setSpan(new ClickableSpan() {
@@ -92,7 +93,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 ds.setUnderlineText(false);
             }
         }, 0, privacyTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        privacyTermString.setSpan(new ForegroundColorSpan(getColor(R.color.color_prominent)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         spannableStringBuilder.append(privacyTermString);
         termView.setMovementMethod(LinkMovementMethod.getInstance());
         termView.setText(spannableStringBuilder);

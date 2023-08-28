@@ -6,27 +6,37 @@ public class ThemeItem {
     public String title;
     public String description;
     public int colorId;
-    public int id;
+    public int layoutId;
+    public int themeId;
 
-    public int getId() {
-        return id;
+    public int getThemeId() {
+        return themeId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setThemeId(int themeId) {
+        this.themeId = themeId;
     }
 
-    public ThemeItem(String title, String description, int colorId, int id) {
+    public int getLayoutId() {
+        return layoutId;
+    }
+
+    public void setLayoutId(int layoutId) {
+        this.layoutId = layoutId;
+    }
+
+    public ThemeItem(String title, String description, int colorId, int layoutId, int themeId) {
         this.title = title;
         this.description = description;
         this.colorId = colorId;
-        this.id = id;
+        this.layoutId = layoutId;
+        this.themeId = themeId;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return "ThemeItem{" + "title='" + title + '\'' + ", description='" + description + '\'' + ", colorId=" + colorId + ", id=" + id + '}';
+        return "ThemeItem{" + "title='" + title + '\'' + ", description='" + description + '\'' + ", colorId=" + colorId + ", id=" + layoutId + '}';
     }
 
     public String getTitle() {

@@ -17,6 +17,7 @@ import com.cloudchewie.ingenuity.fragment.global.BaseFragment;
 import com.cloudchewie.ingenuity.request.SettingRequest;
 import com.cloudchewie.ingenuity.request.UserProfileRequest;
 import com.cloudchewie.ingenuity.util.decoration.DividerItemDecoration;
+import com.cloudchewie.ui.ThemeUtil;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -100,7 +101,7 @@ public class FavoritesListFragment extends BaseFragment implements View.OnClickL
     void initSwipeRefresh() {
         swipeRefreshLayout = mainView.findViewById(R.id.fragment_favorites_list_swipe_refresh);
         header = mainView.findViewById(R.id.fragment_favorites_list_swipe_refresh_header);
-        swipeRefreshLayout.setRefreshHeader(new MaterialHeader(getContext()).setColorSchemeColors(getResources().getColor(R.color.color_prominent)).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)));
+        swipeRefreshLayout.setRefreshHeader(new MaterialHeader(requireContext()).setColorSchemeColors(ThemeUtil.getPrimaryColor(requireContext())).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)));
         swipeRefreshLayout.setEnableLoadMore(false);
         swipeRefreshLayout.setEnableRefresh(false);
         swipeRefreshLayout.setEnableOverScrollDrag(enabledOverscrollDrag);

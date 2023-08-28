@@ -9,11 +9,13 @@ package com.cloudchewie.ingenuity.fragment.nav;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +27,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.fragment.global.BaseFragment;
+import com.cloudchewie.ui.ThemeUtil;
+import com.cloudchewie.util.ui.SizeUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -56,8 +60,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         context = getContext();
         tabLayout = mainView.findViewById(R.id.home_tab_layout);
         viewPager = mainView.findViewById(R.id.home_viewpager);
-        initViewPager();
         initTabLayout();
+        initViewPager();
         return mainView;
     }
 
@@ -88,6 +92,46 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     void initTabLayout() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+                TextView textView;
+                if (!(view instanceof TextView)) {
+                    textView = new TextView(getActivity());
+                } else {
+                    textView = (TextView) view;
+                }
+                textView.setTextSize(SizeUtil.px2sp(context, getResources().getDimension(R.dimen.sp17)));
+                textView.setText(tab.getText());
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setTextColor(ThemeUtil.getPrimaryColor(context));
+                textView.setTypeface(Typeface.DEFAULT_BOLD);
+                tab.setCustomView(textView);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                View view = tab.getCustomView();
+                TextView textView;
+                if (!(view instanceof TextView)) {
+                    textView = new TextView(getActivity());
+                } else {
+                    textView = (TextView) view;
+                }
+                textView.setTextSize(SizeUtil.px2sp(context, getResources().getDimension(R.dimen.sp16)));
+                textView.setText(tab.getText());
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setTextColor(getResources().getColor(R.color.color_gray));
+                textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                tab.setCustomView(textView);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {

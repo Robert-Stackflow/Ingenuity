@@ -40,7 +40,7 @@ public class NormalFilePickActivity extends BaseActivity {
     private int mCurrentNumber = 0;
     private RecyclerView mRecyclerView;
     private NormalFilePickAdapter mAdapter;
-    private ArrayList<NormalFile> mSelectedList = new ArrayList<>();
+    private final ArrayList<NormalFile> mSelectedList = new ArrayList<>();
     private List<Directory<NormalFile>> mAll;
     private ProgressBar mProgressBar;
     private String[] mSuffix;

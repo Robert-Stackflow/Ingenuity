@@ -4,7 +4,8 @@
     android:id="@+id/camera"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/selector_grid_camera_bg">
+    android:background="@drawable/shape_rect"
+    android:backgroundTint="@color/color_selector_card">
 
     <TextView
         android:layout_width="wrap_content"

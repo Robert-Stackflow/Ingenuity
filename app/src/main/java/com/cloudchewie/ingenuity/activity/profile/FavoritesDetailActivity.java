@@ -39,7 +39,7 @@ import com.cloudchewie.ingenuity.util.decoration.DividerItemDecoration;
 import com.cloudchewie.ingenuity.util.image.CornerTransformation;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ingenuity.util.image.NineGridUtil;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.ui.custom.HorizontalIconTextItem;
 import com.cloudchewie.ui.custom.MyDialog;
@@ -123,7 +123,7 @@ public class FavoritesDetailActivity extends BaseActivity implements View.OnClic
         collectView.setText(String.valueOf(favorites.getFollowCount()));
         thumbupView.setText(String.valueOf(favorites.getThumbupCount()));
         visitedView.setText(String.valueOf(favorites.getVisitedCount()));
-        if (favorites.getUserId() == SPUtil.getUserId(this)) {
+        if (favorites.getUserId() == AppSharedPreferenceUtil.getUserId(this)) {
             collectView.setIconColor(getColor(R.color.color_selector_icon));
             collectView.setEnabled(false);
         }

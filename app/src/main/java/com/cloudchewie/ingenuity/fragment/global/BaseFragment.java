@@ -40,7 +40,7 @@ public class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) title = getArguments().getString("title", "base");
-        else title = "base";
+        else title = "空白页";
     }
 
     @Nullable

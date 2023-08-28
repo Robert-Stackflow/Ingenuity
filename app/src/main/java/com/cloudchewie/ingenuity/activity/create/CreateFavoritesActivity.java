@@ -33,7 +33,8 @@ import com.cloudchewie.ingenuity.request.ImageUploadRequest;
 import com.cloudchewie.ingenuity.request.SettingRequest;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ingenuity.util.image.NineGridUtil;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.ui.custom.EntryItem;
 import com.cloudchewie.ui.general.CheckBoxItem;
@@ -131,7 +132,7 @@ public class CreateFavoritesActivity extends BaseActivity implements View.OnClic
         publishButton.setOnClickListener(v -> {
             KeyBoardUtil.hideKeyBoard(CreateFavoritesActivity.this);
             if (!isDefaultFavorites) {
-                editFavorites.setUserId(SPUtil.getUserId(CreateFavoritesActivity.this));
+                editFavorites.setUserId(AppSharedPreferenceUtil.getUserId(CreateFavoritesActivity.this));
                 editFavorites.setGmtCreate(new Date());
                 editFavorites.setPublic(isPublic.isChecked());
                 editFavorites.setName(nameEdit.getText().toString());
@@ -214,7 +215,7 @@ public class CreateFavoritesActivity extends BaseActivity implements View.OnClic
         if (enable) {
             publishButton.setSelected(true);
             publishButton.setEnabled(true);
-            publishButton.setTextColor(getColor(R.color.color_prominent));
+            publishButton.setTextColor(ThemeUtil.getPrimaryColor(this));
         } else {
             publishButton.setSelected(false);
             publishButton.setEnabled(false);

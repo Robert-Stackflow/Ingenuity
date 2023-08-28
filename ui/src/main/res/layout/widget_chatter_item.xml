@@ -8,7 +8,7 @@
     android:background="@drawable/shape_rect"
     android:backgroundTint="@color/content_background"
     android:foreground="@drawable/ripple_rect"
-    android:foregroundTint="@color/color_prominent"
+    android:foregroundTint="?attr/colorPrimary"
     android:paddingStart="@dimen/dp15"
     android:paddingTop="@dimen/dp10"
     android:paddingEnd="@dimen/dp15">

@@ -55,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/widget_dialog_message">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/widget_dialog_negtive"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -69,14 +69,14 @@
                 android:textSize="@dimen/sp15"
                 tools:text="NO" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/widget_dialog_positive"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp10"
                 android:layout_weight="1"
                 android:background="@drawable/shape_button_round"
-                android:backgroundTint="@color/color_selector_prominent"
+                android:backgroundTint="?attr/colorPrimary"
                 android:gravity="center"
                 android:paddingTop="@dimen/dp10"
                 android:paddingBottom="@dimen/dp10"

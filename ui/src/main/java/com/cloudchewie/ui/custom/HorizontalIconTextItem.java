@@ -24,6 +24,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
 
 import com.cloudchewie.ui.R;
+import com.cloudchewie.ui.ThemeUtil;
 
 public class HorizontalIconTextItem extends ConstraintLayout {
     private ConstraintLayout mainLayout;
@@ -70,16 +71,16 @@ public class HorizontalIconTextItem extends ConstraintLayout {
         TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalIconTextItem);
         if (attr != null) {
             iconId = attr.getResourceId(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_icon, R.drawable.ic_light_map);
-            iconColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_icon_color, getResources().getColor(R.color.color_prominent, getResources().newTheme()));
+            iconColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_icon_color, ThemeUtil.getPrimaryColor(context));
             rightIconId = attr.getResourceId(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_right_icon, R.drawable.ic_light_close);
-            rightIconColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_right_icon_color, getResources().getColor(R.color.color_prominent, getResources().newTheme()));
+            rightIconColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_right_icon_color, ThemeUtil.getPrimaryColor(context));
             checkedIconId = attr.getResourceId(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_checked_icon, R.drawable.ic_light_map_fill);
-            checkedIconColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_checked_icon_color, getResources().getColor(R.color.color_prominent, getResources().newTheme()));
+            checkedIconColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_checked_icon_color,ThemeUtil.getPrimaryColor(context));
             int textMaxLength = attr.getInt(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_text_max_length, getResources().getInteger(R.integer.horizontal_icon_text_item_text_max_length));
             int iconSize = (int) attr.getDimension(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_icon_size, getResources().getDimension(R.dimen.horizontal_icon_text_item_default_icon_size));
             int rightIconSize = (int) attr.getDimension(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_right_icon_size, getResources().getDimension(R.dimen.horizontal_icon_text_item_default_icon_size));
             text = attr.getString(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_text);
-            textColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_text_color, getResources().getColor(R.color.color_prominent, getResources().newTheme()));
+            textColor = attr.getColor(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_text_color, ThemeUtil.getPrimaryColor(context));
             int textSize = (int) attr.getDimension(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_text_size, getResources().getDimension(R.dimen.horizontal_icon_text_item_default_text_size));
             int spacing = (int) attr.getDimension(R.styleable.HorizontalIconTextItem_horizontal_icon_text_item_spacing, getResources().getDimension(R.dimen.horizontal_icon_text_item_default_spacing));
             setIcon(iconId);

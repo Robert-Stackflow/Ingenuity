@@ -10,13 +10,13 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.cloudchewie.ingenuity.entity.User;
-import com.cloudchewie.ingenuity.util.enumeration.SharedPreferenceCode;
+import com.cloudchewie.util.system.SharedPreferenceCode;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 
 /**
  * SharedPreferences工具类
  */
-public class SPUtil {
+public class AppSharedPreferenceUtil {
     private static final String NAME = "config";
 
     public static boolean isLogin(@NonNull Context context) {

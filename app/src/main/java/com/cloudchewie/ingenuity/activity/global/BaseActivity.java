@@ -21,7 +21,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.broadcast.NetWorkStateReceiver;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.DarkModeUtil;
 import com.cloudchewie.util.ui.FontUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
@@ -61,6 +64,8 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(SharedPreferenceUtil.getThemeId(this, R.style.AppTheme));
+        AppSharedPreferenceUtil.getUserInfo(this);
         super.onCreate(savedInstanceState);
         mConfiguration = new Configuration(getResources().getConfiguration());
         StatusBarUtil.setStatusBarTransparent(this);

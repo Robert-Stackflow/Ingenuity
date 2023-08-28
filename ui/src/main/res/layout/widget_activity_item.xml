@@ -58,7 +58,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/dp20"
                 android:gravity="center"
-                android:textColor="@color/color_prominent"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="@dimen/sp15"
                 android:textStyle="bold"
                 tools:text="两天后" />

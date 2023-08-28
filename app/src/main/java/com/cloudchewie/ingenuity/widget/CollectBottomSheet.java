@@ -22,7 +22,7 @@ import com.cloudchewie.ingenuity.request.PostProfileRequest;
 import com.cloudchewie.ingenuity.request.SettingRequest;
 import com.cloudchewie.ingenuity.request.UserProfileRequest;
 import com.cloudchewie.ingenuity.util.decoration.DividerItemDecoration;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
 import com.cloudchewie.ui.general.BottomSheet;
 
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ public class CollectBottomSheet extends BottomSheet implements View.OnClickListe
     }
 
     List<Favorites> getData() {
-        List<Favorites> favorites = UserProfileRequest.getFavorites(SPUtil.getUserId(getContext()));
+        List<Favorites> favorites = UserProfileRequest.getFavorites(AppSharedPreferenceUtil.getUserId(getContext()));
         for (Favorites favor : favorites)
             favor.setUser(UserProfileRequest.info(favor.getUserId()));
         favorites.add(0, getDefaultFavorites());
@@ -127,15 +127,15 @@ public class CollectBottomSheet extends BottomSheet implements View.OnClickListe
                             if (object instanceof Post) {
                                 Post post = (Post) object;
                                 if (change.isCollected())
-                                    PostOperationRequest.collect(new Collection(SPUtil.getUserId(context), change.getFolderId(), (int) post.getPostId(), new Date(), 1));
+                                    PostOperationRequest.collect(new Collection(AppSharedPreferenceUtil.getUserId(context), change.getFolderId(), (int) post.getPostId(), new Date(), 1));
                                 else
-                                    PostOperationRequest.uncollect(new Collection(SPUtil.getUserId(context), change.getFolderId(), (int) post.getPostId(), new Date(), 1));
+                                    PostOperationRequest.uncollect(new Collection(AppSharedPreferenceUtil.getUserId(context), change.getFolderId(), (int) post.getPostId(), new Date(), 1));
                             } else if (object instanceof Article) {
                                 Article article = (Article) object;
                                 if (change.isCollected())
-                                    ArticleOperationRequest.collect(new Collection(SPUtil.getUserId(context), change.getFolderId(), article.getArticleId(), new Date(), 0));
+                                    ArticleOperationRequest.collect(new Collection(AppSharedPreferenceUtil.getUserId(context), change.getFolderId(), article.getArticleId(), new Date(), 0));
                                 else
-                                    ArticleOperationRequest.uncollect(new Collection(SPUtil.getUserId(context), change.getFolderId(), article.getArticleId(), new Date(), 0));
+                                    ArticleOperationRequest.uncollect(new Collection(AppSharedPreferenceUtil.getUserId(context), change.getFolderId(), article.getArticleId(), new Date(), 0));
                             }
                         }
                     }

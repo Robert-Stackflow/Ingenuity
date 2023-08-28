@@ -22,7 +22,7 @@
             android:layout_height="60dp"
             android:layout_gravity="center"
             app:roundColor="@color/color_prominent_background"
-            app:roundProgressColor="@color/color_prominent" />
+            app:roundProgressColor="?attr/colorPrimary" />
 
         <Chronometer
             android:id="@+id/layout_record_voice_chronometer"

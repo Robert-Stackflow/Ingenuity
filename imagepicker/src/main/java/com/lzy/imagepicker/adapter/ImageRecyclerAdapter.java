@@ -134,37 +134,30 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
         ImageViewHolder(View itemView) {
             super(itemView);
             rootView = itemView;
-            ivThumb = (ImageView) itemView.findViewById(R.id.iv_thumb);
+            ivThumb = itemView.findViewById(R.id.iv_thumb);
             mask = itemView.findViewById(R.id.mask);
             checkView = itemView.findViewById(R.id.checkView);
-            cbCheck = (SuperCheckBox) itemView.findViewById(R.id.cb_check);
+            cbCheck = itemView.findViewById(R.id.cb_check);
             itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mImageSize)); //让图片是个正方形
         }
 
         void bind(final int position) {
             final ImageItem imageItem = getItem(position);
-            ivThumb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) listener.onImageItemClick(rootView, imageItem, position);
+            ivThumb.setOnClickListener(v -> {
+                if (listener != null) listener.onImageItemClick(rootView, imageItem, position);
+            });
+            checkView.setOnClickListener(v -> {
+                cbCheck.setChecked(!cbCheck.isChecked());
+                int selectLimit = imagePicker.getSelectLimit();
+                if (cbCheck.isChecked() && mSelectedImages.size() >= selectLimit) {
+                    IToast.makeTextBottom(mActivity.getApplicationContext(), mActivity.getString(R.string.ip_select_limit, selectLimit), Toast.LENGTH_SHORT).show();
+                    cbCheck.setChecked(false);
+                    mask.setVisibility(View.GONE);
+                } else {
+                    imagePicker.addSelectedImageItem(position, imageItem, cbCheck.isChecked());
+                    mask.setVisibility(View.VISIBLE);
                 }
             });
-            checkView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    cbCheck.setChecked(!cbCheck.isChecked());
-                    int selectLimit = imagePicker.getSelectLimit();
-                    if (cbCheck.isChecked() && mSelectedImages.size() >= selectLimit) {
-                        IToast.makeTextBottom(mActivity.getApplicationContext(), mActivity.getString(R.string.ip_select_limit, selectLimit), Toast.LENGTH_SHORT).show();
-                        cbCheck.setChecked(false);
-                        mask.setVisibility(View.GONE);
-                    } else {
-                        imagePicker.addSelectedImageItem(position, imageItem, cbCheck.isChecked());
-                        mask.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
-            //根据是否多选，显示或隐藏checkbox
             if (imagePicker.isMultiMode()) {
                 cbCheck.setVisibility(View.VISIBLE);
                 boolean checked = mSelectedImages.contains(imageItem);
@@ -178,7 +171,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
             } else {
                 cbCheck.setVisibility(View.GONE);
             }
-            imagePicker.getImageLoader().displayImage(mActivity, imageItem.path, ivThumb, mImageSize, mImageSize); //显示图片
+            imagePicker.getImageLoader().displayImage(mActivity, imageItem.path, ivThumb, mImageSize, mImageSize);
         }
 
     }

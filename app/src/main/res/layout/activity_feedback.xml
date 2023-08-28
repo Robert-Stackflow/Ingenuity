@@ -50,7 +50,7 @@
             android:background="@android:color/transparent"
             android:gravity="center"
             android:text="提交"
-            android:textColor="@color/color_prominent"
+            android:textColor="?attr/colorPrimary"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp10"
                     android:textSize="18sp"
+                    android:visibility="gone"
                     app:checkbox_item_bottom_radius_enable="true"
                     app:checkbox_item_title="上传日志"
                     app:checkbox_item_top_radius_enable="true"
@@ -138,7 +139,7 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_switch_upload_log"
+                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_contact"
                     tools:ignore="LabelFor" />
 
                 <TextView
@@ -158,13 +159,13 @@
                     android:background="@drawable/shape_round_dp10"
                     android:backgroundTint="@color/card_background"
                     android:padding="@dimen/dp10"
-                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_contact">
+                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_describe">
 
                     <TextView
                         android:id="@+id/activity_feedback_image_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp8"
                         android:text="上传图片更好地说明您的反馈或建议"
                         android:textColor="@color/color_hint"
                         android:textSize="@dimen/sp15"
@@ -205,16 +206,17 @@
                     android:background="@drawable/shape_round_dp10"
                     android:backgroundTint="@color/card_background"
                     android:gravity="top"
-                    android:hint="填写您的手机号等联系方式"
+                    android:hint="填写您的邮箱、手机号、QQ号等联系方式"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
-                    android:padding="@dimen/dp10"
+                    android:paddingHorizontal="@dimen/dp10"
+                    android:paddingVertical="@dimen/dp15"
                     android:singleLine="true"
                     android:textCursorDrawable="@drawable/shape_cursor"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_describe"
+                    app:layout_constraintTop_toBottomOf="@id/activity_feedback_switch_upload_log"
                     tools:ignore="LabelFor" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.Utils;
 import com.cloudchewie.ingenuity.entity.User;
 import com.cloudchewie.ingenuity.util.enumeration.ResponseCode;
 import com.cloudchewie.ingenuity.util.http.HttpRequestUtil;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
 
 public class UserAuthRequest {
 
@@ -31,7 +31,7 @@ public class UserAuthRequest {
         }
         if (response[0] != null && response[0].getIntValue("code") == ResponseCode.RC200.getCode()) {
             User ret = response[0].getJSONObject("data").toJavaObject(User.class);
-            SPUtil.setToken(Utils.getApp(), ret.getToken());
+            AppSharedPreferenceUtil.setToken(Utils.getApp(), ret.getToken());
         }
     }
 
@@ -45,7 +45,7 @@ public class UserAuthRequest {
 
     public static User info() {
         final JSONObject[] response = new JSONObject[1];
-        Thread thread = new Thread(() -> response[0] = HttpRequestUtil.getFromServer(HttpRequestUtil.MEDIA_TYPE_JSON, "/user/auth/info/" + SPUtil.getUserId(Utils.getApp())));
+        Thread thread = new Thread(() -> response[0] = HttpRequestUtil.getFromServer(HttpRequestUtil.MEDIA_TYPE_JSON, "/user/auth/info/" + AppSharedPreferenceUtil.getUserId(Utils.getApp())));
         thread.start();
         try {
             thread.join();
@@ -55,7 +55,7 @@ public class UserAuthRequest {
         User user = null;
         if (response[0] != null && response[0].getIntValue("code") == ResponseCode.RC200.getCode())
             user = JSONObject.toJavaObject(response[0].getJSONObject("data"), User.class);
-        SPUtil.setUserInfo(Utils.getApp(), user);
+        AppSharedPreferenceUtil.setUserInfo(Utils.getApp(), user);
         return user;
     }
 
@@ -68,6 +68,6 @@ public class UserAuthRequest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        SPUtil.setUserInfo(Utils.getApp(), user);
+        AppSharedPreferenceUtil.setUserInfo(Utils.getApp(), user);
     }
 }

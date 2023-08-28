@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_folder_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
-    android:background="@drawable/selector_folder_item_dark"
+    android:background="@drawable/shape_rect"
+    android:backgroundTint="@color/color_selector_card"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -37,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ip_all_images"
-            android:textColor="@color/text_color_white"
+            android:textColor="@color/color_accent"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -58,5 +60,5 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/ic_light_right"
-        app:tint="@color/color_prominent" />
+        app:tint="?attr/colorPrimary" />
 </LinearLayout>

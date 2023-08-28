@@ -16,9 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.cloudchewie.ui.R;
@@ -30,7 +30,7 @@ public class MyDialog extends Dialog {
     protected View diyView;
     private TextView titleTv;
     private TextView messageTv;
-    private Button negtiveBn, positiveBn;
+    private AppCompatButton negtiveBn, positiveBn;
     private String message;
     private String title = "消息提示";
     private String positive, negtive;

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.DarkModeUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.vincent.filepicker.R;
@@ -34,6 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(SharedPreferenceUtil.getThemeId(this, R.style.AppTheme));
         super.onCreate(savedInstanceState);
         StatusBarUtil.setStatusBarTransparent(this);
         StatusBarUtil.setStatusBarColor(this, getColor(R.color.picker_bar_background));

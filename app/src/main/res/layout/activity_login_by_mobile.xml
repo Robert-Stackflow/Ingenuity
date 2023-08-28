@@ -90,7 +90,7 @@
                 android:focusable="true"
                 android:text="验证码登录"
                 android:textAlignment="center"
-                android:textColor="@color/color_prominent"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="@dimen/sp12"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
+import com.cloudchewie.util.ui.DarkModeUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.R;
@@ -26,10 +28,12 @@ public class ImageBaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(SharedPreferenceUtil.getThemeId(this, R.style.AppTheme));
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setStatusBarTransparent(this);
-        StatusBarUtil.setStatusBarColor(this, getColor(R.color.ip_camera_pre));
-        StatusBarUtil.setStatusBarTextColor(this, true);
+//        StatusBarUtil.setStatusBarTransparent(this);
+//        StatusBarUtil.setStatusBarMarginTop(this);
+//        StatusBarUtil.setStatusBarColor(this, getColor(R.color.background));
+        StatusBarUtil.setStatusBarTextColor(this, DarkModeUtil.isDarkMode(this));
     }
 
     public boolean checkPermission(@NonNull String permission) {
@@ -41,7 +45,7 @@ public class ImageBaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         ImagePicker.getInstance().restoreInstanceState(savedInstanceState);
     }

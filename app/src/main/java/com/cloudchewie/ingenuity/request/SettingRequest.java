@@ -4,20 +4,20 @@ import com.alibaba.fastjson.JSONObject;
 import com.blankj.utilcode.util.Utils;
 import com.cloudchewie.ingenuity.entity.Setting;
 import com.cloudchewie.ingenuity.util.http.HttpRequestUtil;
-import com.cloudchewie.ingenuity.util.system.SPUtil;
+import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
 
 import org.jetbrains.annotations.Contract;
 
 public class SettingRequest {
     public static boolean isDefaultFavoritesPublic() {
-        if (info(SPUtil.getUserId(Utils.getApp())) != null)
-            return info(SPUtil.getUserId(Utils.getApp())).getDefaultFavoritesPublic() != 0;
+        if (info(AppSharedPreferenceUtil.getUserId(Utils.getApp())) != null)
+            return info(AppSharedPreferenceUtil.getUserId(Utils.getApp())).getDefaultFavoritesPublic() != 0;
         return false;
     }
 
     @Contract(pure = true)
     public static void setDefaultFavoritesPublic(boolean defaultFavoritesPublic) {
-        Setting setting = info(SPUtil.getUserId(Utils.getApp()));
+        Setting setting = info(AppSharedPreferenceUtil.getUserId(Utils.getApp()));
         setting.setDefaultFavoritesPublic((byte) (defaultFavoritesPublic ? 1 : 0));
     }
 

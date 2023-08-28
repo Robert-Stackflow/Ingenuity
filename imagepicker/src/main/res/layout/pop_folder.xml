@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <FrameLayout
@@ -10,15 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:backgroundTint="#A000">
+        android:backgroundTint="@color/background">
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/ip_color"
+            android:background="@drawable/shape_round_top_dp10"
+            android:backgroundTint="@color/card_background"
             android:divider="@drawable/bg_divider"
+            android:paddingTop="@dimen/dp10"
             android:scrollbars="none"
             android:showDividers="middle"
             tools:listitem="@layout/adapter_folder_list_item" />

@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -25,9 +24,12 @@ import com.cloudchewie.ingenuity.fragment.global.BaseFragment;
 import com.cloudchewie.ingenuity.fragment.nav.HomeFragment;
 import com.cloudchewie.ingenuity.fragment.nav.UserFragment;
 import com.cloudchewie.ingenuity.util.database.AppDatabase;
+import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ingenuity.util.system.LocalStorage;
+import com.cloudchewie.ui.bottombar.ReadableBottomBar;
 import com.cloudchewie.ui.custom.NoScrollViewPager;
-import com.iammert.library.readablebottombar.ReadableBottomBar;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +40,8 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class MainActivity extends BaseActivity implements View.OnClickListener, EasyPermissions.PermissionCallbacks {
     private ViewPagerAdapter adapter;
     private List<Fragment> fragments;
-    private ImageButton userButton;
     private NoScrollViewPager viewPager;
     private ReadableBottomBar readableBottomBar;
-//    private BottomNavigationViewEx bottomNavigation;
 
     @Override
     @SuppressLint("SourceLockedOrientationActivity")
@@ -50,8 +50,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         LocalStorage.init(AppDatabase.getInstance(getApplicationContext()));
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        LiveEventBus.get(EventBusCode.CHANGE_THEME.getKey(), String.class).observe(this, s -> recreate());
         initView();
-//        initEvent();
     }
 
     void initView() {
@@ -64,7 +64,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
         viewPager.setNoScroll(false);
-        readableBottomBar.setOnItemSelectListener(i -> viewPager.setCurrentItem(i));
+        readableBottomBar.setTabInitialSelectedIndex(SharedPreferenceUtil.getCurrentNavIndex(MainActivity.this));
+        viewPager.setCurrentItem(SharedPreferenceUtil.getCurrentNavIndex(MainActivity.this));
+        readableBottomBar.setOnItemSelectListener(i -> {
+            SharedPreferenceUtil.setCurrentNavIndex(MainActivity.this, i);
+            viewPager.setCurrentItem(i);
+        });
     }
 
     @Override

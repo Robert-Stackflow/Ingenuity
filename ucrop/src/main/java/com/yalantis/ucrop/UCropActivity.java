@@ -40,6 +40,8 @@ import androidx.transition.AutoTransition;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
+import com.cloudchewie.ui.ThemeUtil;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 import com.yalantis.ucrop.callback.BitmapCropCallback;
@@ -157,6 +159,7 @@ public class UCropActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTheme(SharedPreferenceUtil.getThemeId(this, R.style.AppTheme));
         super.onCreate(savedInstanceState);
         ImmersionBar.with(this)
                 .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
@@ -170,7 +173,7 @@ public class UCropActivity extends AppCompatActivity {
         txt_one.setOnClickListener(v -> {
             if (!txt_one.isSelected()) {
                 txt_one.setSelected(true);
-                txt_one.setTextColor(Color.parseColor("#0099FF"));
+                txt_one.setTextColor(ThemeUtil.getPrimaryColor(this));
                 txt_two.setTextColor(Color.parseColor("#ffffff"));
                 txt_three.setTextColor(Color.parseColor("#ffffff"));
                 txt_two.setSelected(false);
@@ -188,7 +191,7 @@ public class UCropActivity extends AppCompatActivity {
                 mGestureCropImageView.setTargetAspectRatio(0.75f);
                 mGestureCropImageView.setImageToWrapCropBounds();
                 txt_one.setTextColor(Color.parseColor("#ffffff"));
-                txt_two.setTextColor(Color.parseColor("#0099FF"));
+                txt_two.setTextColor(ThemeUtil.getPrimaryColor(this));
                 txt_three.setTextColor(Color.parseColor("#ffffff"));
             }
         });
@@ -204,7 +207,7 @@ public class UCropActivity extends AppCompatActivity {
 
                 txt_one.setTextColor(Color.parseColor("#ffffff"));
                 txt_two.setTextColor(Color.parseColor("#ffffff"));
-                txt_three.setTextColor(Color.parseColor("#0099FF"));
+                txt_three.setTextColor(ThemeUtil.getPrimaryColor(this));
             }
         });
 
