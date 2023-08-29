@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.cloudchewie.ui.general.RoundImageView;
+import com.cloudchewie.ui.custom.RoundImageView;
 
 import org.jetbrains.annotations.Contract;
 

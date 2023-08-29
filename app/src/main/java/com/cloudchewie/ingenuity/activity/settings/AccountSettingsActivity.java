@@ -14,8 +14,8 @@ import android.view.View;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.auth.ChangePasswordActivity;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
+import com.cloudchewie.ingenuity.activity.user.ChangePasswordActivity;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -45,7 +45,7 @@ public class AccountSettingsActivity extends BaseActivity implements View.OnClic
     public void onClick(View view) {
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, findViewById(R.id.activity_account_settings_titlebar), "shareElement").toBundle();
         if (view == findViewById(R.id.entry_change_password)) {
-            Intent intent = new Intent(getApplicationContext(), ChangePasswordActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ChangePasswordActivity.class).setAction(Intent.ACTION_DEFAULT);
             startActivity(intent, bundle);
         }
     }

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.cloudchewie.ui.general.RoundImageView;
+import com.cloudchewie.ui.custom.RoundImageView;
 
 import cn.jiguang.imui.R;
 import cn.jiguang.imui.commons.models.IMessage;

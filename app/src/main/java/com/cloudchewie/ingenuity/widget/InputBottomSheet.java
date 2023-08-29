@@ -17,9 +17,9 @@ import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ui.custom.InputItem;
+import com.cloudchewie.ui.item.InputItem;
 import com.cloudchewie.ui.general.BottomSheet;
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.custom.IToast;
 
 public class InputBottomSheet extends BottomSheet {
     Context context;

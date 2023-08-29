@@ -20,11 +20,11 @@ import android.widget.TextView;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.bean.ThemeItem;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.custom.TitleBar;
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
@@ -36,17 +36,17 @@ public class ThemeActivity extends BaseActivity implements View.OnClickListener 
 
     LinearLayout linearLayout;
 
-    public static List<ThemeItem> getThemeList() {
+    public static List<ThemeItem> getThemeList(Context context) {
         List<ThemeItem> themeItemList = new ArrayList<>();
-        themeItemList.add(new ThemeItem("深邃绿", "舒适护眼", R.color.custom_color_app_accent_1, R.id.id_theme_item_1, R.style.AppTheme_Color1));
-        themeItemList.add(new ThemeItem("知乎蓝", "令人觉得可靠、安全", R.color.custom_color_app_accent_9, R.id.id_theme_item_9, R.style.AppTheme_Color9));
-        themeItemList.add(new ThemeItem("哔哩粉", "( ゜- ゜)つロ 乾杯~", R.color.custom_color_app_accent_2, R.id.id_theme_item_2, R.style.AppTheme_Color2));
-        themeItemList.add(new ThemeItem("酷安绿", "轻松活泼", R.color.custom_color_app_accent_3, R.id.id_theme_item_3, R.style.AppTheme_Color3));
-        themeItemList.add(new ThemeItem("静谧灰", "安静而优雅", R.color.custom_color_app_accent_4, R.id.id_theme_item_4, R.style.AppTheme_Color4));
-        themeItemList.add(new ThemeItem("高贵紫", "如天使一般高贵冷艳", R.color.custom_color_app_accent_5, R.id.id_theme_item_5, R.style.AppTheme_Color5));
-        themeItemList.add(new ThemeItem("樱桃红", "温柔、可爱", R.color.custom_color_app_accent_6, R.id.id_theme_item_6, R.style.AppTheme_Color6));
-        themeItemList.add(new ThemeItem("神秘棕", "健康、向上", R.color.custom_color_app_accent_7, R.id.id_theme_item_7, R.style.AppTheme_Color7));
-        themeItemList.add(new ThemeItem("明亮黄", "低调又沉稳", R.color.custom_color_app_accent_8, R.id.id_theme_item_8, R.style.AppTheme_Color8));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_1), context.getString(R.string.theme_content_1), R.color.custom_color_app_accent_1, R.id.id_theme_item_1, R.style.AppTheme_Color1));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_2), context.getString(R.string.theme_content_2), R.color.custom_color_app_accent_2, R.id.id_theme_item_2, R.style.AppTheme_Color2));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_3), context.getString(R.string.theme_content_3), R.color.custom_color_app_accent_3, R.id.id_theme_item_3, R.style.AppTheme_Color3));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_4), context.getString(R.string.theme_content_4), R.color.custom_color_app_accent_4, R.id.id_theme_item_4, R.style.AppTheme_Color4));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_5), context.getString(R.string.theme_content_5), R.color.custom_color_app_accent_5, R.id.id_theme_item_5, R.style.AppTheme_Color5));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_6), context.getString(R.string.theme_content_6), R.color.custom_color_app_accent_6, R.id.id_theme_item_6, R.style.AppTheme_Color6));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_7), context.getString(R.string.theme_content_7), R.color.custom_color_app_accent_7, R.id.id_theme_item_7, R.style.AppTheme_Color7));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_8), context.getString(R.string.theme_content_8), R.color.custom_color_app_accent_8, R.id.id_theme_item_8, R.style.AppTheme_Color8));
+        themeItemList.add(new ThemeItem(context.getString(R.string.theme_title_9), context.getString(R.string.theme_content_9), R.color.custom_color_app_accent_9, R.id.id_theme_item_9, R.style.AppTheme_Color9));
         return themeItemList;
     }
 
@@ -62,9 +62,9 @@ public class ThemeActivity extends BaseActivity implements View.OnClickListener 
     }
 
     void loadThemes() {
-        List<ThemeItem> themeItemList = getThemeList();
+        List<ThemeItem> themeItemList = getThemeList(this);
         for (ThemeItem themeItem : themeItemList) {
-            @SuppressLint("InflateParams") View view = LayoutInflater.from((Context) this).inflate(R.layout.item_theme, null);
+            @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.item_theme, null);
             view.setId(themeItem.layoutId);
             ((TextView) view.findViewById(R.id.item_theme_title)).setText(themeItem.title);
             ((TextView) view.findViewById(R.id.item_theme_description)).setText(themeItem.description);
@@ -98,7 +98,7 @@ public class ThemeActivity extends BaseActivity implements View.OnClickListener 
                     checkBox.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_light_checkbox_checked));
                     checkBox.setImageTintList(colorStateList);
                     SharedPreferenceUtil.setThemeId(this, themeItem.themeId);
-                    IToast.showBottom(this, "主题颜色修改成功");
+                    IToast.showBottom(this, getString(R.string.change_theme_success));
                     LiveEventBus.get(EventBusCode.CHANGE_THEME.getKey(), String.class).post("change_theme");
                 } else {
                     ColorStateList colorStateList = checkBox.getImageTintList();

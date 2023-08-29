@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.cloudchewie.ui.general.BottomSheet;
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.custom.IToast;
 import com.previewlibrary.GPreviewActivity;
 import com.previewlibrary.R;
 import com.previewlibrary.enitity.IThumbViewInfo;

@@ -19,15 +19,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
-import com.cloudchewie.ingenuity.fragment.global.BaseFragment;
-import com.cloudchewie.ingenuity.fragment.nav.HomeFragment;
-import com.cloudchewie.ingenuity.fragment.nav.UserFragment;
+import com.cloudchewie.ingenuity.fragment.BaseFragment;
+import com.cloudchewie.ingenuity.fragment.HomeFragment;
+import com.cloudchewie.ingenuity.fragment.UserFragment;
 import com.cloudchewie.ingenuity.util.database.AppDatabase;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
-import com.cloudchewie.ingenuity.util.system.LocalStorage;
+import com.cloudchewie.ingenuity.util.database.LocalStorage;
 import com.cloudchewie.ui.bottombar.ReadableBottomBar;
-import com.cloudchewie.ui.custom.NoScrollViewPager;
+import com.cloudchewie.ui.general.NoScrollViewPager;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 

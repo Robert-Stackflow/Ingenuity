@@ -14,8 +14,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
-import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
+import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.DarkModeUtil;
 

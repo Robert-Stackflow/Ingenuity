@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.DarkModeUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;

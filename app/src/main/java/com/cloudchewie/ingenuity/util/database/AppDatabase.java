@@ -17,12 +17,11 @@ import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.cloudchewie.ingenuity.dao.DraftDao;
-import com.cloudchewie.ingenuity.entity.Draft;
+import com.cloudchewie.ingenuity.entity.User;
 
 import org.jetbrains.annotations.Contract;
 
-@Database(entities = {Draft.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class}, version = 1, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
@@ -46,5 +45,4 @@ public abstract class AppDatabase extends RoomDatabase {
         return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).addMigrations(MIGRATION_1_2).allowMainThreadQueries().build();
     }
 
-    public abstract DraftDao draftDao();
 }

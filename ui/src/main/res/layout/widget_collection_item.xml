@@ -11,7 +11,7 @@
     android:focusable="true"
     android:padding="10dp">
 
-    <com.cloudchewie.ui.general.RoundImageView
+    <com.cloudchewie.ui.custom.RoundImageView
         android:id="@+id/collection_item_image"
         android:layout_width="140dp"
         android:layout_height="@dimen/dp80"
@@ -20,7 +20,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/img_default_background" />
 
-    <com.cloudchewie.ui.custom.HorizontalIconTextItem
+    <com.cloudchewie.ui.item.HorizontalIconTextItem
         android:id="@+id/collection_item_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         app:horizontal_icon_text_item_text_size="@dimen/sp11"
         tools:horizontal_icon_text_item_text="用户昵称" />
 
-    <com.cloudchewie.ui.custom.HorizontalIconTextItem
+    <com.cloudchewie.ui.item.HorizontalIconTextItem
         android:id="@+id/collection_item_thumbup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         app:horizontal_icon_text_item_text_size="@dimen/sp11"
         tools:horizontal_icon_text_item_text="8.6万" />
 
-    <com.cloudchewie.ui.custom.HorizontalIconTextItem
+    <com.cloudchewie.ui.item.HorizontalIconTextItem
         android:id="@+id/collection_item_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

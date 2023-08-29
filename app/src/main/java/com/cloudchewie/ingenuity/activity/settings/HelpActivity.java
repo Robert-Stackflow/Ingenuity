@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.adapter.BaseItemListAdapter;
 import com.cloudchewie.ingenuity.bean.BaseItem;
 import com.cloudchewie.ingenuity.util.decoration.SpacingItemDecoration;

@@ -22,17 +22,17 @@ import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.util.VibrateUtils;
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
-import com.cloudchewie.ingenuity.adapter.global.MyNineGridImageViewAdapter;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
+import com.cloudchewie.ingenuity.adapter.MyNineGridImageViewAdapter;
 import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.util.image.ImageUrlUtil;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ingenuity.util.image.NineGridUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.ui.ThemeUtil;
-import com.cloudchewie.ui.custom.EntryItem;
-import com.cloudchewie.ui.general.CheckBoxItem;
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.item.EntryItem;
+import com.cloudchewie.ui.item.CheckBoxItem;
+import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.ninegrid.NineGridImageView;
 import com.cloudchewie.util.system.FileUtil;
 import com.cloudchewie.util.ui.KeyBoardUtil;
@@ -43,6 +43,7 @@ import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.yalantis.ucrop.UCropActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +61,6 @@ public class FeedbackActivity extends BaseActivity {
     NineGridImageView<ImageViewInfo> nineGridImageView;
     int currentEditIndex;
     int maxSize = 200;
-    int maxNameSize = 20;
     List<String> types;
     List<ImageItem> selectImages = new ArrayList<>();
     private ListBottomSheet popupWindow;
@@ -102,7 +102,7 @@ public class FeedbackActivity extends BaseActivity {
             bottomSheet.setOnDismissListener(dialog -> updateSubmitState());
         });
         submitButton.setOnClickListener(v -> {
-            IToast.makeTextBottom(this, "提交成功，感谢您的反馈建议", Toast.LENGTH_SHORT).show();
+            IToast.makeTextBottom(this, getString(R.string.feedback_success), Toast.LENGTH_SHORT).show();
             finish();
         });
         submitButton.setSelected(false);
@@ -118,7 +118,7 @@ public class FeedbackActivity extends BaseActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                describeCount.setText(charSequence.length() + "/" + maxSize);
+                describeCount.setText(String.format(getString(R.string.word_count), charSequence.length(), maxSize));
                 updateSubmitState();
             }
 
@@ -175,17 +175,17 @@ public class FeedbackActivity extends BaseActivity {
                     popupWindow.dismiss();
                 } else if (position == 1) {
                     if (list.get(index).getUrl().endsWith(".gif")) {
-                        IToast.makeTextBottom(this, "暂不支持编辑.gif类型的图片", Toast.LENGTH_SHORT).show();
+                        IToast.makeTextBottom(this, getString(R.string.not_support_gif), Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent = new Intent(FeedbackActivity.this, UCropActivity.class);
                         intent.putExtra("filePath", list.get(index).getUrl());
-                        intent.putExtra("outPath", FileUtil.createFileInternal(FeedbackActivity.this, "IMG_", ".png").getAbsolutePath());
+                        intent.putExtra("outPath", FileUtil.createFileInternal(FeedbackActivity.this, getString(R.string.image_prefix), ".png").getAbsolutePath());
                         startActivityForResult(intent, 11);
                         currentEditIndex = index;
                         popupWindow.dismiss();
                     }
                 } else if (position == 2) {
-                    IToast.makeTextBottom(this, "图片保存成功", Toast.LENGTH_SHORT).show();
+                    IToast.makeTextBottom(this, getString(R.string.save_image_success), Toast.LENGTH_SHORT).show();
                     popupWindow.dismiss();
                 }
             });
@@ -218,7 +218,11 @@ public class FeedbackActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (requestCode == 104) {
-                selectImages.addAll((ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS));
+                if (data != null) {
+                    Serializable o = data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                    if (o != null) selectImages.addAll((ArrayList<ImageItem>) o);
+                    else IToast.showBottom(this, getString(R.string.add_image_fail));
+                }
                 List<String> urls = new ArrayList<>();
                 for (ImageItem imageItem : selectImages)
                     urls.add(imageItem.path);
@@ -228,7 +232,10 @@ public class FeedbackActivity extends BaseActivity {
             }
         } else if (requestCode == 11) {
             if (resultCode == RESULT_OK) {
-                String outPath = data.getStringExtra(EXTRA_OUTPUT_URI);
+                String outPath = null;
+                if (data != null) {
+                    outPath = data.getStringExtra(EXTRA_OUTPUT_URI);
+                }
                 if (!TextUtils.isEmpty(outPath)) {
                     selectImages.get(currentEditIndex).path = outPath;
                     List<ImageViewInfo> imageViewInfos = nineGridImageView.getImagesData();
@@ -238,7 +245,7 @@ public class FeedbackActivity extends BaseActivity {
                     else pickImage.setVisibility(View.VISIBLE);
                 }
             } else if (resultCode == RESULT_ERROR) {
-                IToast.makeTextBottom(this, "图片类型不支持", Toast.LENGTH_SHORT).show();
+                IToast.makeTextBottom(this, getString(R.string.not_support_image_type), Toast.LENGTH_SHORT).show();
             }
         }
     }

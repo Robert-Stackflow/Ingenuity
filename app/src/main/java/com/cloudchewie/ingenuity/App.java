@@ -31,20 +31,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ClassicsHeader.REFRESH_HEADER_PULLING = "下拉看见更多精彩";
-        ClassicsHeader.REFRESH_HEADER_REFRESHING = "新的世界正奔赴而来...";
-        ClassicsHeader.REFRESH_HEADER_LOADING = "更多内容正努力赶来...";
-        ClassicsHeader.REFRESH_HEADER_RELEASE = "释放立即打开新的世界";
-        ClassicsHeader.REFRESH_HEADER_FINISH = "新世界的大门已经向您敞开";
-        ClassicsHeader.REFRESH_HEADER_FAILED = "刷新失败";
-
-        ClassicsFooter.REFRESH_FOOTER_FAILED = "加载失败";
-        ClassicsFooter.REFRESH_FOOTER_FINISH = "已为您展现更多内容";
-        ClassicsFooter.REFRESH_FOOTER_LOADING = "更多内容正努力赶来...";
-        ClassicsFooter.REFRESH_FOOTER_NOTHING = "木有更多内容啦";
-        ClassicsFooter.REFRESH_FOOTER_PULLING = "上拉加载";
-        ClassicsFooter.REFRESH_FOOTER_REFRESHING = "正在加载";
-        ClassicsFooter.REFRESH_FOOTER_RELEASE = "释放立即加载";
         registerActivityLifecycleCallbacks(LanguageUtil.callbacks);
         ZoomMediaLoader.getInstance().init(new MyImageLoader());
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

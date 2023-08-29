@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.custom.IToast;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.R;
 import com.lzy.imagepicker.bean.ImageItem;

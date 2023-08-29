@@ -3,7 +3,7 @@ package com.vincent.filepicker.util;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.custom.IToast;
 
 import java.lang.ref.WeakReference;
 

@@ -8,6 +8,7 @@
 package com.cloudchewie.ingenuity.entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
@@ -18,6 +19,7 @@ import java.util.Date;
 
 import cn.jiguang.imui.commons.models.IUser;
 
+@Entity(tableName = "user")
 public class User implements Serializable, IUser {
     @PrimaryKey
     private int userId;
@@ -31,8 +33,6 @@ public class User implements Serializable, IUser {
     private Date gmtBirth;
     private String token;
     private Date gmtSignup;
-    private String currentLocation;
-    private int relation;//0关注，1特别关注，2拉黑
 
     public User() {
     }
@@ -44,7 +44,7 @@ public class User implements Serializable, IUser {
     }
 
     @Ignore
-    public User(int userId, String nickname, String mobile, String signature, char gender, Date gmtBirth, String currentLocation) {
+    public User(int userId, String nickname, String mobile, String signature, char gender, Date gmtBirth) {
         this.userId = userId;
         this.nickname = nickname;
         this.mobile = mobile;
@@ -53,15 +53,6 @@ public class User implements Serializable, IUser {
         this.signature = signature;
         this.gender = gender;
         this.gmtBirth = gmtBirth;
-        this.currentLocation = currentLocation;
-    }
-
-    public int getRelation() {
-        return relation;
-    }
-
-    public void setRelation(int relation) {
-        this.relation = relation;
     }
 
     public String getPassword() {
@@ -152,31 +143,10 @@ public class User implements Serializable, IUser {
         this.gmtBirth = gmtBirth;
     }
 
-    public String getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(String currentLocation) {
-        this.currentLocation = currentLocation;
-    }
-
     @NonNull
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", nickname='" + nickname + '\'' +
-                ", password='" + password + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", background='" + background + '\'' +
-                ", signature='" + signature + '\'' +
-                ", gender=" + gender +
-                ", gmtBirth=" + gmtBirth +
-                ", token='" + token + '\'' +
-                ", gmtSignup=" + gmtSignup +
-                ", currentLocation='" + currentLocation + '\'' +
-                '}';
+        return "User{" + "userId=" + userId + ", nickname='" + nickname + '\'' + ", password='" + password + '\'' + ", mobile='" + mobile + '\'' + ", avatar='" + avatar + '\'' + ", background='" + background + '\'' + ", signature='" + signature + '\'' + ", gender=" + gender + ", gmtBirth=" + gmtBirth + ", token='" + token + '\'' + ", gmtSignup=" + gmtSignup + '}';
     }
 
     @Override
@@ -191,7 +161,7 @@ public class User implements Serializable, IUser {
 
     @Override
     public String getDescribe() {
-        return "签名:" + signature;
+        return signature;
     }
 
     @Override
@@ -200,11 +170,6 @@ public class User implements Serializable, IUser {
     }
 
     public enum FOLLOW_STATUS {
-        UNFOLLOW,
-        FOLLOW,
-        SPECIAL,
-        FOLLOW_FRIENDS,
-        SPECIAL_FRIENDS,
-        BLOCK
+        UNFOLLOW, FOLLOW, SPECIAL, FOLLOW_FRIENDS, SPECIAL_FRIENDS, BLOCK
     }
 }

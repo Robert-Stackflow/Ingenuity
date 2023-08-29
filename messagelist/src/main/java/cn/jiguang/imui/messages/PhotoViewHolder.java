@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.cloudchewie.ui.general.RoundImageView;
+import com.cloudchewie.ui.custom.RoundImageView;
 
 import cn.jiguang.imui.BuildConfig;
 import cn.jiguang.imui.R;

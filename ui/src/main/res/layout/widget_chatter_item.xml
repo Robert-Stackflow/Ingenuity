@@ -13,7 +13,7 @@
     android:paddingTop="@dimen/dp10"
     android:paddingEnd="@dimen/dp15">
 
-    <com.cloudchewie.ui.general.CircleImageView
+    <com.cloudchewie.ui.custom.CircleImageView
         android:id="@+id/chatter_item_avatar"
         android:layout_width="45dp"
         android:layout_height="45dp"

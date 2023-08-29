@@ -16,18 +16,32 @@ import androidx.core.os.ConfigurationCompat;
 import androidx.core.os.LocaleListCompat;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.cloudchewie.util.R;
 
 import org.jetbrains.annotations.Contract;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class LanguageUtil {
     public static String SP_LANGUAGE = "language";
     public static String SP_COUNTRY = "country";
 
+    public static String localeToString(Context context, String localeString) {
+        Map<String, String> locales = new HashMap<>();
+        locales.put("zh-CN", context.getString(R.string.language_simplified_chinese));
+        locales.put("zh-TW", context.getString(R.string.language_traditional_chinese));
+        locales.put("en-US", context.getString(R.string.language_english));
+        locales.put("ja", context.getString(R.string.language_japanese));
+        if (locales.get(localeString) != null)
+            return locales.get(localeString);
+        return context.getString(R.string.language_default);
+    }
+
     public static Application.ActivityLifecycleCallbacks callbacks = new Application.ActivityLifecycleCallbacks() {
         @Override
-        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        public void onActivityCreated(@NonNull Activity activity, Bundle savedInstanceState) {
             String language = SPUtils.getInstance().getString(SP_LANGUAGE, "");
             String country = SPUtils.getInstance().getString(SP_COUNTRY, "");
             if (!TextUtils.isEmpty(language) && !TextUtils.isEmpty(country)) {
@@ -38,39 +52,39 @@ public class LanguageUtil {
             }
         }
 
-        @Contract(pure = true)
+
         @Override
-        public void onActivityStarted(Activity activity) {
+        public void onActivityStarted(@NonNull Activity activity) {
 
         }
 
-        @Contract(pure = true)
+
         @Override
-        public void onActivityResumed(Activity activity) {
+        public void onActivityResumed(@NonNull Activity activity) {
 
         }
 
-        @Contract(pure = true)
+
         @Override
-        public void onActivityPaused(Activity activity) {
+        public void onActivityPaused(@NonNull Activity activity) {
 
         }
 
-        @Contract(pure = true)
+
         @Override
-        public void onActivityStopped(Activity activity) {
+        public void onActivityStopped(@NonNull Activity activity) {
 
         }
 
-        @Contract(pure = true)
+
         @Override
-        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+        public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
 
         }
 
-        @Contract(pure = true)
+
         @Override
-        public void onActivityDestroyed(Activity activity) {
+        public void onActivityDestroyed(@NonNull Activity activity) {
 
         }
     };
@@ -88,7 +102,7 @@ public class LanguageUtil {
         } else {
             Locale newLocale = new Locale(language, area);
             setAppLanguage(context, newLocale);
-            saveLanguageSetting(context, newLocale);
+            saveLanguageSetting(newLocale);
         }
     }
 
@@ -140,7 +154,7 @@ public class LanguageUtil {
     /**
      * 保存多语言信息到sp中
      */
-    public static void saveLanguageSetting(Context context, @NonNull Locale locale) {
+    public static void saveLanguageSetting(@NonNull Locale locale) {
         SPUtils.getInstance().put(SP_LANGUAGE, locale.getLanguage());
         SPUtils.getInstance().put(SP_COUNTRY, locale.getCountry());
     }
@@ -173,11 +187,7 @@ public class LanguageUtil {
     @NonNull
     public static String getAppLanguage(Context context) {
         Locale locale = getAppLocale(context);
-        if (locale.toLanguageTag().equals("zh-CN"))
-            return "简体中文";
-        else if (locale.toLanguageTag().equals("en-US"))
-            return "English";
-        return "跟随系统";
+        return localeToString(context, locale.toLanguageTag());
     }
 
     /**
@@ -207,7 +217,6 @@ public class LanguageUtil {
      * <p>
      * 注意：该方法获取的是用户实际设置的不经API调整的系统首选语言
      *
-     * @return
      */
     public static Locale getSysPreferredLocale() {
         Locale locale;

@@ -82,7 +82,7 @@
                 android:paddingTop="@dimen/dp5"
                 android:paddingBottom="@dimen/dp5">
 
-                <com.cloudchewie.ui.custom.HorizontalIconTextItem
+                <com.cloudchewie.ui.item.HorizontalIconTextItem
                     android:id="@+id/activity_card_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                     app:horizontal_icon_text_item_text_color="@color/color_gray"
                     tools:horizontal_icon_text_item_text="聚餐" />
 
-                <com.cloudchewie.ui.custom.HorizontalIconTextItem
+                <com.cloudchewie.ui.item.HorizontalIconTextItem
                     android:id="@+id/activity_card_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                     app:horizontal_icon_text_item_text_color="@color/color_gray"
                     tools:horizontal_icon_text_item_text="1天" />
 
-                <com.cloudchewie.ui.custom.HorizontalIconTextItem
+                <com.cloudchewie.ui.item.HorizontalIconTextItem
                     android:id="@+id/activity_card_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     tools:horizontal_icon_text_item_text="9人" />
             </LinearLayout>
 
-            <com.cloudchewie.ui.custom.HorizontalIconTextItem
+            <com.cloudchewie.ui.item.HorizontalIconTextItem
                 android:id="@+id/activity_card_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -7,7 +7,7 @@
     android:background="@color/card_background"
     android:padding="@dimen/dp20">
 
-    <com.cloudchewie.ui.custom.InputItem
+    <com.cloudchewie.ui.item.InputItem
         android:id="@+id/layout_input_bottom_sheet_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

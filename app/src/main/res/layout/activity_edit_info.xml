@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:transitionName="shareElement"
         app:right_button_visibility="false"
-        app:title="编辑资料" />
+        app:title="@string/title_edit_info" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/activity_edit_info_swipe_refresh"
@@ -25,7 +25,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp">
 
-            <com.cloudchewie.ui.general.CircleImageView
+            <com.cloudchewie.ui.custom.CircleImageView
                 android:id="@+id/entry_edit_avatar"
                 android:layout_width="@dimen/dp80"
                 android:layout_height="@dimen/dp80"
@@ -46,9 +46,10 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/entry_edit_avatar"
                 app:layout_constraintEnd_toEndOf="@id/entry_edit_avatar"
-                app:tint="@color/color_accent" />
+                app:tint="@color/color_accent"
+                android:contentDescription="@string/cd_image" />
 
-            <com.cloudchewie.ui.custom.EntryItem
+            <com.cloudchewie.ui.item.EntryItem
                 android:id="@+id/entry_edit_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,27 +59,12 @@
                 android:textSize="18sp"
                 app:entry_item_bottom_radius_enable="true"
                 app:entry_item_left_icon_visibility="false"
-                app:entry_item_title="昵称"
+                app:entry_item_title="@string/nickname"
                 app:entry_item_top_radius_enable="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/entry_edit_avatar" />
 
-            <com.cloudchewie.ui.custom.EntryItem
-                android:id="@+id/entry_edit_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:clickable="true"
-                android:focusable="true"
-                android:textSize="18sp"
-                app:entry_item_bottom_radius_enable="true"
-                app:entry_item_left_icon_visibility="false"
-                app:entry_item_title="背景"
-                app:entry_item_top_radius_enable="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/entry_edit_nickname" />
-
-            <com.cloudchewie.ui.custom.EntryItem
+            <com.cloudchewie.ui.item.EntryItem
                 android:id="@+id/entry_edit_signature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,12 +74,12 @@
                 android:textSize="18sp"
                 app:entry_item_bottom_radius_enable="true"
                 app:entry_item_left_icon_visibility="false"
-                app:entry_item_title="签名"
+                app:entry_item_title="@string/signature"
                 app:entry_item_top_radius_enable="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/entry_edit_background" />
+                app:layout_constraintTop_toBottomOf="@id/entry_edit_nickname" />
 
-            <com.cloudchewie.ui.custom.EntryItem
+            <com.cloudchewie.ui.item.EntryItem
                 android:id="@+id/entry_edit_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,40 +89,11 @@
                 android:textSize="18sp"
                 app:entry_item_bottom_radius_enable="true"
                 app:entry_item_left_icon_visibility="false"
-                app:entry_item_title="性别"
+                app:entry_item_title="@string/gender"
                 app:entry_item_top_radius_enable="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/entry_edit_signature" />
 
-            <com.cloudchewie.ui.custom.EntryItem
-                android:id="@+id/entry_edit_birthday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:clickable="true"
-                android:focusable="true"
-                android:textSize="18sp"
-                app:entry_item_bottom_radius_enable="true"
-                app:entry_item_left_icon_visibility="false"
-                app:entry_item_title="生日"
-                app:entry_item_top_radius_enable="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/entry_edit_gender" />
-
-            <com.cloudchewie.ui.custom.EntryItem
-                android:id="@+id/entry_edit_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:clickable="true"
-                android:focusable="true"
-                android:textSize="18sp"
-                app:entry_item_bottom_radius_enable="true"
-                app:entry_item_left_icon_visibility="false"
-                app:entry_item_title="位置"
-                app:entry_item_top_radius_enable="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/entry_edit_birthday" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </RelativeLayout>

@@ -14,16 +14,16 @@ import android.view.MotionEvent;
 
 import androidx.annotation.NonNull;
 
-import com.cloudchewie.ui.general.RoundImageView;
+import com.cloudchewie.ui.custom.RoundImageView;
 
 public class GridImageView extends RoundImageView {
 
     private int moreNum = 0;
     private float textSize = 35;
     private int textColor = 0xFFFFFFFF;
-    private TextPaint textPaint;
+    private final TextPaint textPaint;
     private String msg = "";
-    private int moreMaskColor = 0x55000000;
+    private final int moreMaskColor = 0x55000000;
     private boolean isPressed = false;
 
     public GridImageView(Context context) {

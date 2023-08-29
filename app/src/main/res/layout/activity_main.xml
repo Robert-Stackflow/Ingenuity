@@ -19,7 +19,7 @@
         app:rbb_tabs="@xml/tabs"
         app:rbb_textColor="@color/color_accent" />
 
-    <com.cloudchewie.ui.custom.NoScrollViewPager
+    <com.cloudchewie.ui.general.NoScrollViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

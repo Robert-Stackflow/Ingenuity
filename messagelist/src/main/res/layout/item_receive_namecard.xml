@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <com.cloudchewie.ui.general.RoundImageView
+        <com.cloudchewie.ui.custom.RoundImageView
             android:id="@+id/aurora_iv_msgitem_avatar"
             style="@style/aurora_msgitem_receiver_avatar_style"
             android:layout_marginStart="10dp"
@@ -37,7 +37,7 @@
             android:background="@drawable/shape_round_dp10"
             android:padding="@dimen/dp10">
 
-            <com.cloudchewie.ui.general.CircleImageView
+            <com.cloudchewie.ui.custom.CircleImageView
                 android:id="@+id/aurora_tv_namecard_avatar"
                 android:layout_width="@dimen/dp50"
                 android:layout_height="@dimen/dp50"

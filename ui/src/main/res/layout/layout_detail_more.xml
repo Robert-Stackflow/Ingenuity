@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_wechat"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -40,7 +40,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="微信" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_pengyouquan"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -57,7 +57,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="朋友圈" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_qq"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -74,7 +74,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="QQ" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_qqzone"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -91,7 +91,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="QQ空间" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_weibo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -108,7 +108,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="微博" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -125,7 +125,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="图片分享" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_more"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -164,7 +164,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -183,7 +183,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="编辑" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -202,7 +202,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="删除" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_report"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -219,7 +219,7 @@
                 app:vertical_icon_text_item_spacing="10dp"
                 app:vertical_icon_text_item_text="举报" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/detail_more_uninterested"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

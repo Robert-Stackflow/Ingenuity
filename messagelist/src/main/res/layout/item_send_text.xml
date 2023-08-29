@@ -64,7 +64,7 @@
             android:paddingEnd="20dp"
             android:textIsSelectable="true" />
 
-        <com.cloudchewie.ui.general.RoundImageView
+        <com.cloudchewie.ui.custom.RoundImageView
             android:id="@+id/aurora_iv_msgitem_avatar"
             style="@style/aurora_msgitem_sender_avatar_style"
             android:layout_marginStart="5dp"

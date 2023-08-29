@@ -11,7 +11,7 @@
     android:focusable="true"
     android:padding="10dp">
 
-    <com.cloudchewie.ui.general.RoundImageView
+    <com.cloudchewie.ui.custom.RoundImageView
         android:id="@+id/favorites_item_cover"
         android:layout_width="140dp"
         android:layout_height="@dimen/dp80"
@@ -20,7 +20,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/img_default_background" />
 
-    <com.cloudchewie.ui.custom.HorizontalIconTextItem
+    <com.cloudchewie.ui.item.HorizontalIconTextItem
         android:id="@+id/favorites_item_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

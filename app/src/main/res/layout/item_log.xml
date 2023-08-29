@@ -10,7 +10,7 @@
     android:paddingStart="10dp"
     android:paddingEnd="10dp">
 
-    <com.cloudchewie.ui.custom.ExpandableItem
+    <com.cloudchewie.ui.item.ExpandableItem
         android:id="@+id/item_log_expand_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

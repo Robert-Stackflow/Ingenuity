@@ -15,11 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
-import com.cloudchewie.ingenuity.activity.global.WebViewActivity;
-import com.cloudchewie.ui.custom.EntryItem;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
+import com.cloudchewie.ingenuity.activity.WebViewActivity;
+import com.cloudchewie.ui.item.EntryItem;
 import com.cloudchewie.ui.custom.TitleBar;
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.util.basic.DateUtil;
 import com.cloudchewie.util.system.AppInfoUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
@@ -52,7 +52,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         storyEntry = findViewById(R.id.entry_story);
         copyRightView = findViewById(R.id.activity_about_copyright);
         versionEntry.setTipText(AppInfoUtil.getAppVersionName());
-        copyRightView.setText("Copyright © 2023-" + DateUtil.getYear() + " Cloudchewie");
+        copyRightView.setText(String.format(getString(R.string.copyright), DateUtil.getYear()));
         versionEntry.setOnClickListener(this);
         logEntry.setOnClickListener(this);
         privacyEntry.setOnClickListener(this);
@@ -74,24 +74,24 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         if (view == versionEntry) {
-            IToast.makeTextBottom(this, "已经是最新版本", Toast.LENGTH_SHORT).show();
+            IToast.makeTextBottom(this, getString(R.string.already_updated), Toast.LENGTH_SHORT).show();
         } else if (view == logEntry) {
-            Intent intent = new Intent(this, LogActivity.class);
+            Intent intent = new Intent(this, LogActivity.class).setAction(Intent.ACTION_DEFAULT);
             startActivity(intent);
         } else if (view == privacyEntry) {
-            Intent intent = new Intent(this, WebViewActivity.class);
-            intent.putExtra("url", "https://blog.cloudchewie.com/term");
+            Intent intent = new Intent(this, WebViewActivity.class).setAction(Intent.ACTION_DEFAULT);
+            intent.putExtra("url", getString(R.string.url_term));
             startActivity(intent);
         } else if (view == termEntry) {
-            Intent intent = new Intent(this, WebViewActivity.class);
-            intent.putExtra("url", "https://blog.cloudchewie.com/term");
+            Intent intent = new Intent(this, WebViewActivity.class).setAction(Intent.ACTION_DEFAULT);
+            intent.putExtra("url", getString(R.string.url_term));
             startActivity(intent);
         } else if (view == opensourceEntry) {
-            IToast.showBottom(this, "还木有开源啦");
+            IToast.showBottom(this, getString(R.string.not_opensource));
         } else if (view == contactEntry) {
-            IToast.showBottom(this, "你休想！");
+            IToast.showBottom(this, getString(R.string.you_dare));
         } else if (view == storyEntry) {
-            IToast.showBottom(this, "故事的种子尚未发芽");
+            IToast.showBottom(this, getString(R.string.story_null));
         }
     }
 }

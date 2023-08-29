@@ -188,7 +188,7 @@ class ReadableBottomBar @JvmOverloads constructor(
 
                     override fun onGlobalLayout() {
                         bottomBarItem.select()
-                        bottomBarItem.viewTreeObserver.removeGlobalOnLayoutListener(this)
+                        bottomBarItem.viewTreeObserver.removeOnGlobalLayoutListener(this)
                     }
 
                 }

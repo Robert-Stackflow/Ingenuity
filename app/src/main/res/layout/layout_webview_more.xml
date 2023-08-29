@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/webview_more_copy_url"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -36,9 +36,9 @@
                 app:vertical_icon_text_item_icon_background_tint="@color/color_selector_entry"
                 app:vertical_icon_text_item_icon_size="50dp"
                 app:vertical_icon_text_item_spacing="10dp"
-                app:vertical_icon_text_item_text="复制链接" />
+                app:vertical_icon_text_item_text="@string/copy_url" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/webview_more_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -55,9 +55,9 @@
                 app:vertical_icon_text_item_icon_background_tint="@color/color_selector_entry"
                 app:vertical_icon_text_item_icon_size="50dp"
                 app:vertical_icon_text_item_spacing="10dp"
-                app:vertical_icon_text_item_text="刷新" />
+                app:vertical_icon_text_item_text="@string/refresh" />
 
-            <com.cloudchewie.ui.custom.VerticalIconTextItem
+            <com.cloudchewie.ui.item.VerticalIconTextItem
                 android:id="@+id/webview_more_browser"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -72,7 +72,7 @@
                 app:vertical_icon_text_item_icon_background_tint="@color/color_selector_entry"
                 app:vertical_icon_text_item_icon_size="50dp"
                 app:vertical_icon_text_item_spacing="10dp"
-                app:vertical_icon_text_item_text="浏览器打开" />
+                app:vertical_icon_text_item_text="@string/open_in_browser" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
 

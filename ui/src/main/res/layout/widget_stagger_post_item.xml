@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.cloudchewie.ui.custom.HorizontalIconTextItem
+    <com.cloudchewie.ui.item.HorizontalIconTextItem
         android:id="@+id/widget_stagger_post_item_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符占位符" />
 
-        <com.cloudchewie.ui.general.CircleImageView
+        <com.cloudchewie.ui.custom.CircleImageView
             android:id="@+id/widget_stagger_post_item_avatar"
             android:layout_width="@dimen/dp20"
             android:layout_height="@dimen/dp20"

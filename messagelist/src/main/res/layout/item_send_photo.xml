@@ -46,7 +46,7 @@
             android:gravity="end"
             android:textAlignment="textEnd" />
 
-        <com.cloudchewie.ui.general.RoundImageView
+        <com.cloudchewie.ui.custom.RoundImageView
             android:id="@+id/aurora_iv_msgitem_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:maxHeight="300dp"
             android:src="@drawable/aurora_picture_not_found" />
 
-        <com.cloudchewie.ui.general.RoundImageView
+        <com.cloudchewie.ui.custom.RoundImageView
             android:id="@+id/aurora_iv_msgitem_avatar"
             style="@style/aurora_msgitem_sender_avatar_style"
             android:layout_marginStart="5dp"

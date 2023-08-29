@@ -23,8 +23,7 @@ import com.cloudchewie.ui.R;
 
 @SuppressLint("AppCompatCustomView")
 public class NiceImageView extends AppCompatImageView {
-    private Context context;
-
+    private final Context context;
     private boolean isCircle; // 是否显示为圆形，如果为圆形则设置的corner无效
     private boolean isCoverSrc; // border、inner_border是否覆盖图片
     private int borderWidth = 0; // 边框宽度

@@ -20,20 +20,19 @@ import androidx.core.content.FileProvider;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
+import com.cloudchewie.ingenuity.api.ImageUploadRequest;
+import com.cloudchewie.ingenuity.api.UserAuthRequest;
 import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.entity.User;
-import com.cloudchewie.ingenuity.request.ImageUploadRequest;
-import com.cloudchewie.ingenuity.request.UserAuthRequest;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ingenuity.util.image.NineGridUtil;
 import com.cloudchewie.ingenuity.widget.InputBottomSheet;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
-import com.cloudchewie.ui.custom.EntryItem;
+import com.cloudchewie.ui.custom.CircleImageView;
+import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.custom.TitleBar;
-import com.cloudchewie.ui.general.CircleImageView;
-import com.cloudchewie.ui.general.IToast;
-import com.cloudchewie.util.basic.DateFormatUtil;
+import com.cloudchewie.ui.item.EntryItem;
 import com.cloudchewie.util.system.FileUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.lzy.imagepicker.ImagePicker;
@@ -53,11 +52,8 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     User user;
     CircleImageView avatarEntry;
     EntryItem nickNameEntry;
-    EntryItem backroundEntry;
     EntryItem signatureEntry;
-    EntryItem birthdayEntry;
     EntryItem genderEntry;
-    EntryItem locationEntry;
     File takeImageFile;
 
     @Override
@@ -68,11 +64,8 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         ((TitleBar) findViewById(R.id.activity_edit_info_titlebar)).setLeftButtonClickListener(v -> finish());
         avatarEntry = findViewById(R.id.entry_edit_avatar);
         nickNameEntry = findViewById(R.id.entry_edit_nickname);
-        backroundEntry = findViewById(R.id.entry_edit_background);
         signatureEntry = findViewById(R.id.entry_edit_signature);
-        birthdayEntry = findViewById(R.id.entry_edit_birthday);
         genderEntry = findViewById(R.id.entry_edit_gender);
-        locationEntry = findViewById(R.id.entry_edit_location);
         initView();
         initSwipeRefresh();
     }
@@ -82,15 +75,9 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         if (intent != null) user = (User) intent.getSerializableExtra("user");
         if (user != null) {
             Glide.with(EditInfoActivity.this).load(user.getAvatar()).apply(new RequestOptions().error(R.drawable.ic_state_image_load_fail).placeholder(R.drawable.ic_state_background)).into(avatarEntry);
-            Glide.with(EditInfoActivity.this).load(user.getBackground()).apply(new RequestOptions().error(R.drawable.ic_state_image_load_fail).placeholder(R.drawable.ic_state_background)).into(backroundEntry.getImageView());
-            backroundEntry.showImage();
             nickNameEntry.setTipText(user.getNickname());
             signatureEntry.setTipText(user.getSignature());
             genderEntry.setTipText(String.valueOf(user.getGender()));
-            locationEntry.setTipText(user.getCurrentLocation());
-            if (user.getGmtBirth() != null)
-                birthdayEntry.setTipText(DateFormatUtil.getSimpleDateFormat(DateFormatUtil.YMD_FORMAT_WITH_BAR).format(user.getGmtBirth()));
-            else birthdayEntry.setTipText("未设置");
         }
         nickNameEntry.setOnClickListener(v -> {
             InputBottomSheet bottomSheet = new InputBottomSheet(this, nickNameEntry.getTitle(), nickNameEntry.getTip(), 30, true);
@@ -131,25 +118,6 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             });
             bottomSheet.show();
         });
-        backroundEntry.setOnClickListener(v -> {
-            List<String> strings = Arrays.asList(getResources().getStringArray(R.array.edit_background));
-            ListBottomSheet bottomSheet = new ListBottomSheet(EditInfoActivity.this, ListBottomSheetBean.strToBean(strings));
-            bottomSheet.setOnItemClickedListener(position -> {
-                if (position == 0) {
-                    ImageViewInfo viewInfo = new ImageViewInfo(user.getBackground());
-                    List<ImageViewInfo> mThumbViewInfoList = new ArrayList<>();
-                    viewInfo.setBounds(NineGridUtil.getBounds(backroundEntry.getImageView()));
-                    mThumbViewInfoList.add(viewInfo);
-                    GPreviewBuilder.from(EditInfoActivity.this).setSingleShowType(false).setIsScale(true).setData(mThumbViewInfoList).setCurrentIndex(0).setSingleFling(true).isDisableDrag(false).setFullscreen(true).start();
-                } else if (position == 1) {
-                    selectImage(106, false);
-                } else if (position == 2) {
-                    takePicture(107);
-                }
-                bottomSheet.dismiss();
-            });
-            bottomSheet.show();
-        });
         genderEntry.setOnClickListener(v -> {
             List<String> strings = Arrays.asList(getResources().getStringArray(R.array.edit_gender));
             ListBottomSheet bottomSheet = new ListBottomSheet(EditInfoActivity.this, ListBottomSheetBean.strToBean(strings));
@@ -167,7 +135,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            takeImageFile = FileUtil.createFileInternal(EditInfoActivity.this, "IMG_", ".jpg");
+            takeImageFile = FileUtil.createFileInternal(EditInfoActivity.this, getString(R.string.image_prefix), ".jpg");
             if (takeImageFile != null) {
                 Uri uri;
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
@@ -207,7 +175,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     public void startCrop(int requestCode, String filePath) {
         Intent intent = new Intent(this, UCropActivity.class);
         intent.putExtra("filePath", filePath);
-        intent.putExtra("outPath", FileUtil.createFileInternal(this, "IMG_", ".png").getAbsolutePath());
+        intent.putExtra("outPath", FileUtil.createFileInternal(this, getString(R.string.image_prefix), ".png").getAbsolutePath());
         startActivityForResult(intent, requestCode);
     }
 
@@ -215,12 +183,6 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         user.setAvatar(ImageUploadRequest.upload("file://" + path));
         UserAuthRequest.update(user);
         Glide.with(EditInfoActivity.this).load(user.getAvatar()).apply(new RequestOptions().error(R.drawable.ic_state_image_load_fail).placeholder(R.drawable.ic_state_background)).into(avatarEntry);
-    }
-
-    public void setBackgroundUrl(String path) {
-        user.setBackground(ImageUploadRequest.upload("file://" + path));
-        UserAuthRequest.update(user);
-        Glide.with(EditInfoActivity.this).load(user.getBackground()).apply(new RequestOptions().error(R.drawable.ic_state_image_load_fail).placeholder(R.drawable.ic_state_background)).into(backroundEntry.getImageView());
     }
 
     @Override
@@ -248,22 +210,6 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                     }
                 }
                 break;
-            case 106:
-                if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
-                    List<ImageItem> selectImages = (List<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                    setBackgroundUrl(selectImages.get(0).path);
-                    startCrop(12, selectImages.get(0).path);
-                }
-                break;
-            case 107:
-                if (resultCode == RESULT_OK) {
-                    if (takeImageFile != null) {
-                        String path = takeImageFile.getAbsolutePath();
-                        setBackgroundUrl(path);
-                        startCrop(12, path);
-                    }
-                }
-                break;
             case 11:
                 if (resultCode == RESULT_OK) {
                     String outPath = data.getStringExtra(EXTRA_OUTPUT_URI);
@@ -271,18 +217,8 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                         setAvatarUrl(outPath);
                     }
                 } else if (resultCode == RESULT_ERROR) {
-                    IToast.makeTextBottom(this, "图片类型不支持", Toast.LENGTH_SHORT).show();
+                    IToast.makeTextBottom(this, getString(R.string.not_support_image_type), Toast.LENGTH_SHORT).show();
 
-                }
-                break;
-            case 12:
-                if (resultCode == RESULT_OK) {
-                    String outPath = data.getStringExtra(EXTRA_OUTPUT_URI);
-                    if (!TextUtils.isEmpty(outPath)) {
-                        setBackgroundUrl(outPath);
-                    }
-                } else if (resultCode == RESULT_ERROR) {
-                    IToast.makeTextBottom(this, "图片类型不支持", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

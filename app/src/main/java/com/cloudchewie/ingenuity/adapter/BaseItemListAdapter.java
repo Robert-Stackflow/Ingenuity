@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.bean.BaseItem;
-import com.cloudchewie.ui.custom.ExpandableItem;
+import com.cloudchewie.ui.item.ExpandableItem;
 
 import java.util.List;
 

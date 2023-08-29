@@ -10,7 +10,7 @@ package com.cloudchewie.ingenuity.util.http;
 import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.util.Utils;
-import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
+import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
 
 import java.io.IOException;
 

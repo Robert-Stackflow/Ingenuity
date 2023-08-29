@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.cloudchewie.ingenuity.fragment.global.ImageViewFragment;
+import com.cloudchewie.ingenuity.fragment.ImageViewFragment;
 import com.cloudchewie.ui.ninegrid.NineGridImageView;
 import com.previewlibrary.GPreviewBuilder;
 import com.previewlibrary.view.BasePhotoFragment;

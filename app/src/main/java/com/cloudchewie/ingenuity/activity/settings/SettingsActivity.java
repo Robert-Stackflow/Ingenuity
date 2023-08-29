@@ -19,16 +19,16 @@ import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.MainActivity;
-import com.cloudchewie.ingenuity.activity.global.BaseActivity;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
-import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
+import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
-import com.cloudchewie.ui.custom.EntryItem;
-import com.cloudchewie.ui.custom.MyDialog;
+import com.cloudchewie.ui.item.EntryItem;
+import com.cloudchewie.ui.custom.IDialog;
 import com.cloudchewie.ui.custom.TitleBar;
-import com.cloudchewie.ui.general.CheckBoxItem;
-import com.cloudchewie.ui.general.IToast;
+import com.cloudchewie.ui.item.CheckBoxItem;
+import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.util.system.CacheUtil;
 import com.cloudchewie.util.system.LanguageUtil;
 import com.cloudchewie.util.system.SharedPreferenceCode;
@@ -76,7 +76,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         }
         if (!Objects.equals(SPUtils.getInstance().getString(SP_LANGUAGE, ""), ""))
             languageEntry.setTipText(LanguageUtil.getAppLanguage(SettingsActivity.this));
-        else languageEntry.setTipText("跟随系统");
+        else languageEntry.setTipText(getString(R.string.language_default));
         //加载是否自动跟随或深色模式
         if (AppSharedPreferenceUtil.isAutoDaynight(this)) {
             AppSharedPreferenceUtil.setNight(SettingsActivity.this, DarkModeUtil.isDarkMode(SettingsActivity.this));
@@ -132,7 +132,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             List<String> strings = Arrays.asList(getResources().getStringArray(R.array.edit_language));
             ListBottomSheet bottomSheet = new ListBottomSheet(SettingsActivity.this, ListBottomSheetBean.strToBean(strings));
             bottomSheet.setOnItemClickedListener(position -> {
-                IToast.makeTextBottom(SettingsActivity.this, "切换语言为" + strings.get(position), Toast.LENGTH_SHORT).show();
+                IToast.showBottom(SettingsActivity.this, getString(R.string.reboot_to_apply));
                 if (position == 0) LanguageUtil.attachBaseContext(SettingsActivity.this);
                 else if (position == 1)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "zh", "CN");
@@ -140,26 +140,23 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                     LanguageUtil.changeLanguage(SettingsActivity.this, "zh", "TW");
                 else if (position == 3)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "en", "US");
+                else if (position == 4)
+                    LanguageUtil.changeLanguage(SettingsActivity.this, "ja", "JP");
                 languageEntry.setTipText(strings.get(position));
-//                Intent intent = new Intent(Intent.ACTION_LOCALE_CHANGED);
-//                intent.putExtra("msg", "EVENT_REFRESH_LANGUAGE");
-//                sendBroadcast(intent);
                 bottomSheet.dismiss();
             });
             bottomSheet.show();
         } else if (view == clearCacheEntry) {
-            if (!CacheUtil.getTotalCacheSize(this).equals("0.00MB")) {
-                MyDialog dialog = new MyDialog(this);
-                dialog.setTitle("清除缓存");
-                dialog.setMessage("是否清除缓存（缓存包括下载的图片、数据等，清除后需要重新下载）");
-                dialog.setPositive("确定");
-                dialog.setNegtive("取消");
-                dialog.setOnClickBottomListener(new MyDialog.OnClickBottomListener() {
+            if (!CacheUtil.getTotalCacheSize(this).equals(getString(R.string.zero_cache))) {
+                IDialog dialog = new IDialog(this);
+                dialog.setTitle(getString(R.string.dialog_title_clear_cache));
+                dialog.setMessage(getString(R.string.dialog_content_clear_cache));
+                dialog.setOnClickBottomListener(new IDialog.OnClickBottomListener() {
                     @Override
                     public void onPositiveClick() {
                         CacheUtil.clearAllCache(SettingsActivity.this);
                         clearCacheEntry.setTipText(CacheUtil.getTotalCacheSize(SettingsActivity.this));
-                        IToast.makeTextBottom(SettingsActivity.this, "缓存清除成功", Toast.LENGTH_SHORT).show();
+                        IToast.makeTextBottom(SettingsActivity.this, getString(R.string.clear_cache_success), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -172,20 +169,18 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 });
                 dialog.show();
             } else {
-                IToast.makeTextBottom(this, "不需要再清除缓存啦", Toast.LENGTH_SHORT).show();
+                IToast.makeTextBottom(this, getString(R.string.no_need_to_clear_cache), Toast.LENGTH_SHORT).show();
             }
         } else if (view == findViewById(R.id.entry_logout)) {
-            MyDialog dialog = new MyDialog(SettingsActivity.this);
-            dialog.setTitle("退出登录");
-            dialog.setMessage("是否退出登录？");
-            dialog.setNegtive("取消");
-            dialog.setPositive("确定");
-            dialog.setOnClickBottomListener(new MyDialog.OnClickBottomListener() {
+            IDialog dialog = new IDialog(SettingsActivity.this);
+            dialog.setTitle(getString(R.string.dialog_title_logout));
+            dialog.setMessage(getString(R.string.dialog_content_logout));
+            dialog.setOnClickBottomListener(new IDialog.OnClickBottomListener() {
                 @Override
                 public void onPositiveClick() {
                     AppSharedPreferenceUtil.logout(SettingsActivity.this);
                     ActivityUtils.finishAllActivities();
-                    ActivityUtils.startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+                    ActivityUtils.startActivity(new Intent(SettingsActivity.this, MainActivity.class).setAction(Intent.ACTION_DEFAULT));
                     dialog.dismiss();
                 }
 

@@ -21,9 +21,5 @@ public interface Content extends Serializable {
 
     int getCollectionCount();
 
-    Attraction getAttraction();
-
-    Topic getTopic();
-
     List<String> getImageUrls();
 }

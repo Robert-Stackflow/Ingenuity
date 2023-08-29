@@ -12,6 +12,7 @@
         android:paddingVertical="5dp">
 
         <ImageButton
+            android:contentDescription="@string/cd_image"
             android:id="@+id/activity_webview_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -23,6 +24,7 @@
             android:visibility="gone" />
 
         <ImageButton
+            android:contentDescription="@string/cd_image"
             android:id="@+id/activity_webview_close"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -46,6 +48,7 @@
             android:textStyle="bold" />
 
         <ImageButton
+            android:contentDescription="@string/cd_image"
             android:id="@+id/activity_webview_more"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -56,7 +59,7 @@
             android:src="@drawable/ic_light_ellipsis" />
     </RelativeLayout>
 
-    <com.cloudchewie.ui.general.ProgressWebView
+    <com.cloudchewie.ui.custom.ProgressWebView
         android:id="@+id/activity_webview_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

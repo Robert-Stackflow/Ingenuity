@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:windowSoftInputMode="adjustPan">
@@ -26,12 +27,14 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_titlebar">
+        app:layout_constraintTop_toBottomOf="@id/login_titlebar"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/login_logo"
             android:layout_width="@dimen/dp100"
             android:layout_height="@dimen/dp100"
+            android:contentDescription="@string/cd_logo"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +70,7 @@
             android:background="@drawable/shape_button_round"
             android:backgroundTint="@color/color_selector_prominent"
             android:stateListAnimator="@null"
-            android:text="手机号登录"
+            android:text="@string/login_by_mobile"
             android:textAlignment="center"
             android:textColor="@color/text_color_white"
             android:textSize="@dimen/sp16"
@@ -82,7 +85,7 @@
             android:background="@drawable/shape_button_round"
             android:backgroundTint="@android:color/holo_green_dark"
             android:stateListAnimator="@null"
-            android:text="微信登录"
+            android:text="@string/login_by_email"
             android:textAlignment="center"
             android:textColor="@color/text_color_white"
             android:textSize="@dimen/sp16" />
@@ -94,7 +97,6 @@
             android:layout_marginTop="@dimen/dp10"
             android:autoLink="web"
             android:padding="@dimen/dp5"
-            android:text="点击登录即表示您已阅读并同意《用户协议》和《隐私政策》"
             android:textColor="@color/color_gray"
             android:textSize="@dimen/sp12" />
     </LinearLayout>
@@ -114,7 +116,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:focusable="true"
-            android:text="注册帐号"
+            android:text="@string/signup_account"
             android:textAlignment="center"
             android:textColor="@color/color_gray"
             android:textSize="@dimen/sp12"
@@ -127,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/dp10"
-            android:text=" | "
+            android:text="@string/divider"
             android:textAlignment="center"
             android:textColor="@color/color_light_gray"
             android:textSize="@dimen/sp12"
@@ -142,7 +144,7 @@
             android:layout_marginStart="@dimen/dp10"
             android:clickable="true"
             android:focusable="true"
-            android:text="登录问题"
+            android:text="@string/login_problem"
             android:textAlignment="center"
             android:textColor="@color/color_gray"
             android:textSize="@dimen/sp12"

@@ -23,8 +23,8 @@ import java.util.List;
 
 public class FlowTagLayout extends ViewGroup {
 
-    private List<List<View>> mChildViews;
-    private List<Integer> mLinesHeight;
+    private final List<List<View>> mChildViews;
+    private final List<Integer> mLinesHeight;
     private int mHorizontalDiver, mVerticalDiver;
 
     public FlowTagLayout(Context context) {

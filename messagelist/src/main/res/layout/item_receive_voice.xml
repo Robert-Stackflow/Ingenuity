@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <com.cloudchewie.ui.general.RoundImageView
+        <com.cloudchewie.ui.custom.RoundImageView
             android:id="@+id/aurora_iv_msgitem_avatar"
             style="@style/aurora_msgitem_receiver_avatar_style"
             android:layout_marginStart="10dp"

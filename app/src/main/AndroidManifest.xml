@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.cloudchewie.ingenuity">
-    <!--权限列表-->
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--权限-->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -52,36 +51,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--主界面-->
         <activity android:name=".activity.MainActivity" />
-        <!--通用-->
-        <activity android:name=".activity.global.WebViewActivity" />
-        <activity
-            android:name=".activity.auth.LoginActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Login" />
-        <activity
-            android:name=".activity.auth.LoginByMobileActivity"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.auth.SignupActivity"
-            android:launchMode="singleTask" />
-        <!--发现-->
-        <activity android:name=".activity.settings.ThemeActivity" />
-        <activity android:name=".activity.create.CreateFavoritesActivity" />
-        <!--我的-->
-        <activity android:name=".activity.user.EditInfoActivity" />
-        <activity android:name=".activity.profile.FavoritesListActivity" />
-        <activity android:name=".activity.profile.FavoritesDetailActivity" />
-        <!--入口-->
+        <!--设置-->
         <activity android:name=".activity.settings.HelpActivity" />
         <activity android:name=".activity.settings.LogActivity" />
         <activity android:name=".activity.settings.FeedbackActivity" />
-        <!--设置-->
         <activity android:name=".activity.settings.AboutActivity" />
+        <activity android:name=".activity.settings.ThemeActivity" />
         <activity android:name=".activity.settings.SettingsActivity" />
-        <activity android:name=".activity.auth.ChangePasswordActivity" />
+        <!--账号-->
+        <activity android:name=".activity.user.EditInfoActivity" />
+        <activity android:name=".activity.user.ChangePasswordActivity" />
         <activity android:name=".activity.settings.AccountSettingsActivity" />
+        <activity
+            android:name=".activity.user.LoginActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Login" />
+        <activity
+            android:name=".activity.user.LoginByMobileActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.user.SignupActivity"
+            android:launchMode="singleTask" />
+        <!--通用-->
+        <activity android:name=".activity.WebViewActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:launchMode="singleTop"
@@ -90,7 +83,7 @@
             tools:ignore="LockedOrientationActivity" />
 
         <provider
-            android:name=".util.system.MyFileProvider"
+            android:name=".util.database.MyFileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
