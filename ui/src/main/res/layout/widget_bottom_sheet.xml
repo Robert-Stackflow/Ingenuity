@@ -5,7 +5,7 @@
     android:id="@+id/bottom_sheet_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_round_top_dp10"
+    android:background="@drawable/shape_round_top_dp15"
     android:backgroundTint="@color/bottomsheet_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout

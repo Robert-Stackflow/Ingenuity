@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -8,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:elevation="3dp"
+        android:background="@color/background"
         android:paddingVertical="5dp">
 
         <ImageButton
@@ -59,9 +60,17 @@
             android:src="@drawable/ic_light_ellipsis" />
     </RelativeLayout>
 
-    <com.cloudchewie.ui.custom.ProgressWebView
-        android:id="@+id/activity_webview_webview"
+    <com.cloudchewie.ui.general.SlidingLayout
+        android:id="@+id/activity_webview_slidingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/activity_webview_titlebar" />
+        android:layout_below="@id/activity_webview_titlebar"
+        app:background_view="@layout/layout_webview_bg"
+        app:sliding_mode="top">
+
+        <com.cloudchewie.ui.custom.ProgressWebView
+            android:id="@+id/activity_webview_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.cloudchewie.ui.general.SlidingLayout>
 </RelativeLayout>

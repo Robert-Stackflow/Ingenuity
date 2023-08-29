@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
@@ -67,8 +66,9 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                 ds.setUnderlineText(false);
             }
         }, 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.append(userTermString);
+        spannableStringBuilder.append(new SpannableString(getString(R.string.tap_login_to_agree_and)));
         SpannableString privacyTermString = new SpannableString(getString(R.string.tap_login_to_agree_3));
         privacyTermString.setSpan(new ClickableSpan() {
             @Override
@@ -83,7 +83,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
                 ds.setUnderlineText(false);
             }
         }, 0, privacyTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, privacyTermString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         spannableStringBuilder.append(privacyTermString);
         termView.setMovementMethod(LinkMovementMethod.getInstance());
         termView.setText(spannableStringBuilder);
@@ -94,9 +94,8 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.signup_login) {
-            Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, findViewById(R.id.activity_signup_titlebar), "shareElement").toBundle();
-            Intent loginIntent = new Intent(this, LoginActivity.class).setAction(Intent.ACTION_DEFAULT);
-            startActivity(loginIntent, bundle);
+            Intent loginIntent = new Intent(this, LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
+            startActivity(loginIntent);
         }
     }
 }

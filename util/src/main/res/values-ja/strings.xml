@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">器用である</string>
+	<string name="app_name">機巧</string>
 	<string name="app_slogan_r">遠い日に</string>
 	<string name="app_slogan_l">お互いの心とぶつかって</string>
 	<string name="default_copyright">Copyright © 2023-XXXX Cloudchewie</string>
@@ -124,7 +124,7 @@
 	<string name="copy_success">クリップボードにコピーされました</string>
 	<string name="haven_not_set">未設定</string>
 	<string name="tap_login_to_agree_1">ログインをクリックすると、読んで同意したことを示します</string>
-	<string name="tap_login_to_agree_2">ユーザー・プロトコルと</string>
+	<string name="tap_login_to_agree_2">『ユーザー規約』</string>
 	<string name="tap_login_to_agree_3">『プライバシーポリシー』</string>
 	<string name="read_privacy_policy">ユーザープロトコルを読む</string>
 	<string name="read_user_term">ログインをクリックすると、読んで同意したことを示します</string>
@@ -135,11 +135,11 @@
 	<string name="login_by_email">メールボックスログイン</string>
 	<string name="signup_account">登録アカウント</string>
 	<string name="signup">登録</string>
-	<string name="finish_signup">登録の完了</string>
+	<string name="finish_signup">仕上げる</string>
 	<string name="jump_to_login">既存のアカウント？今すぐログイン</string>
 	<string name="divider">|</string>
 	<string name="login_problem">ログインの問題</string>
-	<string name="fail_to_login_by_wechat">システムのメンテナンス中、一時的にWeChatでログインできない</string>
+	<string name="fail_to_login_by_code">システムメンテナンス中のため、一時的に認証コードによるログインができません</string>
 	<string name="enter_mobile">携帯電話番号を入力</string>
 	<string name="enter_nickname">ニックネームを入力</string>
 	<string name="enter_email">入力メールボックス</string>
@@ -150,7 +150,6 @@
 	<string name="nickname">ニックネーム</string>
 	<string name="signature">署名する</string>
 	<string name="gender">性別</string>
-	<string name="birthday">誕生日</string>
 	<string name="select_feedback_type">フィードバックタイプを選択してください</string>
 	<string name="feedback_type">フィードバックタイプ</string>
 	<string name="upload_log">ログのアップロード</string>
@@ -164,4 +163,5 @@
 	<string name="second_before">秒前</string>
 	<string name="yesterday">昨日</string>
 	<string name="day_before_yesterday">一昨日</string>
+	<string name="tap_login_to_agree_and">そして</string>
 </resources>

@@ -16,7 +16,9 @@ import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.custom.ProgressWebView;
 import com.cloudchewie.ui.general.BottomSheet;
+import com.cloudchewie.ui.item.VerticalIconTextItem;
 import com.cloudchewie.util.system.ClipBoardUtil;
+import com.cloudchewie.util.system.LanguageUtil;
 import com.cloudchewie.util.system.SharedPreferenceCode;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
@@ -27,6 +29,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
     ImageView backButton;
     ImageView moreButton;
     TextView titleView;
+    TextView bgTextView;
     RelativeLayout titleLayout;
     String originUrl;
     boolean enabledCache;
@@ -49,6 +52,8 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         }
         backButton = findViewById(R.id.activity_webview_back);
         closeButton = findViewById(R.id.activity_webview_close);
+        bgTextView = findViewById(R.id.activity_webview_slidingLayout).findViewById(R.id.layout_webview_bg_text);
+        bgTextView.setText(originUrl);
         moreButton = findViewById(R.id.activity_webview_more);
         titleView = findViewById(R.id.activity_webview_title);
         webView = findViewById(R.id.activity_webview_webview);
@@ -87,22 +92,35 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         } else if (v == moreButton) {
             BottomSheet bottomSheet = new BottomSheet(this);
             bottomSheet.setMainLayout(R.layout.layout_webview_more);
+            VerticalIconTextItem copyUrlItem = bottomSheet.findViewById(R.id.webview_more_copy_url);
+            VerticalIconTextItem refreshItem = bottomSheet.findViewById(R.id.webview_more_refresh);
+            VerticalIconTextItem browserItem = bottomSheet.findViewById(R.id.webview_more_browser);
+            TextView cancelView = bottomSheet.findViewById(R.id.webview_more_cancel);
+            if (cancelView == null || copyUrlItem == null || refreshItem == null || browserItem == null) {
+                IToast.showBottom(this, getString(R.string.fail_to_resolve_url));
+                return;
+            }
+            if (LanguageUtil.getAppLanguage(WebViewActivity.this).equals(getString(R.string.language_english)) || LanguageUtil.getAppLanguage(WebViewActivity.this).equals(getString(R.string.language_japanese))) {
+                browserItem.setMinLines(2);
+                refreshItem.setMinLines(2);
+                copyUrlItem.setMinLines(2);
+            }
             bottomSheet.show();
-            bottomSheet.findViewById(R.id.webview_more_refresh).setOnClickListener(v1 -> {
+            refreshItem.setOnClickListener(v1 -> {
                 webView.reload();
                 bottomSheet.dismiss();
             });
-            bottomSheet.findViewById(R.id.webview_more_browser).setOnClickListener(v1 -> {
+            browserItem.setOnClickListener(v1 -> {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(webView.getUrl()));
                 startActivity(intent);
                 bottomSheet.dismiss();
             });
-            bottomSheet.findViewById(R.id.webview_more_copy_url).setOnClickListener(v1 -> {
+            copyUrlItem.setOnClickListener(v1 -> {
                 ClipBoardUtil.copy(webView.getUrl());
                 IToast.makeTextBottom(WebViewActivity.this, getString(R.string.copy_success), Toast.LENGTH_SHORT).show();
                 bottomSheet.dismiss();
             });
-            bottomSheet.findViewById(R.id.webview_more_cancel).setOnClickListener(v1 -> bottomSheet.cancel());
+            cancelView.setOnClickListener(v1 -> bottomSheet.cancel());
         }
     }
 

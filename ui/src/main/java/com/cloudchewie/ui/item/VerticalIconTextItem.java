@@ -13,9 +13,9 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,12 +28,9 @@ import com.cloudchewie.ui.ThemeUtil;
 
 public class VerticalIconTextItem extends ConstraintLayout {
     private ConstraintLayout mainLayout;
-    private LinearLayout topLayout;
     private ImageView iconView;
     private TextView textView;
-    private TextView bigTextView;
     private boolean isChecked;
-    private VerticalIconTextItemMode mode;
     private int iconId;
     private int iconColor;
     private int checkedIconId;
@@ -59,38 +56,14 @@ public class VerticalIconTextItem extends ConstraintLayout {
         init(context, attrs);
     }
 
-    public void setMode(VerticalIconTextItemMode mode) {
-        this.mode = mode;
-        if (mode == VerticalIconTextItemMode.ICON) {
-            bigTextView.setVisibility(GONE);
-            iconView.setVisibility(VISIBLE);
-            ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(topLayout.getLayoutParams());
-            layoutParams.startToStart = LayoutParams.PARENT_ID;
-            layoutParams.endToEnd = LayoutParams.PARENT_ID;
-            layoutParams.topToTop = LayoutParams.PARENT_ID;
-            topLayout.setLayoutParams(layoutParams);
-        } else {
-            bigTextView.setVisibility(VISIBLE);
-            iconView.setVisibility(GONE);
-            ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(topLayout.getLayoutParams());
-            layoutParams.startToStart = LayoutParams.PARENT_ID;
-            layoutParams.endToEnd = LayoutParams.PARENT_ID;
-            layoutParams.topToTop = LayoutParams.PARENT_ID;
-            topLayout.setLayoutParams(layoutParams);
-        }
-    }
-
     private void init(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.widget_vertical_icon_text_item, this, true);
         mainLayout = findViewById(R.id.vertical_icon_text_item_layout);
         iconView = findViewById(R.id.vertical_icon_text_item_icon);
         textView = findViewById(R.id.vertical_icon_text_item_text);
-        bigTextView = findViewById(R.id.vertical_icon_text_item_text_big);
-        topLayout = findViewById(R.id.vertical_icon_text_item_top_layout);
         TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.VerticalIconTextItem);
         iconView.setOnClickListener(v -> this.performClick());
         if (attr != null) {
-            mode = VerticalIconTextItemMode.values()[attr.getInt(R.styleable.VerticalIconTextItem_vertical_icon_text_item_mode, 0)];
             iconId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon, R.drawable.ic_light_map);
             iconColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_color, getResources().getColor(R.color.color_icon, getResources().newTheme()));
             checkedIconId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_checked_icon, R.drawable.ic_light_map_fill);
@@ -99,9 +72,6 @@ public class VerticalIconTextItem extends ConstraintLayout {
             String text = attr.getString(R.styleable.VerticalIconTextItem_vertical_icon_text_item_text);
             int textColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_text_color, getResources().getColor(R.color.color_gray, getResources().newTheme()));
             int textSize = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_text_size, getResources().getDimension(R.dimen.vertical_icon_text_item_default_text_size));
-            String bigText = attr.getString(R.styleable.VerticalIconTextItem_vertical_icon_text_item_big_text);
-            int bigTextColor = attr.getColor(R.styleable.VerticalIconTextItem_vertical_icon_text_item_big_text_color, getResources().getColor(R.color.color_accent, getResources().newTheme()));
-            int bigTextSize = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_big_text_size, getResources().getDimension(R.dimen.vertical_icon_text_item_default_big_text_size));
             int spacing = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_spacing, 3);
             int iconBackgroundId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_background, R.drawable.shape_round_dp10);
             int backgroundTintId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_icon_background_tint, R.color.color_selector_content);
@@ -110,19 +80,17 @@ public class VerticalIconTextItem extends ConstraintLayout {
             int backgroundId = attr.getResourceId(R.styleable.VerticalIconTextItem_vertical_icon_text_item_background, R.drawable.shape_round_dp5);
             int padding_v = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_padding_v, getResources().getDimension(R.dimen.dp20));
             int padding_h = (int) attr.getDimension(R.styleable.VerticalIconTextItem_vertical_icon_text_item_padding_h, getResources().getDimension(R.dimen.dp30));
+            textView.setMinLines(attr.getInt(R.styleable.VerticalIconTextItem_vertical_icon_text_item_min_lines, 1));
+            textView.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
             setPadding(padding_v, padding_h);
             setBackground(backgroundId);
             setScaleType(iconScaleType);
-            setMode(mode);
             setIcon(iconId);
             setIconColor(iconColor);
             setIconSize(iconSize);
             setText(text);
             setTextColor(textColor);
             setTextSize(textSize);
-            setBigText(bigText);
-            setBigTextColor(bigTextColor);
-            setBigTextSize(bigTextSize);
             setSpacing(spacing);
             if (backgroundEnable) {
                 setIconBackground(iconBackgroundId);
@@ -130,6 +98,11 @@ public class VerticalIconTextItem extends ConstraintLayout {
             }
             attr.recycle();
         }
+    }
+
+    public void setMinLines(int minLines) {
+        textView.setMinLines(minLines);
+        textView.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
     }
 
     public void toggle() {
@@ -179,9 +152,11 @@ public class VerticalIconTextItem extends ConstraintLayout {
     }
 
     public void setIconSize(int size) {
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(iconView.getLayoutParams());
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(iconView.getLayoutParams());
         layoutParams.width = size;
         layoutParams.height = size;
+        layoutParams.endToEnd = R.id.vertical_icon_text_item_text;
+        layoutParams.startToStart = R.id.vertical_icon_text_item_text;
         iconView.setLayoutParams(layoutParams);
     }
 
@@ -199,22 +174,6 @@ public class VerticalIconTextItem extends ConstraintLayout {
 
     public void setTextSize(int size) {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
-    }
-
-    public String getBigText() {
-        return (String) bigTextView.getText();
-    }
-
-    public void setBigText(String text) {
-        bigTextView.setText(text);
-    }
-
-    public void setBigTextColor(int textColor) {
-        bigTextView.setTextColor(textColor);
-    }
-
-    public void setBigTextSize(int size) {
-        bigTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
     }
 
     public void setSpacing(int spacing) {

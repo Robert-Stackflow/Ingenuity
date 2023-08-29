@@ -18,17 +18,17 @@ import android.widget.Toast;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.MainActivity;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
+import com.cloudchewie.ingenuity.activity.MainActivity;
 import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
-import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
+import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
-import com.cloudchewie.ui.item.EntryItem;
 import com.cloudchewie.ui.custom.IDialog;
+import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.item.CheckBoxItem;
-import com.cloudchewie.ui.custom.IToast;
+import com.cloudchewie.ui.item.EntryItem;
 import com.cloudchewie.util.system.CacheUtil;
 import com.cloudchewie.util.system.LanguageUtil;
 import com.cloudchewie.util.system.SharedPreferenceCode;
@@ -132,18 +132,23 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             List<String> strings = Arrays.asList(getResources().getStringArray(R.array.edit_language));
             ListBottomSheet bottomSheet = new ListBottomSheet(SettingsActivity.this, ListBottomSheetBean.strToBean(strings));
             bottomSheet.setOnItemClickedListener(position -> {
-                IToast.showBottom(SettingsActivity.this, getString(R.string.reboot_to_apply));
-                if (position == 0) LanguageUtil.attachBaseContext(SettingsActivity.this);
-                else if (position == 1)
+//                IToast.showBottom(SettingsActivity.this, getString(R.string.reboot_to_apply));
+                if (position == 0)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "zh", "CN");
-                else if (position == 2)
+                else if (position == 1)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "zh", "TW");
-                else if (position == 3)
+                else if (position == 2)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "en", "US");
-                else if (position == 4)
+                else if (position == 3)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "ja", "JP");
-                languageEntry.setTipText(strings.get(position));
-                bottomSheet.dismiss();
+                if (languageEntry.getTip().equals(strings.get(position))) {
+                    bottomSheet.dismiss();
+                } else {
+                    languageEntry.setTipText(strings.get(position));
+                    ActivityUtils.finishAllActivities();
+                    ActivityUtils.startActivity(new Intent(this, MainActivity.class).setAction(Intent.ACTION_DEFAULT));
+                }
+
             });
             bottomSheet.show();
         } else if (view == clearCacheEntry) {

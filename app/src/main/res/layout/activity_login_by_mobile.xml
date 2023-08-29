@@ -59,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp10"
+                android:lineSpacingMultiplier="1.2"
                 android:autoLink="web"
                 android:padding="@dimen/dp5"
                 android:textColor="@color/color_gray"
@@ -71,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp20"
                 android:background="@drawable/shape_button_round"
-                android:backgroundTint="@color/color_selector_prominent"
+                android:backgroundTint="?attr/colorPrimary"
                 android:stateListAnimator="@null"
                 android:text="@string/login"
                 android:textAlignment="center"
@@ -81,7 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@id/login_by_mobile_term" />
 
             <TextView
-                android:id="@+id/login_by_mobile_toggle"
+                android:id="@+id/login_by_mobile_code"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/dp20"

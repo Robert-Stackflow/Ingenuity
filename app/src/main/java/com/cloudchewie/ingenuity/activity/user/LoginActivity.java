@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
@@ -54,7 +53,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             overridePendingTransition(R.anim.anim_none, R.anim.anim_bottom_out);
         });
         findViewById(R.id.login_by_mobile).setOnClickListener(this);
-        findViewById(R.id.login_by_wechat).setOnClickListener(this);
+        findViewById(R.id.login_by_email).setOnClickListener(this);
         findViewById(R.id.login_signup).setOnClickListener(this);
         findViewById(R.id.login_problem).setOnClickListener(this);
         setTermView();
@@ -82,8 +81,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 ds.setUnderlineText(false);
             }
         }, 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.append(userTermString);
+        spannableStringBuilder.append(new SpannableString(getString(R.string.tap_login_to_agree_and)));
         SpannableString privacyTermString = new SpannableString(getString(R.string.tap_login_to_agree_3));
         privacyTermString.setSpan(new ClickableSpan() {
             @Override
@@ -98,7 +98,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 ds.setUnderlineText(false);
             }
         }, 0, privacyTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, privacyTermString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         spannableStringBuilder.append(privacyTermString);
         termView.setMovementMethod(LinkMovementMethod.getInstance());
         termView.setText(spannableStringBuilder);
@@ -108,18 +108,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, findViewById(R.id.login_titlebar), "shareElement").toBundle();
         switch (view.getId()) {
             case R.id.login_by_mobile:
                 Intent loginByMobileIntent = new Intent(this, LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
-                startActivity(loginByMobileIntent, bundle);
+                startActivity(loginByMobileIntent);
                 break;
-            case R.id.login_by_wechat:
-                IToast.makeTextBottom(this, getString(R.string.fail_to_login_by_wechat), Toast.LENGTH_SHORT).show();
+            case R.id.login_by_email:
+                IToast.makeTextBottom(this, getString(R.string.fail_to_login_by_code), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.login_signup:
                 Intent signupIntent = new Intent(this, SignupActivity.class).setAction(Intent.ACTION_DEFAULT);
-                startActivity(signupIntent, bundle);
+                startActivity(signupIntent);
                 break;
             case R.id.login_problem:
                 showLoginProblemDialog();

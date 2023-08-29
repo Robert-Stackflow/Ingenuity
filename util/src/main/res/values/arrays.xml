@@ -32,7 +32,7 @@
         <item>拍摄照片</item>
     </string-array>
     <string-array name="edit_language">
-        <item>@string/language_default</item>
+<!--        <item>@string/language_default</item>-->
         <item>@string/language_simplified_chinese</item>
         <item>@string/language_traditional_chinese</item>
         <item>@string/language_english</item>

@@ -68,7 +68,7 @@ public class InputItem extends RelativeLayout {
             int maxLines = attr.getInt(R.styleable.InputItem_input_item_max_lines, 20);
             boolean isSingleLine = attr.getBoolean(R.styleable.InputItem_input_item_single_line, false);
             int textSize = attr.getDimensionPixelSize(R.styleable.InputItem_input_item_text_size, getResources().getDimensionPixelSize(R.dimen.sp15));
-            int backgroundId = attr.getResourceId(R.styleable.InputItem_input_item_background, R.drawable.shape_round_dp20);
+            int backgroundId = attr.getResourceId(R.styleable.InputItem_input_item_background, R.drawable.shape_round_dp10);
             ColorStateList backgroundTintList = attr.getColorStateList(R.styleable.InputItem_input_item_backgroundTint);
             setMode(mode);
             setTextSize(textSize);

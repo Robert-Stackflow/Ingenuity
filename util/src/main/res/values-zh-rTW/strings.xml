@@ -24,7 +24,7 @@
 	<string name="title_update_log">更新日誌</string>
 	<string name="title_theme">主題顏色</string>
 	<string name="title_home">我的主頁</string>
-	<string name="title_blog">部落格地址</string>
+	<string name="title_blog">博客地址</string>
 	<string name="dialog_title_clear_cache">清除緩存</string>
 	<string name="dialog_content_clear_cache">是否清除緩存（緩存包括下載的圖片、數據等，清除後需要重新下載）</string>
 	<string name="dialog_title_logout">登出</string>
@@ -124,7 +124,7 @@
 	<string name="copy_success">已複製到剪貼板</string>
 	<string name="haven_not_set">未設定</string>
 	<string name="tap_login_to_agree_1">點擊登入即表示您已閱讀並同意</string>
-	<string name="tap_login_to_agree_2">《用戶協議》和</string>
+	<string name="tap_login_to_agree_2">《用戶協議》</string>
 	<string name="tap_login_to_agree_3">《隱私政策》</string>
 	<string name="read_privacy_policy">閱讀使用者協定</string>
 	<string name="read_user_term">點擊登入即表示您已閱讀並同意</string>
@@ -139,7 +139,7 @@
 	<string name="jump_to_login">已有帳號？ 立即登入</string>
 	<string name="divider">|</string>
 	<string name="login_problem">登入問題</string>
-	<string name="fail_to_login_by_wechat">系統維護中，暫時無法使用微信登入</string>
+	<string name="fail_to_login_by_code">系統維護中，暫時無法使用驗證碼登陸</string>
 	<string name="enter_mobile">輸入手機號碼</string>
 	<string name="enter_nickname">輸入昵稱</string>
 	<string name="enter_email">輸入郵箱</string>
@@ -150,7 +150,6 @@
 	<string name="nickname">昵稱</string>
 	<string name="signature">簽名</string>
 	<string name="gender">性別</string>
-	<string name="birthday">生日</string>
 	<string name="select_feedback_type">請選擇迴響類型</string>
 	<string name="feedback_type">迴響類型</string>
 	<string name="upload_log">上傳日誌</string>
@@ -164,4 +163,5 @@
 	<string name="second_before">秒前</string>
 	<string name="yesterday">昨天</string>
 	<string name="day_before_yesterday">前天</string>
+	<string name="tap_login_to_agree_and">和</string>
 </resources>

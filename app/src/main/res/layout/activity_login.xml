@@ -30,25 +30,35 @@
         app:layout_constraintTop_toBottomOf="@id/login_titlebar"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
-            android:id="@+id/login_logo"
-            android:layout_width="@dimen/dp100"
-            android:layout_height="@dimen/dp100"
-            android:contentDescription="@string/cd_logo"
-            android:src="@mipmap/ic_launcher"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/login_logo_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/dp8"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="@dimen/dp100"
+                android:contentDescription="@string/cd_logo"
+                android:src="@mipmap/ic_launcher" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/login_appname"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:letterSpacing="0.2"
             android:text="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_logo" />
+            app:layout_constraintTop_toBottomOf="@id/login_logo_card" />
     </LinearLayout>
 
     <LinearLayout
@@ -63,39 +73,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_logo_layout">
 
-        <Button
-            android:id="@+id/login_by_mobile"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_button_round"
-            android:backgroundTint="@color/color_selector_prominent"
-            android:stateListAnimator="@null"
-            android:text="@string/login_by_mobile"
-            android:textAlignment="center"
-            android:textColor="@color/text_color_white"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_logo_layout">
 
-        <Button
-            android:id="@+id/login_by_wechat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp20"
-            android:background="@drawable/shape_button_round"
-            android:backgroundTint="@android:color/holo_green_dark"
-            android:stateListAnimator="@null"
-            android:text="@string/login_by_email"
-            android:textAlignment="center"
-            android:textColor="@color/text_color_white"
-            android:textSize="@dimen/sp16" />
+            <Button
+                android:id="@+id/login_by_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toStartOf="@id/login_by_email"
+                android:background="@drawable/shape_button_round"
+                android:backgroundTint="?attr/colorPrimary"
+                android:stateListAnimator="@null"
+                android:text="@string/login_by_mobile"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/login_by_email"
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp60"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp5"
+                android:background="@drawable/shape_button_frame"
+                android:backgroundTint="@color/background"
+                android:contentDescription="@string/cd_image"
+                android:padding="@dimen/dp5"
+                android:src="@drawable/ic_colorful_email" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/login_term"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
             android:autoLink="web"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dp5"
+            android:gravity="center"
+            android:textAlignment="center"
             android:padding="@dimen/dp5"
             android:textColor="@color/color_gray"
             android:textSize="@dimen/sp12" />

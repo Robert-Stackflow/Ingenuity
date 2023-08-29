@@ -96,7 +96,8 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_theme"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
+                        android:minWidth="@dimen/dp110"
                         android:layout_height="match_parent"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
@@ -110,13 +111,15 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_setting"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
                         android:layout_height="match_parent"
+                        android:minWidth="@dimen/dp110"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
                         app:layout_rowWeight="1"
                         app:vertical_icon_text_item_icon="@drawable/ic_light_settings"
                         app:vertical_icon_text_item_icon_scale_type="fitCenter"
+                        app:vertical_icon_text_item_icon_size="@dimen/dp35"
                         app:vertical_icon_text_item_padding_h="@dimen/dp35"
                         app:vertical_icon_text_item_text="@string/title_setting"
                         app:vertical_icon_text_item_text_color="@color/color_accent"
@@ -124,7 +127,8 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_about"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
+                        android:minWidth="@dimen/dp110"
                         android:layout_height="match_parent"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
@@ -139,7 +143,8 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_help"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
+                        android:minWidth="@dimen/dp110"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/dp10"
                         app:layout_columnWeight="1"
@@ -154,7 +159,8 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_feedback"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
+                        android:minWidth="@dimen/dp110"
                         android:layout_height="match_parent"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
@@ -168,10 +174,11 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_github"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
                         android:layout_height="match_parent"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
+                        android:minWidth="@dimen/dp110"
                         app:layout_rowWeight="1"
                         app:vertical_icon_text_item_icon="@drawable/ic_light_github"
                         app:vertical_icon_text_item_icon_scale_type="fitCenter"
@@ -182,14 +189,15 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_home"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
                         android:layout_height="match_parent"
+                        android:minWidth="@dimen/dp110"
                         android:layout_marginTop="@dimen/dp10"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
                         app:layout_rowWeight="1"
                         app:vertical_icon_text_item_icon="@drawable/ic_light_home"
-                        app:vertical_icon_text_item_icon_scale_type="fitCenter"
+                        app:vertical_icon_text_item_icon_scale_type="centerCrop"
                         app:vertical_icon_text_item_icon_size="@dimen/dp35"
                         app:vertical_icon_text_item_text="@string/title_home"
                         app:vertical_icon_text_item_text_color="@color/color_accent"
@@ -197,7 +205,8 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_blog"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
+                        android:minWidth="@dimen/dp110"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/dp10"
                         app:layout_columnWeight="1"
@@ -212,8 +221,9 @@
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_switch_daynight"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/dp110"
                         android:layout_height="match_parent"
+                        android:minWidth="@dimen/dp110"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
                         app:layout_rowWeight="1"

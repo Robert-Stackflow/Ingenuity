@@ -60,10 +60,10 @@
     <string name="entry_about">关于「机巧」</string>
     <!--语言-->
     <string name="language_default">默认语言</string>
-    <string name="language_simplified_chinese" translatable="false">简体中文</string>
-    <string name="language_traditional_chinese" translatable="false">繁體中文</string>
-    <string name="language_english" translatable="false">English</string>
-    <string name="language_japanese" translatable="false">日本語</string>
+    <string name="language_simplified_chinese">简体中文</string>
+    <string name="language_traditional_chinese">繁體中文</string>
+    <string name="language_english">English</string>
+    <string name="language_japanese">日本語</string>
     <!--聊天-->
     <string name="send">发送</string>
     <string name="record_voice_hint">按住说话</string>
@@ -136,7 +136,8 @@
     <string name="copy_success">已复制到剪贴板</string>
     <string name="haven_not_set">未设置</string>
     <string name="tap_login_to_agree_1">点击登录即表示您已阅读并同意</string>
-    <string name="tap_login_to_agree_2">《用户协议》和</string>
+    <string name="tap_login_to_agree_2">《用户协议》</string>
+    <string name="tap_login_to_agree_and">和</string>
     <string name="tap_login_to_agree_3">《隐私政策》</string>
     <string name="read_privacy_policy">阅读用户协议</string>
     <string name="read_user_term">点击登录即表示您已阅读并同意</string>
@@ -151,7 +152,7 @@
     <string name="jump_to_login">已有帐号？立即登录</string>
     <string name="divider"> | </string>
     <string name="login_problem">登录问题</string>
-    <string name="fail_to_login_by_wechat">系统维护中，暂时无法使用微信登录</string>
+    <string name="fail_to_login_by_code">系统维护中，暂时无法使用验证码登录</string>
     <string name="enter_mobile">输入手机号码</string>
     <string name="enter_nickname">输入昵称</string>
     <string name="enter_email">输入邮箱</string>

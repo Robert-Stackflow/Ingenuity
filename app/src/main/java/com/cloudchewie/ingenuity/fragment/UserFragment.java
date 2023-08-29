@@ -31,6 +31,7 @@ import com.cloudchewie.ingenuity.activity.settings.FeedbackActivity;
 import com.cloudchewie.ingenuity.activity.settings.HelpActivity;
 import com.cloudchewie.ingenuity.activity.settings.SettingsActivity;
 import com.cloudchewie.ingenuity.activity.settings.ThemeActivity;
+import com.cloudchewie.ingenuity.activity.user.LoginByMobileActivity;
 import com.cloudchewie.ingenuity.api.UserAuthRequest;
 import com.cloudchewie.ingenuity.entity.User;
 import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
@@ -39,6 +40,7 @@ import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.CircleImageView;
 import com.cloudchewie.ui.item.VerticalIconTextItem;
 import com.cloudchewie.util.ui.DarkModeUtil;
+import com.cloudchewie.util.ui.MatricsUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.scwang.smart.refresh.header.MaterialHeader;
@@ -113,7 +115,23 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         initSwipeRefresh();
         checkLogin();
         initEvent();
+        limitWidth(blogEntry);
+        limitWidth(themeEntry);
+        limitWidth(blogEntry);
+        limitWidth(settingEntry);
+        limitWidth(aboutEntry);
+        limitWidth(helpEntry);
+        limitWidth(feedbackEntry);
+        limitWidth(githubEntry);
+        limitWidth(homeEntry);
+        limitWidth(dayNightEntry);
         return mainView;
+    }
+
+    void limitWidth(VerticalIconTextItem view) {
+        int width = MatricsUtil.getScreenWidth(requireContext()) - requireContext().getResources().getDimensionPixelSize(R.dimen.dp60);
+//        view.setMinWidth(width / 3);
+//        view.setMaxWidth(width / 3);
     }
 
     void initEvent() {
@@ -206,6 +224,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         } else if (view == homeEntry) {
             Intent intent = new Intent(getActivity(), WebViewActivity.class).setAction(Intent.ACTION_DEFAULT);
             intent.putExtra("url", getString(R.string.url_home));
+            startActivity(intent);
+        } else if (view == usernameView || view == avatarView) {
+            Intent intent = new Intent(getActivity(), LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
             startActivity(intent);
         }
 //        if (!AppSharedPreferenceUtil.isLogin(requireContext()) || user == null) {

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.cloudchewie.ingenuity.R;
@@ -50,16 +49,20 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.anim_bottom_in, R.anim.anim_none);
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_login_by_mobile);
         termView = findViewById(R.id.login_by_mobile_term);
         mobileInput = findViewById(R.id.login_by_mobile_phonenumber);
         passwordInput = findViewById(R.id.login_by_mobile_password);
-        ((TitleBar) findViewById(R.id.login_by_mobile_titlebar)).setLeftButtonClickListener(v -> finishAfterTransition());
+        ((TitleBar) findViewById(R.id.login_by_mobile_titlebar)).setLeftButtonClickListener(v -> {
+            finishAfterTransition();
+            overridePendingTransition(R.anim.anim_none, R.anim.anim_bottom_out);
+        });
         findViewById(R.id.login_by_mobile_confirm).setOnClickListener(this);
         findViewById(R.id.login_by_mobile_signup).setOnClickListener(this);
         findViewById(R.id.login_by_mobile_problem).setOnClickListener(this);
-        findViewById(R.id.login_by_mobile_toggle).setOnClickListener(this);
+        findViewById(R.id.login_by_mobile_code).setOnClickListener(this);
         setTermView();
         initSwipeRefresh();
     }
@@ -70,6 +73,12 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
         swipeRefreshLayout.setEnableOverScrollBounce(true);
         swipeRefreshLayout.setEnableLoadMore(false);
         swipeRefreshLayout.setEnablePureScrollMode(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_none, R.anim.anim_bottom_out);
     }
 
     void setTermView() {
@@ -84,12 +93,13 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
             }
 
             @Override
-            public void updateDrawState(TextPaint ds) {
+            public void updateDrawState(@NonNull TextPaint ds) {
                 ds.setUnderlineText(false);
             }
         }, 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        userTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableStringBuilder.append(userTermString);
+        spannableStringBuilder.append(new SpannableString(getString(R.string.tap_login_to_agree_and)));
         SpannableString privacyTermString = new SpannableString(getString(R.string.tap_login_to_agree_3));
         privacyTermString.setSpan(new ClickableSpan() {
             @Override
@@ -100,11 +110,11 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
             }
 
             @Override
-            public void updateDrawState(TextPaint ds) {
+            public void updateDrawState(@NonNull TextPaint ds) {
                 ds.setUnderlineText(false);
             }
         }, 0, privacyTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, userTermString.length() - 1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        privacyTermString.setSpan(new ForegroundColorSpan(ThemeUtil.getPrimaryColor(this)), 0, privacyTermString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         spannableStringBuilder.append(privacyTermString);
         termView.setMovementMethod(LinkMovementMethod.getInstance());
         termView.setText(spannableStringBuilder);
@@ -114,14 +124,13 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, findViewById(R.id.login_by_mobile_titlebar), "shareElement").toBundle();
         switch (view.getId()) {
-            case R.id.login_by_mobile_toggle:
-                IToast.makeTextBottom(this, getString(R.string.fail_to_login_by_wechat), Toast.LENGTH_SHORT).show();
+            case R.id.login_by_mobile_code:
+                IToast.makeTextBottom(this, getString(R.string.fail_to_login_by_code), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.login_by_mobile_signup:
                 Intent signupIntent = new Intent(this, SignupActivity.class).setAction(Intent.ACTION_DEFAULT);
-                startActivity(signupIntent, bundle);
+                startActivity(signupIntent);
                 break;
             case R.id.login_by_mobile_problem:
                 showLoginProblemDialog();
