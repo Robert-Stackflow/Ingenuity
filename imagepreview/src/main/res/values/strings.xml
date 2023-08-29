@@ -2,5 +2,7 @@
     <dimen name="yms_dimens_50.0_px">25.0dp</dimen>
     <string name="string_count">%1$s/%2$s</string>
     <string name="Playback_failed">播放失败</string>
+    <string name="download">保存图片:</string>
+    <string name="load_fail">图片加载失败</string>
     <item name="item_image_key" type="id" />
 </resources>

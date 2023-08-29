@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:paddingStart="8dp"
-                android:text="原图"
+                android:text="@string/ip_origin"
                 android:textColor="@color/color_accent"
                 android:visibility="invisible"
                 tools:ignore="RtlSymmetry" />
@@ -54,7 +54,7 @@
                 android:drawablePadding="4dp"
                 android:includeFontPadding="true"
                 android:paddingStart="8dp"
-                android:text="选择"
+                android:text="@string/ip_select"
                 android:textColor="@color/color_accent"
                 tools:ignore="RtlSymmetry" />
         </RelativeLayout>

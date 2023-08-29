@@ -29,6 +29,7 @@
 	<string name="dialog_content_clear_cache">是否清除緩存（緩存包括下載的圖片、數據等，清除後需要重新下載）</string>
 	<string name="dialog_title_logout">登出</string>
 	<string name="dialog_content_logout">是否登出？</string>
+	<string name="default_dialog_title">消息提示</string>
 	<string name="entry_tap_to_login">點擊登入</string>
 	<string name="entry_change_password">修改密碼</string>
 	<string name="entry_change_phone">修改手機號</string>
@@ -159,5 +160,8 @@
 	<string name="copy_url">複製連結</string>
 	<string name="refresh">刷新</string>
 	<string name="open_in_browser">瀏覽器打開</string>
-
+	<string name="right_now">剛剛</string>
+	<string name="second_before">秒前</string>
+	<string name="yesterday">昨天</string>
+	<string name="day_before_yesterday">前天</string>
 </resources>

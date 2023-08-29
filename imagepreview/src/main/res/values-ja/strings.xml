@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="string_count">%1$s/%2$s</string>
+	<string name="Playback_failed">再生に失敗しました</string>
+	<string name="download">画像を保存するには：</string>
+	<string name="load_fail">画像のロードに失敗しました</string>
+
+</resources>

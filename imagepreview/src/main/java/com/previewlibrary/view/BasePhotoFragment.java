@@ -194,8 +194,8 @@ public class BasePhotoFragment extends Fragment {
             //是否展示动画
             isTransPhoto = bundle.getBoolean(KEY_TRANS_PHOTO, false);
             if (beanViewInfo.getUrl() == null) {
-                IToast.showBottom(getContext(), "图片加载失败");
-                getActivity().finish();
+                IToast.showBottom(getContext(), getString(R.string.load_fail));
+                requireActivity().finish();
                 return;
             }
             if (beanViewInfo.getUrl().toLowerCase().contains(".gif")) {

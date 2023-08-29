@@ -17,7 +17,7 @@ public class MyImageOperationButtonClickedListener implements GPreviewActivity.O
 
     @Override
     public void onDownloadClicked(Context context, @NonNull IThumbViewInfo imageViewInfo) {
-        IToast.showBottom(context, "保存图片:" + imageViewInfo.getUrl());
+        IToast.showBottom(context, context.getString(R.string.download) + imageViewInfo.getUrl());
     }
 
     @Override

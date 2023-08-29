@@ -29,6 +29,7 @@
 	<string name="dialog_content_clear_cache">Do you want to clear the cache (including downloaded images, data, etc.)</string>
 	<string name="dialog_title_logout">Log out of login</string>
 	<string name="dialog_content_logout">Do you want to log out?</string>
+	<string name="default_dialog_title">Notification</string>
 	<string name="entry_tap_to_login">Click to log in</string>
 	<string name="entry_change_password">Change password</string>
 	<string name="entry_change_phone">Modify phone number</string>
@@ -158,4 +159,8 @@
 	<string name="copy_url">Copy Link</string>
 	<string name="refresh">Refresh</string>
 	<string name="open_in_browser">Open In Browser</string>
+	<string name="right_now">just</string>
+	<string name="second_before">seconds ago</string>
+	<string name="yesterday">yesterday</string>
+	<string name="day_before_yesterday">2 days ago</string>
 </resources>

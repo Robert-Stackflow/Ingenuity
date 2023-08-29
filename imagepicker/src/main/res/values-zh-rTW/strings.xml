@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="ip_title">選擇圖片</string>
+	<string name="ip_select">選擇</string>
+	<string name="ip_shot">拍攝照片</string>
+	<string name="ip_all_images">所有圖片</string>
+	<string name="ip_folder_image_count">共%1$d張</string>
+	<string name="ip_preview_image_count">%1$d/%2$d</string>
+	<string name="ip_select_limit">最多選擇%1$d張圖片</string>
+	<string name="ip_complete">完成</string>
+	<string name="ip_select_complete">完成（%1$d/%2$d）</string>
+	<string name="ip_preview">預覽</string>
+	<string name="ip_preview_count">預覽（%1$d）</string>
+	<string name="ip_photo_crop">圖片裁剪</string>
+	<string name="ip_origin">原圖</string>
+	<string name="ip_origin_size">原圖（%1$s）</string>
+	<string name="ip_banned">許可權被禁止，無法選擇本地圖片</string>
+	<string name="ip_banned_camera">許可權被禁止，無法打開相機</string>
+
+</resources>

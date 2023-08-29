@@ -29,6 +29,7 @@
 	<string name="dialog_content_clear_cache">キャッシュをクリアするかどうか（キャッシュにはダウンロードした画像、データなどが含まれ、クリア後に再ダウンロードが必要）</string>
 	<string name="dialog_title_logout">ログオンの終了</string>
 	<string name="dialog_content_logout">ログインを終了しますか？</string>
+	<string name="default_dialog_title">通知</string>
 	<string name="entry_tap_to_login">クリックしてログイン</string>
 	<string name="entry_change_password">パスワードの変更</string>
 	<string name="entry_change_phone">携帯番号の変更</string>
@@ -159,5 +160,8 @@
 	<string name="copy_url">リンクのコピー</string>
 	<string name="refresh">リフレッシュ</string>
 	<string name="open_in_browser">ブラウザが開く</string>
-
+	<string name="right_now">ただ</string>
+	<string name="second_before">秒前</string>
+	<string name="yesterday">昨日</string>
+	<string name="day_before_yesterday">一昨日</string>
 </resources>

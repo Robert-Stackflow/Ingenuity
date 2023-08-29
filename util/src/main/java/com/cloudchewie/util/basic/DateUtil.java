@@ -7,7 +7,11 @@
 
 package com.cloudchewie.util.basic;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
+
+import com.cloudchewie.util.R;
 
 import org.jetbrains.annotations.Contract;
 
@@ -23,7 +27,7 @@ public class DateUtil {
     private static final TimeZone timeZone = TimeZone.getTimeZone("GMT+8");
 
     @NonNull
-    public static String beautifyTime(@NonNull Date date) {
+    public static String beautifyTime(@NonNull Date date, Context context) {
         Date curDate = getNow();
         Date today = getStartOfToDay();
         Date yesterday = getYesterday();
@@ -32,12 +36,12 @@ public class DateUtil {
         SimpleDateFormat ymdFormat = DateFormatUtil.getSimpleDateFormat(DateFormatUtil.YMD_FORMAT_WITH_CHARACTERS);
         SimpleDateFormat mdFormat = DateFormatUtil.getSimpleDateFormat(DateFormatUtil.MD_FORMAT_WITH_CHARACTERS);
         SimpleDateFormat hmFormat = DateFormatUtil.getSimpleDateFormat(DateFormatUtil.HM_FORMAT);
-        if (interval < 3) return "刚刚";
-        else if (interval < 60) return interval + "秒前";
+        if (interval < 3) return context.getString(R.string.right_now);
+        else if (interval < 60) return interval + context.getString(R.string.second_before);
         else if (date.after(today)) return hmFormat.format(date);
-        else if (date.before(today) && date.after(yesterday)) return "昨天";
+        else if (date.before(today) && date.after(yesterday)) return context.getString(R.string.yesterday);
         else if (date.before(today) && date.before(yesterday) && date.after(dayBeforeYesterday))
-            return "前天";
+            return context.getString(R.string.day_before_yesterday);
         else if (getYear(date) != getYear(curDate)) return ymdFormat.format(date);
         else return mdFormat.format(date);
     }

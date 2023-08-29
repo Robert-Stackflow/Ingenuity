@@ -1,4 +1,7 @@
 <resources>
+    <string name="ip_title">选择图片</string>
+    <string name="ip_select">选择</string>
+    <string name="ip_shot">拍摄照片</string>
     <string name="ip_all_images">所有图片</string>
     <string name="ip_folder_image_count">共%1$d张</string>
     <string name="ip_preview_image_count">%1$d/%2$d</string>
@@ -10,4 +13,6 @@
     <string name="ip_photo_crop">图片裁剪</string>
     <string name="ip_origin">原图</string>
     <string name="ip_origin_size">原图(%1$s)</string>
+    <string name="ip_banned">权限被禁止，无法选择本地图片</string>
+    <string name="ip_banned_camera">权限被禁止，无法打开相机</string>
 </resources>

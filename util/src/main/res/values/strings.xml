@@ -33,7 +33,7 @@
     <string name="dialog_content_clear_cache">是否清除缓存（缓存包括下载的图片、数据等，清除后需要重新下载）</string>
     <string name="dialog_title_logout">退出登录</string>
     <string name="dialog_content_logout">是否退出登录？</string>
-
+    <string name="default_dialog_title">消息提示</string>
     <!--账号安全-->
     <string name="entry_tap_to_login">点击登录</string>
     <string name="entry_change_password">修改密码</string>
@@ -171,5 +171,8 @@
     <string name="copy_url">复制链接</string>
     <string name="refresh">刷新</string>
     <string name="open_in_browser">浏览器打开</string>
-
+    <string name="right_now">刚刚</string>
+    <string name="second_before">秒前</string>
+    <string name="yesterday">昨天</string>
+    <string name="day_before_yesterday">前天</string>
 </resources>

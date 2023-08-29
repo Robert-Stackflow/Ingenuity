@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class QuickLocationBar extends View {
     public static String HOT_LABEL = "⬆";
-    private static String HOT_STRING = "热门城市";
+    private static String HOT_STRING = "";
     private List<String> characters = new ArrayList<>();
     private int currentIndex = -1;
     private OnTouchLetterChangedListener mOnTouchLetterChangedListener;

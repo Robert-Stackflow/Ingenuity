@@ -503,7 +503,6 @@ public class BezierBannerView extends View implements ViewPager.OnPageChangeList
         //偏移量为0 说明运动停止
         if (positionOffset == 0) {
             mSelectedIndex = position;
-            Log.d(TAG, "到达");
             resetProgress();
         }
         //向左滑，指示器向右移动
@@ -512,7 +511,6 @@ public class BezierBannerView extends View implements ViewPager.OnPageChangeList
             //向左快速滑动 偏移量不归0 但是position发生了改变 需要更新当前索引
             if (mDrection == DIRECTION_RIGHT && position + positionOffset > mSelectedIndex + 1) {
                 mSelectedIndex = position;
-                Log.d(TAG, "向左快速滑动");
             } else {
                 setProgress(positionOffset);
             }
@@ -521,7 +519,6 @@ public class BezierBannerView extends View implements ViewPager.OnPageChangeList
             //向右快速滑动
             if (mDrection == DIRECTION_LEFT && position + positionOffset < mSelectedIndex - 1) {
                 mSelectedIndex = position;
-                Log.d(TAG, "向右快速滑动");
             } else {
                 setProgress(1 - positionOffset);
             }

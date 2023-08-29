@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="string_count">%1$s/%2$s</string>
+	<string name="Playback_failed">Playback failed</string>
+	<string name="download">Save Picture:</string>
+	<string name="load_fail">Image loading failed</string>
+
+</resources>

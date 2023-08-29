@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:background="@color/background"
@@ -9,6 +10,7 @@
     android:focusable="true">
 
     <ImageView
+        android:contentDescription="@string/cd_image"
         android:id="@+id/btn_back"
         android:layout_width="@dimen/dp40"
         android:layout_height="@dimen/dp40"
@@ -23,13 +25,14 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/btn_back"
-        android:text="选择图片"
+        android:text="@string/ip_title"
         android:textColor="@color/color_accent"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_ok"
+        android:contentDescription="@string/cd_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -42,9 +45,9 @@
         android:minHeight="30dp"
         android:paddingLeft="16.0dp"
         android:paddingRight="16.0dp"
-        android:text="完成(0/3)"
         android:textColor="#ffffff"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:ignore="RelativeOverlap" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btn_del"
