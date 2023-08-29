@@ -11,23 +11,35 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@color/titlebar_background"
-        android:paddingStart="20dp"
+        android:paddingStart="10dp"
         android:paddingTop="10dp"
-        android:paddingEnd="20dp"
+        android:paddingEnd="10dp"
         android:paddingBottom="10dp">
 
-        <TextView
+        <ImageButton
             android:id="@+id/activity_feedback_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="取消"
-            android:textColor="@color/color_red"
-            android:textSize="15sp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/titlebar_background"
+            android:padding="@dimen/dp10"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_light_close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/activity_feedback_cancel"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@android:color/transparent"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="取消"-->
+        <!--            android:textColor="@color/color_red"-->
+        <!--            android:textSize="15sp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:id="@+id/activity_feedback_page_title"
@@ -43,18 +55,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <ImageButton
             android:id="@+id/activity_feedback_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="提交"
-            android:textColor="?attr/colorPrimary"
-            android:textSize="15sp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/titlebar_background"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_light_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/activity_feedback_submit"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@android:color/transparent"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="提交"-->
+        <!--            android:textColor="?attr/colorPrimary"-->
+        <!--            android:textSize="15sp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout

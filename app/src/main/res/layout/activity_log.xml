@@ -5,24 +5,23 @@
     android:layout_height="match_parent">
 
     <com.cloudchewie.ui.custom.TitleBar
-        android:id="@+id/activity_footprint_titlebar"
+        android:id="@+id/activity_log_titlebar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:transitionName="shareElement"
         app:right_button_visibility="false"
-        app:title="我的足迹" />
+        app:title="更新日志" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/activity_footprint_swipe_refresh"
+        android:id="@+id/activity_log_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/activity_footprint_titlebar">
+        android:layout_below="@id/activity_log_titlebar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_log_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp" />
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </RelativeLayout>

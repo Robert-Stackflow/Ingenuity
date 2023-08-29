@@ -1,10 +1,11 @@
-package com.cloudchewie.ingenuity.activity.entry;
+package com.cloudchewie.ingenuity.activity.settings;
 
 import static com.yalantis.ucrop.UCrop.EXTRA_OUTPUT_URI;
 import static com.yalantis.ucrop.UCrop.RESULT_ERROR;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -12,6 +13,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +28,8 @@ import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.util.image.ImageUrlUtil;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ingenuity.util.image.NineGridUtil;
-import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.EntryItem;
 import com.cloudchewie.ui.general.CheckBoxItem;
 import com.cloudchewie.ui.general.IToast;
@@ -51,8 +53,8 @@ public class FeedbackActivity extends BaseActivity {
     TextView describeCount;
     EditText contactEdit;
     ImageView pickImage;
-    TextView cancelButton;
-    TextView submitButton;
+    ImageButton cancelButton;
+    ImageButton submitButton;
     CheckBoxItem isUploadLog;
     RefreshLayout swipeRefreshLayout;
     NineGridImageView<ImageViewInfo> nineGridImageView;
@@ -105,7 +107,7 @@ public class FeedbackActivity extends BaseActivity {
         });
         submitButton.setSelected(false);
         submitButton.setEnabled(false);
-        submitButton.setTextColor(getColor(R.color.color_light_gray));
+        submitButton.setImageTintList(ColorStateList.valueOf(getColor(R.color.color_light_gray)));
         cancelButton.setOnClickListener(v -> finish());
         describeEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -150,11 +152,11 @@ public class FeedbackActivity extends BaseActivity {
         if ((types != null && types.contains(typeEntry.getTip())) && describeEdit.getText().toString().length() > 0 && contactEdit.getText().toString().length() > 0) {
             submitButton.setSelected(true);
             submitButton.setEnabled(true);
-            submitButton.setTextColor(ThemeUtil.getPrimaryColor(this));
+            submitButton.setImageTintList(ColorStateList.valueOf(ThemeUtil.getPrimaryColor(this)));
         } else {
             submitButton.setSelected(false);
             submitButton.setEnabled(false);
-            submitButton.setTextColor(getColor(R.color.color_light_gray));
+            submitButton.setImageTintList(ColorStateList.valueOf(getColor(R.color.color_light_gray)));
         }
     }
 

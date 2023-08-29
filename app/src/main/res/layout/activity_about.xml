@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:transitionName="shareElement"
         app:right_button_visibility="false"
-        app:title="@string/entry_about" />
+        app:title="@string/title_about" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/activity_about_swipe_refresh"
@@ -50,7 +50,7 @@
                             android:id="@+id/logo"
                             android:layout_width="@dimen/dp80"
                             android:layout_height="@dimen/dp80"
-                            android:contentDescription="Logo"
+                            android:contentDescription="@string/cd_logo"
                             android:src="@mipmap/ic_launcher" />
                     </androidx.cardview.widget.CardView>
 
@@ -85,6 +85,7 @@
                         android:focusable="true"
                         android:textSize="18sp"
                         app:entry_item_left_icon="@drawable/ic_light_operation"
+                        app:entry_item_left_icon_visibility="false"
                         app:entry_item_title="@string/entry_version"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -98,6 +99,7 @@
                         android:textSize="18sp"
                         app:entry_item_bottom_radius_enable="true"
                         app:entry_item_left_icon="@drawable/ic_light_subscript"
+                        app:entry_item_left_icon_visibility="false"
                         app:entry_item_title="@string/entry_update_history"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/entry_version" />
@@ -111,6 +113,7 @@
                         android:focusable="true"
                         android:textSize="18sp"
                         app:entry_item_left_icon="@drawable/ic_light_security"
+                        app:entry_item_left_icon_visibility="false"
                         app:entry_item_title="@string/entry_privacy_policy"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +127,7 @@
                         android:focusable="true"
                         android:textSize="18sp"
                         app:entry_item_left_icon="@drawable/ic_light_customer"
+                        app:entry_item_left_icon_visibility="false"
                         app:entry_item_title="@string/entry_service_terms"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/entry_privacy_policy" />
@@ -137,6 +141,7 @@
                         android:textSize="18sp"
                         app:entry_item_bottom_radius_enable="true"
                         app:entry_item_left_icon="@drawable/ic_light_code"
+                        app:entry_item_left_icon_visibility="false"
                         app:entry_item_title="@string/entry_opensource"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/entry_service_terms" />
@@ -150,7 +155,8 @@
                         android:focusable="true"
                         android:textSize="18sp"
                         app:entry_item_left_icon="@drawable/ic_light_trust"
-                        app:entry_item_title="勾搭我"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_title="@string/entry_contact"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/entry_opensource" />
@@ -164,7 +170,8 @@
                         android:textSize="18sp"
                         app:entry_item_bottom_radius_enable="true"
                         app:entry_item_left_icon="@drawable/ic_light_star"
-                        app:entry_item_title="关于「机巧」"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_title=""
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/entry_contact" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

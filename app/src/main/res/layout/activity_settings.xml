@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:transitionName="shareElement"
         app:right_button_visibility="false"
-        app:title="@string/activity_setting_title" />
+        app:title="@string/title_setting" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/settings_swipe_refresh"
@@ -44,10 +44,21 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         app:checkbox_item_bottom_radius_enable="true"
-                        app:checkbox_item_title="@string/switch_auto_daynight"
+                        app:checkbox_item_title="@string/entry_auto_daynight"
                         app:checkbox_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.cloudchewie.ui.general.CheckBoxItem
+                        android:id="@+id/switch_daynight"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:checkbox_item_bottom_radius_enable="true"
+                        app:checkbox_item_title="深色模式"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/switch_auto_daynight" />
 
                     <com.cloudchewie.ui.custom.EntryItem
                         android:id="@+id/entry_language"
@@ -64,7 +75,19 @@
                         app:entry_item_title="@string/entry_language"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/switch_auto_daynight" />
+                        app:layout_constraintTop_toBottomOf="@id/switch_daynight" />
+
+                    <com.cloudchewie.ui.general.CheckBoxItem
+                        android:id="@+id/entry_enable_web_cache"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:textSize="18sp"
+                        app:checkbox_item_bottom_radius_enable="true"
+                        app:checkbox_item_title="允许网站缓存"
+                        app:checkbox_item_top_radius_enable="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/entry_language" />
 
                     <com.cloudchewie.ui.custom.EntryItem
                         android:id="@+id/entry_clear_cache"
@@ -80,7 +103,7 @@
                         app:entry_item_title="清除缓存"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_language" />
+                        app:layout_constraintTop_toBottomOf="@id/entry_enable_web_cache" />
 
                     <com.cloudchewie.ui.custom.EntryItem
                         android:id="@+id/entry_logout"

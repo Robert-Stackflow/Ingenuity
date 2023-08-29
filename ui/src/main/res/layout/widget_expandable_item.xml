@@ -18,12 +18,27 @@
         <TextView
             android:id="@+id/widget_expandable_item_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@color/color_accent"
             android:textSize="@dimen/sp15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="标题" />
+
+        <TextView
+            android:id="@+id/widget_expandable_item_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp8"
+            android:background="@drawable/shape_round_dp5"
+            android:backgroundTint="?attr/colorPrimary"
+            android:padding="@dimen/dp3"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/sp12"
+            app:layout_constraintBottom_toBottomOf="@id/widget_expandable_item_title"
+            app:layout_constraintStart_toEndOf="@id/widget_expandable_item_title"
+            app:layout_constraintTop_toTopOf="@id/widget_expandable_item_title"
+            tools:text="标签" />
 
         <ImageView
             android:id="@+id/widget_expandable_item_icon"

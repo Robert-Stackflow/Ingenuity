@@ -11,6 +11,7 @@ import static com.cloudchewie.util.system.LanguageUtil.SP_LANGUAGE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,15 +21,21 @@ import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.MainActivity;
 import com.cloudchewie.ingenuity.activity.global.BaseActivity;
 import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
+import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ingenuity.util.system.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.ui.custom.EntryItem;
 import com.cloudchewie.ui.custom.MyDialog;
 import com.cloudchewie.ui.custom.TitleBar;
+import com.cloudchewie.ui.general.CheckBoxItem;
 import com.cloudchewie.ui.general.IToast;
 import com.cloudchewie.util.system.CacheUtil;
 import com.cloudchewie.util.system.LanguageUtil;
+import com.cloudchewie.util.system.SharedPreferenceCode;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
+import com.cloudchewie.util.ui.DarkModeUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 import java.util.Arrays;
@@ -39,7 +46,9 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     RefreshLayout swipeRefreshLayout;
     EntryItem clearCacheEntry;
     EntryItem languageEntry;
-
+    CheckBoxItem autoDaynightEntry;
+    CheckBoxItem switchDaynightEntry;
+    CheckBoxItem enableWebCacheEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +61,61 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         clearCacheEntry.setTipText(CacheUtil.getTotalCacheSize(this));
         clearCacheEntry.setOnClickListener(this);
         languageEntry = findViewById(R.id.entry_language);
-        if (!Objects.equals(SPUtils.getInstance().getString(SP_LANGUAGE, ""), ""))
-            languageEntry.setTipText(LanguageUtil.getAppLanguage(SettingsActivity.this));
-        else languageEntry.setTipText("跟随系统");
         languageEntry.setOnClickListener(this);
+        autoDaynightEntry = findViewById(R.id.switch_auto_daynight);
+        switchDaynightEntry = findViewById(R.id.switch_daynight);
+        enableWebCacheEntry = findViewById(R.id.entry_enable_web_cache);
         initSwipeRefresh();
         initView();
+        initEvent();
     }
 
     void initView() {
         if (!AppSharedPreferenceUtil.isLogin(this)) {
             findViewById(R.id.entry_logout).setVisibility(View.GONE);
         }
+        if (!Objects.equals(SPUtils.getInstance().getString(SP_LANGUAGE, ""), ""))
+            languageEntry.setTipText(LanguageUtil.getAppLanguage(SettingsActivity.this));
+        else languageEntry.setTipText("跟随系统");
+        //加载是否自动跟随或深色模式
+        if (AppSharedPreferenceUtil.isAutoDaynight(this)) {
+            AppSharedPreferenceUtil.setNight(SettingsActivity.this, DarkModeUtil.isDarkMode(SettingsActivity.this));
+        }
+        autoDaynightEntry.setRadiusEnbale(true, AppSharedPreferenceUtil.isAutoDaynight(this));
+        switchDaynightEntry.setVisibility(AppSharedPreferenceUtil.isAutoDaynight(SettingsActivity.this) ? View.GONE : View.VISIBLE);
+        new Handler().postDelayed(() -> {
+            switchDaynightEntry.setChecked(AppSharedPreferenceUtil.isNight(SettingsActivity.this));
+            autoDaynightEntry.setChecked(AppSharedPreferenceUtil.isAutoDaynight(this));
+        }, 100);
+        enableWebCacheEntry.setChecked(SharedPreferenceUtil.getBoolean(this, SharedPreferenceCode.ENABLE_WEB_CACHE.getKey(), true));
+    }
+
+    void initEvent() {
+        autoDaynightEntry.setOnCheckedChangedListener((buttonView, isChecked) -> {
+            AppSharedPreferenceUtil.setAutoDaynight(SettingsActivity.this, isChecked);
+            LiveEventBus.get(EventBusCode.CHANGE_AUTO_DAYNIGHT.getKey()).post("change");
+            if (isChecked) {
+                DarkModeUtil.switchToAlwaysSystemMode();
+                autoDaynightEntry.setRadiusEnbale(true, true);
+            } else {
+                autoDaynightEntry.setRadiusEnbale(true, false);
+                if (AppSharedPreferenceUtil.isNight(this)) {
+                    DarkModeUtil.switchToAlwaysDarkMode();
+                } else {
+                    DarkModeUtil.switchToAlwaysLightMode();
+                }
+            }
+            switchDaynightEntry.setVisibility(AppSharedPreferenceUtil.isAutoDaynight(SettingsActivity.this) ? View.GONE : View.VISIBLE);
+        });
+        switchDaynightEntry.setOnCheckedChangedListener((buttonView, isChecked) -> {
+            AppSharedPreferenceUtil.setNight(SettingsActivity.this, isChecked);
+            if (isChecked) {
+                DarkModeUtil.switchToAlwaysDarkMode();
+            } else {
+                DarkModeUtil.switchToAlwaysLightMode();
+            }
+        });
+        enableWebCacheEntry.setOnCheckedChangedListener((buttonView, isChecked) -> SharedPreferenceUtil.putBoolean(SettingsActivity.this, SharedPreferenceCode.ENABLE_WEB_CACHE.getKey(), isChecked));
     }
 
     void initSwipeRefresh() {
@@ -89,9 +141,9 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 else if (position == 3)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "en", "US");
                 languageEntry.setTipText(strings.get(position));
-                Intent intent = new Intent(Intent.ACTION_LOCALE_CHANGED);
-                intent.putExtra("msg", "EVENT_REFRESH_LANGUAGE");
-                sendBroadcast(intent);
+//                Intent intent = new Intent(Intent.ACTION_LOCALE_CHANGED);
+//                intent.putExtra("msg", "EVENT_REFRESH_LANGUAGE");
+//                sendBroadcast(intent);
                 bottomSheet.dismiss();
             });
             bottomSheet.show();

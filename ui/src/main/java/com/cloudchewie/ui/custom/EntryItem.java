@@ -117,16 +117,19 @@ public class EntryItem extends ConstraintLayout {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void setRadiusEnbale(boolean top, boolean bottom) {
-        if (!top && !bottom)
+        if (!top && !bottom) {
+            divider.setVisibility(VISIBLE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_rect));
-        else if (top && bottom) {
+        } else if (top && bottom) {
             divider.setVisibility(GONE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_dp10));
         } else if (!top && bottom) {
             divider.setVisibility(GONE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_bottom_dp10));
-        } else if (top && !bottom)
+        } else if (top && !bottom) {
+            divider.setVisibility(VISIBLE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_top_dp10));
+        }
     }
 
     private void setRightButton(boolean visibility, int iconId, int backgroundColor) {

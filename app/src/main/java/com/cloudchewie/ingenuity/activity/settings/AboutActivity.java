@@ -8,6 +8,7 @@
 package com.cloudchewie.ingenuity.activity.settings;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.global.BaseActivity;
+import com.cloudchewie.ingenuity.activity.global.WebViewActivity;
 import com.cloudchewie.ui.custom.EntryItem;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.general.IToast;
@@ -25,8 +27,14 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class AboutActivity extends BaseActivity implements View.OnClickListener {
     RefreshLayout swipeRefreshLayout;
-    EntryItem versionItem;
+    EntryItem versionEntry;
     TextView copyRightView;
+    EntryItem logEntry;
+    EntryItem privacyEntry;
+    EntryItem termEntry;
+    EntryItem opensourceEntry;
+    EntryItem contactEntry;
+    EntryItem storyEntry;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -35,11 +43,23 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_about);
         ((TitleBar) findViewById(R.id.activity_about_titlebar)).setLeftButtonClickListener(v -> finishAfterTransition());
-        versionItem = findViewById(R.id.entry_version);
+        versionEntry = findViewById(R.id.entry_version);
+        logEntry = findViewById(R.id.entry_log);
+        privacyEntry = findViewById(R.id.entry_privacy_policy);
+        termEntry = findViewById(R.id.entry_service_terms);
+        opensourceEntry = findViewById(R.id.entry_opensource);
+        contactEntry = findViewById(R.id.entry_contact);
+        storyEntry = findViewById(R.id.entry_story);
         copyRightView = findViewById(R.id.activity_about_copyright);
-        versionItem.setTipText(AppInfoUtil.getAppVersionName());
-        versionItem.setOnClickListener(v -> IToast.makeTextBottom(this, "已经是最新版本", Toast.LENGTH_SHORT).show());
+        versionEntry.setTipText(AppInfoUtil.getAppVersionName());
         copyRightView.setText("Copyright © 2023-" + DateUtil.getYear() + " Cloudchewie");
+        versionEntry.setOnClickListener(this);
+        logEntry.setOnClickListener(this);
+        privacyEntry.setOnClickListener(this);
+        termEntry.setOnClickListener(this);
+        opensourceEntry.setOnClickListener(this);
+        contactEntry.setOnClickListener(this);
+        storyEntry.setOnClickListener(this);
         initSwipeRefresh();
     }
 
@@ -53,6 +73,25 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-
+        if (view == versionEntry) {
+            IToast.makeTextBottom(this, "已经是最新版本", Toast.LENGTH_SHORT).show();
+        } else if (view == logEntry) {
+            Intent intent = new Intent(this, LogActivity.class);
+            startActivity(intent);
+        } else if (view == privacyEntry) {
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("url", "https://blog.cloudchewie.com/term");
+            startActivity(intent);
+        } else if (view == termEntry) {
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("url", "https://blog.cloudchewie.com/term");
+            startActivity(intent);
+        } else if (view == opensourceEntry) {
+            IToast.showBottom(this, "还木有开源啦");
+        } else if (view == contactEntry) {
+            IToast.showBottom(this, "你休想！");
+        } else if (view == storyEntry) {
+            IToast.showBottom(this, "故事的种子尚未发芽");
+        }
     }
 }

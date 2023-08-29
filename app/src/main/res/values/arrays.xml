@@ -1,51 +1,4 @@
 <resources>
-    <string-array name="english_week_string_array">
-        <item>日</item>
-        <item>一</item>
-        <item>二</item>
-        <item>三</item>
-        <item>四</item>
-        <item>五</item>
-        <item>六</item>
-    </string-array>
-    <string-array name="chinese_week_string_array">
-        <item>周日</item>
-        <item>周一</item>
-        <item>周二</item>
-        <item>周三</item>
-        <item>周四</item>
-        <item>周五</item>
-        <item>周六</item>
-    </string-array>
-    <string-array name="sort">
-        <item>综合</item>
-        <item>最新</item>
-        <item>最早</item>
-    </string-array>
-    <string-array name="activity_scope">
-        <item>全部</item>
-        <item>进行中</item>
-        <item>待开始</item>
-        <item>已结束</item>
-        <item>我创建的</item>
-    </string-array>
-    <string-array name="activity_type">
-        <item>全部</item>
-        <item>聚餐</item>
-        <item>聚会</item>
-        <item>郊游</item>
-        <item>打卡</item>
-        <item>团建</item>
-        <item>自定义</item>
-    </string-array>
-    <string-array name="follow_operations">
-        <item>加入特别关注</item>
-        <item>取消关注</item>
-    </string-array>
-    <string-array name="special_operations">
-        <item>取消特别关注</item>
-        <item>取消关注</item>
-    </string-array>
     <string-array name="collection_operations">
         <item>取消收藏</item>
     </string-array>
@@ -54,38 +7,8 @@
         <item>删除收藏夹</item>
         <item>举报</item>
     </string-array>
-    <string-array name="comment_operations">
-        <item>删除评论</item>
-        <item>复制评论</item>
-        <item>查看回复</item>
-        <item>举报</item>
-    </string-array>
-    <string-array name="comment_operations_unlogin">
-        <item>复制评论</item>
-        <item>查看回复</item>
-    </string-array>
-    <string-array name="comment_operations_without_delete">
-        <item>复制评论</item>
-        <item>查看回复</item>
-        <item>举报</item>
-    </string-array>
     <string-array name="favorites_operations_without_delete">
         <item>编辑信息</item>
-        <item>举报</item>
-    </string-array>
-    <string-array name="post_item_follow_attraction_operations">
-        <item>分享</item>
-        <item>不感兴趣</item>
-        <item>举报</item>
-    </string-array>
-    <string-array name="post_item_follow_my_operations">
-        <item>编辑</item>
-        <item>分享</item>
-        <item>删除</item>
-    </string-array>
-    <string-array name="post_item_follow_user_operations">
-        <item>分享</item>
-        <item>取消关注</item>
         <item>举报</item>
     </string-array>
     <string-array name="edit_avatar">
@@ -107,12 +30,6 @@
     <string-array name="edit_cover_without_preview">
         <item>从相册选择</item>
         <item>拍摄照片</item>
-    </string-array>
-    <string-array name="edit_permission">
-        <item>所有人可见</item>
-        <item>仅粉丝可见</item>
-        <item>仅好友可见</item>
-        <item>所有人不可见</item>
     </string-array>
     <string-array name="edit_language">
         <item>跟随系统</item>
@@ -140,50 +57,16 @@
         <item>保存图片</item>
     </string-array>
     <string-array name="feedback_type">
-        <item>账号信息相关</item>
-        <item>发布内容相关</item>
-        <item>推荐推送相关</item>
-        <item>消息聊天相关</item>
-        <item>创作工具相关</item>
+        <item>帐号信息相关</item>
+        <item>美术设计相关</item>
+        <item>软件布局相关</item>
+        <item>软件工具相关</item>
         <item>其他反馈建议</item>
     </string-array>
-    <string-array name="poi_filter_type">
-        <item>全部景点</item>
-        <item>公园</item>
-        <item>动物园</item>
-        <item>植物园</item>
-        <item>游乐园</item>
-        <item>博物馆</item>
-        <item>水族馆</item>
-        <item>海滨浴场</item>
-        <item>文物古迹</item>
-        <item>教堂</item>
-        <item>风景区</item>
-        <item>景点</item>
-        <item>寺庙</item>
-    </string-array>
-    <string-array name="poi_filter_distance">
-        <item>不限距离</item>
-        <item>1km</item>
-        <item>3km</item>
-        <item>5km</item>
-        <item>10km</item>
-        <item>30km</item>
-        <item>50km</item>
-        <item>100km</item>
-        <item>200km</item>
-        <item>300km</item>
-        <item>400km</item>
-        <item>500km</item>
-    </string-array>
-    <string-array name="poi_more_filter_scope">
-        <item>只看我关注的</item>
-        <item>只看关注的人关注的</item>
-    </string-array>
-    <string-array name="poi_more_filter_score">
-        <item>3星以上</item>
-        <item>3.5星以上</item>
-        <item>4星以上</item>
-        <item>4.5星以上</item>
+    <string-array name="fragment_home_titles">
+        <item>推荐</item>
+        <item>Memos</item>
+        <item>CloudRSS</item>
+        <item>CloudAuth</item>
     </string-array>
 </resources>

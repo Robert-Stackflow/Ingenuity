@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,46 @@ public class CheckBoxItem extends ConstraintLayout {
     private TextView title_view;
     private ConstraintLayout mainLayout;
     private View divider;
+    private Boolean isTouched = false;
+    private OnCheckedChangedListener onCheckedChangedListener;
+
+    public void setOnCheckedChangedListener(OnCheckedChangedListener onCheckedChangedListener) {
+        this.onCheckedChangedListener = onCheckedChangedListener;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void initView(Context context, AttributeSet attrs) {
+        LayoutInflater.from(context).inflate(R.layout.widget_checkbox_item, this, true);
+        right_switch = findViewById(R.id.checkbox_item_switch);
+        title_view = findViewById(R.id.checkbox_item_title);
+        mainLayout = findViewById(R.id.checkbox_item_layout);
+        divider = findViewById(R.id.checkbox_item_divider);
+        @SuppressLint("CustomViewStyleable") TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.CheckBoxItem);
+        if (attr != null) {
+            int titleBarBackground = attr.getResourceId(R.styleable.CheckBoxItem_checkbox_item_background, Color.TRANSPARENT);
+            setBackgroundResource(titleBarBackground);
+            String title = attr.getString(R.styleable.CheckBoxItem_checkbox_item_title);
+            int titleColor = attr.getColor(R.styleable.CheckBoxItem_checkbox_item_title_color, getResources().getColor(R.color.color_accent, getResources().newTheme()));
+            setTitle(title, titleColor);
+            right_switch.setChecked(attr.getBoolean(R.styleable.CheckBoxItem_checkbox_item_checked, true));
+            boolean topRadiusEnable = attr.getBoolean(R.styleable.CheckBoxItem_checkbox_item_top_radius_enable, false);
+            boolean bottomRadiusEnable = attr.getBoolean(R.styleable.CheckBoxItem_checkbox_item_bottom_radius_enable, false);
+            setRadiusEnbale(topRadiusEnable, bottomRadiusEnable);
+            attr.recycle();
+        }
+        right_switch.setOnTouchListener((OnTouchListener) (view, motionEvent) -> {
+            isTouched = true;
+            return false;
+        });
+        right_switch.setTag(title_view.getText().toString());
+        right_switch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isTouched) {
+                isTouched = false;
+                if (onCheckedChangedListener != null)
+                    onCheckedChangedListener.onChanged(buttonView, isChecked);
+            }
+        });
+    }
 
     public CheckBoxItem(@NonNull Context context) {
         super(context);
@@ -61,40 +102,25 @@ public class CheckBoxItem extends ConstraintLayout {
         right_switch.toggle();
     }
 
-    private void initView(Context context, AttributeSet attrs) {
-        LayoutInflater.from(context).inflate(R.layout.widget_checkbox_item, this, true);
-        right_switch = findViewById(R.id.checkbox_item_switch);
-        title_view = findViewById(R.id.checkbox_item_title);
-        mainLayout = findViewById(R.id.checkbox_item_layout);
-        divider = findViewById(R.id.checkbox_item_divider);
-        @SuppressLint("CustomViewStyleable")
-        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.CheckBoxItem);
-        if (attr != null) {
-            int titleBarBackground = attr.getResourceId(R.styleable.CheckBoxItem_checkbox_item_background, Color.TRANSPARENT);
-            setBackgroundResource(titleBarBackground);
-            String title = attr.getString(R.styleable.CheckBoxItem_checkbox_item_title);
-            int titleColor = attr.getColor(R.styleable.CheckBoxItem_checkbox_item_title_color, getResources().getColor(R.color.color_accent, getResources().newTheme()));
-            setTitle(title, titleColor);
-            right_switch.setChecked(attr.getBoolean(R.styleable.CheckBoxItem_checkbox_item_checked, true));
-            boolean topRadiusEnable = attr.getBoolean(R.styleable.CheckBoxItem_checkbox_item_top_radius_enable, false);
-            boolean bottomRadiusEnable = attr.getBoolean(R.styleable.CheckBoxItem_checkbox_item_bottom_radius_enable, false);
-            setRadiusEnbale(topRadiusEnable, bottomRadiusEnable);
-            attr.recycle();
-        }
-    }
-
     @SuppressLint("UseCompatLoadingForDrawables")
-    void setRadiusEnbale(boolean top, boolean bottom) {
-        if (!top && !bottom)
+    public void setRadiusEnbale(boolean top, boolean bottom) {
+        if (!top && !bottom) {
+            divider.setVisibility(VISIBLE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_rect));
-        else if (top && bottom) {
+        } else if (top && bottom) {
             divider.setVisibility(GONE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_dp10));
         } else if (!top && bottom) {
             divider.setVisibility(GONE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_bottom_dp10));
-        } else if (top && !bottom)
+        } else if (top && !bottom) {
+            divider.setVisibility(VISIBLE);
             mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_top_dp10));
+        }
+    }
+
+    public interface OnCheckedChangedListener {
+        void onChanged(CompoundButton buttonView, boolean isChecked);
     }
 
     public void setTitlePadding(int left, int top, int right, int bottom) {

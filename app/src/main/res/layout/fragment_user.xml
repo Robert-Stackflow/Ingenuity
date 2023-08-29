@@ -72,7 +72,7 @@
                         android:layout_marginTop="@dimen/dp10"
                         android:clickable="true"
                         android:focusable="true"
-                        android:text="@string/unlogin"
+                        android:text="@string/entry_tap_to_login"
                         android:textAlignment="center"
                         android:textColor="@color/color_accent"
                         android:textSize="@dimen/sp16"
@@ -117,9 +117,8 @@
                         app:layout_rowWeight="1"
                         app:vertical_icon_text_item_icon="@drawable/ic_light_settings"
                         app:vertical_icon_text_item_icon_scale_type="fitCenter"
-                        app:vertical_icon_text_item_icon_size="@dimen/dp35"
                         app:vertical_icon_text_item_padding_h="@dimen/dp35"
-                        app:vertical_icon_text_item_text="设置"
+                        app:vertical_icon_text_item_text=" 设置 "
                         app:vertical_icon_text_item_text_color="@color/color_accent"
                         app:vertical_icon_text_item_text_size="@dimen/sp12" />
 
@@ -134,7 +133,7 @@
                         app:vertical_icon_text_item_icon_scale_type="fitCenter"
                         app:vertical_icon_text_item_icon_size="@dimen/dp35"
                         app:vertical_icon_text_item_padding_h="@dimen/dp35"
-                        app:vertical_icon_text_item_text="关于"
+                        app:vertical_icon_text_item_text=" 关于 "
                         app:vertical_icon_text_item_text_color="@color/color_accent"
                         app:vertical_icon_text_item_text_size="@dimen/sp12" />
 
@@ -182,6 +181,21 @@
                         app:vertical_icon_text_item_text_size="@dimen/sp12" />
 
                     <com.cloudchewie.ui.custom.VerticalIconTextItem
+                        android:id="@+id/fragment_user_entry_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/dp10"
+                        app:layout_columnWeight="1"
+                        app:layout_gravity="center"
+                        app:layout_rowWeight="1"
+                        app:vertical_icon_text_item_icon="@drawable/ic_light_home"
+                        app:vertical_icon_text_item_icon_scale_type="fitCenter"
+                        app:vertical_icon_text_item_icon_size="@dimen/dp35"
+                        app:vertical_icon_text_item_text="我的主页"
+                        app:vertical_icon_text_item_text_color="@color/color_accent"
+                        app:vertical_icon_text_item_text_size="@dimen/sp12" />
+
+                    <com.cloudchewie.ui.custom.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_blog"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -192,7 +206,21 @@
                         app:vertical_icon_text_item_icon="@drawable/ic_light_link"
                         app:vertical_icon_text_item_icon_scale_type="fitCenter"
                         app:vertical_icon_text_item_icon_size="@dimen/dp35"
-                        app:vertical_icon_text_item_text="博客地址"
+                        app:vertical_icon_text_item_text="我的博客"
+                        app:vertical_icon_text_item_text_color="@color/color_accent"
+                        app:vertical_icon_text_item_text_size="@dimen/sp12" />
+
+                    <com.cloudchewie.ui.custom.VerticalIconTextItem
+                        android:id="@+id/fragment_user_entry_switch_daynight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:layout_columnWeight="1"
+                        app:layout_gravity="center"
+                        app:layout_rowWeight="1"
+                        app:vertical_icon_text_item_icon="@drawable/ic_light_daynight"
+                        app:vertical_icon_text_item_icon_scale_type="fitCenter"
+                        app:vertical_icon_text_item_icon_size="@dimen/dp35"
+                        app:vertical_icon_text_item_text="深色模式"
                         app:vertical_icon_text_item_text_color="@color/color_accent"
                         app:vertical_icon_text_item_text_size="@dimen/sp12" />
 

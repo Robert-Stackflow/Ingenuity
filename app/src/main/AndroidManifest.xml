@@ -74,12 +74,13 @@
         <activity android:name=".activity.profile.FavoritesListActivity" />
         <activity android:name=".activity.profile.FavoritesDetailActivity" />
         <!--入口-->
-        <activity android:name=".activity.entry.HelpActivity" />
-        <activity android:name=".activity.entry.FeedbackActivity" />
+        <activity android:name=".activity.settings.HelpActivity" />
+        <activity android:name=".activity.settings.LogActivity" />
+        <activity android:name=".activity.settings.FeedbackActivity" />
         <!--设置-->
         <activity android:name=".activity.settings.AboutActivity" />
         <activity android:name=".activity.settings.SettingsActivity" />
-        <activity android:name=".activity.settings.ChangePasswordActivity" />
+        <activity android:name=".activity.auth.ChangePasswordActivity" />
         <activity android:name=".activity.settings.AccountSettingsActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

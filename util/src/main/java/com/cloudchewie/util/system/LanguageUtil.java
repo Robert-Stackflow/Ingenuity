@@ -95,8 +95,6 @@ public class LanguageUtil {
     /**
      * 更新应用语言（核心）
      *
-     * @param context
-     * @param locale
      */
     private static void setAppLanguage(@NonNull Context context, Locale locale) {
         Resources resources = context.getResources();

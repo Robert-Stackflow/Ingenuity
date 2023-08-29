@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:maxEms="1"
-            android:text="@string/app_logo1"
+            android:text="@string/app_slogan_r"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="@dimen/dp10"
             android:maxEms="1"
-            android:text="@string/app_logo2"
+            android:text="@string/app_slogan_l"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/appsloganr"
             app:layout_constraintTop_toTopOf="@id/appsloganr" />

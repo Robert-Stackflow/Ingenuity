@@ -17,16 +17,20 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 public class ProgressWebView extends WebView {
-    private WebViewProgressBar progressBar;
-    private Handler handler;
-    private WebView mWebView;
+    private final WebViewProgressBar progressBar;
+    private final Handler handler;
+    private final WebView mWebView;
     private TextView titleView;
-    private Runnable runnable = new Runnable() {
+    private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
             progressBar.setVisibility(View.GONE);
         }
     };
+
+    public void setCacheEnabled(boolean enabled) {
+        mWebView.getSettings().setAppCacheEnabled(enabled);
+    }
 
     public ProgressWebView(Context context, AttributeSet attrs) {
         super(context, attrs);

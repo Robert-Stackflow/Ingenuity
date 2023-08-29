@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:transitionName="shareElement"
         app:right_button_visibility="false"
-        app:title="@string/entry_account" />
+        app:title="@string/title_account" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/activity_account_settings_swipe_refresh"

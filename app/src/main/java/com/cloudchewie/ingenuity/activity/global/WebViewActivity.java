@@ -17,15 +17,19 @@ import com.cloudchewie.ui.general.BottomSheet;
 import com.cloudchewie.ui.general.IToast;
 import com.cloudchewie.ui.general.ProgressWebView;
 import com.cloudchewie.util.system.ClipBoardUtil;
+import com.cloudchewie.util.system.SharedPreferenceCode;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 
 public class WebViewActivity extends BaseActivity implements View.OnClickListener {
     ProgressWebView webView;
     ImageView closeButton;
+    ImageView backButton;
     ImageView moreButton;
     TextView titleView;
     RelativeLayout titleLayout;
     String originUrl;
+    boolean enabledCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +38,22 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_webview);
         Intent intent = getIntent();
         originUrl = intent.getStringExtra("url");
+        if (intent.getStringExtra("enabledCache") == null) {
+            enabledCache = SharedPreferenceUtil.getBoolean(this, SharedPreferenceCode.ENABLE_WEB_CACHE.getKey(), true);
+        } else {
+            enabledCache = Boolean.parseBoolean(intent.getStringExtra("enabledCache"));
+        }
         if (originUrl == null) {
             IToast.makeTextBottom(this, "网址解析异常", Toast.LENGTH_SHORT).show();
             finish();
         }
+        backButton = findViewById(R.id.activity_webview_back);
         closeButton = findViewById(R.id.activity_webview_close);
         moreButton = findViewById(R.id.activity_webview_more);
         titleView = findViewById(R.id.activity_webview_title);
         webView = findViewById(R.id.activity_webview_webview);
         titleLayout = findViewById(R.id.activity_webview_titlebar);
+        backButton.setOnClickListener(this);
         closeButton.setOnClickListener(this);
         moreButton.setOnClickListener(this);
         initWebview();
@@ -58,12 +69,19 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.getSettings().setBlockNetworkImage(true);
-        webView.getSettings().setAppCacheEnabled(true);
+        webView.getSettings().setAppCacheEnabled(enabledCache);
         webView.loadUrl(originUrl);
     }
 
     @Override
     public void onClick(View v) {
+        if (v == backButton) {
+            if (webView.canGoBack()) {
+                webView.goBack();
+            } else {
+                finish();
+            }
+        }
         if (v == closeButton) {
             finish();
         } else if (v == moreButton) {

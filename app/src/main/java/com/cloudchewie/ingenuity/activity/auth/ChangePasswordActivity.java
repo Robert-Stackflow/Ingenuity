@@ -5,7 +5,7 @@
  * Copyright(c) 2022 Ruida https://cloudchewie.com
  */
 
-package com.cloudchewie.ingenuity.activity.settings;
+package com.cloudchewie.ingenuity.activity.auth;
 
 import android.os.Bundle;
 

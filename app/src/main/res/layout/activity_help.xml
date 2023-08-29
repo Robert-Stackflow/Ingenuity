@@ -19,22 +19,9 @@
         android:layout_height="match_parent"
         android:layout_below="@id/activity_help_titlebar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_help_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginEnd="@dimen/dp10"
-            android:background="@drawable/shape_round_dp10"
-            android:backgroundTint="@color/card_background"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp">
-
-            <com.cloudchewie.ui.custom.ExpandableItem
-                android:id="@+id/activity_help_expand_retrieve_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp10"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </RelativeLayout>

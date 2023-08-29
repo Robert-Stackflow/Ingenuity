@@ -1,6 +1,7 @@
 package com.cloudchewie.ui.custom;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -15,11 +16,13 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.cloudchewie.ui.R;
+import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.general.ExpandLayout;
 
 public class ExpandableItem extends ConstraintLayout {
     private ImageView iconView;
     private TextView titleView;
+    private TextView tagView;
     private TextView contentView;
     private View divider;
     private ConstraintLayout titleLayout;
@@ -54,6 +57,7 @@ public class ExpandableItem extends ConstraintLayout {
         expandLayout = findViewById(R.id.widget_expandable_item_expand_layout);
         iconView = findViewById(R.id.widget_expandable_item_icon);
         titleView = findViewById(R.id.widget_expandable_item_title);
+        tagView = findViewById(R.id.widget_expandable_item_tag);
         contentView = findViewById(R.id.widget_expandable_item_content);
         divider = findViewById(R.id.widget_expandable_item_divider);
         titleLayout = findViewById(R.id.widget_expandable_item_title_layout);
@@ -70,11 +74,20 @@ public class ExpandableItem extends ConstraintLayout {
             String title = attr.getString(R.styleable.ExpandableItem_expandable_item_title);
             int titleSize = (int) attr.getDimension(R.styleable.ExpandableItem_expandable_item_title_size, getResources().getDimension(R.dimen.sp15));
             int titleColor = attr.getColor(R.styleable.ExpandableItem_expandable_item_title_color, getResources().getColor(R.color.color_accent, getResources().newTheme()));
+            String tag = attr.getString(R.styleable.ExpandableItem_expandable_item_tag);
+            int tagSize = (int) attr.getDimension(R.styleable.ExpandableItem_expandable_item_tag_size, getResources().getDimension(R.dimen.sp12));
+            int tagColor = attr.getColor(R.styleable.ExpandableItem_expandable_item_tag_color, getResources().getColor(R.color.text_color_white, getResources().newTheme()));
+            int tagBackgroundId = attr.getResourceId(R.styleable.ExpandableItem_expandable_item_tag_background, R.drawable.shape_round_dp5);
+            int tagBackgroundTint = attr.getColor(R.styleable.ExpandableItem_expandable_item_tag_background_tint, ThemeUtil.getPrimaryColor(context));
             int contentColor = attr.getColor(R.styleable.ExpandableItem_expandable_item_content_color, getResources().getColor(R.color.color_gray, getResources().newTheme()));
             int contentSize = (int) attr.getDimension(R.styleable.ExpandableItem_expandable_item_content_size, getResources().getDimension(R.dimen.sp14));
             setTitle(title);
             setTitleSize(titleSize);
             setTitleColor(titleColor);
+            setTagText(tag);
+            setTagSize(tagSize);
+            setTagColor(tagColor);
+            setTagBackground(tagBackgroundId, tagBackgroundTint);
             setContentColor(contentColor);
             setContentSize(contentSize);
             attr.recycle();
@@ -82,6 +95,10 @@ public class ExpandableItem extends ConstraintLayout {
         setDividerVisible(false);
         titleLayout.setOnClickListener(v -> toggle());
         expandLayout.initExpand(false);
+    }
+
+    public TextView getTagView() {
+        return tagView;
     }
 
     public void toggle() {
@@ -133,6 +150,28 @@ public class ExpandableItem extends ConstraintLayout {
 
     public void setTitleSize(int size) {
         titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+    }
+
+    public void setTagText(String tag) {
+        tagView.setText(tag);
+        if (tag == null || tag.trim().equals("")) {
+            tagView.setVisibility(GONE);
+        } else {
+            tagView.setVisibility(VISIBLE);
+        }
+    }
+
+    public void setTagColor(int titleColor) {
+        tagView.setTextColor(titleColor);
+    }
+
+    public void setTagSize(int size) {
+        tagView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+    }
+
+    public void setTagBackground(int backgroundId, int backgroundTint) {
+        tagView.setBackgroundResource(backgroundId);
+        tagView.setBackgroundTintList(ColorStateList.valueOf(backgroundTint));
     }
 
     public void setContentColor(int contentColor) {

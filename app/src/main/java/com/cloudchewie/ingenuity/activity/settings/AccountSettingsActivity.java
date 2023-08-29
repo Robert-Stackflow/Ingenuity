@@ -14,6 +14,7 @@ import android.view.View;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.cloudchewie.ingenuity.R;
+import com.cloudchewie.ingenuity.activity.auth.ChangePasswordActivity;
 import com.cloudchewie.ingenuity.activity.global.BaseActivity;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.util.ui.StatusBarUtil;

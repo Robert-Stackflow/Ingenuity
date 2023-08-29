@@ -44,6 +44,11 @@
     </declare-styleable>
     <declare-styleable name="ExpandableItem">
         <attr name="expandable_item_title" format="string" />
+        <attr name="expandable_item_tag" format="string" />
+        <attr name="expandable_item_tag_color" format="color" />
+        <attr name="expandable_item_tag_size" format="dimension" />
+        <attr name="expandable_item_tag_background" format="reference|integer" />
+        <attr name="expandable_item_tag_background_tint" format="color" />
         <attr name="expandable_item_title_color" format="color" />
         <attr name="expandable_item_title_size" format="dimension" />
         <attr name="expandable_item_icon_background" format="reference|integer" />

@@ -64,7 +64,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(SharedPreferenceUtil.getThemeId(this, R.style.AppTheme));
+        setTheme(SharedPreferenceUtil.getThemeId(this, R.style.AppTheme_Color1));
         AppSharedPreferenceUtil.getUserInfo(this);
         super.onCreate(savedInstanceState);
         mConfiguration = new Configuration(getResources().getConfiguration());

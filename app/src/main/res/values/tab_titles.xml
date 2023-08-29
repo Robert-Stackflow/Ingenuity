@@ -1,8 +1,0 @@
-<resources>
-    <string-array name="fragment_home_titles">
-        <item>推荐</item>
-        <item>Memos</item>
-        <item>CloudRSS</item>
-        <item>CloudAuth</item>
-    </string-array>
-</resources>
