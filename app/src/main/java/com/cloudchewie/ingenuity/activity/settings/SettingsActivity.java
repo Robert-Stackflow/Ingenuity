@@ -46,6 +46,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     RefreshLayout swipeRefreshLayout;
     EntryItem clearCacheEntry;
     EntryItem languageEntry;
+    EntryItem accountSettingsEntry;
     CheckBoxItem autoDaynightEntry;
     CheckBoxItem switchDaynightEntry;
     CheckBoxItem enableWebCacheEntry;
@@ -56,7 +57,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_settings);
         ((TitleBar) findViewById(R.id.settings_titlebar)).setLeftButtonClickListener(v -> finish());
-        findViewById(R.id.entry_logout).setOnClickListener(this);
         clearCacheEntry = findViewById(R.id.entry_clear_cache);
         clearCacheEntry.setTipText(CacheUtil.getTotalCacheSize(this));
         clearCacheEntry.setOnClickListener(this);
@@ -64,6 +64,8 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         languageEntry.setOnClickListener(this);
         autoDaynightEntry = findViewById(R.id.switch_auto_daynight);
         switchDaynightEntry = findViewById(R.id.switch_daynight);
+        accountSettingsEntry = findViewById(R.id.entry_account_settings);
+        accountSettingsEntry.setOnClickListener(this);
         enableWebCacheEntry = findViewById(R.id.entry_enable_web_cache);
         initSwipeRefresh();
         initView();
@@ -71,9 +73,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     }
 
     void initView() {
-        if (!AppSharedPreferenceUtil.isLogin(this)) {
-            findViewById(R.id.entry_logout).setVisibility(View.GONE);
-        }
         if (!Objects.equals(SPUtils.getInstance().getString(SP_LANGUAGE, ""), ""))
             languageEntry.setTipText(LanguageUtil.getAppLanguage(SettingsActivity.this));
         else languageEntry.setTipText(getString(R.string.language_default));
@@ -132,7 +131,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             List<String> strings = Arrays.asList(getResources().getStringArray(R.array.edit_language));
             ListBottomSheet bottomSheet = new ListBottomSheet(SettingsActivity.this, ListBottomSheetBean.strToBean(strings));
             bottomSheet.setOnItemClickedListener(position -> {
-//                IToast.showBottom(SettingsActivity.this, getString(R.string.reboot_to_apply));
                 if (position == 0)
                     LanguageUtil.changeLanguage(SettingsActivity.this, "zh", "CN");
                 else if (position == 1)
@@ -176,30 +174,9 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             } else {
                 IToast.makeTextBottom(this, getString(R.string.no_need_to_clear_cache), Toast.LENGTH_SHORT).show();
             }
-        } else if (view == findViewById(R.id.entry_logout)) {
-            IDialog dialog = new IDialog(SettingsActivity.this);
-            dialog.setTitle(getString(R.string.dialog_title_logout));
-            dialog.setMessage(getString(R.string.dialog_content_logout));
-            dialog.setOnClickBottomListener(new IDialog.OnClickBottomListener() {
-                @Override
-                public void onPositiveClick() {
-                    AppSharedPreferenceUtil.logout(SettingsActivity.this);
-                    ActivityUtils.finishAllActivities();
-                    ActivityUtils.startActivity(new Intent(SettingsActivity.this, MainActivity.class).setAction(Intent.ACTION_DEFAULT));
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onNegtiveClick() {
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onCloseClick() {
-                    dialog.dismiss();
-                }
-            });
-            dialog.show();
+        } else if (view == accountSettingsEntry) {
+            Intent loginIntent = new Intent(this, AccountSettingsActivity.class).setAction(Intent.ACTION_DEFAULT);
+            startActivity(loginIntent);
         }
     }
 }

@@ -22,7 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dp20">
+            android:padding="@dimen/dp15">
 
             <TextView
                 android:id="@+id/login_by_mobile_title"
@@ -66,7 +66,7 @@
                 android:textSize="@dimen/sp12"
                 app:layout_constraintTop_toBottomOf="@id/login_by_mobile_password" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login_by_mobile_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,6 +75,7 @@
                 android:backgroundTint="?attr/colorPrimary"
                 android:stateListAnimator="@null"
                 android:text="@string/login"
+                android:layout_marginHorizontal="@dimen/dp10"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_white"
                 android:textSize="@dimen/sp16"

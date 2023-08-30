@@ -21,6 +21,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_help_recycler_view"
+            android:layout_marginHorizontal="@dimen/dp15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>

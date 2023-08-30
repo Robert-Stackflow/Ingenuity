@@ -17,7 +17,7 @@
             <com.cloudchewie.ui.shadow.ShadowRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="@dimen/dp10">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fragment_user_titlebar"
@@ -69,7 +69,7 @@
                         android:id="@+id/fragment_user_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp10"
+                        android:paddingTop="@dimen/dp10"
                         android:clickable="true"
                         android:focusable="true"
                         android:text="@string/entry_tap_to_login"

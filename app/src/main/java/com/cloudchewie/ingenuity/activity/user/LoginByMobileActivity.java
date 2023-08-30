@@ -3,6 +3,7 @@ package com.cloudchewie.ingenuity.activity.user;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -63,6 +64,7 @@ public class LoginByMobileActivity extends BaseActivity implements View.OnClickL
         findViewById(R.id.login_by_mobile_signup).setOnClickListener(this);
         findViewById(R.id.login_by_mobile_problem).setOnClickListener(this);
         findViewById(R.id.login_by_mobile_code).setOnClickListener(this);
+        passwordInput.getEditText().setTypeface(Typeface.SANS_SERIF);
         setTermView();
         initSwipeRefresh();
     }

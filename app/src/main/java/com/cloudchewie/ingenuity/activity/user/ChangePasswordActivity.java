@@ -7,23 +7,35 @@
 
 package com.cloudchewie.ingenuity.activity.user;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ui.custom.TitleBar;
+import com.cloudchewie.ui.item.InputItem;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class ChangePasswordActivity extends BaseActivity {
     RefreshLayout swipeRefreshLayout;
 
+    InputItem oldPasswordInput;
+    InputItem newPasswordInput;
+    InputItem confirmPasswordInput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_change_password);
+        oldPasswordInput = findViewById(R.id.activity_change_password_oldpassword);
+        newPasswordInput = findViewById(R.id.activity_change_password_newpassword);
+        confirmPasswordInput = findViewById(R.id.activity_change_password_confirmpassword);
         ((TitleBar) findViewById(R.id.activity_change_password_titlebar)).setLeftButtonClickListener(v -> finishAfterTransition());
+        oldPasswordInput.getEditText().setTypeface(Typeface.SANS_SERIF);
+        newPasswordInput.getEditText().setTypeface(Typeface.SANS_SERIF);
+        confirmPasswordInput.getEditText().setTypeface(Typeface.SANS_SERIF);
         initSwipeRefresh();
     }
 

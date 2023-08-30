@@ -3,6 +3,7 @@ package com.cloudchewie.ingenuity.activity.user;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -21,12 +22,14 @@ import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.activity.WebViewActivity;
 import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.TitleBar;
+import com.cloudchewie.ui.item.InputItem;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class SignupActivity extends BaseActivity implements View.OnClickListener {
     TextView termView;
     RefreshLayout swipeRefreshLayout;
+    InputItem passwordInput;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,9 +38,11 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_signup);
         termView = findViewById(R.id.activity_signup_term);
+        passwordInput = findViewById(R.id.activity_signup_password);
         ((TitleBar) findViewById(R.id.activity_signup_titlebar)).setLeftButtonClickListener(v -> finishAfterTransition());
         findViewById(R.id.activity_signup_confirm).setOnClickListener(this);
         findViewById(R.id.signup_login).setOnClickListener(this);
+        passwordInput.getEditText().setTypeface(Typeface.SANS_SERIF);
         setTermView();
         initSwipeRefresh();
     }

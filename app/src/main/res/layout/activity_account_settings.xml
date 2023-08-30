@@ -22,8 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp">
+            android:paddingHorizontal="@dimen/dp15">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/account_settings_account_layout"

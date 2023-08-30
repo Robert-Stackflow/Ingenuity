@@ -22,8 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp">
+            android:paddingHorizontal="@dimen/dp15">
 
             <com.cloudchewie.ui.custom.CircleImageView
                 android:id="@+id/entry_edit_avatar"
@@ -53,7 +52,7 @@
                 android:id="@+id/entry_edit_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp30"
                 android:clickable="true"
                 android:focusable="true"
                 android:textSize="18sp"
@@ -93,6 +92,22 @@
                 app:entry_item_top_radius_enable="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/entry_edit_signature" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/entry_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp50"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:background="@drawable/shape_button_round"
+                android:backgroundTint="?attr/colorPrimary"
+                android:stateListAnimator="@null"
+                android:text="@string/entry_logout"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/entry_edit_gender" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>

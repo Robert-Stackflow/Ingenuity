@@ -31,6 +31,7 @@ import com.cloudchewie.ingenuity.activity.settings.FeedbackActivity;
 import com.cloudchewie.ingenuity.activity.settings.HelpActivity;
 import com.cloudchewie.ingenuity.activity.settings.SettingsActivity;
 import com.cloudchewie.ingenuity.activity.settings.ThemeActivity;
+import com.cloudchewie.ingenuity.activity.user.InfoActivity;
 import com.cloudchewie.ingenuity.activity.user.LoginByMobileActivity;
 import com.cloudchewie.ingenuity.api.UserAuthRequest;
 import com.cloudchewie.ingenuity.entity.User;
@@ -226,12 +227,13 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             intent.putExtra("url", getString(R.string.url_home));
             startActivity(intent);
         } else if (view == usernameView || view == avatarView) {
-            Intent intent = new Intent(getActivity(), LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
-            startActivity(intent);
+            if (!AppSharedPreferenceUtil.isLogin(requireContext()) || user == null) {
+                Intent intent = new Intent(getActivity(), LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getActivity(), InfoActivity.class).setAction(Intent.ACTION_DEFAULT);
+                startActivity(intent);
+            }
         }
-//        if (!AppSharedPreferenceUtil.isLogin(requireContext()) || user == null) {
-//            Intent intent = new Intent(getActivity(), LoginActivity.class);
-//            startActivity(intent);
-//        }
     }
 }

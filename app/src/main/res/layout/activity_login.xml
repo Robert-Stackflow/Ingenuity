@@ -68,7 +68,7 @@
         android:layout_marginTop="@dimen/dp50"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/dp10"
+        android:padding="@dimen/dp15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_logo_layout">
@@ -81,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/login_logo_layout">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login_by_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

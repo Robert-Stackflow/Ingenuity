@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:input_item_mode="text"
+        app:input_item_backgroundTint="@color/color_selector_content"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -28,36 +29,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp20"
+        android:paddingHorizontal="@dimen/dp25"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/layout_input_bottom_sheet_count">
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/layout_input_bottom_sheet_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp40"
             android:layout_weight="1"
             android:background="@drawable/shape_button_round_frame"
-            android:backgroundTint="@color/color_accent"
+            android:backgroundTint="@color/color_light_gray"
+            android:contentDescription="@string/cd_image"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:text="@string/cancel"
             android:stateListAnimator="@null"
-            android:text="取消"
-            android:textAlignment="center"
             android:textColor="@color/color_accent"
-            android:textSize="@dimen/sp16" />
+            android:textAlignment="center"
+            android:textSize="@dimen/sp15" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/layout_input_bottom_sheet_confirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp20"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginStart="@dimen/dp25"
             android:layout_weight="1"
             android:background="@drawable/shape_button_round"
-            android:backgroundTint="@color/color_selector_prominent"
-            android:stateListAnimator="@null"
-            android:text="完成"
-            android:textAlignment="center"
+            android:backgroundTint="?attr/colorPrimary"
+            android:contentDescription="@string/cd_image"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:text="@string/confirm"
             android:textColor="@color/text_color_white"
-            android:textSize="@dimen/sp16"
+            android:textAlignment="center"
             android:textStyle="bold"
+            android:textSize="@dimen/sp15"
             app:layout_constraintTop_toBottomOf="@id/layout_input_bottom_sheet_input" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

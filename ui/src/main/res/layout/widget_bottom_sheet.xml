@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_round_top_dp15"
-    android:backgroundTint="@color/bottomsheet_background">
+    android:backgroundTint="@color/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_sheet_titlebar_layout"

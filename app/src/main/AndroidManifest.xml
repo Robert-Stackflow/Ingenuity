@@ -60,7 +60,7 @@
         <activity android:name=".activity.settings.ThemeActivity" />
         <activity android:name=".activity.settings.SettingsActivity" />
         <!--账号-->
-        <activity android:name=".activity.user.EditInfoActivity" />
+        <activity android:name=".activity.user.InfoActivity" />
         <activity android:name=".activity.user.ChangePasswordActivity" />
         <activity android:name=".activity.settings.AccountSettingsActivity" />
         <activity

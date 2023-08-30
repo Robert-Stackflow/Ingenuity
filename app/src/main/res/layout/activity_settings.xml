@@ -26,8 +26,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
+                android:paddingHorizontal="@dimen/dp15"
                 app:layout_constraintTop_toBottomOf="@id/settings_titlebar">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,17 +36,33 @@
                     android:layout_marginTop="10dp"
                     app:layout_constraintTop_toTopOf="parent">
 
+                    <com.cloudchewie.ui.item.EntryItem
+                        android:id="@+id/entry_account_settings"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:textSize="18sp"
+                        app:entry_item_bottom_radius_enable="true"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_title="@string/title_account"
+                        app:entry_item_top_radius_enable="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <com.cloudchewie.ui.item.CheckBoxItem
                         android:id="@+id/switch_auto_daynight"
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:layout_marginTop="@dimen/dp10"
                         app:checkbox_item_bottom_radius_enable="true"
                         app:checkbox_item_title="@string/entry_auto_daynight"
                         app:checkbox_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@id/entry_account_settings" />
 
                     <com.cloudchewie.ui.item.CheckBoxItem
                         android:id="@+id/switch_daynight"
@@ -83,7 +98,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp10"
                         android:textSize="18sp"
-                        app:checkbox_item_bottom_radius_enable="true"
                         app:checkbox_item_title="@string/entry_enable_web_cache"
                         app:checkbox_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
@@ -93,34 +107,16 @@
                         android:id="@+id/entry_clear_cache"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp10"
                         android:clickable="true"
+                        android:paddingBottom="@dimen/dp5"
                         android:focusable="true"
                         android:textSize="18sp"
                         app:entry_item_bottom_radius_enable="true"
                         app:entry_item_left_icon_visibility="false"
                         app:entry_item_tip_color="@color/color_gray"
                         app:entry_item_title="@string/entry_clear_cache"
-                        app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/entry_enable_web_cache" />
-
-                    <com.cloudchewie.ui.item.EntryItem
-                        android:id="@+id/entry_logout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp10"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:textSize="16sp"
-                        app:entry_item_bottom_radius_enable="true"
-                        app:entry_item_left_icon="@drawable/ic_light_cancel"
-                        app:entry_item_left_icon_visibility="false"
-                        app:entry_item_right_icon_visibility="false"
-                        app:entry_item_title="@string/entry_logout"
-                        app:entry_item_top_radius_enable="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/entry_clear_cache" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
