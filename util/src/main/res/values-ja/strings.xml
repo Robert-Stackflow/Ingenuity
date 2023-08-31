@@ -137,8 +137,6 @@
 	<string name="signup">登録</string>
 	<string name="finish_signup">仕上げる</string>
 	<string name="jump_to_login">既存のアカウント？今すぐログイン</string>
-	<string name="divider">|</string>
-	<string name="login_problem">ログインの問題</string>
 	<string name="fail_to_login_by_code">システムメンテナンス中のため、一時的に認証コードによるログインができません</string>
 	<string name="enter_mobile">携帯電話番号を入力</string>
 	<string name="enter_nickname">ニックネームを入力</string>
@@ -164,4 +162,19 @@
 	<string name="yesterday">昨日</string>
 	<string name="day_before_yesterday">一昨日</string>
 	<string name="tap_login_to_agree_and">そして</string>
+	<string name="bookmark_default_name">新しいブックマークバーを作成する</string>
+	<string name="title_bookmark">ブックマーク</string>
+	<string name="array_avatar_detail">アバターを表示</string>
+	<string name="array_choose_from_album">アルバムから選択</string>
+	<string name="array_shot">写真を撮る</string>
+	<string name="array_delete_image">画像を削除</string>
+	<string name="array_edit_image">画像を編集</string>
+	<string name="array_save_image">画像を保存</string>
+	<string name="array_feeadback_account">アカウント情報関連</string>
+	<string name="array_feeadback_layout">レイアウト設計関連</string>
+	<string name="array_feeadback_tool">ツールの使用法関連</string>
+	<string name="array_feeadback_other">その他のフィードバックの提案</string>
+	<string name="array_tab_memos">Memos</string>
+	<string name="array_tab_rss">CloudRSS</string>
+	<string name="array_tab_auth">CloudAuth</string>
 </resources>

@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
-import com.cloudchewie.ingenuity.activity.WebViewActivity;
+import com.cloudchewie.ingenuity.activity.application.WebViewActivity;
 import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.item.InputItem;
@@ -99,7 +99,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.signup_login) {
-            Intent loginIntent = new Intent(this, LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
+            Intent loginIntent = new Intent(this, LoginActivity.class).setAction(Intent.ACTION_DEFAULT);
             startActivity(loginIntent);
         }
     }

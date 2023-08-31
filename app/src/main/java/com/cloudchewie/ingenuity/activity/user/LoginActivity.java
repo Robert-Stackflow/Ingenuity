@@ -1,15 +1,9 @@
-/*
- * Project Name: Worthy
- * Author: Ruida
- * Last Modified: 2022/12/19 14:29:32
- * Copyright(c) 2022 Ruida https://cloudchewie.com
- */
-
 package com.cloudchewie.ingenuity.activity.user;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -24,21 +18,28 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
-import com.cloudchewie.ingenuity.activity.WebViewActivity;
-import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
-import com.cloudchewie.ingenuity.widget.ListBottomSheet;
+import com.cloudchewie.ingenuity.activity.MainActivity;
+import com.cloudchewie.ingenuity.activity.application.WebViewActivity;
+import com.cloudchewie.ingenuity.api.UserAuthRequest;
+import com.cloudchewie.ingenuity.api.UserProfileRequest;
+import com.cloudchewie.ingenuity.entity.User;
+import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
+import com.cloudchewie.ingenuity.util.http.JwtUtil;
 import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.custom.TitleBar;
+import com.cloudchewie.ui.item.InputItem;
 import com.cloudchewie.util.ui.StatusBarUtil;
-
-import java.util.Arrays;
-import java.util.List;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     TextView termView;
+    RefreshLayout swipeRefreshLayout;
+    InputItem mobileInput;
+    InputItem passwordInput;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,16 +48,27 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         overridePendingTransition(R.anim.anim_bottom_in, R.anim.anim_none);
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_login);
-        termView = findViewById(R.id.login_term);
-        ((TitleBar) findViewById(R.id.login_titlebar)).setLeftButtonClickListener(v -> {
+        termView = findViewById(R.id.login_by_mobile_term);
+        mobileInput = findViewById(R.id.login_by_mobile_phonenumber);
+        passwordInput = findViewById(R.id.login_by_mobile_password);
+        ((TitleBar) findViewById(R.id.login_by_mobile_titlebar)).setLeftButtonClickListener(v -> {
             finishAfterTransition();
             overridePendingTransition(R.anim.anim_none, R.anim.anim_bottom_out);
         });
-        findViewById(R.id.login_by_mobile).setOnClickListener(this);
-        findViewById(R.id.login_by_email).setOnClickListener(this);
-        findViewById(R.id.login_signup).setOnClickListener(this);
-        findViewById(R.id.login_problem).setOnClickListener(this);
+        findViewById(R.id.login_by_mobile_confirm).setOnClickListener(this);
+        findViewById(R.id.login_by_mobile_signup).setOnClickListener(this);
+        findViewById(R.id.login_by_mobile_code).setOnClickListener(this);
+        passwordInput.getEditText().setTypeface(Typeface.SANS_SERIF);
         setTermView();
+        initSwipeRefresh();
+    }
+
+    void initSwipeRefresh() {
+        swipeRefreshLayout = findViewById(R.id.login_by_mobile_swipe_refresh);
+        swipeRefreshLayout.setEnableOverScrollDrag(true);
+        swipeRefreshLayout.setEnableOverScrollBounce(true);
+        swipeRefreshLayout.setEnableLoadMore(false);
+        swipeRefreshLayout.setEnablePureScrollMode(true);
     }
 
     @Override
@@ -109,27 +121,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.login_by_mobile:
-                Intent loginByMobileIntent = new Intent(this, LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
-                startActivity(loginByMobileIntent);
-                break;
-            case R.id.login_by_email:
+            case R.id.login_by_mobile_code:
                 IToast.makeTextBottom(this, getString(R.string.fail_to_login_by_code), Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.login_signup:
+            case R.id.login_by_mobile_signup:
                 Intent signupIntent = new Intent(this, SignupActivity.class).setAction(Intent.ACTION_DEFAULT);
                 startActivity(signupIntent);
                 break;
-            case R.id.login_problem:
-                showLoginProblemDialog();
-                break;
+            case R.id.login_by_mobile_confirm:
+                User user = new User();
+                user.setPassword(passwordInput.getText());
+                user.setMobile(mobileInput.getText());
+                UserAuthRequest.login(user);
+                if (AppSharedPreferenceUtil.getToken(this) != null) {
+                    User ret = UserProfileRequest.info(JwtUtil.getAud(AppSharedPreferenceUtil.getToken(this)));
+                    if (ret != null) {
+                        AppSharedPreferenceUtil.setUserInfo(this, ret);
+                        ActivityUtils.finishAllActivities();
+                        ActivityUtils.startActivity(new Intent(this, MainActivity.class).setAction(Intent.ACTION_DEFAULT));
+                    } else {
+                        IToast.showBottom(this, getString(R.string.fail_to_login));
+                    }
+                } else {
+                    IToast.showBottom(this, getString(R.string.fail_to_login));
+                }
         }
-    }
-
-    public void showLoginProblemDialog() {
-        List<String> operations = Arrays.asList(getResources().getStringArray(R.array.login_problems));
-        ListBottomSheet popupWindow = new ListBottomSheet(this, ListBottomSheetBean.strToBean(operations));
-        popupWindow.setOnItemClickedListener(position -> popupWindow.dismiss());
-        popupWindow.show();
     }
 }

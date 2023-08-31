@@ -105,6 +105,11 @@ public class VerticalIconTextItem extends ConstraintLayout {
         textView.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
     }
 
+    public void setMinLinesWithCenter(int minLines) {
+        textView.setMinLines(minLines);
+        textView.setGravity(Gravity.CENTER);
+    }
+
     public void toggle() {
         setChecked(!isChecked);
     }

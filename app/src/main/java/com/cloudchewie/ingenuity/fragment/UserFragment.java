@@ -7,6 +7,8 @@
 
 package com.cloudchewie.ingenuity.fragment;
 
+import static com.cloudchewie.ingenuity.util.bookmark.BookmarkImport.importBookmarks;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,21 +27,23 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.WebViewActivity;
+import com.cloudchewie.ingenuity.activity.application.WebViewActivity;
 import com.cloudchewie.ingenuity.activity.settings.AboutActivity;
 import com.cloudchewie.ingenuity.activity.settings.FeedbackActivity;
 import com.cloudchewie.ingenuity.activity.settings.HelpActivity;
 import com.cloudchewie.ingenuity.activity.settings.SettingsActivity;
 import com.cloudchewie.ingenuity.activity.settings.ThemeActivity;
 import com.cloudchewie.ingenuity.activity.user.InfoActivity;
-import com.cloudchewie.ingenuity.activity.user.LoginByMobileActivity;
+import com.cloudchewie.ingenuity.activity.user.LoginActivity;
 import com.cloudchewie.ingenuity.api.UserAuthRequest;
 import com.cloudchewie.ingenuity.entity.User;
+import com.cloudchewie.ingenuity.util.bookmark.BookmarkExport;
 import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.CircleImageView;
 import com.cloudchewie.ui.item.VerticalIconTextItem;
+import com.cloudchewie.util.system.LanguageUtil;
 import com.cloudchewie.util.ui.DarkModeUtil;
 import com.cloudchewie.util.ui.MatricsUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
@@ -118,7 +122,6 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         initEvent();
         limitWidth(blogEntry);
         limitWidth(themeEntry);
-        limitWidth(blogEntry);
         limitWidth(settingEntry);
         limitWidth(aboutEntry);
         limitWidth(helpEntry);
@@ -126,6 +129,18 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         limitWidth(githubEntry);
         limitWidth(homeEntry);
         limitWidth(dayNightEntry);
+        if (LanguageUtil.getAppLanguage(getContext()).equals(getString(R.string.language_english)) || LanguageUtil.getAppLanguage(getContext()).equals(getString(R.string.language_japanese))) {
+            blogEntry.setMinLinesWithCenter(2);
+            themeEntry.setMinLinesWithCenter(2);
+            settingEntry.setMinLinesWithCenter(2);
+            aboutEntry.setMinLinesWithCenter(2);
+            helpEntry.setMinLinesWithCenter(2);
+            feedbackEntry.setMinLinesWithCenter(2);
+            githubEntry.setMinLinesWithCenter(2);
+            homeEntry.setMinLinesWithCenter(2);
+            dayNightEntry.setMinLinesWithCenter(2);
+        }
+        mainView.findViewById(R.id.fragment_user_entry_parse).setOnClickListener(v -> BookmarkExport.exportBookmarks(requireContext(), importBookmarks(requireContext(), "bookmark.html"), "bookmark.html"));
         return mainView;
     }
 
@@ -228,7 +243,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             startActivity(intent);
         } else if (view == usernameView || view == avatarView) {
             if (!AppSharedPreferenceUtil.isLogin(requireContext()) || user == null) {
-                Intent intent = new Intent(getActivity(), LoginByMobileActivity.class).setAction(Intent.ACTION_DEFAULT);
+                Intent intent = new Intent(getActivity(), LoginActivity.class).setAction(Intent.ACTION_DEFAULT);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(getActivity(), InfoActivity.class).setAction(Intent.ACTION_DEFAULT);

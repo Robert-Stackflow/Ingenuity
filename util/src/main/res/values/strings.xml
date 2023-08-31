@@ -28,6 +28,7 @@
     <string name="title_theme">主题颜色</string>
     <string name="title_home">我的主页</string>
     <string name="title_blog">博客地址</string>
+    <string name="title_bookmark">书签栏</string>
     <!--对话框-->
     <string name="dialog_title_clear_cache">清除缓存</string>
     <string name="dialog_content_clear_cache">是否清除缓存（缓存包括下载的图片、数据等，清除后需要重新下载）</string>
@@ -150,8 +151,6 @@
     <string name="signup">注册</string>
     <string name="finish_signup">完成注册</string>
     <string name="jump_to_login">已有帐号？立即登录</string>
-    <string name="divider"> | </string>
-    <string name="login_problem">登录问题</string>
     <string name="fail_to_login_by_code">系统维护中，暂时无法使用验证码登录</string>
     <string name="enter_mobile">输入手机号码</string>
     <string name="enter_nickname">输入昵称</string>
@@ -176,4 +175,19 @@
     <string name="second_before">秒前</string>
     <string name="yesterday">昨天</string>
     <string name="day_before_yesterday">前天</string>
+    <string name="bookmark_default_name">新建书签栏</string>
+    <!--数组-->
+    <string name="array_avatar_detail">查看头像</string>
+    <string name="array_choose_from_album">从相册选择</string>
+    <string name="array_shot">拍摄照片</string>
+    <string name="array_delete_image">删除图片</string>
+    <string name="array_edit_image">编辑图片</string>
+    <string name="array_save_image">保存图片</string>
+    <string name="array_feeadback_account">帐号信息相关</string>
+    <string name="array_feeadback_layout">布局设计相关</string>
+    <string name="array_feeadback_tool">工具使用相关</string>
+    <string name="array_feeadback_other">其他反馈建议</string>
+    <string name="array_tab_memos">Memos</string>
+    <string name="array_tab_rss">CloudRSS</string>
+    <string name="array_tab_auth">CloudAuth</string>
 </resources>

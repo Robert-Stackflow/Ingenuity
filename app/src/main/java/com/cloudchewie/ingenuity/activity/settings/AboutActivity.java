@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
-import com.cloudchewie.ingenuity.activity.WebViewActivity;
+import com.cloudchewie.ingenuity.activity.application.WebViewActivity;
 import com.cloudchewie.ui.item.EntryItem;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.custom.IToast;

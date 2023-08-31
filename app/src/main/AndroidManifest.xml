@@ -62,19 +62,15 @@
         <!--账号-->
         <activity android:name=".activity.user.InfoActivity" />
         <activity android:name=".activity.user.ChangePasswordActivity" />
-        <activity android:name=".activity.settings.AccountSettingsActivity" />
         <activity
             android:name=".activity.user.LoginActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.Login" />
         <activity
-            android:name=".activity.user.LoginByMobileActivity"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".activity.user.SignupActivity"
             android:launchMode="singleTask" />
         <!--通用-->
-        <activity android:name=".activity.WebViewActivity" />
+        <activity android:name=".activity.application.WebViewActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:launchMode="singleTop"

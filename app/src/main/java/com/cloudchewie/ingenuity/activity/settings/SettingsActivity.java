@@ -46,7 +46,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     RefreshLayout swipeRefreshLayout;
     EntryItem clearCacheEntry;
     EntryItem languageEntry;
-    EntryItem accountSettingsEntry;
     CheckBoxItem autoDaynightEntry;
     CheckBoxItem switchDaynightEntry;
     CheckBoxItem enableWebCacheEntry;
@@ -64,8 +63,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         languageEntry.setOnClickListener(this);
         autoDaynightEntry = findViewById(R.id.switch_auto_daynight);
         switchDaynightEntry = findViewById(R.id.switch_daynight);
-        accountSettingsEntry = findViewById(R.id.entry_account_settings);
-        accountSettingsEntry.setOnClickListener(this);
         enableWebCacheEntry = findViewById(R.id.entry_enable_web_cache);
         initSwipeRefresh();
         initView();
@@ -174,9 +171,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             } else {
                 IToast.makeTextBottom(this, getString(R.string.no_need_to_clear_cache), Toast.LENGTH_SHORT).show();
             }
-        } else if (view == accountSettingsEntry) {
-            Intent loginIntent = new Intent(this, AccountSettingsActivity.class).setAction(Intent.ACTION_DEFAULT);
-            startActivity(loginIntent);
         }
     }
 }

@@ -31,12 +31,10 @@ public class AppSharedPreferenceUtil {
 
     public static void setAutoDaynight(@NonNull Context context, boolean isAutoDaynight) {
         SharedPreferenceUtil.putBoolean(context, SharedPreferenceCode.AUTO_DAYNIGHT.getKey(), isAutoDaynight);
-        Log.d("xuruida", isAutoDaynight ? "设置为深色跟随系统" : "设置为深色不跟随系统");
     }
 
     public static void setNight(@NonNull Context context, boolean isNight) {
         SharedPreferenceUtil.putBoolean(context, SharedPreferenceCode.IS_NIGHT.getKey(), isNight);
-        Log.d("xuruida", isNight ? "设置为深色" : "设置为浅色");
     }
 
 

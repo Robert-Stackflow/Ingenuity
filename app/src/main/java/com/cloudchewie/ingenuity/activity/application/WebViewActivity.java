@@ -1,4 +1,4 @@
-package com.cloudchewie.ingenuity.activity;
+package com.cloudchewie.ingenuity.activity.application;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudchewie.ingenuity.R;
+import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.custom.ProgressWebView;
 import com.cloudchewie.ui.general.BottomSheet;

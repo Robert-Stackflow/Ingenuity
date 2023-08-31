@@ -95,6 +95,21 @@
                     app:useDefaultMargins="false">
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
+                        android:id="@+id/fragment_user_entry_parse"
+                        android:layout_width="@dimen/dp110"
+                        android:layout_height="match_parent"
+                        android:minWidth="@dimen/dp110"
+                        app:layout_columnWeight="1"
+                        app:layout_gravity="center"
+                        app:layout_rowWeight="1"
+                        app:vertical_icon_text_item_icon="@drawable/ic_light_book"
+                        app:vertical_icon_text_item_icon_scale_type="fitCenter"
+                        app:vertical_icon_text_item_icon_size="@dimen/dp35"
+                        app:vertical_icon_text_item_text="@string/title_bookmark"
+                        app:vertical_icon_text_item_text_color="@color/color_accent"
+                        app:vertical_icon_text_item_text_size="@dimen/sp12" />
+
+                    <com.cloudchewie.ui.item.VerticalIconTextItem
                         android:id="@+id/fragment_user_entry_theme"
                         android:layout_width="@dimen/dp110"
                         android:minWidth="@dimen/dp110"
@@ -224,6 +239,7 @@
                         android:layout_width="@dimen/dp110"
                         android:layout_height="match_parent"
                         android:minWidth="@dimen/dp110"
+                        android:layout_marginTop="@dimen/dp10"
                         app:layout_columnWeight="1"
                         app:layout_gravity="center"
                         app:layout_rowWeight="1"

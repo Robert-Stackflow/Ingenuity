@@ -57,8 +57,9 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     User user;
     CircleImageView avatarEntry;
     EntryItem nickNameEntry;
-    EntryItem signatureEntry;
-    EntryItem genderEntry;
+    EntryItem changePasswordEntry;
+    EntryItem changePhoneEntry;
+    EntryItem cancelAccountEntry;
     Button logoutEntry;
     File takeImageFile;
 
@@ -70,8 +71,9 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         ((TitleBar) findViewById(R.id.activity_edit_info_titlebar)).setLeftButtonClickListener(v -> finish());
         avatarEntry = findViewById(R.id.entry_edit_avatar);
         nickNameEntry = findViewById(R.id.entry_edit_nickname);
-        signatureEntry = findViewById(R.id.entry_edit_signature);
-        genderEntry = findViewById(R.id.entry_edit_gender);
+        changePasswordEntry = findViewById(R.id.entry_change_password);
+        changePhoneEntry = findViewById(R.id.entry_change_phone);
+        cancelAccountEntry = findViewById(R.id.entry_cancelaccount);
         logoutEntry = findViewById(R.id.entry_logout);
         initView();
         initSwipeRefresh();
@@ -83,17 +85,14 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         if (user != null) {
             Glide.with(InfoActivity.this).load(user.getAvatar()).apply(new RequestOptions().error(R.drawable.ic_state_image_load_fail).placeholder(R.drawable.ic_state_background)).into(avatarEntry);
             nickNameEntry.setTipText(user.getNickname());
-            signatureEntry.setTipText(user.getSignature());
-            genderEntry.setTipText(String.valueOf(user.getGender()));
+            changePasswordEntry.setTipText(user.getSignature());
+            changePhoneEntry.setTipText(String.valueOf(user.getGender()));
         }
         nickNameEntry.setOnClickListener(this);
-        signatureEntry.setOnClickListener(this);
+        changePasswordEntry.setOnClickListener(this);
         avatarEntry.setOnClickListener(this);
-        genderEntry.setOnClickListener(this);
+        changePhoneEntry.setOnClickListener(this);
         logoutEntry.setOnClickListener(this);
-        if (!AppSharedPreferenceUtil.isLogin(this)) {
-            findViewById(R.id.entry_logout).setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -107,25 +106,10 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             });
             bottomSheet.setOnDismissListener(dialog -> bottomSheet.hideKeyBoard());
             bottomSheet.show();
-        } else if (view == signatureEntry) {
-            InputBottomSheet bottomSheet = new InputBottomSheet(this, signatureEntry.getTitle(), signatureEntry.getTip(), 100, true, 3);
-            bottomSheet.setOnConfirmClickedListener(content -> {
-                signatureEntry.setTipText(content);
-                user.setSignature(content);
-                UserAuthRequest.update(user);
-            });
-            bottomSheet.setOnDismissListener(dialog -> bottomSheet.hideKeyBoard());
-            bottomSheet.show();
-        } else if (view == genderEntry) {
-            List<String> strings = Arrays.asList(getResources().getStringArray(R.array.edit_gender));
-            ListBottomSheet bottomSheet = new ListBottomSheet(InfoActivity.this, ListBottomSheetBean.strToBean(strings));
-            bottomSheet.setOnItemClickedListener(position -> {
-                genderEntry.setTipText(strings.get(position));
-                user.setGender(strings.get(position).charAt(0));
-                UserAuthRequest.update(user);
-                bottomSheet.dismiss();
-            });
-            bottomSheet.show();
+        } else if (view == changePasswordEntry) {
+            Intent intent = new Intent(getApplicationContext(), ChangePasswordActivity.class).setAction(Intent.ACTION_DEFAULT);
+            startActivity(intent);
+        } else if (view == changePhoneEntry) {
         } else if (view == avatarEntry) {
             List<String> strings = Arrays.asList(getResources().getStringArray(R.array.edit_avatar));
             ListBottomSheet bottomSheet = new ListBottomSheet(InfoActivity.this, ListBottomSheetBean.strToBean(strings));
