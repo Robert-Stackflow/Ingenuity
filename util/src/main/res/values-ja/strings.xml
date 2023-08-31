@@ -6,7 +6,7 @@
 	<string name="app_slogan_l">お互いの心とぶつかって</string>
 	<string name="default_copyright">Copyright © 2023-XXXX Cloudchewie</string>
 	<string name="copyright">Copyright © 2023-%1$d Cloudchewie</string>
-	<string name="nav_home">トップページ</string>
+	<string name="nav_home">表紙</string>
 	<string name="nav_tool">ツール</string>
 	<string name="nav_mine">マイ</string>
 	<string name="blank">空白</string>
@@ -176,5 +176,6 @@
 	<string name="array_feeadback_other">その他のフィードバックの提案</string>
 	<string name="array_tab_memos">Memos</string>
 	<string name="array_tab_rss">CloudRSS</string>
-	<string name="array_tab_auth">CloudAuth</string>
+	<string name="array_tab_AI">CloudAI</string>
+    <string name="nav_auth">バリデーター</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab drawable="@drawable/ic_nav_home_fill" text="@string/nav_home" />
+    <tab drawable="@drawable/ic_nav_follow_fill" text="@string/nav_auth" />
     <tab drawable="@drawable/ic_nav_discover_fill" text="@string/nav_tool" />
     <tab drawable="@drawable/ic_nav_user_fill" text="@string/nav_mine" />
 </tabs>

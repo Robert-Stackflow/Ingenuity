@@ -10,6 +10,7 @@
     <string name="nav_home">首页</string>
     <string name="nav_tool">工具</string>
     <string name="nav_mine">我的</string>
+    <string name="nav_auth">验证器</string>
     <!--通用-->
     <string name="blank">空白</string>
     <string name="confirm">确定</string>
@@ -189,5 +190,5 @@
     <string name="array_feeadback_other">其他反馈建议</string>
     <string name="array_tab_memos">Memos</string>
     <string name="array_tab_rss">CloudRSS</string>
-    <string name="array_tab_auth">CloudAuth</string>
+    <string name="array_tab_AI">CloudAI</string>
 </resources>

@@ -28,6 +28,6 @@
     <string-array name="fragment_home_titles">
         <item>@string/array_tab_memos</item>
         <item>@string/array_tab_rss</item>
-        <item>@string/array_tab_auth</item>
+        <item>@string/array_tab_AI</item>
     </string-array>
 </resources>

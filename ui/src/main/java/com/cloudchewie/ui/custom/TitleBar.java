@@ -53,8 +53,8 @@ public class TitleBar extends ConstraintLayout implements View.OnClickListener {
         title_view = findViewById(R.id.titlebar_title);
         TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.TitleBar);
         if (attr != null) {
-            int titleBarBackground = attr.getResourceId(R.styleable.TitleBar_titlebar_background, Color.TRANSPARENT);
-            setBackgroundResource(titleBarBackground);
+            int titleBarBackground = attr.getColor(R.styleable.TitleBar_titlebar_background, Color.TRANSPARENT);
+            findViewById(R.id.titlebar_main_layout).setBackgroundColor(titleBarBackground);
             boolean leftButtonVisible = attr.getBoolean(R.styleable.TitleBar_left_button_visibility, true);
             int leftButtonIconId = attr.getResourceId(R.styleable.TitleBar_left_button_icon, R.drawable.ic_light_arrow_left);
             int leftButtonBackgroundColor = attr.getColor(R.styleable.TitleBar_left_button_background, Color.TRANSPARENT);

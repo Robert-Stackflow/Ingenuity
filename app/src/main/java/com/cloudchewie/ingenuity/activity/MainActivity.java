@@ -19,12 +19,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.fragment.BaseFragment;
+import com.cloudchewie.ingenuity.fragment.AuthenticatorFragment;
 import com.cloudchewie.ingenuity.fragment.HomeFragment;
+import com.cloudchewie.ingenuity.fragment.ToolFragment;
 import com.cloudchewie.ingenuity.fragment.UserFragment;
 import com.cloudchewie.ingenuity.util.database.AppDatabase;
-import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ingenuity.util.database.LocalStorage;
+import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.bottombar.ReadableBottomBar;
 import com.cloudchewie.ui.general.NoScrollViewPager;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
@@ -58,7 +59,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         readableBottomBar = findViewById(R.id.activity_main_readable_bottom_bar);
         fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
-        fragments.add(new BaseFragment());
+        fragments.add(new AuthenticatorFragment());
+        fragments.add(new ToolFragment());
         fragments.add(new UserFragment());
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);

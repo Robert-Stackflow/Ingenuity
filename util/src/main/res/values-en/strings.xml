@@ -8,7 +8,7 @@
 	<string name="copyright">Copyright © 2023-%1$d Cloudchewie</string>
 	<string name="nav_home">Home</string>
 	<string name="nav_tool">Tool</string>
-	<string name="nav_mine">My</string>
+	<string name="nav_mine">Mine</string>
 	<string name="blank">Blank</string>
 	<string name="confirm">Confirm</string>
 	<string name="cancel">Cancel</string>
@@ -176,5 +176,6 @@
 	<string name="array_feeadback_other">Other feedback suggestions</string>
 	<string name="array_tab_memos">Memos</string>
 	<string name="array_tab_rss">CloudRSS</string>
-	<string name="array_tab_auth">CloudAuth</string>
+	<string name="array_tab_AI">CloudAI</string>
+    <string name="nav_auth">Authenticator</string>
 </resources>

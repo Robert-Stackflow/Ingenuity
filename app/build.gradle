@@ -33,6 +33,7 @@ android {
 dependencies {
     implementation project(':ui')
     implementation project(':util')
+    implementation project(':auth')
     implementation project(':ucrop')
     implementation project(':imagepicker')
     implementation project(':imagepreview')
