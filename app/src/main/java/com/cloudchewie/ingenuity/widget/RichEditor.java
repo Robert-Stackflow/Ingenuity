@@ -73,7 +73,7 @@ public class RichEditor extends WebView {
         webSettings.setAllowFileAccess(true);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
+//        webSettings.setAppCacheEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setPluginState(WebSettings.PluginState.ON);
         loadUrl(SETUP_HTML);

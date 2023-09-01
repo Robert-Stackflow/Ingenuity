@@ -19,7 +19,7 @@ import com.blankj.utilcode.util.KeyboardUtils;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.general.BottomSheet;
-import com.cloudchewie.ui.item.InputItem;
+import com.cloudchewie.ui.item.InputLayout;
 
 public class InputBottomSheet extends BottomSheet {
     Context context;
@@ -31,7 +31,7 @@ public class InputBottomSheet extends BottomSheet {
     int minLines = -1;
     int maxLength = -1;
     EditText editText;
-    InputItem inputItem;
+    InputLayout inputLayout;
     Button confirmButton;
     Button cancelButton;
     TextView countView;
@@ -91,10 +91,10 @@ public class InputBottomSheet extends BottomSheet {
         setTitleBarBackGroundTint(R.color.card_background);
         setMainLayout(R.layout.layout_input_bottom_sheet);
         confirmButton = mainView.findViewById(R.id.layout_input_bottom_sheet_confirm);
-        inputItem = mainView.findViewById(R.id.layout_input_bottom_sheet_input);
+        inputLayout = mainView.findViewById(R.id.layout_input_bottom_sheet_input);
         countView = mainView.findViewById(R.id.layout_input_bottom_sheet_count);
         cancelButton = mainView.findViewById(R.id.layout_input_bottom_sheet_cancel);
-        editText = inputItem.getEditText();
+        editText = inputLayout.getEditText();
         editText.setText(content);
         editText.setHint(hint);
         editText.setSelection(editText.getText().toString().length());
@@ -123,11 +123,11 @@ public class InputBottomSheet extends BottomSheet {
             });
         }
         confirmButton.setOnClickListener(v -> {
-            if (isRequired && TextUtils.isEmpty(inputItem.getText())) {
+            if (isRequired && TextUtils.isEmpty(inputLayout.getText())) {
                 IToast.makeTextTop(getContext(), title + "不能为空", Toast.LENGTH_SHORT).show();
             } else {
                 if (onConfirmClickedListener != null)
-                    onConfirmClickedListener.OnConfirmClicked(inputItem.getText());
+                    onConfirmClickedListener.OnConfirmClicked(inputLayout.getText());
                 dismiss();
             }
         });

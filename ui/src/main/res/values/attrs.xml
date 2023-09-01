@@ -77,32 +77,29 @@
         <attr name="checkbox_item_top_radius_enable" format="boolean" />
         <attr name="checkbox_item_bottom_radius_enable" format="boolean" />
     </declare-styleable>
-
-    <declare-styleable name="TagItem">
-        <attr name="tag_item_background" format="reference|integer" />
-        <attr name="tag_item_text" format="string" />
-        <attr name="tag_item_text_color" format="color" />
-        <attr name="tag_item_text_size" format="dimension" />
+    <declare-styleable name="RadioItem">
+        <attr name="radio_item_background" format="reference|integer" />
+        <attr name="radio_item_title" format="string" />
+        <attr name="radio_item_array" format="reference" />
+        <attr name="radio_item_init_index" format="integer" />
+        <attr name="radio_item_title_color" format="color" />
+        <attr name="radio_item_top_radius_enable" format="boolean" />
+        <attr name="radio_item_bottom_radius_enable" format="boolean" />
     </declare-styleable>
-
-    <declare-styleable name="ChatterItem">
-        <attr name="chatter_item_name" format="string" />
-        <attr name="chatter_item_name_color" format="color" />
-        <attr name="chatter_item_tag" format="string" />
-        <attr name="chatter_item_tag_color" format="color" />
-        <attr name="chatter_item_tag_visibility" format="boolean" />
-        <attr name="chatter_item_tag_background_color" format="color" />
-        <attr name="chatter_item_time" format="string" />
-        <attr name="chatter_item_time_color" format="color" />
-        <attr name="chatter_item_content" format="string" />
-        <attr name="chatter_item_content_color" format="color" />
-        <attr name="chatter_item_avatar" format="reference" />
-        <attr name="chatter_item_splitter_enable" format="boolean" />
-        <attr name="chatter_item_top_radius_enable" format="boolean" />
-        <attr name="chatter_item_bottom_radius_enable" format="boolean" />
+    <declare-styleable name="SpinnerItem">
+        <attr name="spinner_item_background" format="reference|integer" />
+        <attr name="spinner_item_title" format="string" />
+        <attr name="spinner_item_array" format="reference" />
+        <attr name="spinner_item_title_color" format="color" />
+        <attr name="spinner_item_top_radius_enable" format="boolean" />
+        <attr name="spinner_item_bottom_radius_enable" format="boolean" />
     </declare-styleable>
-
     <declare-styleable name="InputItem">
+        <attr name="input_item_background" format="reference|integer" />
+        <attr name="input_item_title" format="string" />
+        <attr name="input_item_title_color" format="color" />
+        <attr name="input_item_top_radius_enable" format="boolean" />
+        <attr name="input_item_bottom_radius_enable" format="boolean" />
         <attr name="input_item_mode" format="enum">
             <enum name="text" value="0" />
             <enum name="textmultilines" value="1" />
@@ -117,12 +114,28 @@
         <attr name="input_item_single_line" format="boolean" />
         <attr name="input_item_max_lines" format="integer" />
         <attr name="input_item_editable" format="boolean" />
-        <attr name="input_item_left_icon" format="reference" />
-        <attr name="input_item_left_icon_visibility" format="boolean" />
-        <attr name="input_item_background" format="reference" />
-        <attr name="input_item_backgroundTint" format="color" />
-        <attr name="input_item_right_icon" format="reference" />
-        <attr name="input_item_right_icon_visibility" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="InputLayout">
+        <attr name="input_layout_mode" format="enum">
+            <enum name="text" value="0" />
+            <enum name="textmultilines" value="1" />
+            <enum name="number" value="2" />
+            <enum name="password" value="3" />
+            <enum name="phonenumber" value="4" />
+            <enum name="mail" value="5" />
+        </attr>
+        <attr name="input_layout_hint" format="string" />
+        <attr name="input_layout_text" format="string" />
+        <attr name="input_layout_text_size" format="dimension" />
+        <attr name="input_layout_single_line" format="boolean" />
+        <attr name="input_layout_max_lines" format="integer" />
+        <attr name="input_layout_editable" format="boolean" />
+        <attr name="input_layout_left_icon" format="reference" />
+        <attr name="input_layout_left_icon_visibility" format="boolean" />
+        <attr name="input_layout_background" format="reference" />
+        <attr name="input_layout_backgroundTint" format="color" />
+        <attr name="input_layout_right_icon" format="reference" />
+        <attr name="input_layout_right_icon_visibility" format="boolean" />
     </declare-styleable>
     <declare-styleable name="FlowTagLayout">
         <attr name="horizontal_diver" format="dimension" />
@@ -207,23 +220,24 @@
         <attr name="history_padding_bottom" format="dimension" />
     </declare-styleable>
 
-    <declare-styleable name="SpinnerItem">
-        <attr name="spinner_text" format="string" />
-        <attr name="spinner_text_size" format="dimension" />
-        <attr name="spinner_text_color" format="reference|color" />
-        <attr name="spinner_text_checked_color" format="reference|color" />
-        <attr name="spinner_background" format="reference" />
-        <attr name="spinner_background_tint" format="reference|color" />
-        <attr name="spinner_background_checked_tint" format="reference|color" />
-        <attr name="spinner_icon" format="reference" />
-        <attr name="spinner_checked_icon" format="reference" />
-        <attr name="spinner_icon_size" format="dimension" />
-        <attr name="spinner_icon_color" format="reference|color" />
-        <attr name="spinner_icon_checked_color" format="reference|color" />
-        <attr name="spinner_padding_left" format="dimension" />
-        <attr name="spinner_padding_top" format="dimension" />
-        <attr name="spinner_padding_right" format="dimension" />
-        <attr name="spinner_padding_bottom" format="dimension" />
+    <declare-styleable name="SpinnerTag">
+        <attr name="spinner_tag_text" format="string" />
+        <attr name="spinner_tag_text_size" format="dimension" />
+        <attr name="spinner_tag_text_color" format="reference|color" />
+        <attr name="spinner_tag_text_checked_color" format="reference|color" />
+        <attr name="spinner_tag_background" format="reference" />
+        <attr name="spinner_tag_background_tint" format="reference|color" />
+        <attr name="spinner_tag_background_checked_tint" format="reference|color" />
+        <attr name="spinner_tag_icon" format="reference" />
+        <attr name="spinner_tag_checked_icon" format="reference" />
+        <attr name="spinner_tag_icon_size" format="dimension" />
+        <attr name="spinner_tag_icon_color" format="reference|color" />
+        <attr name="spinner_tag_icon_checked_color" format="reference|color" />
+        <attr name="spinner_tag_padding_left" format="dimension" />
+        <attr name="spinner_tag_padding_top" format="dimension" />
+        <attr name="spinner_tag_padding_right" format="dimension" />
+        <attr name="spinner_tag_padding_bottom" format="dimension" />
+        <attr name="spinner_tag_array" format="reference" />
     </declare-styleable>
     <declare-styleable name="RecordVoiceButton">
         <attr name="voiceBtnText" format="string" />
@@ -425,5 +439,23 @@
         <attr name="menu_fab_label" format="string" />
         <attr name="menu_fab_show_animation" format="reference" />
         <attr name="menu_fab_hide_animation" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="ProgressCircle">
+        <attr name="progress_circle_max" format="integer" />
+        <attr name="progress_circle_outer" format="boolean" />
+        <attr name="progress_circle_hollow" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CircularProgressBar">
+        <attr name="radius" format="dimension" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="progressbarBackgroundColor" format="color|reference" />
+        <attr name="progressbarColor" format="color|reference" />
+        <attr name="maxProgress" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color|reference" />
+        <attr name="textSize" format="dimension" />
+        <attr name="gradient" format="boolean" />
+        <attr name="gradientColorArray" format="reference" />
     </declare-styleable>
 </resources>

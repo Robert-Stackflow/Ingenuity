@@ -7,8 +7,6 @@
 
 package com.cloudchewie.ingenuity.util.image;
 
-import com.cloudchewie.ingenuity.entity.Image;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +24,6 @@ public final class ImageUrlUtil {
     public static List<ImageViewInfo> urlToImageViewInfo(String url) {
         List<ImageViewInfo> infoList = new ArrayList<>();
         infoList.add(new ImageViewInfo(url));
-        return infoList;
-    }
-
-    public static List<ImageViewInfo> imageToImageViewInfo(List<Image> images) {
-        if (images == null || images.size() <= 0)
-            return new ArrayList<>();
-        List<ImageViewInfo> infoList = new ArrayList<>();
-        for (Image image : images)
-            infoList.add(new ImageViewInfo(image.getUrl()));
         return infoList;
     }
 

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.bean.BaseItem;
+import com.cloudchewie.ingenuity.entity.BaseItem;
 import com.cloudchewie.ui.item.ExpandableItem;
 
 import java.util.List;

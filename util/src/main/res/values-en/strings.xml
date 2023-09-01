@@ -177,5 +177,5 @@
 	<string name="array_tab_memos">Memos</string>
 	<string name="array_tab_rss">CloudRSS</string>
 	<string name="array_tab_AI">CloudAI</string>
-    <string name="nav_auth">Authenticator</string>
+    <string name="nav_auth">Token</string>
 </resources>

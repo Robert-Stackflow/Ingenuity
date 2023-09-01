@@ -21,7 +21,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
-import com.cloudchewie.ingenuity.bean.ThemeItem;
+import com.cloudchewie.ingenuity.entity.ThemeItem;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.custom.IToast;

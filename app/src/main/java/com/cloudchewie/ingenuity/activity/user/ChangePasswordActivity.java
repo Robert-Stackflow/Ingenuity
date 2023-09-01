@@ -13,16 +13,16 @@ import android.os.Bundle;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ui.custom.TitleBar;
-import com.cloudchewie.ui.item.InputItem;
+import com.cloudchewie.ui.item.InputLayout;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class ChangePasswordActivity extends BaseActivity {
     RefreshLayout swipeRefreshLayout;
 
-    InputItem oldPasswordInput;
-    InputItem newPasswordInput;
-    InputItem confirmPasswordInput;
+    InputLayout oldPasswordInput;
+    InputLayout newPasswordInput;
+    InputLayout confirmPasswordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

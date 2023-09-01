@@ -95,7 +95,22 @@
                     app:useDefaultMargins="false">
 
                     <com.cloudchewie.ui.item.VerticalIconTextItem
-                        android:id="@+id/fragment_user_entry_parse"
+                        android:id="@+id/fragment_user_entry_passwordbox"
+                        android:layout_width="@dimen/dp110"
+                        android:layout_height="match_parent"
+                        android:minWidth="@dimen/dp110"
+                        app:layout_columnWeight="1"
+                        app:layout_gravity="center"
+                        app:layout_rowWeight="1"
+                        app:vertical_icon_text_item_icon="@drawable/ic_light_password"
+                        app:vertical_icon_text_item_icon_scale_type="fitCenter"
+                        app:vertical_icon_text_item_icon_size="@dimen/dp35"
+                        app:vertical_icon_text_item_text="密码箱"
+                        app:vertical_icon_text_item_text_color="@color/color_accent"
+                        app:vertical_icon_text_item_text_size="@dimen/sp12" />
+
+                    <com.cloudchewie.ui.item.VerticalIconTextItem
+                        android:id="@+id/fragment_user_entry_bookmark"
                         android:layout_width="@dimen/dp110"
                         android:layout_height="match_parent"
                         android:minWidth="@dimen/dp110"

@@ -140,7 +140,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             homeEntry.setMinLinesWithCenter(2);
             dayNightEntry.setMinLinesWithCenter(2);
         }
-        mainView.findViewById(R.id.fragment_user_entry_parse).setOnClickListener(v -> BookmarkExport.exportBookmarks(requireContext(), importBookmarks(requireContext(), "bookmark.html"), "bookmark.html"));
+        mainView.findViewById(R.id.fragment_user_entry_bookmark).setOnClickListener(v -> BookmarkExport.exportBookmarks(requireContext(), importBookmarks(requireContext(), "bookmark.html"), "bookmark.html"));
         return mainView;
     }
 

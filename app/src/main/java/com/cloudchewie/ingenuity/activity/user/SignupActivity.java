@@ -22,14 +22,14 @@ import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.activity.application.WebViewActivity;
 import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.TitleBar;
-import com.cloudchewie.ui.item.InputItem;
+import com.cloudchewie.ui.item.InputLayout;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class SignupActivity extends BaseActivity implements View.OnClickListener {
     TextView termView;
     RefreshLayout swipeRefreshLayout;
-    InputItem passwordInput;
+    InputLayout passwordInput;
 
     @SuppressLint("MissingInflatedId")
     @Override

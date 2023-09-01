@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.adapter.BaseItemListAdapter;
-import com.cloudchewie.ingenuity.bean.BaseItem;
+import com.cloudchewie.ingenuity.entity.BaseItem;
 import com.cloudchewie.ingenuity.util.decoration.SpacingItemDecoration;
 import com.cloudchewie.ingenuity.util.enumeration.Direction;
 import com.cloudchewie.ui.custom.TitleBar;

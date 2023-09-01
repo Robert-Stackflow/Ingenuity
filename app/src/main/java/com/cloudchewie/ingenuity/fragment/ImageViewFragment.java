@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.bean.ShareItem;
+import com.cloudchewie.ingenuity.entity.ShareItem;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ui.general.BottomSheet;
 import com.cloudchewie.util.system.ShareUtil;

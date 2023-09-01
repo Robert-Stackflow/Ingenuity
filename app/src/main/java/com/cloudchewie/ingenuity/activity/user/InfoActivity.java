@@ -26,7 +26,7 @@ import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.activity.MainActivity;
 import com.cloudchewie.ingenuity.api.ImageUploadRequest;
 import com.cloudchewie.ingenuity.api.UserAuthRequest;
-import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
+import com.cloudchewie.ingenuity.entity.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.entity.User;
 import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;

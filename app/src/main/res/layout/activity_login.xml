@@ -36,22 +36,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.cloudchewie.ui.item.InputItem
+            <com.cloudchewie.ui.item.InputLayout
                 android:id="@+id/login_by_mobile_phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp40"
-                app:input_item_hint="@string/enter_mobile"
-                app:input_item_mode="phonenumber"
+                app:input_layout_hint="@string/enter_mobile"
+                app:input_layout_mode="phonenumber"
                 app:layout_constraintTop_toBottomOf="@id/login_by_mobile_title" />
 
-            <com.cloudchewie.ui.item.InputItem
+            <com.cloudchewie.ui.item.InputLayout
                 android:id="@+id/login_by_mobile_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp20"
-                app:input_item_hint="@string/enter_password"
-                app:input_item_mode="password"
+                app:input_layout_hint="@string/enter_password"
+                app:input_layout_mode="password"
                 app:layout_constraintTop_toBottomOf="@id/login_by_mobile_phonenumber" />
 
             <TextView

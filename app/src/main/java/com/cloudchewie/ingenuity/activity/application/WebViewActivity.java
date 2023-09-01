@@ -75,7 +75,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.getSettings().setBlockNetworkImage(true);
-        webView.getSettings().setAppCacheEnabled(enabledCache);
+//        webView.getSettings().setAppCacheEnabled(enabledCache);
         webView.loadUrl(originUrl);
     }
 

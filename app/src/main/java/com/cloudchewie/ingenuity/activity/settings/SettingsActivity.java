@@ -20,7 +20,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.activity.MainActivity;
-import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
+import com.cloudchewie.ingenuity.entity.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;

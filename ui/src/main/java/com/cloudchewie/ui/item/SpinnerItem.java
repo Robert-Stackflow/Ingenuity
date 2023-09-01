@@ -1,303 +1,137 @@
+/*
+ * Project Name: Worthy
+ * Author: Ruida
+ * Last Modified: 2022/12/17 21:42:08
+ * Copyright(c) 2022 Ruida https://cloudchewie.com
+ */
+
 package com.cloudchewie.ui.item;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.cloudchewie.ui.R;
-
-import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpinnerItem extends RelativeLayout {
-    TextView textView;
-    ImageView iconView;
-    RelativeLayout mainLayout;
-    String text;
-    int textSize;
-    int textColor;
-    int textCheckedColor;
-    int iconSize;
-    Drawable icon;
-    Drawable checkedIcon;
-    int iconColor;
-    int iconCheckedColor;
-    Drawable background;
-    int backgroundTint;
-    int backgroundCheckedTint;
-    boolean isChecked;
-    List<String> dataSource;
-    int currentIndex = -1;
-    onCheckStateChangedListener listener;
+public class SpinnerItem extends ConstraintLayout {
+    private Spinner spinner;
+    private TextView title_view;
+    private ConstraintLayout mainLayout;
+    private View divider;
+    private Boolean isTouched = false;
+    private OnCheckedChangedListener onCheckedChangedListener;
+
+    public void setOnCheckedChangedListener(OnCheckedChangedListener onCheckedChangedListener) {
+        this.onCheckedChangedListener = onCheckedChangedListener;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void initView(Context context, AttributeSet attrs) {
+        LayoutInflater.from(context).inflate(R.layout.widget_spinner_item, this, true);
+        spinner = findViewById(R.id.spinner_item_spinner);
+        title_view = findViewById(R.id.spinner_item_title);
+        mainLayout = findViewById(R.id.spinner_item_layout);
+        divider = findViewById(R.id.spinner_item_divider);
+        @SuppressLint("CustomViewStyleable") TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.SpinnerItem);
+        if (attr != null) {
+            int titleBarBackground = attr.getResourceId(R.styleable.SpinnerItem_spinner_item_background, Color.TRANSPARENT);
+            setBackgroundResource(titleBarBackground);
+            String title = attr.getString(R.styleable.SpinnerItem_spinner_item_title);
+            int titleColor = attr.getColor(R.styleable.SpinnerItem_spinner_item_title_color, getResources().getColor(R.color.color_accent, getResources().newTheme()));
+            CharSequence[] strings = attr.getTextArray(R.styleable.SpinnerItem_spinner_item_array);
+            setRadios(strings);
+            setTitle(title, titleColor);
+            boolean topRadiusEnable = attr.getBoolean(R.styleable.SpinnerItem_spinner_item_top_radius_enable, false);
+            boolean bottomRadiusEnable = attr.getBoolean(R.styleable.SpinnerItem_spinner_item_bottom_radius_enable, false);
+            setRadiusEnbale(topRadiusEnable, bottomRadiusEnable);
+            attr.recycle();
+        }
+        spinner.setOnTouchListener((OnTouchListener) (view, motionEvent) -> {
+            isTouched = true;
+            return false;
+        });
+        spinner.setTag(title_view.getText().toString());
+    }
+
+    public Spinner getSpinner() {
+        return spinner;
+    }
+    public void setRadios(CharSequence[] sequences) {
+        List<String> strings=new ArrayList<>();
+        for(CharSequence sequence:sequences)
+            strings.add((String) sequence);
+        spinner.setAdapter(new ArrayAdapter<>(getContext(), R.layout.widget_spinner_bean, strings));
+    }
+    public void setRadios(List<String> stringList) {
+        spinner.setAdapter(new ArrayAdapter<>(getContext(), R.layout.widget_spinner_bean, stringList));
+    }
+
+    public void setSpinner(Spinner spinner) {
+        this.spinner = spinner;
+    }
 
     public SpinnerItem(@NonNull Context context) {
         super(context);
-        init(context, null);
     }
 
     public SpinnerItem(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        initView(context, attrs);
     }
 
     public SpinnerItem(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        initView(context, attrs);
     }
 
     public SpinnerItem(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init(context, attrs);
+        initView(context, attrs);
     }
 
-    public int getCurrentIndex() {
-        return currentIndex;
-    }
-
-    public void setCurrentIndex(int currentIndex) {
-        if (dataSource == null || dataSource.size() == 0) {
-            this.currentIndex = -1;
-        } else if (currentIndex < 0) {
-            this.currentIndex = 0;
-        } else if (currentIndex > dataSource.size()) {
-            this.currentIndex = dataSource.size() - 1;
-        } else {
-            this.currentIndex = currentIndex;
-        }
-        setText(currentIndex == -1 ? "" : dataSource.get(currentIndex));
-    }
-
-    public List<String> getDataSource() {
-        return dataSource == null ? new ArrayList<>() : dataSource;
-    }
-
-    public void setEntry(@NonNull List<String> dataSource) {
-        this.dataSource = dataSource == null ? new ArrayList<>() : dataSource;
-        this.currentIndex = dataSource.size() == 0 ? -1 : 0;
-        setText(currentIndex == -1 ? "" : dataSource.get(currentIndex));
-    }
-
-    public int getItemCount() {
-        return dataSource == null ? 0 : dataSource.size();
-    }
-
-    public int getTextSize() {
-        return textSize;
-    }
-
-    public void setTextSize(int textSize) {
-        this.textSize = textSize;
-        updateView();
-    }
-
-    public int getIconSize() {
-        return iconSize;
-    }
-
-    public void setIconSize(int iconSize) {
-        this.iconSize = iconSize;
-        updateView();
-    }
-
-    public Drawable getIcon() {
-        return icon;
-    }
-
-    public void setIcon(Drawable icon) {
-        this.icon = icon;
-        updateView();
-    }
-
-    public Drawable getCheckedIcon() {
-        return checkedIcon;
-    }
-
-    public void setCheckedIcon(Drawable iconChecked) {
-        this.checkedIcon = iconChecked;
-        updateView();
-    }
-
-    @Override
-    public Drawable getBackground() {
-        return background;
-    }
-
-    @Override
-    public void setBackground(Drawable background) {
-        this.background = background;
-        updateView();
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-        updateView();
-    }
-
-    public int getBackgroundTint() {
-        return backgroundTint;
-    }
-
-    public void setBackgroundTint(int backgroundTint) {
-        this.backgroundTint = backgroundTint;
-        updateView();
-    }
-
-    public int getBackgroundCheckedTint() {
-        return backgroundCheckedTint;
-    }
-
-    public void setBackgroundCheckedTint(int backgroundCheckedTint) {
-        this.backgroundCheckedTint = backgroundCheckedTint;
-        updateView();
-    }
-
-    public TextView getTextView() {
-        return textView;
-    }
-
-    public ImageView getIconView() {
-        return iconView;
-    }
-
-    public int getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(int textColor) {
-        this.textColor = textColor;
-        updateView();
-    }
-
-    public int getTextCheckedColor() {
-        return textCheckedColor;
-    }
-
-    public void setTextCheckedColor(int textCheckedColor) {
-        this.textCheckedColor = textCheckedColor;
-        updateView();
-    }
-
-    public int getIconColor() {
-        return iconColor;
-    }
-
-    public void setIconColor(int iconColor) {
-        this.iconColor = iconColor;
-        updateView();
-    }
-
-    public int getIconCheckedColor() {
-        return iconCheckedColor;
-    }
-
-    public void setIconCheckedColor(int iconCheckedColor) {
-        this.iconCheckedColor = iconCheckedColor;
-        updateView();
-    }
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        if (listener != null && isChecked != checked) {
-            isChecked = checked;
-            listener.onCheckStateChanged(this, isChecked);
-        }
-        updateView();
-    }
-
-    public void setOnCheckStateChangedListener(onCheckStateChangedListener listener) {
-        this.listener = listener;
-    }
-
-    public void toggle() {
-        setChecked(!isChecked);
-    }
-
-    @Contract(pure = true)
-    private void updateView() {
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-        textView.setText(text);
-        mainLayout.setBackground(background);
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(iconView.getLayoutParams());
-//        layoutParams.height = iconSize;
-//        layoutParams.width = iconSize;
-//        iconView.setLayoutParams(layoutParams);
-        if (isChecked) {
-            textView.setTextColor(textCheckedColor);
-            iconView.setImageDrawable(checkedIcon);
-            iconView.setColorFilter(iconCheckedColor);
-            mainLayout.setBackgroundTintList(ColorStateList.valueOf(backgroundCheckedTint));
-        } else {
-            textView.setTextColor(textColor);
-            iconView.setImageDrawable(icon);
-            iconView.setColorFilter(iconColor);
-            mainLayout.setBackgroundTintList(ColorStateList.valueOf(backgroundTint));
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void setRadiusEnbale(boolean top, boolean bottom) {
+        if (!top && !bottom) {
+            divider.setVisibility(VISIBLE);
+            mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_rect));
+        } else if (top && bottom) {
+            divider.setVisibility(GONE);
+            mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_dp10));
+        } else if (!top && bottom) {
+            divider.setVisibility(GONE);
+            mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_bottom_dp10));
+        } else if (top && !bottom) {
+            divider.setVisibility(VISIBLE);
+            mainLayout.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_round_top_dp10));
         }
     }
 
-    private void init(Context context, AttributeSet attrs) {
-        LayoutInflater.from(context).inflate(R.layout.widget_spinner, this, true);
-        textView = findViewById(R.id.widget_spinner_text);
-        iconView = findViewById(R.id.widget_spinner_icon);
-        mainLayout = findViewById(R.id.widget_spinner_layout);
-        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.SpinnerItem);
-        if (attr != null) {
-            text = attr.getString(R.styleable.SpinnerItem_spinner_text);
-            textSize = attr.getDimensionPixelSize(R.styleable.SpinnerItem_spinner_text_size, getResources().getDimensionPixelSize(R.dimen.sp12));
-            textColor = attr.getColor(R.styleable.SpinnerItem_spinner_text_color, getResources().getColor(R.color.color_accent));
-            textCheckedColor = attr.getColor(R.styleable.SpinnerItem_spinner_text_checked_color, getResources().getColor(R.color.color_accent));
-            icon = attr.getDrawable(R.styleable.SpinnerItem_spinner_icon);
-            checkedIcon = attr.getDrawable(R.styleable.SpinnerItem_spinner_checked_icon);
-            iconSize = attr.getDimensionPixelSize(R.styleable.SpinnerItem_spinner_icon_size, getResources().getDimensionPixelSize(R.dimen.dp15));
-            iconColor = attr.getColor(R.styleable.SpinnerItem_spinner_icon_color, getResources().getColor(R.color.color_gray));
-            iconCheckedColor = attr.getColor(R.styleable.SpinnerItem_spinner_icon_checked_color, getResources().getColor(R.color.color_gray));
-            background = attr.getDrawable(R.styleable.SpinnerItem_spinner_background);
-            backgroundTint = attr.getColor(R.styleable.SpinnerItem_spinner_background_tint, getResources().getColor(R.color.tag_background));
-            backgroundCheckedTint = attr.getColor(R.styleable.SpinnerItem_spinner_background_checked_tint, getResources().getColor(R.color.tag_background));
-            setBackground(background);
-            setBackgroundTint(backgroundTint);
-            setBackgroundCheckedTint(backgroundCheckedTint);
-            setText(text);
-            setTextSize(textSize);
-            setTextColor(textColor);
-            setTextSize(textSize);
-            setTextCheckedColor(textCheckedColor);
-            setIcon(icon);
-            setIconSize(iconSize);
-            setIconColor(iconColor);
-            setCheckedIcon(checkedIcon);
-            setIconCheckedColor(iconCheckedColor);
-            setChecked(false);
-            attr.recycle();
-        }
-        this.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onClicked(this);
-            }
-        });
+    public interface OnCheckedChangedListener {
+        void onChanged(CompoundButton buttonView, boolean isChecked);
     }
 
-    public interface onCheckStateChangedListener {
-        void onCheckStateChanged(SpinnerItem spinner, boolean isChecked);
+    public void setTitlePadding(int left, int top, int right, int bottom) {
+        title_view.setPadding(left, top, right, bottom);
+    }
 
-        void onClicked(SpinnerItem spinner);
+    private void setTitle(String title, int titleColor) {
+        title_view.setText(title);
+        title_view.setTextColor(titleColor);
     }
 }

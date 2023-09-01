@@ -31,15 +31,15 @@ import com.cloudchewie.ingenuity.util.http.JwtUtil;
 import com.cloudchewie.ui.ThemeUtil;
 import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.custom.TitleBar;
-import com.cloudchewie.ui.item.InputItem;
+import com.cloudchewie.ui.item.InputLayout;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     TextView termView;
     RefreshLayout swipeRefreshLayout;
-    InputItem mobileInput;
-    InputItem passwordInput;
+    InputLayout mobileInput;
+    InputLayout passwordInput;
 
     @SuppressLint("MissingInflatedId")
     @Override

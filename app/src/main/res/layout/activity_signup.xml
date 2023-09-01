@@ -36,31 +36,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.cloudchewie.ui.item.InputItem
+            <com.cloudchewie.ui.item.InputLayout
                 android:id="@+id/activity_signup_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp40"
-                app:input_item_hint="@string/enter_nickname"
-                app:input_item_mode="text"
+                app:input_layout_hint="@string/enter_nickname"
+                app:input_layout_mode="text"
                 app:layout_constraintTop_toBottomOf="@id/activity_signup_title" />
 
-            <com.cloudchewie.ui.item.InputItem
+            <com.cloudchewie.ui.item.InputLayout
                 android:id="@+id/activity_signup_phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp20"
-                app:input_item_hint="@string/enter_mobile"
-                app:input_item_mode="phonenumber"
+                app:input_layout_hint="@string/enter_mobile"
+                app:input_layout_mode="phonenumber"
                 app:layout_constraintTop_toBottomOf="@id/activity_signup_username" />
 
-            <com.cloudchewie.ui.item.InputItem
+            <com.cloudchewie.ui.item.InputLayout
                 android:id="@+id/activity_signup_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp20"
-                app:input_item_hint="@string/enter_password"
-                app:input_item_mode="password"
+                app:input_layout_hint="@string/enter_password"
+                app:input_layout_mode="password"
                 app:layout_constraintTop_toBottomOf="@id/activity_signup_phonenumber" />
 
             <TextView

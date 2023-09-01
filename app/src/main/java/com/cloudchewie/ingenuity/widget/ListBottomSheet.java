@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.adapter.ListBottomSheetAdapter;
-import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
+import com.cloudchewie.ingenuity.entity.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.util.decoration.DividerItemDecoration;
 import com.cloudchewie.ui.general.BottomSheet;
 

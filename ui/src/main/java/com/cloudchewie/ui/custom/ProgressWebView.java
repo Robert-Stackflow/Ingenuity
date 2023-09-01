@@ -29,7 +29,7 @@ public class ProgressWebView extends WebView {
     };
 
     public void setCacheEnabled(boolean enabled) {
-        mWebView.getSettings().setAppCacheEnabled(enabled);
+//        mWebView.getSettings().setCacheMode(enabled);
     }
 
     public ProgressWebView(Context context, AttributeSet attrs) {
@@ -56,7 +56,7 @@ public class ProgressWebView extends WebView {
         mSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
         mSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
         mSettings.setBlockNetworkImage(true);
-        mSettings.setAppCacheEnabled(true);
+//        mSettings.setAppCacheEnabled(true);
         setWebViewClient(new MyWebViewClient());
         setWebChromeClient(new MyWebChromeClient());
         setVerticalScrollBarEnabled(false);

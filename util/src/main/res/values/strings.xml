@@ -10,7 +10,7 @@
     <string name="nav_home">首页</string>
     <string name="nav_tool">工具</string>
     <string name="nav_mine">我的</string>
-    <string name="nav_auth">验证器</string>
+    <string name="nav_auth">令牌</string>
     <!--通用-->
     <string name="blank">空白</string>
     <string name="confirm">确定</string>

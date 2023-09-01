@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
+import com.cloudchewie.ingenuity.entity.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.widget.ListBottomSheet;
 import com.cloudchewie.util.ui.SizeUtil;
 

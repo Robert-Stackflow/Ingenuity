@@ -71,6 +71,9 @@
             android:launchMode="singleTask" />
         <!--通用-->
         <activity android:name=".activity.application.WebViewActivity" />
+        <activity android:name=".activity.authenticator.AuthenticatorAddActivity" />
+        <activity android:name=".activity.authenticator.AuthenticatorDetailActivity" />
+        <activity android:name=".activity.authenticator.AuthenticatorSettingsActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:launchMode="singleTop"

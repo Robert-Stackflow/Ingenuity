@@ -24,7 +24,7 @@ import com.blankj.utilcode.util.VibrateUtils;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.adapter.MyNineGridImageViewAdapter;
-import com.cloudchewie.ingenuity.bean.ListBottomSheetBean;
+import com.cloudchewie.ingenuity.entity.ListBottomSheetBean;
 import com.cloudchewie.ingenuity.util.image.ImageUrlUtil;
 import com.cloudchewie.ingenuity.util.image.ImageViewInfo;
 import com.cloudchewie.ingenuity.util.image.NineGridUtil;

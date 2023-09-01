@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cloudchewie.ui.custom.TitleBar
+        android:id="@+id/authenticator_settings_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:transitionName="shareElement"
+        app:right_button_visibility="false"
+        app:title="身份验证器设置" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/authenticator_settings_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/authenticator_settings_titlebar">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp15"
+                app:layout_constraintTop_toBottomOf="@id/authenticator_settings_titlebar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/activity_authenticator_settings_operation_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.cloudchewie.ui.item.CheckBoxItem
+                        android:id="@+id/activity_authenticator_settings_long_press_copy"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:checkbox_item_title="长按卡片复制密码"
+                        app:checkbox_item_top_radius_enable="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.cloudchewie.ui.item.CheckBoxItem
+                        android:id="@+id/activity_authenticator_settings_click_copy"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:checkbox_item_bottom_radius_enable="true"
+                        app:checkbox_item_title="点击卡片复制密码"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_long_press_copy" />
+
+                    <com.cloudchewie.ui.item.CheckBoxItem
+                        android:id="@+id/activity_authenticator_settings_need_auth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:textSize="18sp"
+                        app:checkbox_item_top_radius_enable="true"
+                        app:checkbox_item_title="需要身份验证"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_click_copy" />
+
+                    <com.cloudchewie.ui.item.CheckBoxItem
+                        android:id="@+id/activity_authenticator_settings_auto_hide"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:checkbox_item_title="自动隐藏密码"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_need_auth" />
+
+                    <com.cloudchewie.ui.item.CheckBoxItem
+                        android:id="@+id/activity_authenticator_settings_enbale_screenshot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:checkbox_item_bottom_radius_enable="true"
+                        app:checkbox_item_title="允许屏幕截图"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_auto_hide" />
+
+                    <com.cloudchewie.ui.item.EntryItem
+                        android:id="@+id/activity_authenticator_settings_import_json"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:textSize="18sp"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_title="导入JSON格式"
+                        app:entry_item_top_radius_enable="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_enbale_screenshot" />
+
+                    <com.cloudchewie.ui.item.EntryItem
+                        android:id="@+id/activity_authenticator_settings_export_json"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_title="导出为JSON格式"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_import_json" />
+
+                    <com.cloudchewie.ui.item.EntryItem
+                        android:id="@+id/activity_authenticator_settings_import_uri"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_title="导入URI格式"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_export_json" />
+
+                    <com.cloudchewie.ui.item.EntryItem
+                        android:id="@+id/activity_authenticator_settings_export_uri"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        app:entry_item_bottom_radius_enable="true"
+                        app:entry_item_left_icon_visibility="false"
+                        app:entry_item_title="导出为URI格式"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_import_uri" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</RelativeLayout>

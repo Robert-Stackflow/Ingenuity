@@ -30,4 +30,20 @@
         <item>@string/array_tab_rss</item>
         <item>@string/array_tab_AI</item>
     </string-array>
+    <string-array name="auth_type">
+        <item>TOTP</item>
+        <item>HOTP</item>
+    </string-array>
+    <string-array name="auth_digits">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="auth_algorithms">
+        <item>MD5</item>
+        <item>SHA1</item>
+        <item>SHA256</item>
+        <item>SHA512</item>
+    </string-array>
 </resources>

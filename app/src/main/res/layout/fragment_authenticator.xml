@@ -5,35 +5,30 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <com.cloudchewie.ui.custom.TitleBar
+        android:id="@+id/fragment_authenticator_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:left_button_visibility="false"
+        app:right_button_visibility="false"
+        app:title="@string/nav_auth" />
+
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/fragment_authenticator_swipe_refresh"
+        android:layout_below="@id/fragment_authenticator_titlebar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_authenticator_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.cloudchewie.ui.custom.TitleBar
-                android:id="@+id/fragment_authenticator_titlebar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                app:left_button_visibility="false"
-                app:right_button_visibility="false"
-                app:title="@string/nav_auth" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_authenticator_recyclerview"
-                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/fragment_authenticator_titlebar"
                 android:padding="@dimen/dp15" />
-        </RelativeLayout>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
     <com.cloudchewie.ui.fab.FloatingActionMenu
-        android:id="@+id/menu"
+        android:id="@+id/item_token_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
@@ -50,10 +45,21 @@
         app:menu_openDirection="up">
 
         <com.cloudchewie.ui.fab.FloatingActionButton
+            android:id="@+id/auth_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_light_code"
+            android:tint="@color/text_color_white"
+            app:fab_colorNormal="?attr/colorPrimary"
+            app:fab_colorPressed="?attr/colorPrimary"
+            app:fab_showShadow="false"
+            app:fab_size="mini" />
+
+        <com.cloudchewie.ui.fab.FloatingActionButton
             android:id="@+id/auth_qrcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_light_camera"
+            android:src="@drawable/ic_light_qrcode"
             android:tint="@color/text_color_white"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"
@@ -64,7 +70,7 @@
             android:id="@+id/auth_lock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_light_security"
+            android:src="@drawable/ic_light_password"
             android:tint="@color/text_color_white"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"

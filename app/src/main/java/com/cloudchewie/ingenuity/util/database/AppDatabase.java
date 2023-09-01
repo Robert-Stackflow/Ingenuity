@@ -17,11 +17,12 @@ import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.cloudchewie.ingenuity.entity.User;
+import com.cloudchewie.ingenuity.dao.OtpTokenDao;
+import com.cloudchewie.ingenuity.entity.OtpToken;
 
 import org.jetbrains.annotations.Contract;
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {OtpToken.class}, version = 1, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
@@ -44,5 +45,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase create(final Context context) {
         return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).addMigrations(MIGRATION_1_2).allowMainThreadQueries().build();
     }
+
+    public abstract OtpTokenDao otpTokenDao();
 
 }
