@@ -1,5 +1,6 @@
 package com.cloudchewie.ingenuity.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -11,6 +12,25 @@ import java.io.Serializable;
 
 @Entity(tableName = "otp_tokens")
 public class OtpToken implements Serializable {
+    @NonNull
+    @Override
+    public String toString() {
+        return "OtpToken{" +
+                "id=" + id +
+                ", ordinal=" + ordinal +
+                ", issuer='" + issuer + '\'' +
+                ", account='" + account + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", tokenType=" + tokenType +
+                ", algorithm='" + algorithm + '\'' +
+                ", secret='" + secret + '\'' +
+                ", digits=" + digits +
+                ", counter=" + counter +
+                ", period=" + period +
+                ", encryptionType=" + encryptionType +
+                '}';
+    }
+
     @PrimaryKey(autoGenerate = true)
     Long id;
     Long ordinal;

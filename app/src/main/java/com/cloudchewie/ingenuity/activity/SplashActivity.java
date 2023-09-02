@@ -11,7 +11,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
@@ -46,7 +45,6 @@ public class SplashActivity extends BaseActivity {
             findViewById(R.id.appsloganr).setVisibility(View.GONE);
             findViewById(R.id.appsloganl).setVisibility(View.GONE);
         }
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     void jumpToMainActivity() {

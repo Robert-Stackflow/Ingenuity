@@ -178,4 +178,52 @@
 	<string name="array_tab_rss">CloudRSS</string>
 	<string name="array_tab_AI">CloudAI</string>
     <string name="nav_auth">令牌</string>
+	<string name="delete_token_success">刪除令牌成功</string>
+	<string name="permission_fail_camera">未授予相機權限</string>
+	<string name="permission_fail_explorer">文件管理器打開失敗</string>
+	<string name="edit_token_success">令牌修改成功</string>
+	<string name="add_token_success">令牌添加成功</string>
+	<string name="parse_token_fail">解析失敗</string>
+	<string name="export_success">導出成功</string>
+	<string name="export_fail">導出失敗</string>
+	<string name="import_success">導入成功</string>
+	<string name="import_fail">導入失敗</string>
+	<string name="unpin_to_show_code">解鎖以查看令牌</string>
+	<string name="token_application_label">應用</string>
+	<string name="token_application_hint">應用名稱</string>
+	<string name="token_account_label">帳戶</string>
+	<string name="token_account_hint">帳戶名稱或郵箱</string>
+	<string name="token_secret_label">密鑰</string>
+	<string name="token_secret_hint">Base32編碼的密鑰</string>
+	<string name="token_interval_label">間隔</string>
+	<string name="token_interval_hint">密碼刷新時間間隔，默認為30秒</string>
+	<string name="token_counter_label">計數器</string>
+	<string name="token_counter_hint">HOTP類型密鑰的計數器</string>
+	<string name="token_type_label">類型</string>
+	<string name="token_algorithm_label">算法</string>
+	<string name="token_digits_label">位數</string>
+	<string name="delete_token">刪除令牌</string>
+	<string name="open_camera_fail">刪除令牌</string>
+	<string name="entry_long_press_copy_code">長按卡片複製密碼</string>
+	<string name="entry_click_copy_code">點擊卡片複製密碼</string>
+	<string name="entry_auth_to_show_code">需要身份驗證</string>
+	<string name="entry_disable_screen_shot">禁止屏幕截圖</string>
+	<string name="entry_export_json_token">導出為JSON格式</string>
+	<string name="entry_import_json_token">導入JSON格式</string>
+	<string name="entry_export_uri_token">導出為URI格式</string>
+	<string name="entry_import_uri_token">導入URI格式</string>
+	<string name="dialog_title_delete_token">刪除令牌</string>
+	<string name="dialog_content_delete_token">刪除令牌後將無法恢復，使用該令牌進行兩步驗證的應用可能將無法正常登錄。是否確認刪除令牌？ </string>
+	<string name="dialog_title_replace_token">覆蓋令牌</string>
+	<string name="dialog_content_replace_token" formatted="true">應用【%1$s】的帳戶【%2$s】已存在，是否覆蓋令牌？ </string>
+	<string name="dialog_title_import_json_token">導入JSON格式</string>
+	<string name="dialog_content_import_json_token" formatted="true">是否從文件%1$s中導入令牌</string>
+	<string name="dialog_title_import_uri_token">導入URI格式</string>
+	<string name="dialog_content_import_uri_token" formatted="true">是否從文件%1$s中導入令牌</string>
+	<string name="title_add_token">添加令牌</string>
+	<string name="title_detail_token">令牌詳情</string>
+	<string name="title_settings_token">令牌設置</string>
+	<string name="verify_finger">驗證指紋</string>
+	<string name="verify_finger_fail">指紋驗證失敗</string>
+	<string name="verify_finger_error">驗證失敗，請再次嘗試</string>
 </resources>

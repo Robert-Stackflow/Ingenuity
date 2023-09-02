@@ -30,12 +30,23 @@
     <string name="title_home">我的主页</string>
     <string name="title_blog">博客地址</string>
     <string name="title_bookmark">书签栏</string>
+    <string name="title_add_token">添加令牌</string>
+    <string name="title_detail_token">令牌详情</string>
+    <string name="title_settings_token">令牌设置</string>
     <!--对话框-->
     <string name="dialog_title_clear_cache">清除缓存</string>
     <string name="dialog_content_clear_cache">是否清除缓存（缓存包括下载的图片、数据等，清除后需要重新下载）</string>
     <string name="dialog_title_logout">退出登录</string>
     <string name="dialog_content_logout">是否退出登录？</string>
     <string name="default_dialog_title">消息提示</string>
+    <string name="dialog_title_delete_token">删除令牌</string>
+    <string name="dialog_content_delete_token">删除令牌后将无法恢复，使用该令牌进行两步验证的应用可能将无法正常登录。是否确认删除令牌？</string>
+    <string name="dialog_title_replace_token">覆盖令牌</string>
+    <string name="dialog_content_replace_token" formatted="true">应用【%1$s】的帐户【%2$s】已存在，是否覆盖令牌？</string>
+    <string name="dialog_title_import_json_token">导入JSON格式</string>
+    <string name="dialog_content_import_json_token" formatted="true">是否从文件%1$s中导入令牌</string>
+    <string name="dialog_title_import_uri_token">导入URI格式</string>
+    <string name="dialog_content_import_uri_token" formatted="true">是否从文件%1$s中导入令牌</string>
     <!--账号安全-->
     <string name="entry_tap_to_login">点击登录</string>
     <string name="entry_change_password">修改密码</string>
@@ -191,4 +202,42 @@
     <string name="array_tab_memos">Memos</string>
     <string name="array_tab_rss">CloudRSS</string>
     <string name="array_tab_AI">CloudAI</string>
+    <!--验证器-->
+    <string name="delete_token_success">删除令牌成功</string>
+    <string name="permission_fail_camera">未授予相机权限</string>
+    <string name="permission_fail_explorer">文件管理器打开失败</string>
+    <string name="edit_token_success">令牌修改成功</string>
+    <string name="add_token_success">令牌添加成功</string>
+    <string name="parse_token_fail">解析失败</string>
+    <string name="export_success">导出成功</string>
+    <string name="export_fail">导出失败</string>
+    <string name="import_success">导入成功</string>
+    <string name="import_fail">导入失败</string>
+    <string name="unpin_to_show_code">解锁以查看令牌</string>
+    <string name="token_application_label">应用</string>
+    <string name="token_application_hint">应用名称</string>
+    <string name="token_account_label">帐户</string>
+    <string name="token_account_hint">帐户名称或邮箱</string>
+    <string name="token_secret_label">密钥</string>
+    <string name="token_secret_hint">Base32编码的密钥</string>
+    <string name="token_interval_label">间隔</string>
+    <string name="token_interval_hint">密码刷新时间间隔，默认为30秒</string>
+    <string name="token_counter_label">计数器</string>
+    <string name="token_counter_hint">HOTP类型密钥的计数器</string>
+    <string name="token_type_label">类型</string>
+    <string name="token_algorithm_label">算法</string>
+    <string name="token_digits_label">位数</string>
+    <string name="delete_token">删除令牌</string>
+    <string name="open_camera_fail">删除令牌</string>
+    <string name="entry_long_press_copy_code">长按卡片复制密码</string>
+    <string name="entry_click_copy_code">点击卡片复制密码</string>
+    <string name="entry_auth_to_show_code">需要身份验证</string>
+    <string name="entry_disable_screen_shot">禁止屏幕截图</string>
+    <string name="entry_export_json_token">导出为JSON格式</string>
+    <string name="entry_import_json_token">导入JSON格式</string>
+    <string name="entry_export_uri_token">导出为URI格式</string>
+    <string name="entry_import_uri_token">导入URI格式</string>
+    <string name="verify_finger">验证指纹</string>
+    <string name="verify_finger_fail">指纹验证失败</string>
+    <string name="verify_finger_error">验证失败，请再次尝试</string>
 </resources>

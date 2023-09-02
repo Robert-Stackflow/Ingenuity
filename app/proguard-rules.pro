@@ -27,3 +27,11 @@
 -keep class razerdp.basepopup.**{*;}
 
 -keep class com.zackratos.ultimatebarx.ultimatebarx.** { *; }
+
+-ignorewarnings
+
+# MeiZuFingerprint
+-keep class com.fingerprints.service.** { *; }
+
+# SmsungFingerprint
+-keep class com.samsung.android.sdk.** { *; }

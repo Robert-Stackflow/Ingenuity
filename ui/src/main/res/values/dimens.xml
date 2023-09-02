@@ -10,6 +10,7 @@
     <dimen name="dp7">7dp</dimen>
     <dimen name="dp8">8dp</dimen>
     <dimen name="dp10">10dp</dimen>
+    <dimen name="dp12">12dp</dimen>
     <dimen name="dp15">15dp</dimen>
     <dimen name="dp18">18dp</dimen>
     <dimen name="dp20">20dp</dimen>

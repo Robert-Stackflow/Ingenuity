@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:transitionName="shareElement"
         app:right_button_visibility="false"
-        app:title="身份验证器设置" />
+        app:title="@string/title_settings_token" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/authenticator_settings_swipe_refresh"
@@ -42,7 +42,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        app:checkbox_item_title="长按卡片复制密码"
+                        app:checkbox_item_title="@string/entry_long_press_copy_code"
                         app:checkbox_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         app:checkbox_item_bottom_radius_enable="true"
-                        app:checkbox_item_title="点击卡片复制密码"
+                        app:checkbox_item_title="@string/entry_click_copy_code"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_long_press_copy" />
 
@@ -65,29 +65,19 @@
                         android:layout_marginTop="@dimen/dp10"
                         android:textSize="18sp"
                         app:checkbox_item_top_radius_enable="true"
-                        app:checkbox_item_title="需要身份验证"
+                        app:checkbox_item_title="@string/entry_auth_to_show_code"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_click_copy" />
 
                     <com.cloudchewie.ui.item.CheckBoxItem
-                        android:id="@+id/activity_authenticator_settings_auto_hide"
-                        style="@style/TextAppearance.AppCompat.Body1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        app:checkbox_item_title="自动隐藏密码"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_need_auth" />
-
-                    <com.cloudchewie.ui.item.CheckBoxItem
-                        android:id="@+id/activity_authenticator_settings_enbale_screenshot"
+                        android:id="@+id/activity_authenticator_settings_disable_screenshot"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         app:checkbox_item_bottom_radius_enable="true"
-                        app:checkbox_item_title="允许屏幕截图"
+                        app:checkbox_item_title="@string/entry_disable_screen_shot"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_auto_hide" />
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_need_auth" />
 
                     <com.cloudchewie.ui.item.EntryItem
                         android:id="@+id/activity_authenticator_settings_import_json"
@@ -96,10 +86,10 @@
                         android:layout_marginTop="@dimen/dp10"
                         android:textSize="18sp"
                         app:entry_item_left_icon_visibility="false"
-                        app:entry_item_title="导入JSON格式"
+                        app:entry_item_title="@string/entry_import_json_token"
                         app:entry_item_top_radius_enable="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_enbale_screenshot" />
+                        app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_disable_screenshot" />
 
                     <com.cloudchewie.ui.item.EntryItem
                         android:id="@+id/activity_authenticator_settings_export_json"
@@ -107,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         app:entry_item_left_icon_visibility="false"
-                        app:entry_item_title="导出为JSON格式"
+                        app:entry_item_title="@string/entry_export_json_token"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_import_json" />
 
@@ -117,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         app:entry_item_left_icon_visibility="false"
-                        app:entry_item_title="导入URI格式"
+                        app:entry_item_title="@string/entry_import_uri_token"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_export_json" />
 
@@ -128,7 +118,7 @@
                         android:textSize="18sp"
                         app:entry_item_bottom_radius_enable="true"
                         app:entry_item_left_icon_visibility="false"
-                        app:entry_item_title="导出为URI格式"
+                        app:entry_item_title="@string/entry_export_uri_token"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/activity_authenticator_settings_import_uri" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

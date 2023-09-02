@@ -3,23 +3,30 @@ package com.cloudchewie.ingenuity.activity.authenticator;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
+import com.cloudchewie.ingenuity.entity.OtpToken;
 import com.cloudchewie.ingenuity.util.authenticator.OtpTokenParser;
+import com.cloudchewie.ingenuity.util.authenticator.TokenImageUtil;
 import com.cloudchewie.ingenuity.util.database.LocalStorage;
+import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.item.InputItem;
 import com.cloudchewie.ui.item.RadioItem;
 import com.cloudchewie.util.ui.StatusBarUtil;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Locale;
 
-public class AuthenticatorAddActivity extends BaseActivity implements View.OnClickListener {
+public class AuthenticatorAddActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
     RefreshLayout swipeRefreshLayout;
     InputItem issuerItem;
     InputItem accountItem;
@@ -29,6 +36,7 @@ public class AuthenticatorAddActivity extends BaseActivity implements View.OnCli
     RadioItem digitsItem;
     RadioItem algorithmItem;
     InputItem counterItem;
+    ImageView logoView;
     String imageUrl;
 
     @Override
@@ -39,6 +47,7 @@ public class AuthenticatorAddActivity extends BaseActivity implements View.OnCli
         ((TitleBar) findViewById(R.id.activity_authenticator_add_titlebar)).setLeftButtonClickListener(v -> finish());
         ((TitleBar) findViewById(R.id.activity_authenticator_add_titlebar)).setRightButtonClickListener(v -> confirm());
         issuerItem = findViewById(R.id.activity_authenticator_add_issuer);
+        logoView = findViewById(R.id.activity_authenticator_add_icon);
         accountItem = findViewById(R.id.activity_authenticator_add_account);
         secretItem = findViewById(R.id.activity_authenticator_add_secret);
         intervalItem = findViewById(R.id.activity_authenticator_add_interval);
@@ -49,6 +58,8 @@ public class AuthenticatorAddActivity extends BaseActivity implements View.OnCli
         initSwipeRefresh();
         changeCounterVisibility();
         typeItem.setOnIndexChangedListener((radioButton, index) -> changeCounterVisibility());
+        issuerItem.getEditText().addTextChangedListener(this);
+        accountItem.getEditText().addTextChangedListener(this);
     }
 
     void changeCounterVisibility() {
@@ -87,6 +98,7 @@ public class AuthenticatorAddActivity extends BaseActivity implements View.OnCli
         }
         LocalStorage.getAppDatabase().otpTokenDao().insert(OtpTokenParser.createFromUri(Uri.parse(uri)));
         setResult(Activity.RESULT_OK);
+        LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
         finish();
     }
 
@@ -100,6 +112,24 @@ public class AuthenticatorAddActivity extends BaseActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
+
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        OtpToken temp = new OtpToken();
+        temp.setAccount(accountItem.getText());
+        temp.setIssuer(issuerItem.getText());
+        TokenImageUtil.setTokenImage(logoView, temp);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
 
     }
 }

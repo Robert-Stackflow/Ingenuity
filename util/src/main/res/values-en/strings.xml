@@ -178,4 +178,52 @@
 	<string name="array_tab_rss">CloudRSS</string>
 	<string name="array_tab_AI">CloudAI</string>
     <string name="nav_auth">Token</string>
+	<string name="delete_token_success">Delete token successfully</string>
+	<string name="permission_fail_camera">Camera permission not granted</string>
+	<string name="permission_fail_explorer">File manager failed to open</string>
+	<string name="edit_token_success">Token modified successfully</string>
+	<string name="add_token_success">Token added successfully</string>
+	<string name="parse_token_fail">Parse failed</string>
+	<string name="export_success">Export successful</string>
+	<string name="export_fail">Export failed</string>
+	<string name="import_success">Import successful</string>
+	<string name="import_fail">Import failed</string>
+	<string name="unpin_to_show_code">Unpin to view token</string>
+	<string name="token_application_label">Application</string>
+	<string name="token_application_hint">application name</string>
+	<string name="token_account_label">Account</string>
+	<string name="token_account_hint">account or email</string>
+	<string name="token_secret_label">Secret</string>
+	<string name="token_secret_hint">Base32 encoded secret</string>
+	<string name="token_interval_label">Interval</string>
+	<string name="token_interval_hint">The password refresh interval, the default is 30 seconds</string>
+	<string name="token_counter_label">Counter</string>
+	<string name="token_counter_hint">Counter for HOTP type key</string>
+	<string name="token_type_label">Type</string>
+	<string name="token_algorithm_label">Algorithm</string>
+	<string name="token_digits_label">Digits</string>
+	<string name="delete_token">Delete token</string>
+	<string name="open_camera_fail">Delete token</string>
+	<string name="entry_long_press_copy_code">Long press to copy the code</string>
+	<string name="entry_click_copy_code">Click to copy the code</string>
+	<string name="entry_auth_to_show_code">Authentication required</string>
+	<string name="entry_disable_screen_shot">Disable screenshot</string>
+	<string name="entry_export_json_token">Export to JSON format</string>
+	<string name="entry_import_json_token">Import JSON format</string>
+	<string name="entry_export_uri_token">Export to URI format</string>
+	<string name="entry_import_uri_token">Import URI format</string>
+	<string name="dialog_title_delete_token">Delete token</string>
+	<string name="dialog_content_delete_token">After the token is deleted, it cannot be recovered. Applications that use the token for two-step verification may not be able to log in normally. Are you sure you want to delete the token? </string>
+	<string name="dialog_title_replace_token">Override token</string>
+	<string name="dialog_content_replace_token" formatted="true">The account [%2$s] that applies [%1$s] already exists. Do you want to overwrite the token? </string>
+	<string name="dialog_title_import_json_token">Import JSON format</string>
+	<string name="dialog_content_import_json_token" formatted="true">Whether to import the token from file %1$s</string>
+	<string name="dialog_title_import_uri_token">Import URI format</string>
+	<string name="dialog_content_import_uri_token" formatted="true">Whether to import the token from file %1$s</string>
+	<string name="title_add_token">Add token</string>
+	<string name="title_detail_token">Token details</string>
+	<string name="title_settings_token">Token settings</string>
+	<string name="verify_finger">Verify fingerprint</string>
+	<string name="verify_finger_fail">Fingerprint verification failed</string>
+	<string name="verify_finger_error">Verification failed, please try again</string>
 </resources>

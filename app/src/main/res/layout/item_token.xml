@@ -4,7 +4,6 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dp10"
     android:background="@drawable/shape_round_dp10"
     android:backgroundTint="@color/color_selector_card"
     android:elevation="@dimen/dp0"
@@ -12,17 +11,15 @@
 
     <ImageView
         android:id="@+id/item_token_image"
-        android:layout_width="@dimen/dp60"
-        android:layout_height="@dimen/dp60"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="start"
         android:background="@android:color/transparent"
         android:contentDescription="@string/cd_image"
-        android:padding="@dimen/dp10"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_colorful_email"
-        app:tint="?attr/colorPrimary" />
+        android:padding="@dimen/dp12"
+        android:scaleType="fitCenter" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,7 +116,7 @@
             android:layout_height="@dimen/dp40"
             android:contentDescription="@string/cd_image"
             android:padding="@dimen/dp10"
-            android:src="@drawable/ic_light_integral"
+            android:src="@drawable/ic_light_todo"
             app:tint="@color/color_selector_icon" />
     </LinearLayout>
 </com.cloudchewie.ingenuity.widget.TokenLayout>

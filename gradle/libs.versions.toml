@@ -3,6 +3,7 @@
 kotlin = "1.7.0"
 kotlin-stdlib = "1.7.10"
 benchmark = "1.0.0"
+camera-view = "1.2.3"
 
 [libraries]
 
@@ -22,3 +23,4 @@ androidx-benchmark-junit4 = { module = "androidx.benchmark:benchmark-junit4", ve
 androidx-test-runner = "androidx.test:runner:1.2.0"
 androidx-test-junit = "androidx.test.ext:junit:1.1.1"
 test-junit = "junit:junit:4.12"
+androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "camera-view" }

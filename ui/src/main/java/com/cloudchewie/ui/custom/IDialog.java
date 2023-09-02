@@ -80,6 +80,7 @@ public class IDialog extends Dialog {
 
     public void setModal(boolean isModal) {
         setCanceledOnTouchOutside(!isModal);
+        setCancelable(!isModal);
     }
 
     private void refreshView() {

@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ import com.cloudchewie.ingenuity.util.database.LocalStorage;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.bottombar.ReadableBottomBar;
 import com.cloudchewie.ui.general.NoScrollViewPager;
+import com.cloudchewie.util.system.SharedPreferenceCode;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 
@@ -42,7 +44,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private List<Fragment> fragments;
     private NoScrollViewPager viewPager;
     private ReadableBottomBar readableBottomBar;
-
     @Override
     @SuppressLint("SourceLockedOrientationActivity")
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         LocalStorage.init(AppDatabase.getInstance(getApplicationContext()));
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        LiveEventBus.get(EventBusCode.CHANGE_THEME.getKey(), String.class).observe(this, s -> recreate());
         initView();
+        LiveEventBus.get(EventBusCode.CHANGE_THEME.getKey(), String.class).observe(this, s -> recreate());
+        LiveEventBus.get(EventBusCode.CHANGE_SCREEN_SHOT.getKey(), String.class).observe(this, s -> loadEnableScreenShot(SharedPreferenceUtil.getCurrentNavIndex(MainActivity.this)));
     }
 
     void initView() {
@@ -70,7 +72,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         readableBottomBar.setOnItemSelectListener(i -> {
             SharedPreferenceUtil.setCurrentNavIndex(MainActivity.this, i);
             viewPager.setCurrentItem(i);
+            loadEnableScreenShot(i);
         });
+        loadEnableScreenShot(SharedPreferenceUtil.getCurrentNavIndex(MainActivity.this));
+    }
+
+    /**
+     * @param index 当前所在页面
+     */
+    public void loadEnableScreenShot(int index) {
+        if (SharedPreferenceUtil.getBoolean(this, SharedPreferenceCode.DISBALE_SCREEN_SHOT.getKey(), true)) {
+            if (readableBottomBar.getBottomBarItemList().get(index).getText().equals(getString(R.string.nav_auth))) {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+            } else {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+            }
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        }
     }
 
     @Override

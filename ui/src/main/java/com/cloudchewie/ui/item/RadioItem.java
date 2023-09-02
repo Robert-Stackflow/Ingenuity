@@ -127,6 +127,12 @@ public class RadioItem extends ConstraintLayout {
     }
 
 
+    public void setEnabled(boolean enabled) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            radioGroup.getChildAt(i).setEnabled(enabled);
+        }
+    }
+
     public RadioItem(@NonNull Context context) {
         super(context);
     }

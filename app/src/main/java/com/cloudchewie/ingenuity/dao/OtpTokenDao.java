@@ -26,6 +26,9 @@ interface OtpTokenDao {
     @Query("select * from otp_tokens where id = :id")
     OtpToken get(Long id);
 
+    @Query("select * from otp_tokens where issuer=:issuer and account=:account")
+    OtpToken get(String issuer,String account);
+
     @Query("select ordinal from otp_tokens order by ordinal desc limit 1")
     Long getLastOrdinal();
 

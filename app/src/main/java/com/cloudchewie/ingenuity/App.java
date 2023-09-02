@@ -7,6 +7,7 @@
 
 package com.cloudchewie.ingenuity;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -28,6 +29,9 @@ public class App extends Application {
         SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> new ClassicsFooter(context).setDrawableSize(10).setDrawableProgressSize(10).setDrawableArrowSize(10));
     }
 
+    @SuppressLint("StaticFieldLeak")
+    private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -41,5 +45,10 @@ public class App extends Application {
                         super.onAvailable(network);
                     }
                 });
+        context = getApplicationContext();
+    }
+
+    public static Context getContext() {
+        return context;
     }
 }

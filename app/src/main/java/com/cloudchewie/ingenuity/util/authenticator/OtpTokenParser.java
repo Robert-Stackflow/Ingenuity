@@ -17,7 +17,7 @@ public class OtpTokenParser {
     public static Uri toUri(OtpToken token) {
         String labelAndIssuer;
         if (!TextUtils.isEmpty(token.getIssuer())) {
-            labelAndIssuer = "${token.issuer}:${token.label}";
+            labelAndIssuer = token.getIssuer() + ":" + token.getAccount();
         } else {
             labelAndIssuer = token.getAccount();
         }

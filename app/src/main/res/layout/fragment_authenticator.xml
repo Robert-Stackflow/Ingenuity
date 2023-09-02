@@ -23,12 +23,39 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_authenticator_recyclerview"
             android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/dp15" />
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/dp15"
+            android:paddingVertical="@dimen/dp5" />
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
+    <RelativeLayout
+        android:id="@+id/fragment_authenticator_lock_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/fragment_authenticator_lock_icon"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/cd_image"
+            android:src="@drawable/ic_light_password"
+            app:tint="@color/color_icon" />
+
+        <TextView
+            android:id="@+id/fragment_authenticator_lock_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_authenticator_lock_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="@string/unpin_to_show_code"
+            android:textColor="@color/color_icon" />
+    </RelativeLayout>
+
     <com.cloudchewie.ui.fab.FloatingActionMenu
-        android:id="@+id/item_token_menu"
+        android:id="@+id/fragement_authenticator_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
@@ -45,10 +72,10 @@
         app:menu_openDirection="up">
 
         <com.cloudchewie.ui.fab.FloatingActionButton
-            android:id="@+id/auth_add"
+            android:id="@+id/fragement_authenticator_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_light_code"
+            android:src="@drawable/ic_light_note"
             android:tint="@color/text_color_white"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"
@@ -56,10 +83,10 @@
             app:fab_size="mini" />
 
         <com.cloudchewie.ui.fab.FloatingActionButton
-            android:id="@+id/auth_qrcode"
+            android:id="@+id/fragement_authenticator_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_light_qrcode"
+            android:src="@drawable/ic_light_scanning"
             android:tint="@color/text_color_white"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"
@@ -67,7 +94,7 @@
             app:fab_size="mini" />
 
         <com.cloudchewie.ui.fab.FloatingActionButton
-            android:id="@+id/auth_lock"
+            android:id="@+id/fragement_authenticator_lock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_light_password"
@@ -78,7 +105,7 @@
             app:fab_size="mini" />
 
         <com.cloudchewie.ui.fab.FloatingActionButton
-            android:id="@+id/auth_settings"
+            android:id="@+id/fragement_authenticator_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_light_settings"

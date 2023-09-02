@@ -59,6 +59,7 @@ dependencies {
     implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'androidx.room:room-runtime:2.4.2'
     implementation 'com.alibaba:fastjson:2.0.21.graal'
+    implementation libs.androidx.camera.view
     androidTestImplementation libs.test.junit
     annotationProcessor 'androidx.room:room-compiler:2.4.2'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
@@ -83,14 +84,14 @@ dependencies {
     def camerax_version = "1.2.1"
     implementation "androidx.camera:camera-core:${camerax_version}"
     implementation "androidx.sqlite:sqlite:2.3.1"
-//    implementation "androidx.camera:camera-camera2:${camerax_version}"
-//    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
-//    implementation "androidx.camera:camera-video:${camerax_version}"
-//    implementation "androidx.camera:camera-view:${camerax_version}"
-//    implementation "androidx.camera:camera-mlkit-vision:${camerax_version}"
-//    implementation "androidx.camera:camera-extensions:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-video:${camerax_version}"
+    implementation "androidx.camera:camera-view:${camerax_version}"
+    implementation "androidx.camera:camera-extensions:${camerax_version}"
 //    implementation 'com.github.bingoogolapple.BGABadgeView-Android:api:1.2.0'
 //    annotationProcessor 'com.github.bingoogolapple.BGABadgeView-Android:compiler:1.2.0'
     implementation "com.google.dagger:hilt-android:2.44"
     testImplementation "com.google.dagger:hilt-compiler:2.44"
+    implementation 'com.github.uccmawei:FingerprintIdentify:1.2.6'
 }

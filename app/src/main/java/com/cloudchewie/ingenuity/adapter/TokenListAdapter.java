@@ -21,6 +21,8 @@ import com.cloudchewie.ingenuity.util.enumeration.OtpTokenType;
 import com.cloudchewie.ingenuity.widget.TokenLayout;
 import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.util.system.ClipBoardUtil;
+import com.cloudchewie.util.system.SharedPreferenceCode;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -71,13 +73,25 @@ public class TokenListAdapter extends RecyclerView.Adapter<TokenListAdapter.MyVi
             if (token.getTokenType() == OtpTokenType.HOTP) {
                 LocalStorage.getAppDatabase().otpTokenDao().incrementCounter(token.getId());
             }
-//        if (settings.copyToClipboard) {
-            ClipBoardUtil.copy(codes.getCurrentCode());
-            IToast.showBottom(context, context.getString(R.string.copy_success));
-//        }
+            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.CLICK_COPY_CODE.getKey(), false)) {
+                ClipBoardUtil.copy(codes.getCurrentCode());
+                IToast.showBottom(context, context.getString(R.string.copy_success));
+            }
             tokenCodes.put(token.getId(), codes);
             ((TokenLayout) holder.mItemView).start(token.getTokenType(), codes, true);
         });
+        holder.mItemView.setOnLongClickListener(view -> {
+            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.LONG_PRESS_COPY_CODE.getKey(), true)) {
+                TokenCode codes = new TokenCodeUtil().generateTokenCode(token);
+                if (token.getTokenType() == OtpTokenType.HOTP) {
+                    LocalStorage.getAppDatabase().otpTokenDao().incrementCounter(token.getId());
+                }
+                ClipBoardUtil.copy(codes.getCurrentCode());
+                IToast.showBottom(context, context.getString(R.string.copy_success));
+            }
+            return false;
+        });
+        holder.mItemView.callOnClick();
     }
 
     @Override

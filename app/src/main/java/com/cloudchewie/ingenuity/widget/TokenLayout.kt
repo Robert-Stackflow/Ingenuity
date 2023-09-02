@@ -2,6 +2,8 @@ package com.cloudchewie.ingenuity.widget
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -14,8 +16,12 @@ import com.cloudchewie.ingenuity.R
 import com.cloudchewie.ingenuity.activity.authenticator.AuthenticatorDetailActivity
 import com.cloudchewie.ingenuity.entity.OtpToken
 import com.cloudchewie.ingenuity.entity.TokenCode
-import com.cloudchewie.ingenuity.util.authenticator.setTokenImage
+import com.cloudchewie.ingenuity.util.authenticator.OtpTokenParser
+import com.cloudchewie.ingenuity.util.authenticator.TokenImageUtil
 import com.cloudchewie.ingenuity.util.enumeration.OtpTokenType
+import com.cloudchewie.ui.custom.ImageDialog
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.qrcode.QRCodeWriter
 
 
 class TokenLayout : RelativeLayout, View.OnClickListener, Runnable {
@@ -73,7 +79,7 @@ class TokenLayout : RelativeLayout, View.OnClickListener, Runnable {
         mPlaceholder = String(placeholder)
 
         // Show the image.
-        mImage.setTokenImage(token)
+        TokenImageUtil.setTokenImage(mImage, token)
 
         mAccount.text = token.account
         mIssuer.text = token.issuer
@@ -94,8 +100,36 @@ class TokenLayout : RelativeLayout, View.OnClickListener, Runnable {
             startActivity(context, intent, null)
         }
         mQrcode.setOnClickListener {
-
+            val dialog = ImageDialog(context)
+            dialog.setTitle(token.issuer)
+            dialog.setButtonText("完成")
+            dialog.show()
+            dialog.tipTv.visibility = GONE
+            dialog.imageView.setImageBitmap(generateQrCode(token))
         }
+    }
+
+    private fun generateQrCode(token: OtpToken): Bitmap? {
+        val qrcodeWriter = QRCodeWriter()
+        val qrCodeSize = resources.getDimensionPixelSize(R.dimen.dp250)
+        val encoded = qrcodeWriter.encode(
+            OtpTokenParser.toUri(token).toString(),
+            BarcodeFormat.QR_CODE,
+            qrCodeSize,
+            qrCodeSize
+        )
+        Log.d("xuruida", "encoded:$encoded")
+        val pixels = IntArray(qrCodeSize * qrCodeSize)
+        for (x in 0 until qrCodeSize) {
+            for (y in 0 until qrCodeSize) {
+                if (encoded.get(x, y)) {
+                    pixels[x * qrCodeSize + y] = Color.BLACK
+                } else {
+                    pixels[x * qrCodeSize + y] = Color.WHITE
+                }
+            }
+        }
+        return Bitmap.createBitmap(pixels, qrCodeSize, qrCodeSize, Bitmap.Config.RGB_565)
     }
 
     private fun animate(view: View, anim: Int, animate: Boolean) {

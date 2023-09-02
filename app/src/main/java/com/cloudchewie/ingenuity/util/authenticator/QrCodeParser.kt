@@ -13,16 +13,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TokenQRCodeDecoder @Inject constructor(private val qrCodeReader: QRCodeReader) {
+class QrCodeParser @Inject constructor(private val qrCodeReader: QRCodeReader) {
 
-    private val tag: String = TokenQRCodeDecoder::class.java.simpleName
+    private val tag: String = QrCodeParser::class.java.simpleName
 
     private lateinit var imageData: ByteArray
 
     fun parseQRCode(image: ImageProxy): String? {
-
-        // In some phones, row stride is larger than the width. Use row stride instead to avoid
-        // buffer overflow
         val rowStride = image.planes[0].rowStride
 
         if (!::imageData.isInitialized) {
@@ -30,8 +27,6 @@ class TokenQRCodeDecoder @Inject constructor(private val qrCodeReader: QRCodeRea
         }
 
         synchronized(imageData) {
-            // Only Y component of YUV is needed
-
             val y = image.planes[0]
             val ySize = y.buffer.remaining()
 

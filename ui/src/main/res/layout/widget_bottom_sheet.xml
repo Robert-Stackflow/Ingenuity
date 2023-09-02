@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_round_top_dp15"
-        android:backgroundTint="@color/bottomsheet_background"
         app:layout_constraintTop_toTopOf="parent">
 
         <View

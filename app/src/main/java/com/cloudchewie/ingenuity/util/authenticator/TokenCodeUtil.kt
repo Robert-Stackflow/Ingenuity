@@ -13,7 +13,6 @@ import javax.inject.Inject
 class TokenCodeUtil @Inject constructor() {
     fun generateTokenCode(otpToken: OtpToken): TokenCode {
         val cur = System.currentTimeMillis()
-
         when (otpToken.tokenType) {
             OtpTokenType.HOTP ->
                 return TokenCode(getHOTP(otpToken, otpToken.counter), cur, cur + otpToken.period * 1000)
@@ -34,23 +33,14 @@ class TokenCodeUtil @Inject constructor() {
     }
 
     private fun getHOTP(otpToken: OtpToken, counter: Long): String {
-        // Encode counter in network byte order
         val bb = ByteBuffer.allocate(8)
         bb.putLong(counter)
-
-        // Create digits divisor
         var div = 1
         for (i in otpToken.digits downTo 1) div *= 10
-
-        // Create the HMAC
         try {
             val mac = Mac.getInstance("Hmac${otpToken.algorithm}")
             mac.init(SecretKeySpec(Base32String.decode(otpToken.secret), "Hmac${otpToken.algorithm}"))
-
-            // Do the hashing
             val digest = mac.doFinal(bb.array())
-
-            // Truncate
             var binary: Int
             val off = digest[digest.size - 1].toInt() and 0xf
             binary = digest[off].toInt() and 0x7f shl 0x18
@@ -65,8 +55,6 @@ class TokenCodeUtil @Inject constructor() {
                 }
             } else {
                 binary %= div
-
-                // Zero pad
                 hotp = binary.toString()
                 while (hotp.length != otpToken.digits) hotp = "0$hotp"
             }

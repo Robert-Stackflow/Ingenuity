@@ -9,7 +9,11 @@ public enum SharedPreferenceCode {
     NAV_INDEX("nav_index", "导航次序"),
     AUTO_DAYNIGHT("auto_daynight", "深色模式跟随系统"),
     IS_NIGHT("is_night", "是否为深色模式"),
-    ENABLE_WEB_CACHE("enable_web_cache", "是否允许网站缓存");
+    ENABLE_WEB_CACHE("enable_web_cache", "是否允许网站缓存"),
+    LONG_PRESS_COPY_CODE("long_press_copy_code", "长按卡片复制密码"),
+    CLICK_COPY_CODE("click_copy_code", "点击卡片复制密码"),
+    AUTH_TO_SHOW_CODE("auth_to_show_code", "需要身份验证"),
+    DISBALE_SCREEN_SHOT("disable_screen_shot", "禁止屏幕截图");
     private final String key;
     private final String describe;
 

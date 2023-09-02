@@ -27,7 +27,7 @@ class ReadableBottomBar @JvmOverloads constructor(
         }
     }
 
-    private val bottomBarItemList: List<BottomBarItem>
+    val bottomBarItemList: List<BottomBarItem>
 
     private var tabInitialSelectedIndex = 0
     private var tabBackgroundColor: Int = Color.WHITE

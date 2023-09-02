@@ -107,6 +107,10 @@ public class BottomSheet extends BottomSheetDialog {
         }
     }
 
+    public void setBackgroundColor(int color) {
+        mainLayout.setBackgroundTintList(ColorStateList.valueOf(color));
+    }
+
     public void setMainLayout(int mainLayoutId) {
         ConstraintLayout main_layout = findViewById(R.id.bottom_sheet_content);
         main_layout.removeAllViews();
@@ -151,8 +155,26 @@ public class BottomSheet extends BottomSheetDialog {
             dragBar.setVisibility(View.INVISIBLE);
     }
 
+    public void setLeftButtonVisible(boolean visible) {
+        if (visible)
+            leftButton.setVisibility(View.VISIBLE);
+        else
+            leftButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void setRightButtonVisible(boolean visible) {
+        if (visible)
+            rightButton.setVisibility(View.VISIBLE);
+        else
+            rightButton.setVisibility(View.INVISIBLE);
+    }
+
     public void setTitle(String str) {
         setTitleBarVisible(true);
         titleView.setText(str);
+    }
+
+    public void setTitleColor(int color) {
+        titleView.setTextColor(color);
     }
 }

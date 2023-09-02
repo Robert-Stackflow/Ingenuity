@@ -13,7 +13,7 @@
         app:left_button_icon="@drawable/ic_light_arrow_left"
         app:right_button_icon="@drawable/ic_light_right"
         app:right_button_visibility="true"
-        app:title="令牌详情" />
+        app:title="@string/title_detail_token" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/activity_authenticator_detail_swipe_refresh"
@@ -30,43 +30,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/activity_authenticator_detail_icon_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/activity_authenticator_detail_icon"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="@dimen/dp80"
                     android:layout_marginTop="@dimen/dp20"
-                    app:cardCornerRadius="@dimen/dp8"
-                    app:cardElevation="0dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/cd_logo"
+                    android:src="@drawable/token_image_google"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/activity_authenticator_detail_icon"
-                        android:layout_width="@dimen/dp80"
-                        android:layout_height="@dimen/dp80"
-                        android:contentDescription="@string/cd_logo"
-                        android:src="@mipmap/ic_launcher" />
-                </androidx.cardview.widget.CardView>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.cloudchewie.ui.item.InputItem
                     android:id="@+id/activity_authenticator_detail_issuer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp20"
-                    app:input_item_hint="应用名称"
+                    app:input_item_hint="@string/token_application_hint"
                     app:input_item_single_line="true"
-                    app:input_item_title="应用"
+                    app:input_item_title="@string/token_application_label"
                     app:input_item_top_radius_enable="true"
-                    app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_icon_layout" />
+                    app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_icon" />
 
                 <com.cloudchewie.ui.item.InputItem
                     android:id="@+id/activity_authenticator_detail_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:input_item_hint="帐户名称或邮箱"
+                    app:input_item_hint="@string/token_account_hint"
                     app:input_item_single_line="true"
-                    app:input_item_title="帐户"
+                    app:input_item_title="@string/token_account_label"
                     app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_issuer" />
 
                 <com.cloudchewie.ui.item.InputItem
@@ -74,9 +67,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:input_item_bottom_radius_enable="true"
-                    app:input_item_hint="Base32编码的密钥"
+                    app:input_item_hint="@string/token_secret_hint"
                     app:input_item_single_line="true"
-                    app:input_item_title="密钥"
+                    app:input_item_title="@string/token_secret_label"
                     app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_account" />
 
                 <com.cloudchewie.ui.item.RadioItem
@@ -87,7 +80,7 @@
                     app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_secret"
                     app:radio_item_array="@array/auth_type"
                     app:radio_item_init_index="0"
-                    app:radio_item_title="类型"
+                    app:radio_item_title="@string/token_type_label"
                     app:radio_item_top_radius_enable="true" />
 
                 <com.cloudchewie.ui.item.RadioItem
@@ -97,7 +90,7 @@
                     app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_type"
                     app:radio_item_array="@array/auth_digits"
                     app:radio_item_init_index="1"
-                    app:radio_item_title="位数" />
+                    app:radio_item_title="@string/token_digits_label" />
 
                 <com.cloudchewie.ui.item.RadioItem
                     android:id="@+id/activity_authenticator_detail_algorithm"
@@ -106,17 +99,17 @@
                     app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_digits"
                     app:radio_item_array="@array/auth_algorithms"
                     app:radio_item_init_index="1"
-                    app:radio_item_title="算法" />
+                    app:radio_item_title="@string/token_algorithm_label" />
 
                 <com.cloudchewie.ui.item.InputItem
                     android:id="@+id/activity_authenticator_detail_interval"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:input_item_bottom_radius_enable="true"
-                    app:input_item_hint="密码刷新时间间隔，默认为30秒"
+                    app:input_item_hint="@string/token_interval_hint"
                     app:input_item_mode="number"
                     app:input_item_single_line="true"
-                    app:input_item_title="间隔"
+                    app:input_item_title="@string/token_interval_label"
                     app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_algorithm" />
 
                 <com.cloudchewie.ui.item.InputItem
@@ -124,10 +117,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:input_item_bottom_radius_enable="true"
-                    app:input_item_hint="计数器"
+                    app:input_item_hint="@string/token_counter_hint"
                     app:input_item_mode="number"
                     app:input_item_single_line="true"
-                    app:input_item_title="计数器"
+                    app:input_item_title="@string/token_counter_label"
                     app:layout_constraintTop_toBottomOf="@id/activity_authenticator_detail_interval" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -139,7 +132,7 @@
                     android:background="@drawable/shape_button_round"
                     android:backgroundTint="@color/color_red"
                     android:stateListAnimator="@null"
-                    android:text="删除令牌"
+                    android:text="@string/delete_token"
                     android:textAlignment="center"
                     android:textColor="@color/text_color_white"
                     android:textSize="@dimen/sp16"
