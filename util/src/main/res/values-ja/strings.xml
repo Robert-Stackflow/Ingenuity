@@ -24,6 +24,7 @@
 	<string name="title_update_log">更新ログ</string>
 	<string name="title_theme">テーマの色</string>
 	<string name="title_home">マイホーム</string>
+	<string name="title_passwordbox">パスワード ボックス</string>
 	<string name="title_blog">ブログアドレス</string>
 	<string name="dialog_title_clear_cache">キャッシュのクリア</string>
 	<string name="dialog_content_clear_cache">キャッシュをクリアするかどうか（キャッシュにはダウンロードした画像、データなどが含まれ、クリア後に再ダウンロードが必要）</string>
@@ -226,4 +227,38 @@
 	<string name="verify_finger">指紋を検証する</string>
 	<string name="verify_finger_fail">指紋認証に失敗しました</string>
 	<string name="verify_finger_error">検証に失敗しました。もう一度お試しください。</string>
+	<string name="cannot_be_null">空にすることはできません</string>
+	<string name="share_bookmark_group">ブックマーク フォルダを共有</string>
+	<string name="move_bookmark_group">ブックマーク フォルダを移動</string>
+	<string name="move_bookmark">ブックマークを移動</string>
+	<string name="amount_operation">バッチ操作</string>
+	<string name="delete_bookmark_group">ブックマーク フォルダを削除</string>
+	<string name="delete_bookmark">ブックマークを削除</string>
+	<string name="share_bookmark">ブックマークを共有</string>
+	<string name="edit_bookmark">ブックマークを編集</string>
+	<string name="export_bookmark_group">ブックマーク フォルダーをエクスポート</string>
+	<string name="import_bookmark">ブックマークをインポート</string>
+	<string name="new_bookmark_group">新しいブックマーク フォルダ</string>
+	<string name="new_bookmark">新しいブックマーク</string>
+	<string name="search_bookmark_hint">ブックマークのタイトル、リンクを検索</string>
+	<string name="bookmark_name">ブックマーク名</string>
+	<string name="bookmark_group_name">ブックマーク フォルダ名</string>
+	<string name="bookmark_url">ブックマーク URL</string>
+	<string name="rename_success">名前が正常に変更されました</string>
+	<string name="delete_success">正常に削除されました</string>
+	<string name="edit_success">編集が成功しました</string>
+	<string name="new_success">新たな成功</string>
+	<string name="null_code">トークンなし</string>
+	<string name="null_bookmark">ブックマークはまだありません</string>
+	<string name="dialog_title_import_bookmark">ブックマークをインポート</string>
+	<string name="dialog_content_import_bookmark" formatted="true">ファイル %1$s からブックマークをインポートするかどうか</string>
+	<string name="dialog_title_delete_root_bookmark_group">ルート ブックマーク フォルダを削除する</string>
+	<string name="dialog_content_delete_root_bookmark_group">ルート ブックマーク フォルダ【%1$s】を削除しますか? 削除後は復元できません。バックアップがエクスポートされていることを確認してください。</string>
+	<string name="dialog_title_delete_bookmark_group">ブックマーク フォルダを削除する</string>
+	<string name="dialog_content_delete_bookmark_group">ブックマーク フォルダー【%2$s】をブックマーク フォルダー【%1$s】から削除するかどうか</string>
+	<string name="title_scan_token">コードをスキャンして追加します</string>
+	<string name="title_lock_token">ロック トークン</string>
+	<string name="open">開く</string>
+	<string name="edit">編集</string>
+	<string name="rename">名前を変更</string>
 </resources>

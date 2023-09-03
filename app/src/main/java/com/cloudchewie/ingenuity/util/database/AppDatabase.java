@@ -17,18 +17,21 @@ import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.cloudchewie.ingenuity.dao.BookmarkDao;
 import com.cloudchewie.ingenuity.dao.OtpTokenDao;
+import com.cloudchewie.ingenuity.entity.BookmarkGroup;
 import com.cloudchewie.ingenuity.entity.OtpToken;
 
 import org.jetbrains.annotations.Contract;
 
-@Database(entities = {OtpToken.class}, version = 1, exportSchema = false)
+@Database(entities = {OtpToken.class, BookmarkGroup.class}, version = 2)
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Contract(pure = true)
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `bookmark` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `order` INTEGER NOT NULL, `addDate` INTEGER, `isRoot` INTEGER NOT NULL, `lastModified` INTEGER, `importTime` INTEGER, `bookmarks` TEXT, `bookmarkGroups` TEXT)");
         }
     };
     private static final String DB_NAME = "cloudchewie.db";
@@ -47,5 +50,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract OtpTokenDao otpTokenDao();
+
+    public abstract BookmarkDao bookmarkDao();
 
 }

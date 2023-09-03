@@ -2,7 +2,6 @@ package com.cloudchewie.ingenuity.activity.authenticator;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,29 +9,26 @@ import android.view.View;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
-import com.cloudchewie.ingenuity.util.authenticator.ImportExportUtil;
+import com.cloudchewie.ingenuity.util.ExploreUtil;
+import com.cloudchewie.ingenuity.util.authenticator.ImportExportTokenUtil;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.custom.IDialog;
 import com.cloudchewie.ui.custom.IToast;
 import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.item.CheckBoxItem;
 import com.cloudchewie.ui.item.EntryItem;
-import com.cloudchewie.util.basic.DateFormatUtil;
 import com.cloudchewie.util.system.SharedPreferenceCode;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
+import com.cloudchewie.util.system.UriUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
-
-import java.util.Date;
 
 public class AuthenticatorSettingsActivity extends BaseActivity implements View.OnClickListener {
     private static final int READ_JSON_REQUEST_CODE = 42;
     private static final int WRITE_JSON_REQUEST_CODE = 43;
     private static final int READ_KEY_URI_REQUEST_CODE = 44;
     private static final int WRITE_KEY_URI_REQUEST_CODE = 45;
-    private static final String SCREENSHOT_MODE_EXTRA = "screenshot_mode";
-    private static final String SHARE_FROM_PACKAGE_NAME_INTENT_EXTRA = "shareFromPackageName";
     RefreshLayout swipeRefreshLayout;
     CheckBoxItem longPressItem;
     CheckBoxItem clickItem;
@@ -98,45 +94,13 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
     @Override
     public void onClick(View view) {
         if (view == exportJsonItem) {
-            createFile("application/json", "OTPBackup", "json", WRITE_JSON_REQUEST_CODE, true);
+            ExploreUtil.createFile(this,"application/json", "OTPBackup", "json", WRITE_JSON_REQUEST_CODE, true);
         } else if (view == exportUriItem) {
-            createFile("text/plain", "OTPBackup", "txt", WRITE_KEY_URI_REQUEST_CODE, true);
+            ExploreUtil.createFile(this,"text/plain", "OTPBackup", "txt", WRITE_KEY_URI_REQUEST_CODE, true);
         } else if (view == importJsonItem) {
-            performFileSearch(READ_JSON_REQUEST_CODE);
+            ExploreUtil.performFileSearch(this,READ_JSON_REQUEST_CODE);
         } else if (view == importUriItem) {
-            performFileSearch(READ_KEY_URI_REQUEST_CODE);
-        }
-    }
-
-    private void performFileSearch(int requestCode) {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        try {
-            startActivityForResult(intent, requestCode);
-        } catch (ActivityNotFoundException e) {
-            IToast.showBottom(this, getString(R.string.permission_fail_explorer));
-        }
-    }
-
-
-    private void createFile(String mimeType, String fileName, String fileExtension, int requestCode, boolean appendTimestamp) {
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        String fullName = fileName;
-        if (appendTimestamp) {
-            fullName += "_";
-            fullName += DateFormatUtil.getSimpleDateFormat(DateFormatUtil.FULL_FORMAT).format(new Date());
-        }
-        fullName += ".";
-        fullName += fileExtension;
-
-        intent.setType(mimeType);
-        intent.putExtra(Intent.EXTRA_TITLE, fullName);
-        try {
-            startActivityForResult(intent, requestCode);
-        } catch (ActivityNotFoundException e) {
-            IToast.showBottom(this, getString(R.string.permission_fail_explorer));
+            ExploreUtil.performFileSearch(this,READ_KEY_URI_REQUEST_CODE);
         }
     }
 
@@ -151,18 +115,19 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
         if (uri == null) return;
         switch (requestCode) {
             case WRITE_JSON_REQUEST_CODE:
-                ImportExportUtil.exportJsonFile(AuthenticatorSettingsActivity.this, uri);
+                ImportExportTokenUtil.exportJsonFile(AuthenticatorSettingsActivity.this, uri);
                 IToast.showBottom(this, getString(R.string.export_success));
                 break;
             case READ_JSON_REQUEST_CODE:
                 dialog.setTitle(getString(R.string.dialog_title_import_json_token));
-                dialog.setMessage(String.format(getString(R.string.dialog_content_import_json_token), uri.getPath()));
+                dialog.setMessage(String.format(getString(R.string.dialog_content_import_json_token), UriUtil.getFileAbsolutePath(this, uri)));
                 dialog.setOnClickBottomListener(new IDialog.OnClickBottomListener() {
                     @Override
                     public void onPositiveClick() {
                         try {
-                            ImportExportUtil.importJsonFile(AuthenticatorSettingsActivity.this, uri);
+                            ImportExportTokenUtil.importJsonFile(AuthenticatorSettingsActivity.this, uri);
                             IToast.showBottom(AuthenticatorSettingsActivity.this, getString(R.string.import_success));
+                            LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
                         } catch (Exception e) {
                             IToast.showBottom(AuthenticatorSettingsActivity.this, getString(R.string.import_fail));
                         }
@@ -181,18 +146,19 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
                 dialog.show();
                 break;
             case WRITE_KEY_URI_REQUEST_CODE:
-                ImportExportUtil.exportKeyUriFile(AuthenticatorSettingsActivity.this, uri);
+                ImportExportTokenUtil.exportKeyUriFile(AuthenticatorSettingsActivity.this, uri);
                 IToast.showBottom(this, getString(R.string.export_success));
                 break;
             case READ_KEY_URI_REQUEST_CODE:
                 dialog.setTitle(getString(R.string.dialog_title_import_uri_token));
-                dialog.setMessage(String.format(getString(R.string.dialog_content_import_uri_token), uri.getPath()));
+                dialog.setMessage(String.format(getString(R.string.dialog_content_import_uri_token), UriUtil.getFileAbsolutePath(this, uri)));
                 dialog.setOnClickBottomListener(new IDialog.OnClickBottomListener() {
                     @Override
                     public void onPositiveClick() {
                         try {
-                            ImportExportUtil.importKeyUriFile(AuthenticatorSettingsActivity.this, uri);
+                            ImportExportTokenUtil.importKeyUriFile(AuthenticatorSettingsActivity.this, uri);
                             IToast.showBottom(AuthenticatorSettingsActivity.this, getString(R.string.import_success));
+                            LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
                         } catch (Exception e) {
                             IToast.showBottom(AuthenticatorSettingsActivity.this, getString(R.string.import_fail));
                         }

@@ -1,5 +1,6 @@
 package com.cloudchewie.ingenuity.widget;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -47,6 +48,17 @@ public class InputBottomSheet extends BottomSheet {
         initView();
     }
 
+    public InputBottomSheet(@NonNull Context context, String title, String content, String hint, int maxLength, boolean isRequired) {
+        super(context);
+        this.context = context;
+        this.title = title;
+        this.hint = hint;
+        this.content = content;
+        this.maxLength = maxLength;
+        this.isRequired = isRequired;
+        initView();
+    }
+
     public InputBottomSheet(@NonNull Context context, String title, String content, int maxLength, boolean isRequired, int minLines) {
         super(context);
         this.context = context;
@@ -62,7 +74,7 @@ public class InputBottomSheet extends BottomSheet {
         super(context);
         this.context = context;
         if (bundle != null) {
-            title = bundle.getString("title", "编辑");
+            title = bundle.getString("title", "");
             content = bundle.getString("content");
             hint = bundle.getString("hint");
             maxLines = bundle.getInt("maxlines");
@@ -81,9 +93,13 @@ public class InputBottomSheet extends BottomSheet {
         this.onConfirmClickedListener = onConfirmClickedListener;
     }
 
+    @SuppressLint("SetTextI18n")
     void initView() {
-        setOnShowListener(dialog -> KeyboardUtils.showSoftInput((Activity) context));
-        setTitle("编辑" + title);
+        setOnShowListener(dialog -> {
+            KeyboardUtils.showSoftInput((Activity) context);
+            editText.requestFocus();
+        });
+        setTitle(title);
         setDragBarVisible(false);
         leftButton.setVisibility(View.GONE);
         rightButton.setVisibility(View.GONE);
@@ -124,7 +140,7 @@ public class InputBottomSheet extends BottomSheet {
         }
         confirmButton.setOnClickListener(v -> {
             if (isRequired && TextUtils.isEmpty(inputLayout.getText())) {
-                IToast.makeTextTop(getContext(), title + "不能为空", Toast.LENGTH_SHORT).show();
+                IToast.makeTextTop(getContext(), title + context.getString(R.string.cannot_be_null), Toast.LENGTH_SHORT).show();
             } else {
                 if (onConfirmClickedListener != null)
                     onConfirmClickedListener.OnConfirmClicked(inputLayout.getText());
@@ -140,5 +156,10 @@ public class InputBottomSheet extends BottomSheet {
 
     public interface OnConfirmClickedListener {
         void OnConfirmClicked(String content);
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+        this.editText.setHint(hint);
     }
 }

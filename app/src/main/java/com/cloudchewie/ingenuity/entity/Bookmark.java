@@ -5,11 +5,15 @@ import androidx.annotation.NonNull;
 
 import java.util.Date;
 
-public class Bookmark {
+public class Bookmark implements Cloneable {
     String url;
     String name;
     int order;
     String description;
+
+    public String getShareString() {
+        return name + ":" + url;
+    }
 
     public int getOrder() {
         return order;
@@ -88,5 +92,15 @@ public class Bookmark {
 
     public String toHtml() {
         return "<DT><A HREF=\"" + url + "\" DISCRITION=\"" + description + "\" ADD_DATE=\"" + addTime.getTime() + "\" ICON=\"" + icon + "\">" + name + "</A>\n";
+    }
+
+    @NonNull
+    @Override
+    public Bookmark clone() {
+        try {
+            return (Bookmark) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

@@ -1,13 +1,71 @@
 package com.cloudchewie.ingenuity.entity;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class BookmarkGroup {
+@Entity(tableName = "bookmark")
+public class BookmarkGroup implements Cloneable {
+    @PrimaryKey(autoGenerate = true)
+    Integer id;
+    String name;
+    int order;
+    Date addDate;
     boolean isRoot;
+
+    public boolean isAll() {
+        return isAll;
+    }
+
+    public void setAll(boolean all) {
+        isAll = all;
+    }
+
+    @Ignore
+    boolean isAll = false;
+
+    Date lastModified;
+    @Ignore
+    Uri originUri;
+    Date importTime;
+    List<Bookmark> bookmarks;
+    List<BookmarkGroup> bookmarkGroups;
+
+    public Integer getId() {
+        return id;
+    }
+
+
+    public int size() {
+        return sizeOfBookmarkGroups() + sizeOfBookmarks();
+    }
+
+    public int sizeOfBookmarks() {
+        return (bookmarks != null ? bookmarks.size() : 0);
+    }
+
+    public int sizeOfBookmarkGroups() {
+        return (bookmarkGroups != null ? bookmarkGroups.size() : 0);
+    }
+
+    public Object get(int index) {
+        if (index < 0 || index > size())
+            return null;
+        else if (index >= 0 && index < sizeOfBookmarkGroups())
+            return bookmarkGroups.get(index);
+        else return bookmarks.get(index - sizeOfBookmarkGroups());
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public boolean isRoot() {
         return isRoot;
@@ -17,17 +75,12 @@ public class BookmarkGroup {
         isRoot = root;
     }
 
-    String name;
-    int order;
-    Date addDate;
-    Date lastModified;
-
-    public String getOriginFilePath() {
-        return originFilePath;
+    public Uri getOriginUri() {
+        return originUri;
     }
 
-    public void setOriginFilePath(String originFilePath) {
-        this.originFilePath = originFilePath;
+    public void setOriginUri(Uri originUri) {
+        this.originUri = originUri;
     }
 
     public Date getImportTime() {
@@ -38,10 +91,6 @@ public class BookmarkGroup {
         this.importTime = importTime;
     }
 
-    String originFilePath;
-    Date importTime;
-    List<Bookmark> bookmarks;
-    List<BookmarkGroup> bookmarkGroups;
 
     public Date getAddDate() {
         return addDate;
@@ -69,6 +118,14 @@ public class BookmarkGroup {
     public String toString() {
 //        return "BookmarkGroup{" + "name='" + name + '\'' + ", bookmarks=" + bookmarks + ", bookmarkGroups=" + bookmarkGroups + '}';
         return "BookmarkGroup{" + "name='" + name + '\'' + ", bookmarks=" + bookmarks.size() + ", bookmarkGroups=" + bookmarkGroups.size() + '}';
+    }
+
+    public void deleteGroup(BookmarkGroup delete) {
+        bookmarkGroups.remove(delete);
+    }
+
+    public void deleteItem(Bookmark delete) {
+        bookmarks.remove(delete);
     }
 
     public String getName() {
@@ -124,6 +181,37 @@ public class BookmarkGroup {
         }
         for (int i = 0; i < bookmarks.size(); i++) {
             bookmarks.get(i).setOrder(i);
+        }
+    }
+
+    public List<Bookmark> find(String key) {
+        List<Bookmark> found = new ArrayList<>();
+        for (Bookmark bookmark : bookmarks)
+            if (bookmark.name.contains(key) || bookmark.url.contains(key))
+                found.add(bookmark);
+        for (BookmarkGroup bookmarkGroup : bookmarkGroups)
+            found.addAll(bookmarkGroup.find(key));
+        return found;
+    }
+
+    @NonNull
+    @Override
+    public BookmarkGroup clone() {
+        try {
+            BookmarkGroup group = (BookmarkGroup) super.clone();
+            List<BookmarkGroup> clonedBookmarkGroups = new ArrayList<>();
+            for (BookmarkGroup bookmarkGroup : bookmarkGroups) {
+                clonedBookmarkGroups.add(bookmarkGroup.clone());
+            }
+            group.setBookmarkGroups(clonedBookmarkGroups);
+            List<Bookmark> clonedBookmarks = new ArrayList<>();
+            for (Bookmark bookmark : bookmarks) {
+                clonedBookmarks.add(bookmark.clone());
+            }
+            group.setBookmarks(clonedBookmarks);
+            return group;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
         }
     }
 

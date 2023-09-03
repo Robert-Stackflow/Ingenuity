@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/card_background"
+    android:padding="@dimen/dp20">
+
+    <com.cloudchewie.ui.item.InputLayout
+        android:id="@+id/layout_edit_bookmark_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:input_layout_backgroundTint="@color/color_selector_content"
+        app:input_layout_mode="text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.cloudchewie.ui.item.InputLayout
+        android:id="@+id/layout_edit_bookmark_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        app:input_layout_backgroundTint="@color/color_selector_content"
+        app:input_layout_mode="text"
+        app:layout_constraintTop_toBottomOf="@id/layout_edit_bookmark_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dp25"
+        app:layout_constraintTop_toBottomOf="@id/layout_edit_bookmark_url">
+
+        <Button
+            android:id="@+id/layout_edit_bookmark_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp40"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button_round_frame"
+            android:backgroundTint="@color/color_light_gray"
+            android:contentDescription="@string/cd_image"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:stateListAnimator="@null"
+            android:text="@string/cancel"
+            android:textAlignment="center"
+            android:textColor="@color/color_accent"
+            android:textSize="@dimen/sp15" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/layout_edit_bookmark_confirm"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginStart="@dimen/dp25"
+            android:layout_weight="1"
+            android:background="@drawable/shape_button_round"
+            android:backgroundTint="?attr/colorPrimary"
+            android:contentDescription="@string/cd_image"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:text="@string/confirm"
+            android:textAlignment="center"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

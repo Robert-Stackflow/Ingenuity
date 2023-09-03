@@ -52,7 +52,19 @@
             android:layout_marginTop="@dimen/dp10"
             android:text="@string/unpin_to_show_code"
             android:textColor="@color/color_icon" />
+
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/fragment_authenticator_blank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="@string/null_code"
+        android:textColor="@color/color_icon"
+        android:visibility="gone" />
 
     <com.cloudchewie.ui.fab.FloatingActionMenu
         android:id="@+id/fragement_authenticator_menu"
@@ -63,13 +75,15 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        app:menu_buttonSpacing="@dimen/dp3"
-        app:menu_shadowColor="@android:color/transparent"
         app:menu_backgroundColor="@android:color/transparent"
+        app:menu_buttonSpacing="@dimen/dp5"
         app:menu_colorNormal="?attr/colorPrimary"
         app:menu_colorPressed="?attr/colorPrimary"
         app:menu_fab_size="normal"
-        app:menu_openDirection="up">
+        app:menu_labels_margin="@dimen/dp10"
+        app:menu_labels_showShadow="false"
+        app:menu_openDirection="up"
+        app:menu_shadowColor="@android:color/transparent">
 
         <com.cloudchewie.ui.fab.FloatingActionButton
             android:id="@+id/fragement_authenticator_add"
@@ -79,6 +93,7 @@
             android:tint="@color/text_color_white"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"
+            app:fab_label="@string/title_add_token"
             app:fab_showShadow="false"
             app:fab_size="mini" />
 
@@ -90,6 +105,7 @@
             android:tint="@color/text_color_white"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"
+            app:fab_label="@string/title_scan_token"
             app:fab_showShadow="false"
             app:fab_size="mini" />
 
@@ -99,6 +115,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_light_password"
             android:tint="@color/text_color_white"
+            app:fab_label="@string/title_lock_token"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"
             app:fab_showShadow="false"
@@ -110,6 +127,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_light_settings"
             android:tint="@color/text_color_white"
+            app:fab_label="@string/title_settings_token"
             app:fab_colorNormal="?attr/colorPrimary"
             app:fab_colorPressed="?attr/colorPrimary"
             app:fab_showShadow="false"

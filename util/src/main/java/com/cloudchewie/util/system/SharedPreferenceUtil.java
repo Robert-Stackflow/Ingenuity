@@ -77,7 +77,7 @@ public class SharedPreferenceUtil {
         putString(context, key, JSON.toJSONString(object));
     }
 
-    public static Object getObject(@NonNull Context context, String key, Class clazz) {
+    public static Object getObject(@NonNull Context context, String key, Class<?> clazz) {
         return JSON.parseObject(getString(context, key, ""), clazz);
     }
 

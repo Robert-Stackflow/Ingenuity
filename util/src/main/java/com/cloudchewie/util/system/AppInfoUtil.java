@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppInfoUtil {
-    @Contract("_, null -> false")
     public static boolean isAppInstalled(Context context, String packageName) {
         if (packageName == null || packageName.isEmpty()) return false;
         PackageInfo packageInfo;

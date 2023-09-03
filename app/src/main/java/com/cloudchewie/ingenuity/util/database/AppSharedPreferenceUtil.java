@@ -6,7 +6,6 @@ import static com.cloudchewie.util.system.SharedPreferenceUtil.putObject;
 import static com.cloudchewie.util.system.SharedPreferenceUtil.putString;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 

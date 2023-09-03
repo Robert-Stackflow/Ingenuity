@@ -98,7 +98,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == nickNameEntry) {
-            InputBottomSheet bottomSheet = new InputBottomSheet(this, nickNameEntry.getTitle(), nickNameEntry.getTip(), 30, true);
+            InputBottomSheet bottomSheet = new InputBottomSheet(this, getString(R.string.edit) + nickNameEntry.getTitle(), nickNameEntry.getTip(), 30, true);
             bottomSheet.setOnConfirmClickedListener(content -> {
                 nickNameEntry.setTipText(content);
                 user.setNickname(content);

@@ -10,21 +10,23 @@ package com.cloudchewie.ingenuity.util.database;
 import androidx.annotation.NonNull;
 import androidx.room.TypeConverter;
 
+import com.cloudchewie.ingenuity.entity.Bookmark;
+import com.cloudchewie.ingenuity.entity.BookmarkGroup;
 import com.cloudchewie.util.basic.CalendarUtil;
+import com.google.gson.Gson;
 
-import org.jetbrains.annotations.Contract;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Converters {
-    @Contract("null -> null; !null -> new")
     @TypeConverter
     public static Date fromTimestamp(Long value) {
         return value == null ? null : new Date(value);
     }
 
-    @Contract("null -> null")
     @TypeConverter
     public static Long dateToTimestamp(Date date) {
         return date == null ? null : date.getTime();
@@ -40,5 +42,28 @@ public class Converters {
     public static String calendarTo(Calendar date) {
         return CalendarUtil.calendarToString(date);
     }
-    
+
+    @NonNull
+    @TypeConverter
+    public static String bookmarkListTo(List<Bookmark> bookmarks) {
+        return new Gson().toJson(bookmarks.toArray());
+    }
+
+    @NonNull
+    @TypeConverter
+    public static List<Bookmark> toBookmarkList(String json) {
+        return new ArrayList<>(Arrays.asList(new Gson().fromJson(json, Bookmark[].class)));
+    }
+
+    @NonNull
+    @TypeConverter
+    public static String bookmarkGroupListTo(List<BookmarkGroup> bookmarkGroups) {
+        return new Gson().toJson(bookmarkGroups.toArray());
+    }
+
+    @NonNull
+    @TypeConverter
+    public static List<BookmarkGroup> toBookmarkGroupList(String json) {
+        return new ArrayList<>(Arrays.asList(new Gson().fromJson(json, BookmarkGroup[].class)));
+    }
 }

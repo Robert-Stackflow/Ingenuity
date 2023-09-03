@@ -7,8 +7,6 @@
 
 package com.cloudchewie.ingenuity.fragment;
 
-import static com.cloudchewie.ingenuity.util.bookmark.BookmarkImport.importBookmarks;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +25,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.cloudchewie.ingenuity.R;
+import com.cloudchewie.ingenuity.activity.application.BookmarkActivity;
+import com.cloudchewie.ingenuity.activity.application.PasswordboxActivity;
 import com.cloudchewie.ingenuity.activity.application.WebViewActivity;
 import com.cloudchewie.ingenuity.activity.settings.AboutActivity;
 import com.cloudchewie.ingenuity.activity.settings.FeedbackActivity;
@@ -37,7 +37,6 @@ import com.cloudchewie.ingenuity.activity.user.InfoActivity;
 import com.cloudchewie.ingenuity.activity.user.LoginActivity;
 import com.cloudchewie.ingenuity.api.UserAuthRequest;
 import com.cloudchewie.ingenuity.entity.User;
-import com.cloudchewie.ingenuity.util.bookmark.BookmarkExport;
 import com.cloudchewie.ingenuity.util.database.AppSharedPreferenceUtil;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.ThemeUtil;
@@ -68,6 +67,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     VerticalIconTextItem githubEntry;
     VerticalIconTextItem blogEntry;
     VerticalIconTextItem homeEntry;
+    VerticalIconTextItem bookmarkEntry;
+    VerticalIconTextItem passwordBoxEntry;
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         @Override
@@ -106,6 +107,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         githubEntry = mainView.findViewById(R.id.fragment_user_entry_github);
         blogEntry = mainView.findViewById(R.id.fragment_user_entry_blog);
         homeEntry = mainView.findViewById(R.id.fragment_user_entry_home);
+        bookmarkEntry = mainView.findViewById(R.id.fragment_user_entry_bookmark);
+        passwordBoxEntry = mainView.findViewById(R.id.fragment_user_entry_passwordbox);
         dayNightEntry.setOnClickListener(this);
         themeEntry.setOnClickListener(this);
         settingEntry.setOnClickListener(this);
@@ -113,8 +116,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         helpEntry.setOnClickListener(this);
         feedbackEntry.setOnClickListener(this);
         githubEntry.setOnClickListener(this);
+        bookmarkEntry.setOnClickListener(this);
         blogEntry.setOnClickListener(this);
         homeEntry.setOnClickListener(this);
+        passwordBoxEntry.setOnClickListener(this);
         mainView.findViewById(R.id.fragment_user_username).setOnClickListener(this);
         mainView.findViewById(R.id.fragment_user_avatar).setOnClickListener(this);
         initSwipeRefresh();
@@ -139,8 +144,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             githubEntry.setMinLinesWithCenter(2);
             homeEntry.setMinLinesWithCenter(2);
             dayNightEntry.setMinLinesWithCenter(2);
+            passwordBoxEntry.setMinLinesWithCenter(2);
         }
-        mainView.findViewById(R.id.fragment_user_entry_bookmark).setOnClickListener(v -> BookmarkExport.exportBookmarks(requireContext(), importBookmarks(requireContext(), "bookmark.html"), "bookmark.html"));
         return mainView;
     }
 
@@ -249,6 +254,12 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), InfoActivity.class).setAction(Intent.ACTION_DEFAULT);
                 startActivity(intent);
             }
+        } else if (view == bookmarkEntry) {
+            Intent intent = new Intent(getActivity(), BookmarkActivity.class).setAction(Intent.ACTION_DEFAULT);
+            startActivity(intent);
+        } else if (view == passwordBoxEntry) {
+            Intent intent = new Intent(getActivity(), PasswordboxActivity.class).setAction(Intent.ACTION_DEFAULT);
+            startActivity(intent);
         }
     }
 }

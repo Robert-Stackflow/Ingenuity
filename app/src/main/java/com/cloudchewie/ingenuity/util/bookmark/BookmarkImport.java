@@ -1,28 +1,45 @@
 package com.cloudchewie.ingenuity.util.bookmark;
 
 import android.content.Context;
+import android.net.Uri;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.entity.Bookmark;
 import com.cloudchewie.ingenuity.entity.BookmarkGroup;
-import com.cloudchewie.util.system.AssetsUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Objects;
 
 public class BookmarkImport {
-    public static BookmarkGroup importBookmarks(Context context, String filePath) {
-        String content = AssetsUtil.getTextFileContent(context, filePath);
+    public static BookmarkGroup importBookmarks(Context context, Uri fileUri) {
+        String content = "";
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(fileUri);
+            InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+            StringBuilder stringBuilder = new StringBuilder();
+            int flag;
+            while ((flag = reader.read()) != -1)
+                stringBuilder.append((char) flag);
+            content = stringBuilder.toString();
+            reader.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         BookmarkGroup bookmarkGroup = parseStringToBookmarkGroup(context, content);
         bookmarkGroup.initOrder();
         bookmarkGroup.setRoot(true);
         bookmarkGroup.setImportTime(new Date());
-        bookmarkGroup.setOriginFilePath(filePath);
+        bookmarkGroup.setOriginUri(fileUri);
         return bookmarkGroup;
     }
 

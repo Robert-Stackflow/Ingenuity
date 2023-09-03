@@ -101,7 +101,7 @@ public class AssetsUtil {
                 File file = new File(sdCardPath + File.separator
                         + assetsPath.substring(assetsPath.lastIndexOf('/')));
                 if (!file.exists()) {
-                    file.createNewFile();
+                    boolean __ = file.createNewFile();
                 } else {
                     return;
                 }
@@ -116,7 +116,7 @@ public class AssetsUtil {
                 sdCardPath = sdCardPath + File.separator + assetsPath;
                 File file = new File(sdCardPath);
                 if (!file.exists()) {
-                    file.mkdirs();
+                    boolean __ = file.mkdirs();
                 }
                 for (String stringFile : files)
                     putAssetsToSDCard(context, assetsPath + File.separator + stringFile, sdCardPath);

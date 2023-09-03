@@ -112,6 +112,6 @@
     <dimen name="verticalspit_view_width">0.6dp</dimen>
 
     <dimen name="fab_size_normal">56dp</dimen>
-    <dimen name="fab_size_mini">48dp</dimen>
+    <dimen name="fab_size_mini">44dp</dimen>
     <dimen name="labels_text_size">14sp</dimen>
 </resources>

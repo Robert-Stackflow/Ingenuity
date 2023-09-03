@@ -64,6 +64,8 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
         swipeRefreshLayout.finishRefresh();
         adapter = new TokenListAdapter(getContext(), LocalStorage.getAppDatabase().otpTokenDao().getAll());
         recyclerView.setAdapter(adapter);
+        isAuthed = true;
+        refreshAuthState();
         handler.sendMessage(message);
     };
 
@@ -102,7 +104,7 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
             lockButton.setVisibility(SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true) ? View.VISIBLE : View.GONE);
             refreshAuthState();
         });
-        isAuthed = !SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true);
+        isAuthed = LocalStorage.getAppDatabase().otpTokenDao().count() <= 0 || !SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true);
         lockButton.setVisibility(SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true) ? View.VISIBLE : View.GONE);
         refreshAuthState();
         initAuth();
@@ -114,10 +116,16 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
             lockLayout.setVisibility(View.GONE);
             ((View) swipeRefreshLayout).setVisibility(View.VISIBLE);
             fabMenu.setVisibility(View.VISIBLE);
+            if (LocalStorage.getAppDatabase().otpTokenDao().count() <= 0) {
+                mainView.findViewById(R.id.fragment_authenticator_blank).setVisibility(View.VISIBLE);
+            } else {
+                mainView.findViewById(R.id.fragment_authenticator_blank).setVisibility(View.GONE);
+            }
         } else {
             lockLayout.setVisibility(View.VISIBLE);
             ((View) swipeRefreshLayout).setVisibility(View.GONE);
             fabMenu.setVisibility(View.GONE);
+            mainView.findViewById(R.id.fragment_authenticator_blank).setVisibility(View.GONE);
         }
     }
 

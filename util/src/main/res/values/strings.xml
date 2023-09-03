@@ -16,6 +16,9 @@
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
     <string name="back">返回</string>
+    <string name="open">打开</string>
+    <string name="edit">编辑</string>
+    <string name="rename">重命名</string>
     <string name="more">更多</string>
     <!--标题-->
     <string name="title_setting"> 设置 </string>
@@ -28,9 +31,12 @@
     <string name="title_update_log">更新日志</string>
     <string name="title_theme">主题颜色</string>
     <string name="title_home">我的主页</string>
+    <string name="title_passwordbox">密码箱</string>
     <string name="title_blog">博客地址</string>
-    <string name="title_bookmark">书签栏</string>
+    <string name="title_bookmark">书签</string>
     <string name="title_add_token">添加令牌</string>
+    <string name="title_scan_token">扫码添加</string>
+    <string name="title_lock_token">锁定令牌</string>
     <string name="title_detail_token">令牌详情</string>
     <string name="title_settings_token">令牌设置</string>
     <!--对话框-->
@@ -47,6 +53,12 @@
     <string name="dialog_content_import_json_token" formatted="true">是否从文件%1$s中导入令牌</string>
     <string name="dialog_title_import_uri_token">导入URI格式</string>
     <string name="dialog_content_import_uri_token" formatted="true">是否从文件%1$s中导入令牌</string>
+    <string name="dialog_title_import_bookmark">导入书签</string>
+    <string name="dialog_content_import_bookmark" formatted="true">是否从文件%1$s中导入书签</string>
+    <string name="dialog_title_delete_root_bookmark_group">删除根书签夹</string>
+    <string name="dialog_content_delete_root_bookmark_group">是否删除根书签夹【%1$s】？删除后将无法恢复，请确认已经导出备份</string>
+    <string name="dialog_title_delete_bookmark_group">删除书签夹</string>
+    <string name="dialog_content_delete_bookmark_group">是否从书签夹【%1$s】中删除书签夹【%2$s】</string>
     <!--账号安全-->
     <string name="entry_tap_to_login">点击登录</string>
     <string name="entry_change_password">修改密码</string>
@@ -187,7 +199,7 @@
     <string name="second_before">秒前</string>
     <string name="yesterday">昨天</string>
     <string name="day_before_yesterday">前天</string>
-    <string name="bookmark_default_name">新建书签栏</string>
+    <string name="bookmark_default_name">新建书签夹</string>
     <!--数组-->
     <string name="array_avatar_detail">查看头像</string>
     <string name="array_choose_from_album">从相册选择</string>
@@ -214,6 +226,8 @@
     <string name="import_success">导入成功</string>
     <string name="import_fail">导入失败</string>
     <string name="unpin_to_show_code">解锁以查看令牌</string>
+    <string name="null_code">暂无令牌</string>
+    <string name="null_bookmark">暂无书签</string>
     <string name="token_application_label">应用</string>
     <string name="token_application_hint">应用名称</string>
     <string name="token_account_label">帐户</string>
@@ -240,4 +254,26 @@
     <string name="verify_finger">验证指纹</string>
     <string name="verify_finger_fail">指纹验证失败</string>
     <string name="verify_finger_error">验证失败，请再次尝试</string>
+    <!--书签-->
+    <string name="cannot_be_null">不能为空</string>
+    <string name="share_bookmark_group">分享书签夹</string>
+    <string name="move_bookmark_group">移动书签夹</string>
+    <string name="move_bookmark">移动书签</string>
+    <string name="amount_operation">批量操作</string>
+    <string name="delete_bookmark_group">删除书签夹</string>
+    <string name="delete_bookmark">删除书签</string>
+    <string name="share_bookmark">分享书签</string>
+    <string name="edit_bookmark">编辑书签</string>
+    <string name="export_bookmark_group">导出书签夹</string>
+    <string name="import_bookmark">导入书签</string>
+    <string name="new_bookmark_group">新建书签夹</string>
+    <string name="new_bookmark">新建书签</string>
+    <string name="search_bookmark_hint">搜索书签标题、链接</string>
+    <string name="bookmark_name">书签名称</string>
+    <string name="bookmark_group_name">书签夹名称</string>
+    <string name="bookmark_url">书签网址</string>
+    <string name="rename_success">重命名成功</string>
+    <string name="delete_success">删除成功</string>
+    <string name="edit_success">编辑成功</string>
+    <string name="new_success">新建成功</string>
 </resources>

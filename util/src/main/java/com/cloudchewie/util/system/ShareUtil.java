@@ -1,8 +1,10 @@
 package com.cloudchewie.util.system;
 
-import androidx.annotation.NonNull;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
-import org.jetbrains.annotations.Contract;
+import androidx.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +28,23 @@ public class ShareUtil {
         return appPackageNameMap;
     }
 
-    @Contract(pure = true)
     public static String getBaiduMapPackageName() {
         return BAIDUMAP;
+    }
+
+    public static void shareText(Context context, String text, String tip) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+        sendIntent.setType("text/plain");
+        context.startActivity(Intent.createChooser(sendIntent, tip));
+    }
+
+    public static void shareFile(Context context, Uri uri, String mimeType, String tip) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        sendIntent.setType(mimeType);
+        context.startActivity(Intent.createChooser(sendIntent, tip));
     }
 }

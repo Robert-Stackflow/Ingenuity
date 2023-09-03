@@ -17,17 +17,19 @@ import com.cloudchewie.ingenuity.entity.OtpToken;
 import java.util.List;
 
 @Dao
-public
-interface OtpTokenDao {
+public interface OtpTokenDao {
 
     @Query("select * from otp_tokens order by ordinal")
     List<OtpToken> getAll();
+
+    @Query("select count(*) from otp_tokens")
+    int count();
 
     @Query("select * from otp_tokens where id = :id")
     OtpToken get(Long id);
 
     @Query("select * from otp_tokens where issuer=:issuer and account=:account")
-    OtpToken get(String issuer,String account);
+    OtpToken get(String issuer, String account);
 
     @Query("select ordinal from otp_tokens order by ordinal desc limit 1")
     Long getLastOrdinal();
@@ -47,10 +49,6 @@ interface OtpTokenDao {
     @Query("update otp_tokens set ordinal = :ordinal where id = :id")
     void updateOrdinal(Long id, Long ordinal);
 
-    /**
-     * This incrementCounter won't trigger Flow collect by using raw query
-     * We do not want increment count triggering flow because it can refresh the token
-     */
     default void incrementCounter(Long id) {
         incrementCounterRaw(new SimpleSQLiteQuery("update otp_tokens set counter = counter + 1 where id = ?", new Long[]{id}));
     }

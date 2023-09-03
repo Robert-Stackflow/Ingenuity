@@ -46,4 +46,27 @@
         <item>SHA256</item>
         <item>SHA512</item>
     </string-array>
+    <string-array name="root_bookmark_group_operation">
+        <item>@string/rename</item>
+        <item>@string/delete_bookmark_group</item>
+        <item>@string/export_bookmark_group</item>
+        <item>@string/share_bookmark_group</item>
+    </string-array>
+    <string-array name="bookmark_group_operation">
+        <item>@string/rename</item>
+        <item>@string/delete_bookmark_group</item>
+        <item>@string/export_bookmark_group</item>
+        <item>@string/share_bookmark_group</item>
+        <item>@string/move_bookmark_group</item>
+        <item>@string/amount_operation</item>
+    </string-array>
+    <string-array name="bookmark_operation">
+        <item>@string/open</item>
+        <item>@string/edit_bookmark</item>
+        <item>@string/delete_bookmark</item>
+        <item>@string/copy_url</item>
+        <item>@string/share_bookmark</item>
+        <item>@string/move_bookmark</item>
+        <item>@string/amount_operation</item>
+    </string-array>
 </resources>

@@ -9,8 +9,6 @@ package com.cloudchewie.util.basic;
 
 import androidx.annotation.NonNull;
 
-import org.jetbrains.annotations.Contract;
-
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -19,6 +17,7 @@ import java.util.Locale;
  */
 public class DateFormatUtil {
     public static String FULL_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static String FILE_FORMAT = "yyyy-MM-dd_HH-mm-ss";
     public static String YMD_FORMAT_WITH_BAR = "yyyy-MM-dd";
     public static String YMD_FORMAT_WITH_SLASH = "yyyy/MM/dd";
     public static String YMD_FORMAT_WITH_CHARACTERS = "yyyy年MM月dd日";
@@ -30,7 +29,6 @@ public class DateFormatUtil {
     public static String MS_FORMAT = "mm:ss";
 
     @NonNull
-    @Contract("_ -> new")
     public static SimpleDateFormat getSimpleDateFormat(String format) {
         return new SimpleDateFormat(format, Locale.CHINA);
     }

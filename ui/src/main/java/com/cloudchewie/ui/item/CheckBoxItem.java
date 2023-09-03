@@ -57,7 +57,7 @@ public class CheckBoxItem extends ConstraintLayout {
             setRadiusEnbale(topRadiusEnable, bottomRadiusEnable);
             attr.recycle();
         }
-        right_switch.setOnTouchListener((OnTouchListener) (view, motionEvent) -> {
+        right_switch.setOnTouchListener((view, motionEvent) -> {
             isTouched = true;
             return false;
         });

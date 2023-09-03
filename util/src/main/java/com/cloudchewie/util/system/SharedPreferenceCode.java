@@ -5,6 +5,8 @@ import org.jetbrains.annotations.Contract;
 public enum SharedPreferenceCode {
     USER_INFO("user_info", "用户信息"),
     USER_TOKEN("user_token", "用户登陆凭证"),
+    APP_FIRST_START("app_first_start", "首次打开APP"),
+    START_UP_APP_TIME("start_up_app_time", "打开APP时间"),
     THEME_ID("theme_id", "主题颜色"),
     NAV_INDEX("nav_index", "导航次序"),
     AUTO_DAYNIGHT("auto_daynight", "深色模式跟随系统"),
