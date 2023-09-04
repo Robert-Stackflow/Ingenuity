@@ -12,6 +12,7 @@ import androidx.room.TypeConverter;
 
 import com.cloudchewie.ingenuity.entity.Bookmark;
 import com.cloudchewie.ingenuity.entity.BookmarkGroup;
+import com.cloudchewie.ingenuity.entity.PasswordGroup;
 import com.cloudchewie.util.basic.CalendarUtil;
 import com.google.gson.Gson;
 
@@ -65,5 +66,40 @@ public class Converters {
     @TypeConverter
     public static List<BookmarkGroup> toBookmarkGroupList(String json) {
         return new ArrayList<>(Arrays.asList(new Gson().fromJson(json, BookmarkGroup[].class)));
+    }
+
+    @NonNull
+    @TypeConverter
+    public static String stringListTo(List<String> strings) {
+        return new Gson().toJson(strings.toArray());
+    }
+
+    @NonNull
+    @TypeConverter
+    public static List<String> toStringList(String json) {
+        return new ArrayList<>(Arrays.asList(new Gson().fromJson(json, String[].class)));
+    }
+
+    @NonNull
+    @TypeConverter
+    public static String booleanListTo(List<Boolean> booleans) {
+        return new Gson().toJson(booleans.toArray());
+    }
+
+    @NonNull
+    @TypeConverter
+    public static List<Boolean> toBooleanList(String json) {
+        return new ArrayList<>(Arrays.asList(new Gson().fromJson(json, Boolean[].class)));
+    }
+
+    @TypeConverter
+    public static int enumTo(PasswordGroup.PasswordType type) {
+        return type.ordinal();
+    }
+
+    @NonNull
+    @TypeConverter
+    public static PasswordGroup.PasswordType toEnum(int index) {
+        return PasswordGroup.PasswordType.values()[index];
     }
 }

@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Objects;
 
-public class BookmarkImport {
+public class ImportBookmarkUtil {
     public static BookmarkGroup importBookmarks(Context context, Uri fileUri) {
         String content = "";
         try {

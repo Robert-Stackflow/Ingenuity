@@ -261,4 +261,25 @@
 	<string name="edit">Edit</string>
 	<string name="rename">Rename</string>
 	<string name="title_passwordbox">Passwordbox</string>
+	<string name="default_interval">30</string>
+	<string name="delete_password">Delete password</string>
+	<string name="share_password_group">share group</string>
+	<string name="edit_password_group">Edit group</string>
+	<string name="export_password_group">Export group</string>
+	<string name="delete_password_group">Delete group</string>
+	<string name="password_group_name">group name</string>
+	<string name="dialog_title_delete_password_group">Delete group</string>
+	<string name="dialog_content_delete_password_group">Delete group [%1$s]? </string>
+	<string name="dialog_title_delete_password">Delete password</string>
+	<string name="dialog_content_delete_password">Delete password [%1$s]? </string>
+	<string name="dialog_title_import_password">Import password</string>
+	<string name="dialog_content_import_password" formatted="true">Whether to import passwords from file %1$s</string>
+	<string name="title_detail_password">Password details</string>
+	<string name="title_add_password">Add password</string>
+	<string name="title_detail_password_group">Group details</string>
+	<string name="title_add_password_group">Add group</string>
+	<string name="null_password">No password</string>
+	<string name="export_password">Export password</string>
+	<string name="import_password">Import password</string>
+	<string name="search_password_hint">Search name or password</string>
 </resources>

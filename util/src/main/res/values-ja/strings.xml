@@ -261,4 +261,25 @@
 	<string name="open">開く</string>
 	<string name="edit">編集</string>
 	<string name="rename">名前を変更</string>
+	<string name="default_interval">30</string>
+	<string name="delete_password">パスワードを削除</string>
+	<string name="share_password_group">共有グループ</string>
+	<string name="edit_password_group">グループの編集</string>
+	<string name="export_password_group">エクスポート グループ</string>
+	<string name="delete_password_group">グループを削除</string>
+	<string name="password_group_name">グループ名</string>
+	<string name="dialog_title_delete_password_group">グループを削除</string>
+	<string name="dialog_content_delete_password_group">グループ [%1$s] を削除しますか? </string>
+	<string name="dialog_title_delete_password">パスワードを削除</string>
+	<string name="dialog_content_delete_password">パスワード [%1$s] を削除しますか? </string>
+	<string name="dialog_title_import_password">パスワードのインポート</string>
+	<string name="dialog_content_import_password" formatted="true">ファイル %1$s からパスワードをインポートします</string>
+	<string name="title_detail_password">パスワードの詳細</string>
+	<string name="title_add_password">パスワードを追加</string>
+	<string name="title_detail_password_group">グループの詳細</string>
+	<string name="title_add_password_group">グループを追加</string>
+	<string name="null_password">パスワードがありません</string>
+	<string name="export_password">エクスポートパスワード</string>
+	<string name="import_password">インポートパスワード</string>
+	<string name="search_password_hint">検索名、パスワード</string>
 </resources>

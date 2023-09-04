@@ -6,9 +6,11 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.entity.OtpToken;
+import com.cloudchewie.ingenuity.entity.Password;
 import com.cloudchewie.ingenuity.widget.TokenImage;
 import com.cloudchewie.ui.textdrawable.ColorGenerator;
 import com.cloudchewie.ui.textdrawable.TextDrawable;
+import com.cloudchewie.util.basic.StringUtil;
 
 import java.util.Locale;
 
@@ -28,6 +30,25 @@ public class TokenImageUtil {
             }
         } else {
             imageView.setImageResource(R.drawable.ic_light_qrcode);
+        }
+    }
+
+    public static void setPasswordImage(ImageView imageView, Password password) {
+        if (password != null && !StringUtil.isEmpty(password.getIssuer())) {
+            OtpToken token = new OtpToken();
+            token.setAccount("");
+            token.setIssuer(password.getIssuer());
+            Integer integer = matchIssuerWithTokenThumbnail(token);
+            if (integer != null) {
+                imageView.setImageResource(integer);
+            } else {
+                String tokenText = password.getIssuer() != null ? password.getIssuer().substring(0, 1) : "";
+                int color = ColorGenerator.MATERIAL.getColor(tokenText);
+                TextDrawable tokenTextDrawable = TextDrawable.builder().buildRoundRect(tokenText, color, 10);
+                imageView.setImageDrawable(tokenTextDrawable);
+            }
+        } else {
+            imageView.setImageResource(R.drawable.ic_light_all);
         }
     }
 

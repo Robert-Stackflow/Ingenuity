@@ -27,12 +27,10 @@ public class ExploreUtil {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         String fullName = fileName;
         if (appendTimestamp) {
-            fullName += "_";
             fullName += DateFormatUtil.getSimpleDateFormat(DateFormatUtil.FULL_FORMAT).format(new Date());
         }
         fullName += ".";
         fullName += fileExtension;
-
         intent.setType(mimeType);
         intent.putExtra(Intent.EXTRA_TITLE, fullName);
         try {

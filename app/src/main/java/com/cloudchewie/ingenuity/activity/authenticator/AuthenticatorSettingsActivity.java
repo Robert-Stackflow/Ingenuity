@@ -10,7 +10,8 @@ import android.view.View;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.util.ExploreUtil;
-import com.cloudchewie.ingenuity.util.authenticator.ImportExportTokenUtil;
+import com.cloudchewie.ingenuity.util.authenticator.ExportTokenUtil;
+import com.cloudchewie.ingenuity.util.authenticator.ImportTokenUtil;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ui.custom.IDialog;
 import com.cloudchewie.ui.custom.IToast;
@@ -29,6 +30,7 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
     private static final int WRITE_JSON_REQUEST_CODE = 43;
     private static final int READ_KEY_URI_REQUEST_CODE = 44;
     private static final int WRITE_KEY_URI_REQUEST_CODE = 45;
+    private String EXPORT_PREFIX = "Token_";
     RefreshLayout swipeRefreshLayout;
     CheckBoxItem longPressItem;
     CheckBoxItem clickItem;
@@ -94,9 +96,9 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
     @Override
     public void onClick(View view) {
         if (view == exportJsonItem) {
-            ExploreUtil.createFile(this,"application/json", "OTPBackup", "json", WRITE_JSON_REQUEST_CODE, true);
+            ExploreUtil.createFile(this, "application/json", EXPORT_PREFIX, "json", WRITE_JSON_REQUEST_CODE, true);
         } else if (view == exportUriItem) {
-            ExploreUtil.createFile(this,"text/plain", "OTPBackup", "txt", WRITE_KEY_URI_REQUEST_CODE, true);
+            ExploreUtil.createFile(this, "text/plain", EXPORT_PREFIX, "txt", WRITE_KEY_URI_REQUEST_CODE, true);
         } else if (view == importJsonItem) {
             ExploreUtil.performFileSearch(this,READ_JSON_REQUEST_CODE);
         } else if (view == importUriItem) {
@@ -107,15 +109,14 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
-        if (resultCode != Activity.RESULT_OK) {
+        if (resultCode != Activity.RESULT_OK)
             return;
-        }
         Uri uri = resultData.getData();
         IDialog dialog = new IDialog(this);
         if (uri == null) return;
         switch (requestCode) {
             case WRITE_JSON_REQUEST_CODE:
-                ImportExportTokenUtil.exportJsonFile(AuthenticatorSettingsActivity.this, uri);
+                ExportTokenUtil.exportJsonFile(AuthenticatorSettingsActivity.this, uri);
                 IToast.showBottom(this, getString(R.string.export_success));
                 break;
             case READ_JSON_REQUEST_CODE:
@@ -125,7 +126,7 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
                     @Override
                     public void onPositiveClick() {
                         try {
-                            ImportExportTokenUtil.importJsonFile(AuthenticatorSettingsActivity.this, uri);
+                            ImportTokenUtil.importJsonFile(AuthenticatorSettingsActivity.this, uri);
                             IToast.showBottom(AuthenticatorSettingsActivity.this, getString(R.string.import_success));
                             LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
                         } catch (Exception e) {
@@ -146,7 +147,7 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
                 dialog.show();
                 break;
             case WRITE_KEY_URI_REQUEST_CODE:
-                ImportExportTokenUtil.exportKeyUriFile(AuthenticatorSettingsActivity.this, uri);
+                ExportTokenUtil.exportKeyUriFile(AuthenticatorSettingsActivity.this, uri);
                 IToast.showBottom(this, getString(R.string.export_success));
                 break;
             case READ_KEY_URI_REQUEST_CODE:
@@ -156,7 +157,7 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
                     @Override
                     public void onPositiveClick() {
                         try {
-                            ImportExportTokenUtil.importKeyUriFile(AuthenticatorSettingsActivity.this, uri);
+                            ImportTokenUtil.importKeyUriFile(AuthenticatorSettingsActivity.this, uri);
                             IToast.showBottom(AuthenticatorSettingsActivity.this, getString(R.string.import_success));
                             LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
                         } catch (Exception e) {
@@ -177,7 +178,5 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
                 dialog.show();
                 break;
         }
-
     }
-
 }

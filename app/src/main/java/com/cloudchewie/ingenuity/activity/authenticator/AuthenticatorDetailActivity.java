@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
 import com.cloudchewie.ingenuity.entity.OtpToken;
+import com.cloudchewie.ingenuity.util.authenticator.OtpTokenParser;
 import com.cloudchewie.ingenuity.util.authenticator.TokenImageUtil;
 import com.cloudchewie.ingenuity.util.database.LocalStorage;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
@@ -27,7 +28,10 @@ import com.cloudchewie.util.ui.StatusBarUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class AuthenticatorDetailActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
     RefreshLayout swipeRefreshLayout;
@@ -41,8 +45,9 @@ public class AuthenticatorDetailActivity extends BaseActivity implements View.On
     RadioItem algorithmItem;
     InputItem counterItem;
     String imageUrl;
-    OtpToken token;
+    OtpToken paramToken;
     AppCompatButton deleteButton;
+    public static String EXTRA_TOKEN_ID = "token_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,20 +68,8 @@ public class AuthenticatorDetailActivity extends BaseActivity implements View.On
         deleteButton = findViewById(R.id.activity_authenticator_detail_delete);
         deleteButton.setOnClickListener(this);
         initSwipeRefresh();
-        long tokenId = getIntent().getLongExtra("token_id", 0L);
-        token = LocalStorage.getAppDatabase().otpTokenDao().get(tokenId);
-        issuerItem.getEditText().setText(token.getIssuer());
-        accountItem.getEditText().setText(token.getAccount());
-        secretItem.getEditText().setText(token.getSecret());
-        intervalItem.getEditText().setText(String.valueOf(token.getPeriod()));
-        typeItem.setSelectedIndex(token.getTokenType() == OtpTokenType.TOTP ? 0 : 1);
-        digitsItem.setSelectedIndex(token.getDigits() - 5);
-        algorithmItem.setSelectedIndex(Arrays.asList(getResources().getStringArray(R.array.auth_algorithms)).indexOf(token.getAlgorithm()));
-        typeItem.setEnabled(false);
-        digitsItem.setEnabled(false);
-        algorithmItem.setEnabled(false);
-        intervalItem.getEditText().setEnabled(false);
-        TokenImageUtil.setTokenImage(logoView, token);
+        paramToken = LocalStorage.getAppDatabase().otpTokenDao().get(getIntent().getLongExtra(EXTRA_TOKEN_ID, 0L));
+        changeState();
         changeCounterVisibility();
         typeItem.setOnIndexChangedListener((radioButton, index) -> changeCounterVisibility());
         issuerItem.getEditText().addTextChangedListener(this);
@@ -93,14 +86,66 @@ public class AuthenticatorDetailActivity extends BaseActivity implements View.On
         }
     }
 
+    void changeState() {
+        if (paramToken != null) {
+            issuerItem.getEditText().setText(paramToken.getIssuer());
+            accountItem.getEditText().setText(paramToken.getAccount());
+            secretItem.getEditText().setText(paramToken.getSecret());
+            intervalItem.getEditText().setText(String.valueOf(paramToken.getPeriod()));
+            typeItem.setSelectedIndex(paramToken.getTokenType() == OtpTokenType.TOTP ? 0 : 1);
+            digitsItem.setSelectedIndex(paramToken.getDigits() - 5);
+            algorithmItem.setSelectedIndex(Arrays.asList(getResources().getStringArray(R.array.auth_algorithms)).indexOf(paramToken.getAlgorithm()));
+            typeItem.setEnabled(false);
+            digitsItem.setEnabled(false);
+            algorithmItem.setEnabled(false);
+            intervalItem.getEditText().setEnabled(false);
+            TokenImageUtil.setTokenImage(logoView, paramToken);
+            ((TitleBar) findViewById(R.id.activity_authenticator_detail_titlebar)).setTitle(getString(R.string.title_detail_token));
+        } else {
+            intervalItem.getEditText().setText(R.string.default_interval);
+            deleteButton.setVisibility(View.GONE);
+            ((TitleBar) findViewById(R.id.activity_authenticator_detail_titlebar)).setTitle(getString(R.string.title_add_token));
+        }
+    }
+
     private void confirm() {
-        token.setIssuer(Uri.decode(issuerItem.getText()));
-        token.setAccount(Uri.decode(accountItem.getText()));
-        token.setSecret(Uri.decode(secretItem.getText()));
-        LocalStorage.getAppDatabase().otpTokenDao().update(token);
-        setResult(Activity.RESULT_OK);
-        finish();
-        LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
+        if (paramToken != null) {
+            paramToken.setIssuer(Uri.decode(issuerItem.getText()));
+            paramToken.setAccount(Uri.decode(accountItem.getText()));
+            paramToken.setSecret(Uri.decode(secretItem.getText()));
+            LocalStorage.getAppDatabase().otpTokenDao().update(paramToken);
+            setResult(Activity.RESULT_OK);
+            finish();
+            LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
+        } else {
+            String issuer = Uri.decode(issuerItem.getText());
+            String account = Uri.decode(accountItem.getText());
+            String secret = Uri.decode(secretItem.getText());
+            Integer interval = Integer.parseInt(Uri.decode(intervalItem.getText()));
+            String algorithm = (String) getResources().getTextArray(R.array.auth_algorithms)[algorithmItem.getSelectedIndex()];
+            Integer digits = Integer.parseInt((String) getResources().getTextArray(R.array.auth_digits)[digitsItem.getSelectedIndex()]);
+            boolean isHotp = Boolean.parseBoolean((String) getResources().getTextArray(R.array.auth_type)[typeItem.getSelectedIndex()]);
+            String uri = String.format(Locale.US,
+                    "otpauth://%sotp/%s:%s?secret=%s&algorithm=%s&digits=%d&period=%d",
+                    isHotp ? "h" : "t", issuer, account,
+                    secret, algorithm, digits, interval);
+            if (isHotp) {
+                Integer counter = Integer.parseInt(counterItem.getText());
+                uri += String.format(Locale.US, "&counter=%d", counter);
+            }
+            if (imageUrl != null) {
+                try {
+                    String enc = URLEncoder.encode(imageUrl, "utf-8");
+                    uri += String.format(Locale.US, "&image=%s", enc);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+            LocalStorage.getAppDatabase().otpTokenDao().insert(OtpTokenParser.createFromUri(Uri.parse(uri)));
+            setResult(Activity.RESULT_OK);
+            LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
+            finish();
+        }
     }
 
     void initSwipeRefresh() {
@@ -114,13 +159,15 @@ public class AuthenticatorDetailActivity extends BaseActivity implements View.On
     @Override
     public void onClick(View view) {
         if (view == deleteButton) {
+            if (paramToken == null)
+                return;
             IDialog dialog = new IDialog(this);
             dialog.setTitle(getString(R.string.dialog_title_delete_token));
             dialog.setMessage(getString(R.string.dialog_content_delete_token));
             dialog.setOnClickBottomListener(new IDialog.OnClickBottomListener() {
                 @Override
                 public void onPositiveClick() {
-                    LocalStorage.getAppDatabase().otpTokenDao().deleteById(token.getId());
+                    LocalStorage.getAppDatabase().otpTokenDao().deleteById(paramToken.getId());
                     finish();
                     LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).post("");
                     IToast.makeTextBottom(AuthenticatorDetailActivity.this, getString(R.string.delete_token_success), Toast.LENGTH_SHORT).show();

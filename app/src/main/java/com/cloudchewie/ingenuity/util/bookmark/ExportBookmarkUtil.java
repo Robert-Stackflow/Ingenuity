@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
-public class BookmarkExport {
+public class ExportBookmarkUtil {
     public static void exportBookmarks(Context context, BookmarkGroup bookmarkGroup, Uri fileUri) {
         if (bookmarkGroup == null)
             bookmarkGroup = new BookmarkGroup();

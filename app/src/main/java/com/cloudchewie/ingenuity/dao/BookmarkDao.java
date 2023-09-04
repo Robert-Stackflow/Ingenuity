@@ -16,7 +16,7 @@ public interface BookmarkDao {
     List<BookmarkGroup> getAll();
 
     @Query("select * from bookmark where id = :id")
-    BookmarkGroup get(Long id);
+    BookmarkGroup getById(Integer id);
 
     @Query("delete from bookmark where id = :id")
     void deleteById(Integer id);

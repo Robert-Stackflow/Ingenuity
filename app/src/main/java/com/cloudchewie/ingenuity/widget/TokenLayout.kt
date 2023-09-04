@@ -96,7 +96,7 @@ class TokenLayout : RelativeLayout, View.OnClickListener, Runnable {
                 context,
                 AuthenticatorDetailActivity::class.java
             ).setAction(Intent.ACTION_DEFAULT)
-            intent.putExtra("token_id", token.id)
+            intent.putExtra(AuthenticatorDetailActivity.EXTRA_TOKEN_ID, token.id)
             startActivity(context, intent, null)
         }
         mQrcode.setOnClickListener {

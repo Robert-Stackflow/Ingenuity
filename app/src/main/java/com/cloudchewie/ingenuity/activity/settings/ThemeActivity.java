@@ -11,30 +11,36 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.BaseActivity;
+import com.cloudchewie.ingenuity.adapter.ThemeListAdapter;
 import com.cloudchewie.ingenuity.entity.ThemeItem;
+import com.cloudchewie.ingenuity.util.decoration.SpacingItemDecoration;
+import com.cloudchewie.ingenuity.util.enumeration.Direction;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
-import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.ui.custom.IToast;
+import com.cloudchewie.ui.custom.TitleBar;
 import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ThemeActivity extends BaseActivity implements View.OnClickListener {
 
-    LinearLayout linearLayout;
+    RecyclerView recyclerView;
+    ThemeListAdapter adapter;
+
+    RefreshLayout swipeRefreshLayout;
 
     public static List<ThemeItem> getThemeList(Context context) {
         List<ThemeItem> themeItemList = new ArrayList<>();
@@ -57,41 +63,38 @@ public class ThemeActivity extends BaseActivity implements View.OnClickListener 
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_theme);
         ((TitleBar) findViewById(R.id.activity_theme_titlebar)).setLeftButtonClickListener(v -> finishAfterTransition());
-        linearLayout = findViewById(R.id.activity_theme_linear_layout);
+        recyclerView = findViewById(R.id.activity_theme_recycler_view);
         loadThemes();
+        initSwipeRefresh();
+    }
+
+    void initSwipeRefresh() {
+        swipeRefreshLayout = findViewById(R.id.activity_theme_swipe_refresh);
+        swipeRefreshLayout.setEnableOverScrollDrag(true);
+        swipeRefreshLayout.setEnableOverScrollBounce(true);
+        swipeRefreshLayout.setEnableLoadMore(false);
+        swipeRefreshLayout.setEnablePureScrollMode(true);
     }
 
     void loadThemes() {
         List<ThemeItem> themeItemList = getThemeList(this);
-        for (ThemeItem themeItem : themeItemList) {
-            @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.item_theme, null);
-            view.setId(themeItem.layoutId);
-            ((TextView) view.findViewById(R.id.item_theme_title)).setText(themeItem.title);
-            ((TextView) view.findViewById(R.id.item_theme_description)).setText(themeItem.description);
-            view.findViewById(R.id.item_theme_color).setBackgroundColor(getColor(themeItem.colorId));
-            ImageView checkBox = view.findViewById(R.id.item_theme_checkbox);
-            checkBox.setTag(R.id.id_theme_item_key, themeItem);
-            checkBox.setImageTintList(ColorStateList.valueOf(getColor(themeItem.colorId)));
-            checkBox.setOnClickListener(this);
-            linearLayout.addView(view);
-            if (SharedPreferenceUtil.getThemeId(this, R.style.AppTheme) == themeItem.themeId) {
-                ColorStateList colorStateList = checkBox.getImageTintList();
-                checkBox.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_light_checkbox_checked));
-                checkBox.setImageTintList(colorStateList);
-            }
-        }
+        adapter = new ThemeListAdapter(this, themeItemList);
+        adapter.setListener(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new SpacingItemDecoration(this, (int) getResources().getDimension(R.dimen.dp5), Direction.BOTTOM));
     }
 
     @Override
     public void onClick(View view) {
-        if (linearLayout == null) return;
+        if (recyclerView == null) return;
         Object o = view.getTag(R.id.id_theme_item_key);
         if (o instanceof ThemeItem) {
             ThemeItem themeItem = (ThemeItem) o;
             if (themeItem.themeId == SharedPreferenceUtil.getThemeId(this, R.style.AppTheme))
                 return;
-            for (int i = 0; i < linearLayout.getChildCount(); i++) {
-                View childView = linearLayout.getChildAt(i);
+            for (int i = 0; i < recyclerView.getChildCount(); i++) {
+                View childView = recyclerView.getChildAt(i);
                 ImageView checkBox = childView.findViewById(R.id.item_theme_checkbox);
                 if (childView.getId() == themeItem.layoutId) {
                     ColorStateList colorStateList = checkBox.getImageTintList();
@@ -99,7 +102,7 @@ public class ThemeActivity extends BaseActivity implements View.OnClickListener 
                     checkBox.setImageTintList(colorStateList);
                     SharedPreferenceUtil.setThemeId(this, themeItem.themeId);
                     IToast.showBottom(this, getString(R.string.change_theme_success));
-                    LiveEventBus.get(EventBusCode.CHANGE_THEME.getKey(), String.class).post("change_theme");
+                    LiveEventBus.get(EventBusCode.CHANGE_THEME.getKey(), String.class).post("");
                 } else {
                     ColorStateList colorStateList = checkBox.getImageTintList();
                     checkBox.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_light_checkbox_unchecked));

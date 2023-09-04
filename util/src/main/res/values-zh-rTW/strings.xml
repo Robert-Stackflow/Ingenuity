@@ -261,4 +261,25 @@
 	<string name="edit">編輯</string>
 	<string name="rename">重命名</string>
 	<string name="title_passwordbox">密碼箱</string>
+	<string name="default_interval">30</string>
+	<string name="delete_password">刪除密碼</string>
+	<string name="share_password_group">分享分組</string>
+	<string name="edit_password_group">編輯分組</string>
+	<string name="export_password_group">導出分組</string>
+	<string name="delete_password_group">刪除分組</string>
+	<string name="password_group_name">分組名稱</string>
+	<string name="dialog_title_delete_password_group">刪除分組</string>
+	<string name="dialog_content_delete_password_group">是否刪除分組【%1$s】？ </string>
+	<string name="dialog_title_delete_password">刪除密碼</string>
+	<string name="dialog_content_delete_password">是否刪除密碼【%1$s】？ </string>
+	<string name="dialog_title_import_password">導入密碼</string>
+	<string name="dialog_content_import_password" formatted="true">是否從文件%1$s中導入密碼</string>
+	<string name="title_detail_password">密碼詳情</string>
+	<string name="title_add_password">添加密碼</string>
+	<string name="title_detail_password_group">分組詳情</string>
+	<string name="title_add_password_group">添加分組</string>
+	<string name="null_password">暫無密碼</string>
+	<string name="export_password">導出密碼</string>
+	<string name="import_password">導入密碼</string>
+	<string name="search_password_hint">搜索名稱、密碼</string>
 </resources>

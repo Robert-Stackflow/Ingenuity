@@ -26,7 +26,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.cloudchewie.ingenuity.R;
 import com.cloudchewie.ingenuity.activity.application.BookmarkActivity;
-import com.cloudchewie.ingenuity.activity.application.PasswordboxActivity;
+import com.cloudchewie.ingenuity.activity.passwordbox.PasswordboxActivity;
 import com.cloudchewie.ingenuity.activity.application.WebViewActivity;
 import com.cloudchewie.ingenuity.activity.settings.AboutActivity;
 import com.cloudchewie.ingenuity.activity.settings.FeedbackActivity;
@@ -200,11 +200,12 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
     void initSwipeRefresh() {
         swipeRefreshLayout = mainView.findViewById(R.id.fragment_user_swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(v -> handler.post(getRefreshDatas));
         swipeRefreshLayout.setRefreshHeader(new MaterialHeader(requireContext()).setColorSchemeColors(ThemeUtil.getPrimaryColor(requireContext())).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)).setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.card_background)));
         swipeRefreshLayout.setEnableOverScrollDrag(true);
         swipeRefreshLayout.setEnableOverScrollBounce(true);
         swipeRefreshLayout.setEnableLoadMore(false);
-        swipeRefreshLayout.setOnRefreshListener(v -> handler.post(getRefreshDatas));
+        swipeRefreshLayout.setEnablePureScrollMode(true);
     }
 
     @Override

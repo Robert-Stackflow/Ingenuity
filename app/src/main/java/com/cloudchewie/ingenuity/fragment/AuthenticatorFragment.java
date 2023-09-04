@@ -16,11 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.ThreadUtils;
 import com.cloudchewie.ingenuity.R;
-import com.cloudchewie.ingenuity.activity.authenticator.AuthenticatorAddActivity;
+import com.cloudchewie.ingenuity.activity.authenticator.AuthenticatorDetailActivity;
 import com.cloudchewie.ingenuity.activity.authenticator.AuthenticatorScanActivity;
 import com.cloudchewie.ingenuity.activity.authenticator.AuthenticatorSettingsActivity;
 import com.cloudchewie.ingenuity.adapter.TokenListAdapter;
+import com.cloudchewie.ingenuity.entity.OtpToken;
 import com.cloudchewie.ingenuity.util.database.LocalStorage;
 import com.cloudchewie.ingenuity.util.decoration.SpacingItemDecoration;
 import com.cloudchewie.ingenuity.util.enumeration.Direction;
@@ -38,6 +40,9 @@ import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.wei.android.lib.fingerprintidentify.FingerprintIdentify;
 import com.wei.android.lib.fingerprintidentify.base.BaseFingerprint;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthenticatorFragment extends Fragment implements View.OnClickListener, BaseFingerprint.IdentifyListener, BaseFingerprint.ExceptionListener {
     View mainView;
@@ -94,9 +99,9 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
         mainView.findViewById(R.id.fragment_authenticator_lock_icon).setOnClickListener(this);
         mainView.findViewById(R.id.fragment_authenticator_lock_text).setOnClickListener(this);
         initSwipeRefresh();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new TokenListAdapter(getContext(), LocalStorage.getAppDatabase().otpTokenDao().getAll());
+        adapter = new TokenListAdapter(getContext(), new ArrayList<>());
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new SpacingItemDecoration(getContext(), (int) getResources().getDimension(R.dimen.dp3), Direction.BOTTOM));
         LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).observe(this, s -> swipeRefreshLayout.autoRefresh());
         LiveEventBus.get(EventBusCode.CHANGE_AUTH_SHOW_CODE.getKey()).observe(this, s -> {
@@ -111,8 +116,23 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
         return mainView;
     }
 
+    public void initData() {
+        ThreadUtils.executeBySingle(new ThreadUtils.SimpleTask<List<OtpToken>>() {
+            @Override
+            public List<OtpToken> doInBackground() {
+                return LocalStorage.getAppDatabase().otpTokenDao().getAll();
+            }
+
+            @Override
+            public void onSuccess(List<OtpToken> result) {
+                adapter.setData(result);
+            }
+        });
+    }
+
     public void refreshAuthState() {
         if (isAuthed) {
+            initData();
             lockLayout.setVisibility(View.GONE);
             ((View) swipeRefreshLayout).setVisibility(View.VISIBLE);
             fabMenu.setVisibility(View.VISIBLE);
@@ -162,7 +182,7 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == addButton) {
-            Intent intent = new Intent(getActivity(), AuthenticatorAddActivity.class).setAction(Intent.ACTION_DEFAULT);
+            Intent intent = new Intent(getActivity(), AuthenticatorDetailActivity.class).setAction(Intent.ACTION_DEFAULT);
             startActivity(intent);
             fabMenu.close(true);
         } else if (v == settingButton) {

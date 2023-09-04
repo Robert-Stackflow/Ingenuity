@@ -13,15 +13,22 @@
         app:right_button_visibility="false"
         app:title="@string/title_theme" />
 
-    <androidx.core.widget.NestedScrollView
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/activity_theme_swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/activity_theme_titlebar">
 
-        <LinearLayout
-            android:id="@+id/activity_theme_linear_layout"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </androidx.core.widget.NestedScrollView>
+            android:layout_height="match_parent"
+            android:layout_below="@id/activity_theme_titlebar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/activity_theme_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp15" />
+        </androidx.core.widget.NestedScrollView>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </RelativeLayout>

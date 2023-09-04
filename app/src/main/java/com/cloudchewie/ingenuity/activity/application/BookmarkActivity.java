@@ -23,8 +23,8 @@ import com.cloudchewie.ingenuity.adapter.BookmarkListAdapter;
 import com.cloudchewie.ingenuity.entity.Bookmark;
 import com.cloudchewie.ingenuity.entity.BookmarkGroup;
 import com.cloudchewie.ingenuity.util.ExploreUtil;
-import com.cloudchewie.ingenuity.util.bookmark.BookmarkExport;
-import com.cloudchewie.ingenuity.util.bookmark.BookmarkImport;
+import com.cloudchewie.ingenuity.util.bookmark.ExportBookmarkUtil;
+import com.cloudchewie.ingenuity.util.bookmark.ImportBookmarkUtil;
 import com.cloudchewie.ingenuity.util.database.LocalStorage;
 import com.cloudchewie.ingenuity.util.database.MyFileProvider;
 import com.cloudchewie.ingenuity.util.decoration.DividerItemDecoration;
@@ -51,9 +51,10 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
     RefreshLayout swipeRefreshLayout;
     private static final int IMPORT_HTML_REQUEST_CODE = 42;
     private static final int EXPORT_HTML_REQUEST_CODE = 43;
+    private String EXPORT_PREFIX = "bookmark_";
     FloatingActionButton importButton;
     FloatingActionButton newFolderButton;
-    FloatingActionButton newFileButton;
+    FloatingActionButton newBookmarkButton;
     FloatingActionMenu floatingActionMenu;
     RecyclerView recyclerView;
     BookmarkListAdapter adapter;
@@ -75,14 +76,14 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
         importButton = findViewById(R.id.activity_bookmark_import);
         recyclerView = findViewById(R.id.activity_bookmark_recycler_view);
         newFolderButton = findViewById(R.id.activity_bookmark_new_folder);
-        newFileButton = findViewById(R.id.activity_bookmark_new_bookmark);
+        newBookmarkButton = findViewById(R.id.activity_bookmark_new_bookmark);
         floatingActionMenu = findViewById(R.id.activity_bookmark_menu);
         divider = findViewById(R.id.activity_bookmark_top_divider);
         blankView = findViewById(R.id.activity_bookmark_blank);
         searchEdit = findViewById(R.id.activity_bookmark_search);
         importButton.setOnClickListener(this);
         newFolderButton.setOnClickListener(this);
-        newFileButton.setOnClickListener(this);
+        newBookmarkButton.setOnClickListener(this);
         searchEdit.getEditText().setOnEditorActionListener(this);
         searchEdit.getEditText().addTextChangedListener(this);
         searchEdit.getEditText().setInputType(EditorInfo.IME_ACTION_DONE);
@@ -101,8 +102,8 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onSuccess(String result) {
                 runOnUiThread(() -> {
-                    adapter.setParentGroup(rootBookmarkGroup);
-                    updateNewButtonVisibility();
+                    adapter.setData(rootBookmarkGroup);
+                    updateNullDataState();
                 });
             }
         });
@@ -114,7 +115,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
         rootBookmarkGroup = new BookmarkGroup();
         rootBookmarkGroup.setAll(true);
         currentSelectedGroup = rootBookmarkGroup;
-        updateNewButtonVisibility();
+        updateNullDataState();
         initData();
         //绑定适配器
         adapter = new BookmarkListAdapter(this, rootBookmarkGroup);
@@ -124,7 +125,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
         adapter.setOnRootFolderOperationListener(new BookmarkListAdapter.OnRootFolderOperationListener() {
             @Override
             public void onClick(BookmarkListAdapter.BookmarkViewHolder holder, BookmarkGroup parentGroup, BookmarkGroup childGroup) {
-                clickFolder(childGroup);
+                onClickBookmarkGroup(childGroup);
             }
 
             @Override
@@ -169,7 +170,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onExport(BookmarkListAdapter.BookmarkViewHolder holder, BookmarkGroup parentGroup, BookmarkGroup childGroup) {
                 toExportGroup = childGroup;
-                ExploreUtil.createFile(BookmarkActivity.this, "text/html", "Bookmark", "html", EXPORT_HTML_REQUEST_CODE, true);
+                ExploreUtil.createFile(BookmarkActivity.this, "text/html", EXPORT_PREFIX, "html", EXPORT_HTML_REQUEST_CODE, true);
             }
 
             @Override
@@ -180,7 +181,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
         adapter.setOnFolderOperationListener(new BookmarkListAdapter.OnFolderOperationListener() {
             @Override
             public void onClick(BookmarkListAdapter.BookmarkViewHolder holder, BookmarkGroup parentGroup, BookmarkGroup childGroup) {
-                clickFolder(childGroup);
+                onClickBookmarkGroup(childGroup);
             }
 
             @Override
@@ -189,8 +190,8 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
                 renameBottomSheet.setOnConfirmClickedListener(content -> {
                     childGroup.setName(content);
                     holder.nameView.setText(content);
-                    updateRootFolder();
-                    IToast.showBottom(BookmarkActivity.this, getString(R.string.rename));
+                    updateDatabase();
+                    IToast.showBottom(BookmarkActivity.this, getString(R.string.rename_success));
                 });
                 renameBottomSheet.setOnDismissListener(dialog -> renameBottomSheet.hideKeyBoard());
                 renameBottomSheet.show();
@@ -205,8 +206,8 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void onPositiveClick() {
                         parentGroup.deleteGroup(childGroup);
-                        adapter.setParentGroup(parentGroup);
-                        updateRootFolder();
+                        adapter.setData(parentGroup);
+                        updateDatabase();
                         IToast.showBottom(BookmarkActivity.this, getString(R.string.delete_success));
                     }
 
@@ -232,7 +233,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
             public void onExport(BookmarkListAdapter.BookmarkViewHolder holder, BookmarkGroup parentGroup, BookmarkGroup childGroup) {
                 toExportGroup = childGroup.clone();
                 toExportGroup.setRoot(true);
-                ExploreUtil.createFile(BookmarkActivity.this, "text/html", "Bookmark", "html", EXPORT_HTML_REQUEST_CODE, true);
+                ExploreUtil.createFile(BookmarkActivity.this, "text/html", EXPORT_PREFIX, "html", EXPORT_HTML_REQUEST_CODE, true);
             }
 
             @Override
@@ -254,7 +255,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
                 editBookmarkBottomSheet.setOnConfirmClickedListener((name, url) -> {
                     bookmark.setName(name);
                     bookmark.setUrl(url);
-                    updateRootFolder();
+                    updateDatabase();
                     holder.nameView.setText(name);
                     IToast.showBottom(BookmarkActivity.this, getString(R.string.edit_success));
                 });
@@ -265,8 +266,8 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onDelete(BookmarkListAdapter.BookmarkViewHolder holder, BookmarkGroup parentGroup, Bookmark bookmark) {
                 parentGroup.deleteItem(bookmark);
-                adapter.setParentGroup(parentGroup);
-                updateRootFolder();
+                adapter.setData(parentGroup);
+                updateDatabase();
                 IToast.showBottom(BookmarkActivity.this, getString(R.string.delete_success));
             }
 
@@ -288,7 +289,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
         });
     }
 
-    private void updateRootFolder() {
+    private void updateDatabase() {
         ThreadUtils.executeBySingle(new ThreadUtils.SimpleTask<String>() {
             @Override
             public String doInBackground() {
@@ -308,10 +309,10 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void shareBookmarkGroup(BookmarkGroup bookmarkGroup) {
-        String fileName = "bookmark_" + DateFormatUtil.getSimpleDateFormat(DateFormatUtil.FILE_FORMAT).format(new Date()) + ".html";
+        String fileName = EXPORT_PREFIX + DateFormatUtil.getSimpleDateFormat(DateFormatUtil.FILE_FORMAT).format(new Date()) + ".html";
         File file = new File(getFilesDir().toString(), fileName);
         Uri uri = MyFileProvider.getUriForFile(BookmarkActivity.this, getApplication().getPackageName() + ".provider", file);
-        BookmarkExport.exportBookmarks(BookmarkActivity.this, bookmarkGroup, uri);
+        ExportBookmarkUtil.exportBookmarks(BookmarkActivity.this, bookmarkGroup, uri);
         ShareUtil.shareFile(BookmarkActivity.this, uri, "text/html", getString(R.string.share_bookmark_group));
     }
 
@@ -319,7 +320,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
     public void onBackPressed() {
         if (currentSelectedGroup != adapter.getParentGroup()) {
             //如果正在搜索，则返回
-            adapter.setParentGroup(currentSelectedGroup);
+            adapter.setData(currentSelectedGroup);
         } else {
             //如果栈为空，则退出activity
             if (stack.empty()) {
@@ -328,22 +329,22 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
                 //返回上级书签夹
                 if (adapter != null) {
                     BookmarkGroup lastGroup = stack.pop();
-                    adapter.setParentGroup(lastGroup);
+                    adapter.setData(lastGroup);
                     currentSelectedGroup = lastGroup;
                 }
             }
         }
-        updateNewButtonVisibility();
+        updateNullDataState();
     }
 
-    void clickFolder(BookmarkGroup bookmarkGroup) {
+    void onClickBookmarkGroup(BookmarkGroup bookmarkGroup) {
         stack.push(adapter.getParentGroup());
         currentSelectedGroup = bookmarkGroup;
-        adapter.setParentGroup(bookmarkGroup);
-        updateNewButtonVisibility();
+        adapter.setData(bookmarkGroup);
+        updateNullDataState();
     }
 
-    void updateNewButtonVisibility() {
+    void updateNullDataState() {
         if (currentSelectedGroup.size() <= 0) {
             blankView.setVisibility(View.VISIBLE);
             divider.setVisibility(View.GONE);
@@ -353,10 +354,10 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
         }
         if (currentSelectedGroup.isAll()) {
             newFolderButton.setVisibility(View.GONE);
-            newFileButton.setVisibility(View.GONE);
+            newBookmarkButton.setVisibility(View.GONE);
         } else {
             newFolderButton.setVisibility(View.VISIBLE);
-            newFileButton.setVisibility(View.VISIBLE);
+            newBookmarkButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -382,24 +383,24 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
             newGroupBottomSheet.setOnConfirmClickedListener(content -> {
                 childGroup.setName(content);
                 currentSelectedGroup.addBookmarkGroup(childGroup);
-                updateRootFolder();
-                adapter.setParentGroup(currentSelectedGroup);
+                updateDatabase();
+                adapter.setData(currentSelectedGroup);
                 IToast.showBottom(BookmarkActivity.this, getString(R.string.new_success));
             });
             newGroupBottomSheet.setOnDismissListener(dialog -> newGroupBottomSheet.hideKeyBoard());
             newGroupBottomSheet.show();
-        } else if (view == newFileButton) {
+        } else if (view == newBookmarkButton) {
             floatingActionMenu.close(true);
             if (currentSelectedGroup.isAll())
                 return;
             Bookmark bookmark = new Bookmark();
-            EditBookmarkBottomSheet newBookmarkBottomSheet = new EditBookmarkBottomSheet(BookmarkActivity.this,  getString(R.string.new_bookmark), bookmark.getName(), bookmark.getUrl());
+            EditBookmarkBottomSheet newBookmarkBottomSheet = new EditBookmarkBottomSheet(BookmarkActivity.this, getString(R.string.new_bookmark), bookmark.getName(), bookmark.getUrl());
             newBookmarkBottomSheet.setOnConfirmClickedListener((name, url) -> {
                 bookmark.setName(name);
                 bookmark.setUrl(url);
                 currentSelectedGroup.addBookmark(bookmark);
-                updateRootFolder();
-                adapter.setParentGroup(currentSelectedGroup);
+                updateDatabase();
+                adapter.setData(currentSelectedGroup);
                 IToast.showBottom(BookmarkActivity.this, getString(R.string.new_success));
             });
             newBookmarkBottomSheet.setOnDismissListener(dialog -> newBookmarkBottomSheet.hideKeyBoard());
@@ -418,7 +419,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
         switch (requestCode) {
             case EXPORT_HTML_REQUEST_CODE:
                 if (toExportGroup != null) {
-                    BookmarkExport.exportBookmarks(this, toExportGroup, uri);
+                    ExportBookmarkUtil.exportBookmarks(this, toExportGroup, uri);
                     IToast.showBottom(this, getString(R.string.export_success));
                 }
                 break;
@@ -429,7 +430,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void onPositiveClick() {
                         try {
-                            LocalStorage.getAppDatabase().bookmarkDao().insert(BookmarkImport.importBookmarks(BookmarkActivity.this, uri));
+                            LocalStorage.getAppDatabase().bookmarkDao().insert(ImportBookmarkUtil.importBookmarks(BookmarkActivity.this, uri));
                             initRecyclerView();
                             IToast.showBottom(BookmarkActivity.this, getString(R.string.import_success));
                         } catch (Exception e) {
@@ -457,11 +458,11 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         if (i == EditorInfo.IME_ACTION_DONE) {
             if (TextUtils.isEmpty(searchEdit.getText())) {
-                adapter.setParentGroup(currentSelectedGroup);
+                adapter.setData(currentSelectedGroup);
             } else {
                 BookmarkGroup bookmarkGroup = new BookmarkGroup();
                 bookmarkGroup.setBookmarks(currentSelectedGroup.find(searchEdit.getText()));
-                adapter.setParentGroup(bookmarkGroup);
+                adapter.setData(bookmarkGroup);
             }
         }
         return false;
@@ -476,7 +477,7 @@ public class BookmarkActivity extends BaseActivity implements View.OnClickListen
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         //如果搜索栏为空，则恢复书签夹
         if (TextUtils.isEmpty(charSequence)) {
-            if (adapter != null) adapter.setParentGroup(currentSelectedGroup);
+            if (adapter != null) adapter.setData(currentSelectedGroup);
         }
     }
 

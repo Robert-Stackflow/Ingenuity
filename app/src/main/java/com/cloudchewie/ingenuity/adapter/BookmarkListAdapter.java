@@ -87,7 +87,7 @@ public class BookmarkListAdapter extends RecyclerView.Adapter<BookmarkListAdapte
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setParentGroup(BookmarkGroup parentGroup) {
+    public void setData(BookmarkGroup parentGroup) {
         this.parentGroup = parentGroup;
         notifyDataSetChanged();
     }
