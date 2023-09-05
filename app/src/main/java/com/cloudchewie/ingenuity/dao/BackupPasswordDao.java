@@ -26,7 +26,8 @@ public interface BackupPasswordDao {
 
     @Query("delete from backup_password where id = :id")
     void deleteById(Integer id);
-
+    @Query("delete from backup_password where groupId = :groupId")
+    void delete(Integer groupId);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<BackupPassword> passwordGroups);
 

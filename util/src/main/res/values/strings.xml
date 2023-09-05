@@ -41,6 +41,7 @@
     <string name="title_settings_token">令牌设置</string>
     <string name="title_detail_password">密码详情</string>
     <string name="title_add_password">添加密码</string>
+    <string name="title_settings_password">密码设置</string>
     <string name="title_detail_password_group">分组详情</string>
     <string name="title_add_password_group">添加分组</string>
     <!--对话框-->
@@ -67,8 +68,10 @@
     <string name="dialog_content_delete_password_group">是否删除分组【%1$s】？</string>
     <string name="dialog_title_delete_password">删除密码</string>
     <string name="dialog_content_delete_password">是否删除密码【%1$s】？</string>
-    <string name="dialog_title_import_password">导入密码</string>
-    <string name="dialog_content_import_password" formatted="true">是否从文件%1$s中导入密码</string>
+    <string name="dialog_title_import_json_password">导入JSON格式</string>
+    <string name="dialog_content_import_json_password" formatted="true">是否从文件%1$s中导入密码</string>
+    <string name="dialog_title_import_excel_password">导入Excel格式</string>
+    <string name="dialog_content_import_excel_password" formatted="true">是否从文件%1$s中导入密码</string>
     <!--账号安全-->
     <string name="entry_tap_to_login">点击登录</string>
     <string name="entry_change_password">修改密码</string>
@@ -253,13 +256,17 @@
     <string name="token_digits_label">位数</string>
     <string name="delete_token">删除令牌</string>
     <string name="open_camera_fail">删除令牌</string>
-    <string name="entry_long_press_copy_code">长按卡片复制密码</string>
-    <string name="entry_click_copy_code">点击卡片复制密码</string>
+    <string name="entry_long_press_copy_code">长按卡片复制令牌</string>
+    <string name="entry_click_copy_code">点击卡片复制令牌</string>
     <string name="entry_auth_to_show_code">需要身份验证</string>
     <string name="entry_disable_screen_shot">禁止屏幕截图</string>
     <string name="entry_export_json_token">导出为JSON格式</string>
     <string name="entry_import_json_token">导入JSON格式</string>
     <string name="entry_export_uri_token">导出为URI格式</string>
+    <string name="entry_export_excel_password">导出为Excel格式</string>
+    <string name="entry_import_excel_password">导入Excel格式</string>
+    <string name="entry_long_press_copy_password">长按卡片复制密码</string>
+    <string name="entry_click_copy_password">点击卡片复制密码</string>
     <string name="entry_import_uri_token">导入URI格式</string>
     <string name="verify_finger">验证指纹</string>
     <string name="verify_finger_fail">指纹验证失败</string>
@@ -298,4 +305,32 @@
     <string name="export_password">导出密码</string>
     <string name="import_password">导入密码</string>
     <string name="search_password_hint">搜索名称、密码</string>
+    <string name="auth_password">授权码</string>
+    <string name="common_password">普通密码</string>
+    <string name="backup_password">备用码</string>
+    <string name="password_group_name_label">名称</string>
+    <string name="password_group_name_hint">分组名称</string>
+    <string name="password_group_type_label">类型</string>
+    <string name="password_group_remark_label">备注</string>
+    <string name="password_group_remark_hint">分组备注</string>
+    <string name="password_name_label">名称</string>
+    <string name="password_name_hint">应用名称</string>
+    <string name="password_username_label">用户名</string>
+    <string name="password_username_hint">用户名</string>
+    <string name="password_mobile_label">手机号码</string>
+    <string name="password_mobile_hint">手机号码</string>
+    <string name="password_common_label">密码</string>
+    <string name="password_common_hint">密码</string>
+    <string name="password_auth_label">授权码</string>
+    <string name="password_auth_hint">授权码</string>
+    <string name="password_backup_label">备用码</string>
+    <string name="password_backup_hint">备用码</string>
+    <string name="password_nickname_label">昵称</string>
+    <string name="password_nickname_hint">昵称</string>
+    <string name="password_email_label">邮箱</string>
+    <string name="password_email_hint">邮箱</string>
+    <string name="password_website_label">网址</string>
+    <string name="password_website_hint">应用网址</string>
+    <string name="password_remark_label">备注</string>
+    <string name="password_remark_hint">备注</string>
 </resources>

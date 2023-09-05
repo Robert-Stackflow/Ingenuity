@@ -40,18 +40,24 @@ public class ImportPasswordUtil {
             switch (passwordGroup.getType()) {
                 case COMMON:
                     List<CommonPassword> commonPasswordList = Arrays.asList(gson.fromJson(jsonElement, CommonPassword[].class));
-                    for (CommonPassword commonPassword : commonPasswordList)
+                    for (CommonPassword commonPassword : commonPasswordList) {
                         commonPassword.setGroupId(id);
+                        commonPassword.setId(null);
+                    }
                     LocalStorage.getAppDatabase().commonPasswordDao().insertAll(commonPasswordList);
                 case BACKUP:
                     List<BackupPassword> backupPasswordList = Arrays.asList(gson.fromJson(jsonElement, BackupPassword[].class));
-                    for (BackupPassword backupPassword : backupPasswordList)
+                    for (BackupPassword backupPassword : backupPasswordList) {
                         backupPassword.setGroupId(id);
+                        backupPassword.setId(null);
+                    }
                     LocalStorage.getAppDatabase().backupPasswordDao().insertAll(backupPasswordList);
                 case AUTH:
                     List<AuthPassword> authPasswordList = Arrays.asList(gson.fromJson(jsonElement, AuthPassword[].class));
-                    for (AuthPassword authPassword : authPasswordList)
+                    for (AuthPassword authPassword : authPasswordList) {
                         authPassword.setGroupId(id);
+                        authPassword.setId(null);
+                    }
                     LocalStorage.getAppDatabase().authPasswordDao().insertAll(authPasswordList);
             }
         } catch (Exception e) {

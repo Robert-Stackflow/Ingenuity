@@ -272,8 +272,8 @@
 	<string name="dialog_content_delete_password_group">グループ [%1$s] を削除しますか? </string>
 	<string name="dialog_title_delete_password">パスワードを削除</string>
 	<string name="dialog_content_delete_password">パスワード [%1$s] を削除しますか? </string>
-	<string name="dialog_title_import_password">パスワードのインポート</string>
-	<string name="dialog_content_import_password" formatted="true">ファイル %1$s からパスワードをインポートします</string>
+	<string name="dialog_title_import_json_password">パスワードのインポート</string>
+	<string name="dialog_content_import_json_password" formatted="true">ファイル %1$s からパスワードをインポートします</string>
 	<string name="title_detail_password">パスワードの詳細</string>
 	<string name="title_add_password">パスワードを追加</string>
 	<string name="title_detail_password_group">グループの詳細</string>
@@ -282,4 +282,39 @@
 	<string name="export_password">エクスポートパスワード</string>
 	<string name="import_password">インポートパスワード</string>
 	<string name="search_password_hint">検索名、パスワード</string>
+	<string name="auth_password">認証コード</string>
+	<string name="common_password">共通パスワード</string>
+	<string name="backup_password">バックアップ コード</string>
+	<string name="password_group_name_label">名前</string>
+	<string name="password_group_name_hint">グループ名</string>
+	<string name="password_group_type_label">タイプ</string>
+	<string name="password_group_remark_label">備考</string>
+	<string name="password_group_remark_hint">グループのコメント</string>
+	<string name="password_name_label">名前</string>
+	<string name="password_name_hint">アプリケーション名</string>
+	<string name="password_username_label">ユーザー名</string>
+	<string name="password_username_hint">ユーザー名</string>
+	<string name="password_mobile_label">携帯電話番号</string>
+	<string name="password_mobile_hint">携帯電話番号</string>
+	<string name="password_common_label">パスワード</string>
+	<string name="password_common_hint">パスワード</string>
+	<string name="password_auth_label">認証コード</string>
+	<string name="password_auth_hint">認証コード</string>
+	<string name="password_backup_label">バックアップ コード</string>
+	<string name="password_backup_hint">バックアップ コード</string>
+	<string name="password_nickname_label">ニックネーム</string>
+	<string name="password_nickname_hint">ニックネーム</string>
+	<string name="password_email_label">メール</string>
+	<string name="password_email_hint">メール</string>
+	<string name="password_website_label">ウェブサイト</string>
+	<string name="password_website_hint">アプリケーション URL</string>
+	<string name="password_remark_label">備考</string>
+	<string name="password_remark_hint">備考</string>
+	<string name="entry_export_excel_password">Excel 形式にエクスポート</string>
+	<string name="entry_import_excel_password">Excel 形式をインポートする</string>
+	<string name="entry_long_press_copy_password">カードを長押ししてパスワードをコピーします</string>
+	<string name="entry_click_copy_password">カードをクリックしてパスワードをコピーします</string>
+	<string name="dialog_title_import_excel_password">Excel 形式をインポートする</string>
+	<string name="dialog_content_import_excel_password" formatted="true">ファイル %1$s からパスワードをインポートするかどうか</string>
+	<string name="title_settings_password">パスワード設定</string>
 </resources>

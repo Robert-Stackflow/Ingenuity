@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initView();
         LiveEventBus.get(EventBusCode.CHANGE_THEME.getKey(), String.class).observe(this, s -> recreate());
-        LiveEventBus.get(EventBusCode.CHANGE_SCREEN_SHOT.getKey(), String.class).observe(this, s -> loadEnableScreenShot(SharedPreferenceUtil.getCurrentNavIndex(MainActivity.this)));
+        LiveEventBus.get(EventBusCode.CHANGE_TOKEN_DISABLE_SCREENSHOT.getKey(), String.class).observe(this, s -> loadEnableScreenShot(SharedPreferenceUtil.getCurrentNavIndex(MainActivity.this)));
     }
 
     void initView() {
@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * @param index 当前所在页面
      */
     public void loadEnableScreenShot(int index) {
-        if (SharedPreferenceUtil.getBoolean(this, SharedPreferenceCode.DISBALE_SCREEN_SHOT.getKey(), true)) {
+        if (SharedPreferenceUtil.getBoolean(this, SharedPreferenceCode.TOKEN_DISBALE_SCREENSHOT.getKey(), true)) {
             if (readableBottomBar.getBottomBarItemList().get(index).getText().equals(getString(R.string.nav_auth))) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
             } else {

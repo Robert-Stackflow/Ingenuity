@@ -87,7 +87,7 @@ public class RadioItem extends ConstraintLayout {
         RadioButton radioButton = new RadioButton(getContext());
         radioButton.setText(str);
         radioButton.setButtonDrawable(null);
-        radioButton.setWidth(getResources().getDimensionPixelSize(R.dimen.dp60));
+        radioButton.setWidth(getResources().getDimensionPixelSize(R.dimen.dp70));
         radioButton.setTextAlignment(TEXT_ALIGNMENT_CENTER);
         radioButton.setTextColor(getContext().getColorStateList(R.color.color_selector_radio_text));
         radioButton.setBackground(AppCompatResources.getDrawable(getContext(), R.drawable.shape_radio));
@@ -95,6 +95,8 @@ public class RadioItem extends ConstraintLayout {
         radioButton.post(() -> {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(radioButton.getLayoutParams());
             layoutParams.rightMargin = getResources().getDimensionPixelSize(R.dimen.dp10);
+            layoutParams.topMargin = getResources().getDimensionPixelSize(R.dimen.dp3);
+            layoutParams.bottomMargin = getResources().getDimensionPixelSize(R.dimen.dp3);
             radioButton.setLayoutParams(layoutParams);
         });
         radioButton.setOnClickListener(view -> {

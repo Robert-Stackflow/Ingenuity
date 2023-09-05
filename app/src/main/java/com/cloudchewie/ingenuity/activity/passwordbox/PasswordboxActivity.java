@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
@@ -29,7 +30,6 @@ import com.cloudchewie.ingenuity.util.decoration.SpacingItemDecoration;
 import com.cloudchewie.ingenuity.util.enumeration.Direction;
 import com.cloudchewie.ingenuity.util.enumeration.EventBusCode;
 import com.cloudchewie.ingenuity.util.password.ExportPasswordUtil;
-import com.cloudchewie.ingenuity.util.password.ImportPasswordUtil;
 import com.cloudchewie.ingenuity.widget.InputBottomSheet;
 import com.cloudchewie.ui.custom.IDialog;
 import com.cloudchewie.ui.custom.IToast;
@@ -39,7 +39,8 @@ import com.cloudchewie.ui.fab.FloatingActionMenu;
 import com.cloudchewie.ui.item.InputLayout;
 import com.cloudchewie.util.basic.DateFormatUtil;
 import com.cloudchewie.util.system.ShareUtil;
-import com.cloudchewie.util.system.UriUtil;
+import com.cloudchewie.util.system.SharedPreferenceCode;
+import com.cloudchewie.util.system.SharedPreferenceUtil;
 import com.cloudchewie.util.ui.StatusBarUtil;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -50,14 +51,13 @@ import java.util.Date;
 import java.util.List;
 
 public class PasswordboxActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
-    private static final int IMPORT_JSON_REQUEST_CODE = 42;
     private static final int EXPORT_JSON_REQUEST_CODE = 43;
     private String EXPORT_PREFIX = "Password_";
     RefreshLayout swipeRefreshLayout;
-    FloatingActionButton importButton;
     FloatingActionButton exportButton;
     FloatingActionButton newGroupButton;
     FloatingActionButton newPasswordButton;
+    FloatingActionButton settingsButton;
     FloatingActionMenu floatingActionMenu;
     RecyclerView recyclerView;
     RecyclerView childRecyclerView;
@@ -77,19 +77,19 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
         StatusBarUtil.setStatusBarMarginTop(this);
         setContentView(R.layout.activity_passwordbox);
         ((TitleBar) findViewById(R.id.activity_passwordbox_titlebar)).setLeftButtonClickListener(v -> finishAfterTransition());
-        importButton = findViewById(R.id.activity_passwordbox_import);
         exportButton = findViewById(R.id.activity_passwordbox_export);
         recyclerView = findViewById(R.id.activity_passwordbox_recycler_view);
         childRecyclerView = findViewById(R.id.activity_passwordbox_child_recycler_view);
         newGroupButton = findViewById(R.id.activity_passwordbox_new_group);
         newPasswordButton = findViewById(R.id.activity_passwordbox_new_password);
+        settingsButton = findViewById(R.id.activity_passwordbox_settings);
         floatingActionMenu = findViewById(R.id.activity_passwordbox_menu);
         divider = findViewById(R.id.activity_passwordbox_top_divider);
         blankView = findViewById(R.id.activity_passwordbox_blank);
         searchEdit = findViewById(R.id.activity_passwordbox_search);
-        importButton.setOnClickListener(this);
         exportButton.setOnClickListener(this);
         newPasswordButton.setOnClickListener(this);
+        settingsButton.setOnClickListener(this);
         newGroupButton.setOnClickListener(this);
         searchEdit.getEditText().setOnEditorActionListener(this);
         searchEdit.getEditText().addTextChangedListener(this);
@@ -99,8 +99,19 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
             if (passwordListAdapter != null) passwordListAdapter.refreshData();
             updateNullDataState();
         });
+        LiveEventBus.get(EventBusCode.CHANGE_PASSWORD_DISABLE_SCREENSHOT.getKey(), String.class).observe(this, s -> loadEnableScreenshot());
         initSwipeRefresh();
         initRecyclerView();
+        loadEnableScreenshot();
+    }
+
+
+    void loadEnableScreenshot() {
+        if (SharedPreferenceUtil.getBoolean(PasswordboxActivity.this, SharedPreferenceCode.PASSWORD_DISBALE_SCREENSHOT.getKey(), true)) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        }
     }
 
     void initData() {
@@ -115,6 +126,7 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
             public void onSuccess(String result) {
                 runOnUiThread(() -> {
                     passwordGroupListAdapter.setPasswordGroupList(passwordGroups);
+                    currentSelectedGroup = null;
                     updateNullDataState();
                 });
             }
@@ -129,7 +141,6 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
             recyclerView.setVisibility(View.GONE);
             divider.setVisibility(View.GONE);
             exportButton.setVisibility(View.VISIBLE);
-            importButton.setVisibility(View.GONE);
             ThreadUtils.executeBySingle(new ThreadUtils.SimpleTask<Integer>() {
                 @Override
                 public Integer doInBackground() {
@@ -165,7 +176,6 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
             childRecyclerView.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
             exportButton.setVisibility(View.GONE);
-            importButton.setVisibility(View.VISIBLE);
             if (passwordGroups != null && passwordGroups.size() > 0) {
                 divider.setVisibility(View.VISIBLE);
                 blankView.setVisibility(View.GONE);
@@ -226,6 +236,17 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
                     @Override
                     public void onPositiveClick() {
                         LocalStorage.getAppDatabase().passwordGroupDao().deleteById(passwordGroup.getId());
+                        switch (passwordGroup.getType()) {
+                            case AUTH:
+                                LocalStorage.getAppDatabase().authPasswordDao().delete(passwordGroup.getId());
+                                break;
+                            case BACKUP:
+                                LocalStorage.getAppDatabase().backupPasswordDao().delete(passwordGroup.getId());
+                                break;
+                            case COMMON:
+                                LocalStorage.getAppDatabase().commonPasswordDao().delete(passwordGroup.getId());
+                                break;
+                        }
                         initData();
                         IToast.showBottom(PasswordboxActivity.this, getString(R.string.delete_success));
                     }
@@ -270,9 +291,10 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
             Intent intent = new Intent(this, PasswordGroupDetailActivity.class).setAction(Intent.ACTION_DEFAULT);
             floatingActionMenu.close(true);
             startActivity(intent);
-        } else if (view == importButton) {
+        } else if (view == settingsButton) {
+            Intent intent = new Intent(this, PasswordboxSettingsActivity.class).setAction(Intent.ACTION_DEFAULT);
             floatingActionMenu.close(true);
-            ExploreUtil.performFileSearch(this, IMPORT_JSON_REQUEST_CODE);
+            startActivity(intent);
         } else if (view == exportButton) {
             if (currentSelectedGroup != null) {
                 toExportGroup = currentSelectedGroup;
@@ -352,40 +374,11 @@ public class PasswordboxActivity extends BaseActivity implements View.OnClickLis
         Uri uri = resultData.getData();
         if (uri == null) return;
         IDialog dialog = new IDialog(this);
-        switch (requestCode) {
-            case EXPORT_JSON_REQUEST_CODE:
-                if (toExportGroup != null) {
-                    ExportPasswordUtil.exportJsonFile(this, toExportGroup, uri);
-                    IToast.showBottom(this, getString(R.string.export_success));
-                }
-                break;
-            case IMPORT_JSON_REQUEST_CODE:
-                dialog.setTitle(getString(R.string.dialog_title_import_password));
-                dialog.setMessage(String.format(getString(R.string.dialog_content_import_password), UriUtil.getFileAbsolutePath(this, uri)));
-                dialog.setOnClickBottomListener(new IDialog.OnClickBottomListener() {
-                    @Override
-                    public void onPositiveClick() {
-                        try {
-                            ImportPasswordUtil.importJsonFile(PasswordboxActivity.this, uri);
-                            initRecyclerView();
-                            IToast.showBottom(PasswordboxActivity.this, getString(R.string.import_success));
-                        } catch (Exception e) {
-                            IToast.showBottom(PasswordboxActivity.this, getString(R.string.import_fail));
-                        }
-                    }
-
-                    @Override
-                    public void onNegtiveClick() {
-
-                    }
-
-                    @Override
-                    public void onCloseClick() {
-
-                    }
-                });
-                dialog.show();
-                break;
+        if (requestCode == EXPORT_JSON_REQUEST_CODE) {
+            if (toExportGroup != null) {
+                ExportPasswordUtil.exportJsonFile(this, toExportGroup, uri);
+                IToast.showBottom(this, getString(R.string.export_success));
+            }
         }
     }
 }

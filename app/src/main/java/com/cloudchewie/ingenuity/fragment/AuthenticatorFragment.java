@@ -104,13 +104,13 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new SpacingItemDecoration(getContext(), (int) getResources().getDimension(R.dimen.dp3), Direction.BOTTOM));
         LiveEventBus.get(EventBusCode.CHANGE_TOKEN.getKey()).observe(this, s -> swipeRefreshLayout.autoRefresh());
-        LiveEventBus.get(EventBusCode.CHANGE_AUTH_SHOW_CODE.getKey()).observe(this, s -> {
-            isAuthed = !SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true);
-            lockButton.setVisibility(SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true) ? View.VISIBLE : View.GONE);
+        LiveEventBus.get(EventBusCode.CHANGE_TOKEN_NEED_AUTH.getKey()).observe(this, s -> {
+            isAuthed = !SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.TOKEN_NEED_AUTH.getKey(), true);
+            lockButton.setVisibility(SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.TOKEN_NEED_AUTH.getKey(), true) ? View.VISIBLE : View.GONE);
             refreshAuthState();
         });
-        isAuthed = LocalStorage.getAppDatabase().otpTokenDao().count() <= 0 || !SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true);
-        lockButton.setVisibility(SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true) ? View.VISIBLE : View.GONE);
+        isAuthed = LocalStorage.getAppDatabase().otpTokenDao().count() <= 0 || !SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.TOKEN_NEED_AUTH.getKey(), true);
+        lockButton.setVisibility(SharedPreferenceUtil.getBoolean(getContext(), SharedPreferenceCode.TOKEN_NEED_AUTH.getKey(), true) ? View.VISIBLE : View.GONE);
         refreshAuthState();
         initAuth();
         return mainView;
@@ -217,7 +217,8 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mFingerprintIdentify.cancelIdentify();
+        if (mFingerprintIdentify != null)
+            mFingerprintIdentify.cancelIdentify();
     }
 
     @Override
@@ -227,7 +228,8 @@ public class AuthenticatorFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onSucceed() {
-        mFingerprintIdentify.cancelIdentify();
+        if (mFingerprintIdentify != null)
+            mFingerprintIdentify.cancelIdentify();
         isAuthed = true;
         if (bottomSheet != null)
             bottomSheet.cancel();

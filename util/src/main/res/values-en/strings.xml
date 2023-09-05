@@ -272,8 +272,8 @@
 	<string name="dialog_content_delete_password_group">Delete group [%1$s]? </string>
 	<string name="dialog_title_delete_password">Delete password</string>
 	<string name="dialog_content_delete_password">Delete password [%1$s]? </string>
-	<string name="dialog_title_import_password">Import password</string>
-	<string name="dialog_content_import_password" formatted="true">Whether to import passwords from file %1$s</string>
+	<string name="dialog_title_import_json_password">Import password</string>
+	<string name="dialog_content_import_json_password" formatted="true">Whether to import passwords from file %1$s</string>
 	<string name="title_detail_password">Password details</string>
 	<string name="title_add_password">Add password</string>
 	<string name="title_detail_password_group">Group details</string>
@@ -282,4 +282,39 @@
 	<string name="export_password">Export password</string>
 	<string name="import_password">Import password</string>
 	<string name="search_password_hint">Search name or password</string>
+	<string name="auth_password">Authorization code</string>
+	<string name="common_password">common password</string>
+	<string name="backup_password">backup code</string>
+	<string name="password_group_name_label">name</string>
+	<string name="password_group_name_hint">group name</string>
+	<string name="password_group_type_label">Type</string>
+	<string name="password_group_remark_label">Remark</string>
+	<string name="password_group_remark_hint">Group remark</string>
+	<string name="password_name_label">Name</string>
+	<string name="password_name_hint">application name</string>
+	<string name="password_username_label">Username</string>
+	<string name="password_username_hint">Username</string>
+	<string name="password_mobile_label">Mobile phone number</string>
+	<string name="password_mobile_hint">Mobile phone number</string>
+	<string name="password_common_label">password</string>
+	<string name="password_common_hint">Password</string>
+	<string name="password_auth_label">Authorization code</string>
+	<string name="password_auth_hint">Authorization code</string>
+	<string name="password_backup_label">Backup code</string>
+	<string name="password_backup_hint">Backup code</string>
+	<string name="password_nickname_label">Nickname</string>
+	<string name="password_nickname_hint">Nickname</string>
+	<string name="password_email_label">Email</string>
+	<string name="password_email_hint">Email</string>
+	<string name="password_website_label">Website</string>
+	<string name="password_website_hint">Application URL</string>
+	<string name="password_remark_label">Remarks</string>
+	<string name="password_remark_hint">Remarks</string>
+	<string name="entry_export_excel_password">Export to Excel format</string>
+	<string name="entry_import_excel_password">Import Excel format</string>
+	<string name="entry_long_press_copy_password">Long click to copy the password</string>
+	<string name="entry_click_copy_password">Click to copy the password</string>
+	<string name="dialog_title_import_excel_password">Import Excel format</string>
+	<string name="dialog_content_import_excel_password" formatted="true">Whether to import passwords from file %1$s</string>
+	<string name="title_settings_password">Password settings</string>
 </resources>

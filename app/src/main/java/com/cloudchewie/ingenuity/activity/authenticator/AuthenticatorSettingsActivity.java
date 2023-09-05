@@ -66,22 +66,22 @@ public class AuthenticatorSettingsActivity extends BaseActivity implements View.
     }
 
     void loadSettings() {
-        longPressItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.LONG_PRESS_COPY_CODE.getKey(), true));
-        clickItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.CLICK_COPY_CODE.getKey(), false));
-        authItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), true));
-        screenShotItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.DISBALE_SCREEN_SHOT.getKey(), true));
+        longPressItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_LONG_CLICK_COPY.getKey(), true));
+        clickItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_CLICK_COPY.getKey(), false));
+        authItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_NEED_AUTH.getKey(), true));
+        screenShotItem.setChecked(SharedPreferenceUtil.getBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_DISBALE_SCREENSHOT.getKey(), true));
     }
 
     void bindEvent() {
-        longPressItem.setOnCheckedChangedListener((buttonView, isChecked) -> SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.LONG_PRESS_COPY_CODE.getKey(), isChecked));
-        clickItem.setOnCheckedChangedListener((buttonView, isChecked) -> SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.CLICK_COPY_CODE.getKey(), isChecked));
+        longPressItem.setOnCheckedChangedListener((buttonView, isChecked) -> SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_LONG_CLICK_COPY.getKey(), isChecked));
+        clickItem.setOnCheckedChangedListener((buttonView, isChecked) -> SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_CLICK_COPY.getKey(), isChecked));
         authItem.setOnCheckedChangedListener((buttonView, isChecked) -> {
-            SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.AUTH_TO_SHOW_CODE.getKey(), isChecked);
-            LiveEventBus.get(EventBusCode.CHANGE_AUTH_SHOW_CODE.getKey()).post("");
+            SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_NEED_AUTH.getKey(), isChecked);
+            LiveEventBus.get(EventBusCode.CHANGE_TOKEN_NEED_AUTH.getKey()).post("");
         });
         screenShotItem.setOnCheckedChangedListener((buttonView, isChecked) -> {
-            SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.DISBALE_SCREEN_SHOT.getKey(), isChecked);
-            LiveEventBus.get(EventBusCode.CHANGE_SCREEN_SHOT.getKey()).post("");
+            SharedPreferenceUtil.putBoolean(AuthenticatorSettingsActivity.this, SharedPreferenceCode.TOKEN_DISBALE_SCREENSHOT.getKey(), isChecked);
+            LiveEventBus.get(EventBusCode.CHANGE_TOKEN_DISABLE_SCREENSHOT.getKey()).post("");
         });
     }
 

@@ -130,6 +130,17 @@ public class PasswordGroupDetailActivity extends BaseActivity implements View.On
                     @Override
                     public void onPositiveClick() {
                         LocalStorage.getAppDatabase().passwordGroupDao().deleteById(paramPasswordGroup.getId());
+                        switch (paramPasswordGroup.getType()) {
+                            case AUTH:
+                                LocalStorage.getAppDatabase().authPasswordDao().delete(paramPasswordGroup.getId());
+                                break;
+                            case BACKUP:
+                                LocalStorage.getAppDatabase().backupPasswordDao().delete(paramPasswordGroup.getId());
+                                break;
+                            case COMMON:
+                                LocalStorage.getAppDatabase().commonPasswordDao().delete(paramPasswordGroup.getId());
+                                break;
+                        }
                         finish();
                         LiveEventBus.get(EventBusCode.CHANGE_PASSWORD_GROUP.getKey()).post("");
                         IToast.makeTextBottom(PasswordGroupDetailActivity.this, getString(R.string.delete_success), Toast.LENGTH_SHORT).show();

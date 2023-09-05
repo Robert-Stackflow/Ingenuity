@@ -73,7 +73,7 @@ public class TokenListAdapter extends RecyclerView.Adapter<TokenListAdapter.MyVi
             if (token.getTokenType() == OtpTokenType.HOTP) {
                 LocalStorage.getAppDatabase().otpTokenDao().incrementCounter(token.getId());
             }
-            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.CLICK_COPY_CODE.getKey(), false)) {
+            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.TOKEN_CLICK_COPY.getKey(), false)) {
                 ClipBoardUtil.copy(codes.getCurrentCode());
                 IToast.showBottom(context, context.getString(R.string.copy_success));
             }
@@ -81,7 +81,7 @@ public class TokenListAdapter extends RecyclerView.Adapter<TokenListAdapter.MyVi
             ((TokenLayout) holder.mItemView).start(token.getTokenType(), codes, true);
         });
         holder.mItemView.setOnLongClickListener(view -> {
-            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.LONG_PRESS_COPY_CODE.getKey(), true)) {
+            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.TOKEN_LONG_CLICK_COPY.getKey(), true)) {
                 TokenCode codes = new TokenCodeUtil().generateTokenCode(token);
                 if (token.getTokenType() == OtpTokenType.HOTP) {
                     LocalStorage.getAppDatabase().otpTokenDao().incrementCounter(token.getId());

@@ -9,8 +9,10 @@ public enum EventBusCode {
     CHANGE_PASSWORD_GROUP("change_password_group", "密码分组更新"),
     CHANGE_PASSWORD("change_password", "密码更新"),
     CHANGE_BOOKMARK("change_bookmark", "书签更新"),
-    CHANGE_AUTH_SHOW_CODE("auth_show_code", "身份验证"),
-    CHANGE_SCREEN_SHOT("change_screen_shot", "是否允许截图更新");
+    CHANGE_TOKEN_NEED_AUTH("change_token_need_auth", "令牌身份验证"),
+    CHANGE_TOKEN_DISABLE_SCREENSHOT("change_token_disable_screenshot", "令牌截图更新"),
+    CHANGE_PASSWORD_NEED_AUTH("change_password_need_auth", "密码身份验证"),
+    CHANGE_PASSWORD_DISABLE_SCREENSHOT("change_password_disable_screenshot", "密码截图更新");
     private final String key;
     private final String describe;
 

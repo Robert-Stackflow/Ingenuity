@@ -98,9 +98,15 @@ public class PasswordListAdapter extends RecyclerView.Adapter<PasswordListAdapte
             return;
         }
         holder.passwordLayout.bind(passwordGroup, password);
-        holder.mItemView.setOnClickListener(view -> holder.passwordLayout.toggle());
+        holder.mItemView.setOnClickListener(view -> {
+            holder.passwordLayout.toggle();
+            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.PASSWORD_CLICK_COPY.getKey(), true)) {
+                ClipBoardUtil.copy(password.getPassword());
+                IToast.showBottom(context, context.getString(R.string.copy_success));
+            }
+        });
         holder.mItemView.setOnLongClickListener(view -> {
-            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.LONG_PRESS_COPY_PASSCODE.getKey(), true)) {
+            if (SharedPreferenceUtil.getBoolean(context, SharedPreferenceCode.PASSWORD_LONG_CLICK_COPY.getKey(), true)) {
                 ClipBoardUtil.copy(password.getPassword());
                 IToast.showBottom(context, context.getString(R.string.copy_success));
             }

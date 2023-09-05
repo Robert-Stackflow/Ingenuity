@@ -76,6 +76,7 @@
         <activity android:name=".activity.application.WebViewActivity" />
         <activity android:name=".activity.application.BookmarkActivity" />
         <activity android:name=".activity.passwordbox.PasswordboxActivity" />
+        <activity android:name=".activity.passwordbox.PasswordboxSettingsActivity" />
         <activity android:name=".activity.passwordbox.PasswordGroupDetailActivity" />
         <activity android:name=".activity.passwordbox.CommonPasswordDetailActivity" />
         <activity android:name=".activity.passwordbox.AuthPasswordDetailActivity" />

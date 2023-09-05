@@ -26,7 +26,8 @@ public interface AuthPasswordDao {
 
     @Query("delete from auth_password where id = :id")
     void deleteById(Integer id);
-
+    @Query("delete from auth_password where groupId = :groupId")
+    void delete(Integer groupId);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<AuthPassword> passwordGroups);
 

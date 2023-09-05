@@ -272,8 +272,8 @@
 	<string name="dialog_content_delete_password_group">是否刪除分組【%1$s】？ </string>
 	<string name="dialog_title_delete_password">刪除密碼</string>
 	<string name="dialog_content_delete_password">是否刪除密碼【%1$s】？ </string>
-	<string name="dialog_title_import_password">導入密碼</string>
-	<string name="dialog_content_import_password" formatted="true">是否從文件%1$s中導入密碼</string>
+	<string name="dialog_title_import_json_password">導入密碼</string>
+	<string name="dialog_content_import_json_password" formatted="true">是否從文件%1$s中導入密碼</string>
 	<string name="title_detail_password">密碼詳情</string>
 	<string name="title_add_password">添加密碼</string>
 	<string name="title_detail_password_group">分組詳情</string>
@@ -282,4 +282,39 @@
 	<string name="export_password">導出密碼</string>
 	<string name="import_password">導入密碼</string>
 	<string name="search_password_hint">搜索名稱、密碼</string>
+	<string name="auth_password">授權碼</string>
+	<string name="common_password">普通密碼</string>
+	<string name="backup_password">備用碼</string>
+	<string name="password_group_name_label">名稱</string>
+	<string name="password_group_name_hint">分組名稱</string>
+	<string name="password_group_type_label">類型</string>
+	<string name="password_group_remark_label">備註</string>
+	<string name="password_group_remark_hint">分組備註</string>
+	<string name="password_name_label">名稱</string>
+	<string name="password_name_hint">應用名稱</string>
+	<string name="password_username_label">用戶名</string>
+	<string name="password_username_hint">用戶名</string>
+	<string name="password_mobile_label">手機號碼</string>
+	<string name="password_mobile_hint">手機號碼</string>
+	<string name="password_common_label">密碼</string>
+	<string name="password_common_hint">密碼</string>
+	<string name="password_auth_label">授權碼</string>
+	<string name="password_auth_hint">授權碼</string>
+	<string name="password_backup_label">備用碼</string>
+	<string name="password_backup_hint">備用碼</string>
+	<string name="password_nickname_label">暱稱</string>
+	<string name="password_nickname_hint">暱稱</string>
+	<string name="password_email_label">郵箱</string>
+	<string name="password_email_hint">郵箱</string>
+	<string name="password_website_label">網址</string>
+	<string name="password_website_hint">應用網址</string>
+	<string name="password_remark_label">備註</string>
+	<string name="password_remark_hint">備註</string>
+	<string name="entry_export_excel_password">導出為Excel格式</string>
+	<string name="entry_import_excel_password">導入Excel格式</string>
+	<string name="entry_long_press_copy_password">長按卡片複製密碼</string>
+	<string name="entry_click_copy_password">點擊卡片複製密碼</string>
+	<string name="dialog_title_import_excel_password">導入Excel格式</string>
+	<string name="dialog_content_import_excel_password" formatted="true">是否從文件%1$s中導入密碼</string>
+	<string name="title_settings_password">密碼設置</string>
 </resources>

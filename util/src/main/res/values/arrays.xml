@@ -70,9 +70,9 @@
         <item>@string/amount_operation</item>
     </string-array>
     <string-array name="password_type">
-        <item>普通密码</item>
-        <item>授权码</item>
-        <item>备用码</item>
+        <item>@string/common_password</item>
+        <item>@string/auth_password</item>
+        <item>@string/backup_password</item>
     </string-array>
     <string-array name="password_group_operation">
         <item>@string/rename</item>

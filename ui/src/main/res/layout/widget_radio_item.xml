@@ -12,8 +12,7 @@
         android:id="@+id/radio_item_main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
+        android:paddingVertical="@dimen/dp8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +28,7 @@
             android:textSize="15sp"
             tool:text="@string/blank" />
 
-        <RadioGroup
+        <com.cloudchewie.ui.general.IRadioGroup
             android:id="@+id/radio_item_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

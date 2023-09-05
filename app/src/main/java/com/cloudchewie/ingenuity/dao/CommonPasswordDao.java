@@ -24,7 +24,8 @@ public interface CommonPasswordDao {
 
     @Query("delete from common_password where id = :id")
     void deleteById(Integer id);
-
+    @Query("delete from common_password where groupId = :groupId")
+    void delete(Integer groupId);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<CommonPassword> passwordGroups);
 
