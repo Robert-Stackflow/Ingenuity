@@ -14,6 +14,7 @@
 	<string name="cancel">取消</string>
 	<string name="back">返回</string>
 	<string name="more">更多</string>
+	<string name="web_loading">載入中...</string>
 	<string name="title_setting">設定</string>
 	<string name="title_account">帳號安全</string>
 	<string name="title_help">使用指南</string>
@@ -317,4 +318,5 @@
 	<string name="dialog_title_import_excel_password">導入Excel格式</string>
 	<string name="dialog_content_import_excel_password" formatted="true">是否從文件%1$s中導入密碼</string>
 	<string name="title_settings_password">密碼設置</string>
+    <string name="web_pagefrom">網頁來源於</string>
 </resources>

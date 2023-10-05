@@ -20,6 +20,8 @@
     <string name="edit">编辑</string>
     <string name="rename">重命名</string>
     <string name="more">更多</string>
+    <string name="web_pagefrom">网页来源于</string>
+    <string name="web_loading">加载中...</string>
     <!--标题-->
     <string name="title_setting"> 设置 </string>
     <string name="title_account">帐号安全</string>

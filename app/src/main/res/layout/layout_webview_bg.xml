@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp15"
+        android:layout_marginHorizontal="@dimen/dp40"
         android:gravity="top|center_horizontal"
         android:textColor="@color/color_gray"
         android:textSize="@dimen/sp14"

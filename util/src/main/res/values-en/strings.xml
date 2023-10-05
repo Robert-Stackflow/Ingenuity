@@ -14,6 +14,7 @@
 	<string name="cancel">Cancel</string>
 	<string name="back">return</string>
 	<string name="more">more</string>
+	<string name="web_loading">Loading...</string>
 	<string name="title_setting">Setting</string>
 	<string name="title_account">Account</string>
 	<string name="title_help">Help</string>
@@ -317,4 +318,5 @@
 	<string name="dialog_title_import_excel_password">Import Excel format</string>
 	<string name="dialog_content_import_excel_password" formatted="true">Whether to import passwords from file %1$s</string>
 	<string name="title_settings_password">Password settings</string>
+    <string name="web_pagefrom">From</string>
 </resources>

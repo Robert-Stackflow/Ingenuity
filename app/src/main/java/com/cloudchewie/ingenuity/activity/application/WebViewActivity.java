@@ -54,7 +54,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         backButton = findViewById(R.id.activity_webview_back);
         closeButton = findViewById(R.id.activity_webview_close);
         bgTextView = findViewById(R.id.activity_webview_slidingLayout).findViewById(R.id.layout_webview_bg_text);
-        bgTextView.setText(originUrl);
+        bgTextView.setText(getString(com.cloudchewie.ui.R.string.web_loading));
         moreButton = findViewById(R.id.activity_webview_more);
         titleView = findViewById(R.id.activity_webview_title);
         webView = findViewById(R.id.activity_webview_webview);
@@ -68,6 +68,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
     @SuppressLint("SetJavaScriptEnabled")
     void initWebview() {
         webView.setTitleView(titleView);
+        webView.setUrlView(bgTextView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setUseWideViewPort(true);
@@ -75,7 +76,6 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.getSettings().setBlockNetworkImage(true);
-//        webView.getSettings().setAppCacheEnabled(enabledCache);
         webView.loadUrl(originUrl);
     }
 
